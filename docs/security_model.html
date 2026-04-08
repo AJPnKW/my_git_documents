@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security Model</title>
+  <link rel="stylesheet" href="../app/assets/css/app.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="breadcrumbs"><a href="index.html">Docs</a> / Security Model</div>
+      <h1>Security Model</h1>
+      <p>The current baseline uses neutral access-entry screens for local/private use. This is a usability gate, not strong hosted protection. Real hosted privacy would require server-side auth or a protected hosting layer.</p>
+    </section>
+    <section class="section">
+      <ul class="doc-list">
+        <li>No live secrets are committed in tracked config.</li>
+        <li>Local-only auth files are ignored and should not be packaged.</li>
+        <li>Yellow House and Resumes use separate gate keys and can evolve independently.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

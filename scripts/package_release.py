@@ -20,6 +20,8 @@ def main() -> int:
                 or "backups" in path.parts
                 or "__pycache__" in path.parts
                 or "packages" in path.parts
+                or path.name == "auth_config.local.json"
+                or path.name == "local_project_summary.html"
             ):
                 continue
             if path.is_file():

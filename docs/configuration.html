@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configuration</title>
+  <link rel="stylesheet" href="../app/assets/css/app.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="breadcrumbs"><a href="index.html">Docs</a> / Configuration</div>
+      <h1>Configuration</h1>
+      <p>Tracked configuration lives in <code>app/config/</code> and the served mirror in <code>web/config/</code>. Local bootstrap secrets stay in ignored <code>auth_config.local.json</code> files and must never be published.</p>
+    </section>
+    <section class="section">
+      <ul class="doc-list">
+        <li><code>auth_config.template.json</code> defines the tracked auth shape.</li>
+        <li><code>auth_config.local.json</code> is local-only bootstrap config.</li>
+        <li>Relative paths are used so Pages hosting remains portable.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

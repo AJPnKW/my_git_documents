@@ -17,6 +17,7 @@ def main() -> int:
         [sys.executable, "scripts/build_site_index.py"],
         [sys.executable, "scripts/validate_manifests.py"],
         [sys.executable, "tests/validate_structure.py"],
+        [sys.executable, "tests/validate_docs_presence.py"],
     ]
     for command in commands:
         code = run(command)

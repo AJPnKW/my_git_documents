@@ -6,45 +6,107 @@
   <title>Resumes</title>
   <link rel="stylesheet" href="../../assets/css/app.css">
   <script defer src="../../shared/auth/auth.js"></script>
+  <script defer src="../../shared/viewer/viewer.js"></script>
 </head>
 <body>
   <header class="topbar">
     <div>
-      <a class="brand" href="../../index.html">my_git_documents</a>
-      <div class="subtle">Interview-ready resume workspace</div>
+      <a class="brand" href="./index.html">Resumes</a>
+      <div class="subtle">Interview workspace</div>
     </div>
-    <nav class="topnav">
-      <a href="../../index.html">Home</a>
-      <a href="../yellow_house/index.html">Yellow House</a>
-    </nav>
   </header>
   <main class="shell">
-    <section class="hero">
-      <div class="breadcrumbs"><a href="../../index.html">Home</a> / Resumes</div>
-      <h1>Resumes and Interview Workspace</h1>
-      <p>This area groups work by company and posting, keeps file names normalized, and opens the most important interview material with one click.</p>
-    </section>
     <section class="section" data-access-gate hidden>
       <h2 data-gate-title>Continue</h2>
       <p data-gate-prompt></p>
       <input type="text" placeholder="Workspace phrase">
       <div class="button-row">
-        <a class="button-link" href="../../index.html">Back Home</a>
         <button type="button">Continue</button>
       </div>
       <p class="subtle" data-gate-error></p>
     </section>
     <div data-protected-body>
-      <section class="section">
-        <h2>Companies</h2>
-        <ul class="doc-list">
-          <li>
-            <a href="./companies/venuiti/company_home.html">Venuiti</a>
-            <div class="subtle">Technology Project Manager application materials and interview workspace.</div>
-          </li>
-        </ul>
-      </section>
+      <div class="workspace-shell">
+        <aside class="workspace-sidebar">
+          <h1 id="workspace-title" class="workspace-title">Resumes</h1>
+          <p id="workspace-subtitle" class="workspace-subtitle">Interview workspace with a shared document viewer.</p>
+          <div id="workspace-tree"></div>
+        </aside>
+        <section class="workspace-main">
+          <div class="toolbar">
+            <div class="button-row">
+              <button data-mode-button="single" type="button">1 Page</button>
+              <button data-mode-button="dual" type="button">2 Page</button>
+              <button data-mode-button="tri" type="button">3 Page</button>
+              <button id="zoom-in" type="button">Zoom In</button>
+              <button id="zoom-out" type="button">Zoom Out</button>
+              <button id="zoom-reset" type="button">Reset Zoom</button>
+              <button id="fit-width" type="button">Fit Width</button>
+              <button id="fit-page" type="button">Fit Page</button>
+              <input id="viewer-find" type="text" placeholder="Find in current document">
+              <button id="viewer-find-button" type="button">Find</button>
+              <button id="print-view" type="button">Print</button>
+            </div>
+          </div>
+          <p id="toolbar-status" class="toolbar-status"></p>
+          <div id="viewer-grid" class="layout-grid" data-mode="dual"></div>
+          <section class="notes-panel">
+            <h2 class="notes-label">Interview Notes</h2>
+            <p class="notes-helper">Use this bottom input area for interview questions, follow-ups, answers, and general notes you want to reread.</p>
+            <textarea id="notes-text" placeholder="Write the question they asked, your follow-up points, or general interview notes here."></textarea>
+            <div class="button-row">
+              <button id="insert-timestamp" type="button">Insert Timestamp</button>
+              <button id="copy-notes" type="button">Copy</button>
+            </div>
+            <p id="save-status" class="subtle">Notes are stored locally in the browser.</p>
+          </section>
+        </section>
+      </div>
     </div>
+    <script id="workspace-config" type="application/json">
+      {
+        "siteTitle": "Resumes",
+        "siteSummary": "Interview workspace with a shared document viewer.",
+        "noteStorageKey": "mgd:notes:resumes:venuiti:technology_project_manager",
+        "notePlaceholder": "Write the interview question, your answer notes, follow-up tasks, or any general notes here.",
+        "groups": [
+          {
+            "label": "Company",
+            "heading": "Venuiti",
+            "items": [
+              {
+                "id": "venuiti-posting",
+                "label": "Technology Project Manager / Job Posting",
+                "description": "Normalized source posting.",
+                "href": "./companies/venuiti/postings/technology_project_manager/job_posting.html",
+                "selected": true
+              },
+              {
+                "id": "venuiti-resume",
+                "label": "Technology Project Manager / Resume",
+                "description": "Submitted resume.",
+                "href": "./companies/venuiti/postings/technology_project_manager/resume.html",
+                "selected": true
+              },
+              {
+                "id": "venuiti-questions",
+                "label": "Technology Project Manager / Interview Questions",
+                "description": "Prepared prompts and reference questions.",
+                "href": "./companies/venuiti/postings/technology_project_manager/interview_questions.html",
+                "selected": false
+              },
+              {
+                "id": "venuiti-notes",
+                "label": "Technology Project Manager / Notes Artifact",
+                "description": "Normalized notes page for the posting.",
+                "href": "./companies/venuiti/postings/technology_project_manager/notes.html",
+                "selected": false
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </main>
   <script>
     window.addEventListener("DOMContentLoaded", () => {

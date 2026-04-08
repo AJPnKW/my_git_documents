@@ -6,54 +6,99 @@
   <title>Yellow House</title>
   <link rel="stylesheet" href="../../assets/css/app.css">
   <script defer src="../../shared/auth/auth.js"></script>
+  <script defer src="../../shared/viewer/viewer.js"></script>
 </head>
 <body>
   <header class="topbar">
     <div>
-      <a class="brand" href="../../index.html">my_git_documents</a>
-      <div class="subtle">Yellow House private share space</div>
+      <a class="brand" href="./index.html">Yellow House</a>
+      <div class="subtle">Private document workspace</div>
     </div>
-    <nav class="topnav">
-      <a href="../../index.html">Home</a>
-      <a href="../resumes/index.html">Resumes</a>
-    </nav>
   </header>
   <main class="shell">
-    <section class="hero">
-      <div class="breadcrumbs"><a href="../../index.html">Home</a> / Yellow House</div>
-      <h1>Yellow House</h1>
-      <p>A calm shareable landing page for family-friendly viewing of house and supporting documents.</p>
-    </section>
     <section class="section" data-access-gate hidden>
       <h2 data-gate-title>Continue</h2>
       <p data-gate-prompt></p>
       <input type="text" placeholder="Shared phrase">
       <div class="button-row">
-        <a class="button-link" href="../../index.html">Back Home</a>
         <button type="button">Continue</button>
       </div>
       <p class="subtle" data-gate-error></p>
     </section>
     <div data-protected-body>
-      <section class="section">
-        <h2>Featured</h2>
-        <ul class="doc-list">
-          <li>
-            <a href="./documents/collingwood_rental_investor_analysis.html">108 Eighth Street Investor Analysis</a>
-            <div class="subtle">Imported from the supplied Collingwood source file and ready for browser or print review.</div>
-          </li>
-        </ul>
-      </section>
-      <section class="section">
-        <h2>Supporting Material</h2>
-        <ul class="doc-list">
-          <li>
-            <a href="./attachments/hp_920_home_server_linux_tv_console_setup_files/">Imported reference asset folder</a>
-            <div class="subtle">Copied from the supplied HP 920 reference folder for traceable related material.</div>
-          </li>
-        </ul>
-      </section>
+      <div class="workspace-shell">
+        <aside class="workspace-sidebar">
+          <h1 id="workspace-title" class="workspace-title">Yellow House</h1>
+          <p id="workspace-subtitle" class="workspace-subtitle">Property and related reference documents.</p>
+          <div id="workspace-tree"></div>
+        </aside>
+        <section class="workspace-main">
+          <div class="toolbar">
+            <div class="button-row">
+              <button data-mode-button="single" type="button">1 Page</button>
+              <button data-mode-button="dual" type="button">2 Page</button>
+              <button data-mode-button="tri" type="button">3 Page</button>
+              <button id="zoom-in" type="button">Zoom In</button>
+              <button id="zoom-out" type="button">Zoom Out</button>
+              <button id="zoom-reset" type="button">Reset Zoom</button>
+              <button id="fit-width" type="button">Fit Width</button>
+              <button id="fit-page" type="button">Fit Page</button>
+              <input id="viewer-find" type="text" placeholder="Find in current document">
+              <button id="viewer-find-button" type="button">Find</button>
+              <button id="print-view" type="button">Print</button>
+            </div>
+          </div>
+          <p id="toolbar-status" class="toolbar-status"></p>
+          <div id="viewer-grid" class="layout-grid" data-mode="single"></div>
+          <section class="notes-panel">
+            <h2 class="notes-label">Notes</h2>
+            <p class="notes-helper">Use this space for questions, follow-ups, reminders, or conversation notes.</p>
+            <textarea id="notes-text" placeholder="Type notes here."></textarea>
+            <div class="button-row">
+              <button id="insert-timestamp" type="button">Insert Timestamp</button>
+              <button id="copy-notes" type="button">Copy</button>
+            </div>
+            <p id="save-status" class="subtle">Notes are stored locally in the browser.</p>
+          </section>
+        </section>
+      </div>
     </div>
+    <script id="workspace-config" type="application/json">
+      {
+        "siteTitle": "Yellow House",
+        "siteSummary": "Property and related reference documents.",
+        "noteStorageKey": "mgd:notes:yellow_house",
+        "notePlaceholder": "Write questions, family follow-up items, or general notes here.",
+        "groups": [
+          {
+            "label": "Property",
+            "heading": "108 Eighth Street",
+            "items": [
+              {
+                "id": "yellow-analysis",
+                "label": "Investor Analysis",
+                "description": "Primary property analysis document.",
+                "href": "./documents/collingwood_rental_investor_analysis.html",
+                "selected": true
+              }
+            ]
+          },
+          {
+            "label": "Reference",
+            "heading": "Imported Assets",
+            "items": [
+              {
+                "id": "yellow-reference",
+                "label": "Saved Reference Page",
+                "description": "Imported supporting reference page.",
+                "href": "./attachments/hp_920_home_server_linux_tv_console_setup_files/saved_resource.html",
+                "selected": false
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </main>
   <script>
     window.addEventListener("DOMContentLoaded", () => {
