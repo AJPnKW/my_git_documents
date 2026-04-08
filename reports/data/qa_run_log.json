@@ -1,0 +1,16 @@
+[
+  {
+    "item_id": "QA-0001",
+    "item_type": "qa",
+    "title": "Baseline validation run",
+    "summary": "Validation scripts will confirm structure, content, and viewer wiring.",
+    "status": "completed",
+    "priority": "high",
+    "severity": "medium",
+    "scope_area": "global",
+    "site_area": "global",
+    "component": "qa",
+    "validation_result": "pass",
+    "qa_result": "pass"
+  }
+]

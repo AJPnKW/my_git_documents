@@ -1,0 +1,19 @@
+{
+  "site_key": "resumes",
+  "title": "Resumes and Interview Workspace",
+  "description": "Company and posting workspace designed for calm daily use and live interviews.",
+  "access_mode": "neutral_phrase",
+  "landing_summary": "Browse by company, open interview mode, capture notes, and export HTML, PDF, and DOCX bundles.",
+  "sections": [
+    {
+      "title": "Companies",
+      "cards": [
+        {
+          "label": "Venuiti",
+          "summary": "Technology Project Manager application materials and interview workspace.",
+          "href": "./companies/venuiti/company_home.html"
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 app/config/auth_config.local.json
+web/config/auth_config.local.json
 local_project_summary.html
 reports/packages/*.zip
 backups/baseline__*

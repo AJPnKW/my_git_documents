@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-04-08",
+  "sites": [
+    {
+      "site_key": "yellow_house",
+      "title": "Yellow House",
+      "summary": "Private shareable house and family document space.",
+      "home": "./yellow_house/index.html",
+      "access_mode": "neutral_phrase"
+    },
+    {
+      "site_key": "resumes",
+      "title": "Resumes and Interview Workspace",
+      "summary": "Company and posting workspace with interview mode and notes.",
+      "home": "./resumes/index.html",
+      "access_mode": "neutral_phrase"
+    }
+  ]
+}

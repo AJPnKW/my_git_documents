@@ -1,0 +1,35 @@
+{
+  "company_name": "Venuiti",
+  "company_slug": "venuiti",
+  "job_title": "Technology Project Manager",
+  "posting_slug": "technology_project_manager",
+  "job_id": "",
+  "source_url": "",
+  "application_date": "2026-04-08",
+  "status": "active_workspace",
+  "tags": [
+    "project_management",
+    "healthcare",
+    "interview_ready"
+  ],
+  "last_updated": "2026-04-08",
+  "access_scope": "private_workspace",
+  "file_mapping": {
+    "job_posting": "job_posting.html",
+    "resume": "resume.html",
+    "notes": "notes.html",
+    "interview_questions": "interview_questions.html"
+  },
+  "source_traceability": [
+    {
+      "role": "job_posting",
+      "source_path": "C:/Users/andrew/Documents/Job_Search/Venuiti/Technology Project Manager/01_posting/Posting-Venuiti-Technology_Project_Manager.html",
+      "normalized_target": "app/sites/resumes/companies/venuiti/postings/technology_project_manager/job_posting.html"
+    },
+    {
+      "role": "resume",
+      "source_path": "C:/Users/andrew/Documents/Job_Search/Venuiti/Technology Project Manager/03_resume_html/Resume-AJP-Venuiti-Technology-Project_Manager.html",
+      "normalized_target": "app/sites/resumes/companies/venuiti/postings/technology_project_manager/resume.html"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "item_id": "ENH-0001",
+    "item_type": "enhancement",
+    "title": "Interview mode baseline",
+    "summary": "Shared viewer with single, dual, and tri-view support plus local notes.",
+    "status": "implemented",
+    "priority": "high",
+    "severity": "medium",
+    "scope_area": "resumes",
+    "site_area": "resumes",
+    "component": "viewer",
+    "validation_result": "pass",
+    "qa_result": "pass"
+  }
+]

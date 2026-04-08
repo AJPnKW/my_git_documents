@@ -1,0 +1,16 @@
+[
+  {
+    "item_id": "CHG-0001",
+    "item_type": "change",
+    "title": "Created staged production baseline",
+    "summary": "Implemented root app shell, Yellow House import, Venuiti workspace, and initial viewer.",
+    "status": "implemented",
+    "priority": "high",
+    "severity": "medium",
+    "scope_area": "global",
+    "site_area": "global",
+    "component": "baseline",
+    "validation_result": "pass",
+    "qa_result": "pass"
+  }
+]

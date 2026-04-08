@@ -1,0 +1,16 @@
+[
+  {
+    "item_id": "BUG-0001",
+    "item_type": "bug",
+    "title": "One-shot repo generator exceeded shell transport limits",
+    "summary": "Staged implementation replaced the failed single-pass generator approach.",
+    "status": "closed",
+    "priority": "high",
+    "severity": "medium",
+    "scope_area": "tooling",
+    "site_area": "global",
+    "component": "execution",
+    "validation_result": "pass",
+    "qa_result": "pass"
+  }
+]

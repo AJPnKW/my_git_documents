@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrew J. Pearen - Venuiti Technology Project Manager Resume v2.9</title>
+  <style>
+    :root {
+      --ink: #1c2733;
+      --muted: #5f6d79;
+      --accent: #1d5b84;
+      --accent-soft: #e9f3f9;
+      --line: #d8e1e8;
+      --card: #fbfcfe;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    html, body {
+      width: 100%;
+    }
+    body { margin: 0; background: #eef2f6; color: var(--ink); font: 10pt/1.32 Calibri, Aptos, Arial, sans-serif; }
+    .page { width: 8.5in; min-height: 11in; margin: 0.2in auto; background: #fff; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08); padding: 0.24in 0.3in 0.26in; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    .layout { display: grid; grid-template-columns: 2.18in 1fr; gap: 0.26in; align-items: start; }
+    .left, .right { min-width: 0; }
+    .name { font-size: 20pt; font-weight: 700; letter-spacing: 0.2px; line-height: 1; margin: 0 0 5px; }
+    .contact { font-size: 9.2pt; color: var(--muted); margin-bottom: 8px; }
+    .brand { font-size: 11.2pt; font-weight: 700; color: var(--accent); border-bottom: 2px solid var(--accent); padding: 0 0 7px; margin-bottom: 10px; text-align: center; }
+    .page-tag { display: inline-block; margin-bottom: 7px; padding: 2px 8px; border-radius: 999px; border: 1px solid #cde0eb; background: var(--accent-soft); color: var(--accent); font-size: 8.1pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.45px; }
+    .section-title { font-size: 10.6pt; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.55px; margin: 0 0 6px; padding-bottom: 4px; border-bottom: 2px solid var(--accent); }
+    .left section, .right section { margin-bottom: 10px; }
+    .left-header {
+      margin-top: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .left-name {
+      font-size: 17.5pt;
+      font-weight: 700;
+      line-height: 1;
+      margin: 0 0 5px;
+    }
+    .left-contact {
+      font-size: 8.8pt;
+      color: var(--muted);
+      line-height: 1.28;
+    }
+    .left-contact div {
+      margin-bottom: 1px;
+    }
+    .pitch { font-size: 9.35pt; margin-bottom: 10px; }
+    .pitch p { margin: 0 0 7px; }
+    .skill-list, .bullet-list, .micro-list { margin: 0; padding-left: 15px; }
+    .skill-list li, .bullet-list li { margin: 0 0 3px; }
+    .micro-list li { margin: 0 0 3px; }
+    .tech-group { margin-bottom: 7px; }
+    .tech-group strong { display: block; font-size: 9.05pt; color: var(--ink); margin-bottom: 1px; }
+    .tech-group span, .left .stack-list span, .note { color: var(--muted); font-size: 8.65pt; }
+    .theme { margin-bottom: 8px; break-inside: avoid; }
+    .theme h3 { font-size: 10pt; margin: 0 0 4px; color: var(--ink); }
+    .timeline { display: grid; gap: 6px; }
+    .entry { border: 1px solid var(--line); border-radius: 9px; background: linear-gradient(180deg, #ffffff 0%, var(--card) 100%); padding: 7px 9px 6px; break-inside: avoid; }
+    .entry-head { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; margin-bottom: 3px; }
+    .entry-title { font-size: 9.15pt; font-weight: 700; margin: 0; color: var(--ink); }
+    .entry-company { font-size: 8.35pt; color: var(--muted); margin: 1px 0 0; font-style: italic; }
+    .date-pill { white-space: nowrap; font-size: 8.05pt; color: var(--accent); background: var(--accent-soft); border: 1px solid #cfe0eb; border-radius: 999px; padding: 2px 7px; margin-top: 1px; }
+    .page:nth-of-type(2) .timeline { gap: 5px; }
+    .page:nth-of-type(2) .entry { padding: 6px 8px 6px; }
+    .page:nth-of-type(2) .entry-title { font-size: 8.95pt; }
+    .page:nth-of-type(2) .entry-company { font-size: 8.2pt; }
+    .page:nth-of-type(2) .date-pill { font-size: 7.85pt; padding: 2px 6px; }
+    .page:nth-of-type(2) .micro-list li { margin: 0 0 2px; }
+    .stack-list { list-style: none; padding: 0; margin: 0; }
+    .stack-list li { margin: 0 0 5px; }
+    .stack-list strong { display: block; font-size: 9.05pt; color: var(--ink); }
+    @page { size: letter; margin: 0; }
+    @media screen {
+      body {
+        padding: 0.2in 0;
+      }
+      .page {
+        width: 8.5in;
+        min-height: 11in;
+      }
+    }
+    @media print {
+      html, body {
+        background: #fff;
+        width: 8.5in;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .page {
+        width: 8.5in;
+        min-height: 11in;
+        margin: 0;
+        padding: 0.24in 0.3in 0.26in;
+        box-shadow: none;
+        overflow: hidden;
+        break-after: page;
+      }
+      .page:last-child {
+        break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="layout">
+      <aside class="left">
+        <section class="left-header">
+          <div class="left-name">Andrew J. Pearen</div>
+          <div class="left-contact">
+            <div>(519) 277-3765</div>
+            <div>andrewjpearen@gmail.com</div>
+            <div>linkedin.com/in/andrewpearen</div>
+            <div>github.com/AJPnKW</div>
+            <div>Waterloo Region, ON</div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">Skills</h2>
+          <ul class="skill-list">
+            <li>Full-lifecycle software project delivery</li>
+            <li>Technical project and program leadership</li>
+            <li>Scope, schedule, and budget control</li>
+            <li>Project planning and milestone tracking</li>
+            <li>Agile, SDLC, and delivery governance</li>
+            <li>Cross-functional team coordination</li>
+            <li>Developer, analyst, and vendor alignment</li>
+            <li>Stakeholder communication and reporting</li>
+            <li>Issue, risk, and dependency management</li>
+            <li>Change control and decision support</li>
+            <li>Enterprise applications and integrations</li>
+            <li>ERP and business systems delivery</li>
+            <li>Documentation and status reporting</li>
+            <li>Process improvement and execution discipline</li>
+            <li>Regulated and compliance-aware delivery</li>
+            <li>Team building and delivery leadership</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="section-title">Technical Skills</h2>
+          <div class="tech-group"><strong>Project and delivery platforms</strong><span>MS Project, MS Project Online, Planview, Clarity, ChangePoint, Jira, Confluence, Excel trackers</span></div>
+          <div class="tech-group"><strong>Enterprise systems and applications</strong><span>Lawson ERP, Epicor ERP, Great Plains, Workday, ADP Workforce Now, Eclipse ERP, HRMS / payroll systems, MDM, CMS</span></div>
+          <div class="tech-group"><strong>Data, reporting, and databases</strong><span>Power BI, Crystal Reports, SQL, Microsoft SQL Server, Oracle Database, MySQL, Access, Oracle EDM, Stibo MDM</span></div>
+          <div class="tech-group"><strong>Collaboration and documentation</strong><span>SharePoint, Teams, Office 365, PowerPoint, Excel, Visio, workflow and reporting documentation</span></div>
+          <div class="tech-group"><strong>Integration and technical support</strong><span>APIs, Postman, REST APIs, Windows Server, Linux, Solaris, PowerShell, enterprise upgrade and migration support</span></div>
+        </section>
+      </aside>
+
+      <main class="right">
+        <section>
+          <div class="brand">Software Delivery | Enterprise Applications | Integration | Technical Project Leadership | Regulated Environments</div>
+          <div style="font-size:8.3pt; font-weight:700; color:#5f6d79; text-transform:uppercase; letter-spacing:0.45px; margin-bottom:4px;">Profile</div>
+          <div class="pitch">
+            <p>Technical Project Manager with over two decades of experience leading software, application, ERP, and enterprise systems delivery across insurance, financial services, manufacturing, and consulting environments. Strong record of moving projects from planning through execution while balancing scope, schedule, budget, reporting, stakeholder expectations, and customer impact.</p>
+            <p>Background includes developer-facing delivery, internet releases, ERP modernization, integration-heavy projects, vendor and offshore coordination, change control, testing support, and disciplined documentation. Additional depth in compliance, audit, and technology risk supports delivery in regulated environments where reliability, traceability, and follow-through matter.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">Professional Experience</h2>
+          <div class="theme"><h3>Software Delivery and Project Execution</h3><ul class="bullet-list"><li>Led software, application, and business systems projects across insurance, benefits, manufacturing, and consulting environments, keeping delivery aligned to scope, schedule, budget, and quality expectations.</li><li>Built project plans covering resources, risks, milestones, dependencies, communication, procurement, and measurable deliverables to support controlled execution from initiation through implementation.</li><li>Managed delivery across internal teams, client environments, and modernization initiatives involving application changes, operational improvements, and enterprise systems.</li><li>Stabilized under-structured or business-initiated work by introducing stronger planning, reporting, and execution controls.</li></ul></div>
+          <div class="theme"><h3>Developers, Stakeholders, and Delivery Coordination</h3><ul class="bullet-list"><li>Coordinated developers, analysts, operations teams, business leaders, vendors, and offshore resources across full project lifecycles, keeping teams aligned on priorities, issues, and next steps.</li><li>Managed delivery through steering interactions, escalation management, status reporting, and practical follow-through for high-visibility initiatives and service portfolios.</li><li>Worked across sponsors, technical leads, service teams, and external partners to resolve issues early, maintain momentum, and keep deliverables on track.</li><li>Supported teams through structured communication, clear decisions, and day-to-day coordination in fast-moving environments.</li></ul></div>
+          <div class="theme"><h3>Enterprise Applications, Integration, and Technical Context</h3><ul class="bullet-list"><li>Delivered or supported ERP, HRMS, self-service, internet, and enterprise application initiatives spanning Lawson, payroll, HR systems, claims-related work, and broader business platform modernization.</li><li>Introduced formal statements of work, requirements gathering, and change control practices that improved on-time, on-budget, and on-scope outcomes across client and internal projects.</li><li>Executed upgrade, migration, and implementation work that improved reliability, data quality, service outcomes, and operational continuity, including zero-downtime delivery in client environments.</li><li>Worked effectively with technical teams across databases, APIs, reporting tools, servers, and enterprise application environments to support planning, issue resolution, testing, and implementation.</li></ul></div>
+          <div class="theme"><h3>Reporting, Documentation, and Change Control</h3><ul class="bullet-list"><li>Produced project documentation, milestone reporting, dashboards, management updates, and delivery artifacts that supported visibility, accountability, and informed decision-making.</li><li>Reviewed project modifications, coordinated stakeholder approvals, and maintained delivery controls across change, release, compliance, and risk-sensitive environments.</li><li>Applied structured reporting and governance practices across both project and operational settings, strengthening execution quality without slowing delivery unnecessarily.</li></ul></div>
+          <div class="theme"><h3>Problem Solving and Regulated Delivery</h3><ul class="bullet-list"><li>Identified issues early, worked through root causes, and implemented repeatable improvements that reduced friction and improved delivery performance across business and technical teams.</li><li>Supported initiatives in regulated environments where documentation, audit readiness, privacy, compliance, and customer trust materially affected how delivery needed to be managed.</li><li>Applied risk, controls, and governance experience as a delivery advantage, helping projects hold up under audit, compliance, and operational scrutiny.</li><li>Handled delivery work that required structure, adaptability, and follow-through across business, technical, and client-facing environments.</li></ul></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="layout">
+      <aside class="left">
+        <section>
+          <h2 class="section-title">Education</h2>
+          <ul class="stack-list">
+            <li><strong>Post-Graduate Cybersecurity Certificate</strong><span>Simplilearn Solutions, 2024</span></li>
+            <li><strong>Post Graduate Certificate, Risk Management</strong><span>Wilfrid Laurier University, 2008 - 2009</span></li>
+            <li><strong>Project Management Program (Honors List)</strong><span>Conestoga College, 2003 - 2007</span></li>
+            <li><strong>BEd, Adult Studies</strong><span>Brock University, 2002 - 2005</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="section-title">Professional Development</h2>
+          <ul class="skill-list">
+            <li>PMP - Project Management Professional</li>
+            <li>CRISC - Certified in Risk and Information Systems Control</li>
+            <li>Certified Ethical Hacker (CEH)</li>
+            <li>CompTIA Network+</li>
+            <li>Executive Program: Cybersecurity - MIT</li>
+            <li>ISO 27001 Lead Auditor</li>
+            <li>ISO 27001 Foundations</li>
+            <li>Certified Scrum Product Owner</li>
+            <li>ITIL Foundations V3</li>
+            <li>CMMI v1.3</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="right">
+        <section>
+          <div class="page-tag" style="display:block; width:max-content; margin-left:auto;">Page 2</div>
+          <h2 class="section-title">Career Timeline</h2>
+          <div class="timeline">
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Professional Development and Renewal</p><p class="entry-company">Independent</p></div><div class="date-pill">2023 - Present</div></div><ul class="micro-list"><li>Completed advanced study in cybersecurity, networks, AI, and technology risk while maintaining current technical context.</li><li>Used the period to deepen delivery, systems, and compliance perspective while supporting family priorities.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Manager, Global Information Security Risk Management / Lead Global Information Security Compliance Analysis</p><p class="entry-company">OpenText</p></div><div class="date-pill">2020 - 2023</div></div><ul class="micro-list"><li>Directed risk, compliance, vendor-governance, and reporting work across global operations, including 500+ vendors.</li><li>Strengthened documentation, dashboards, workflow maturity, and stakeholder coordination across audit and certification activity.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Project Risk Management Consultant / Risk Management Consultant</p><p class="entry-company">Manulife</p></div><div class="date-pill">2017 - 2019</div></div><ul class="micro-list"><li>Executed technology risk, audit, assessment, and third-party oversight work supporting enterprise initiatives and program delivery.</li><li>Managed audit coordination, remediation reporting, and control-related deliverables across regulated platforms.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Technical Leader - IT Risk and Compliance</p><p class="entry-company">Economical Insurance</p></div><div class="date-pill">2015 - 2017</div></div><ul class="micro-list"><li>Built IT risk, policy, remediation, and audit-readiness practices across IT, Audit, and Operations.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Director Information Services (acting CIO) / Manager of Applications, Development, and Support</p><p class="entry-company">Spaenaur Inc.</p></div><div class="date-pill">2014 - 2015</div></div><ul class="micro-list"><li>Led enterprise applications, development, support, vendors, budgets, and portfolio priorities across ERP, MDM, CMS, and infrastructure-related work.</li><li>Worked directly with executives and operational leaders to align systems direction, project execution, and business needs.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Project Manager - Individual Application Services / Project Manager - Group Benefits</p><p class="entry-company">Sun Life Financial</p></div><div class="date-pill">2011 - 2014</div></div><ul class="micro-list"><li>Led multimillion-dollar application and portfolio initiatives across Individual Applications and Group Benefits environments.</li><li>Built integrated project plans across scope, schedule, cost, quality, resources, risk, communication, and procurement.</li><li>Delivered health, tax, service-operations, and paperless claims initiatives in structured governance environments, including a legislative project that prevented $1M daily fines.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Project Manager - Information Systems / Team Leader - Service Delivery</p><p class="entry-company">Manulife Financial</p></div><div class="date-pill">2007 - 2011</div></div><ul class="micro-list"><li>Managed software and business systems delivery under change, risk, and release governance standards.</li><li>Coordinated developers, analysts, vendors, and business stakeholders across internet releases, e-commerce support, and business-initiated projects.</li><li>Recovered an outsourced software initiative and improved structure, data quality, and customer turnaround times.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Project and Delivery Consultant/Manager</p><p class="entry-company">Hubble Technology Consulting Inc.</p></div><div class="date-pill">2005 - 2007</div></div><ul class="micro-list"><li>Implemented formal project methodology, requirements practices, and change control for ERP and business productivity initiatives.</li><li>Led Lawson upgrade and implementation work with zero downtime and improved delivery performance by 50 percent.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Manager of Business Applications, Training and Support</p><p class="entry-company">Kuntz Electroplating Inc.</p></div><div class="date-pill">2000 - 2005</div></div><ul class="micro-list"><li>Managed enterprise HRMS, Lawson, and self-service initiatives while improving project control, payroll timelines, and support costs.</li></ul></article>
+            <article class="entry"><div class="entry-head"><div><p class="entry-title">Information Systems Consultant</p><p class="entry-company">Second Foundation Inc.</p></div><div class="date-pill">1998 - 2000</div></div><ul class="micro-list"><li>Delivered implementation, consulting, training, and business-systems improvement work across multiple client environments in Canada and the United States.</li></ul></article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+

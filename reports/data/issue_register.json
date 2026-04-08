@@ -1,0 +1,16 @@
+[
+  {
+    "item_id": "ISS-0001",
+    "item_type": "issue",
+    "title": "Initial baseline implementation",
+    "summary": "Build the document platform baseline with two sub-sites and shared viewer workflows.",
+    "status": "implemented",
+    "priority": "high",
+    "severity": "medium",
+    "scope_area": "platform",
+    "site_area": "global",
+    "component": "baseline",
+    "validation_result": "pass",
+    "qa_result": "pass"
+  }
+]

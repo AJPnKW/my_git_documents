@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>108 Eighth Street, Collingwood — Rental Investor Analysis</title>
+<style>
+:root {
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --line:#334155;
+  --accent:#38bdf8;
+  --good:#22c55e;
+  --bad:#ef4444;
+  --warn:#f59e0b;
+  --info:#60a5fa;
+  --card:#172033;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:linear-gradient(180deg,#08101f 0%, #111827 100%);
+  color:var(--text);
+}
+a { color:#93c5fd; }
+.container {
+  max-width:1400px;
+  margin:0 auto;
+  padding:20px;
+}
+h1,h2,h3 { margin:0 0 10px; }
+h1 { font-size:28px; }
+h2 { font-size:22px; margin-top:0; }
+h3 { font-size:18px; color:#bfdbfe; }
+p, li { line-height:1.45; }
+.small { color:var(--muted); font-size:13px; }
+.hero {
+  background:rgba(17,24,39,0.92);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.28);
+  margin-bottom:18px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.card {
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+}
+.card.info { border-left:6px solid var(--info); }
+.card.ok { border-left:6px solid var(--good); }
+.card.warn { border-left:6px solid var(--warn); }
+.card .label {
+  color:var(--muted);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+}
+.card .value {
+  font-size:24px;
+  font-weight:bold;
+  margin-top:6px;
+}
+.tabs {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:0 0 14px;
+}
+.tab-button {
+  border:1px solid var(--line);
+  background:#0b1324;
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+}
+.tab-button.active {
+  background:var(--accent);
+  color:#06202b;
+  font-weight:bold;
+}
+.tab-panel {
+  display:none;
+  background:rgba(17,24,39,0.92);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:16px;
+}
+.tab-panel.active { display:block; }
+.table-wrap {
+  overflow:auto;
+  background:#0b1220;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:10px;
+  margin:12px 0 18px;
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:780px;
+}
+th, td {
+  padding:10px 12px;
+  border-bottom:1px solid #23324a;
+  text-align:left;
+  vertical-align:top;
+}
+th {
+  position:sticky;
+  top:0;
+  background:#13213a;
+  color:#dbeafe;
+  cursor:pointer;
+}
+tbody tr:nth-child(even) { background:#0f1a2c; }
+tbody tr:hover { background:#1a2941; }
+.table-filter {
+  width:100%;
+  padding:10px 12px;
+  margin:0 0 10px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#08101f;
+  color:var(--text);
+}
+.num { font-variant-numeric: tabular-nums; }
+.pos { color:#86efac; font-weight:bold; }
+.neg { color:#fca5a5; font-weight:bold; }
+.kpi {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:12px;
+  margin:10px 0 14px;
+}
+.kpi .panel {
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#0b1220;
+  padding:14px;
+}
+.badge {
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:bold;
+}
+.badge.good { background:rgba(34,197,94,0.16); color:#86efac; }
+.badge.warn { background:rgba(245,158,11,0.16); color:#fcd34d; }
+.badge.bad { background:rgba(239,68,68,0.16); color:#fca5a5; }
+.callout {
+  border-left:6px solid var(--warn);
+  background:#1a1620;
+  padding:14px;
+  border-radius:10px;
+  margin:10px 0 16px;
+}
+ul.tight li { margin:6px 0; }
+.footer {
+  color:var(--muted);
+  font-size:12px;
+  margin-top:18px;
+}
+@media (max-width:900px) {
+  h1 { font-size:22px; }
+  .container { padding:12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero">
+    <h1>108 Eighth Street, Collingwood — Rental Investor Analysis</h1>
+    <div class="small">Generated: 2026-04-04 13:28 | Purchase price analyzed: $499,900 | Purpose: long-term rental underwriting with renovation and reserve planning</div>
+    <div class="grid" style="margin-top:16px;">
+      <div class="card info"><div class="label">Subject Price</div><div class="value">$499,900</div></div><div class="card warn"><div class="label">Best Underwrite Rent</div><div class="value">$2,600/mo</div></div><div class="card ok"><div class="label">Aggressive Rent</div><div class="value">$2,800–$2,900/mo</div></div><div class="card info"><div class="label">Taxes</div><div class="value">$2,785/year</div></div><div class="card warn"><div class="label">Initial Work Reserve</div><div class="value">$20,000–$30,000</div></div><div class="card ok"><div class="label">Cash-Flow Safe Down Payment</div><div class="value">$225,000 target</div></div>
+    </div>
+  </section>
+
+  <div class="tabs">
+    <button class="tab-button active" onclick="openTab(event, 'tab-summary')">Summary</button>
+    <button class="tab-button" onclick="openTab(event, 'tab-cashflow')">Cash Flow</button>
+    <button class="tab-button" onclick="openTab(event, 'tab-initial-work')">Initial Work</button>
+    <button class="tab-button" onclick="openTab(event, 'tab-rental-market')">Rental Market</button>
+    <button class="tab-button" onclick="openTab(event, 'tab-rent-comps')">Rent Comps</button>
+    <button class="tab-button" onclick="openTab(event, 'tab-sale-comps')">Sale Comps</button>
+    <button class="tab-button" onclick="openTab(event, 'tab-cash-needed')">Cash Needed</button>
+    <button class="tab-button" onclick="openTab(event, 'tab-assumptions')">Assumptions</button>
+    <button class="tab-button" onclick="openTab(event, 'tab-sources')">Sources</button>
+  </div>
+
+  <section id="tab-summary" class="tab-panel active">
+    <h2>Summary</h2>
+    <div class="kpi">
+      <div class="panel">
+        <h3>Answer to the main question</h3>
+        <p><span class="badge bad">No</span> <strong>$150,000 down is not cash-flow safe</strong> once taxes, insurance, vacancy, maintenance, capital reserve, and a realistic rent underwrite are included.</p>
+        <p><span class="badge warn">Borderline</span> <strong>$200,000 down</strong> is close to break-even only if rent lands around the upper-middle of the market.</p>
+        <p><span class="badge good">Target</span> <strong>$225,000 down</strong> is the stronger planning target for this specific house using a prudent long-term rental model.</p>
+      </div>
+      <div class="panel">
+        <h3>Why the target moved up</h3>
+        <ul class="tight">
+          <li>The subject is an older <strong>3 bed / 1 bath</strong> house, so underwriting at <strong>$2,600/month</strong> is safer than assuming top-end rent.</li>
+          <li>The model includes <strong>taxes, insurance, 5% vacancy, maintenance reserve, and capital reserve</strong>.</li>
+          <li>It treats <strong>turn-prep and basic rental updates</strong> as separate cash needed at closing, not hidden inside monthly cash flow.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Planning target</h3>
+        <p><strong>Conservative total cash target:</strong> <span class="pos">$262,000–$283,000</span></p>
+        <ul class="tight">
+          <li>$225,000 down payment</li>
+          <li>$12,000–$18,000 closing costs</li>
+          <li>$20,000–$30,000 initial work budget</li>
+          <li>$5,000–$10,000 reserve buffer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Practical interpretation:</strong> this property looks more like an entry-priced detached house with appreciation upside than a strong monthly cash-flow rental.
+    </div>
+  </section>
+
+  <section id="tab-cashflow" class="tab-panel">
+    <h2>Cash Flow Analysis</h2>
+    <p>Monthly model includes mortgage payment, taxes, insurance, maintenance reserve, capital reserve, and 5% vacancy haircut.</p>
+    
+    <div class="table-wrap">
+      <input class="table-filter" type="text" placeholder="Filter this table..." onkeyup="filterTable('cashflow_table', this.value)">
+      <table id="cashflow_table">
+        <thead><tr><th onclick="sortTable('cashflow_table',0)">Down Payment</th><th onclick="sortTable('cashflow_table',1)">Loan Amount</th><th onclick="sortTable('cashflow_table',2)">Mortgage Payment</th><th onclick="sortTable('cashflow_table',3)">Rent</th><th onclick="sortTable('cashflow_table',4)">Eff. Rent After 5% Vacancy</th><th onclick="sortTable('cashflow_table',5)">Monthly Tax</th><th onclick="sortTable('cashflow_table',6)">Insurance</th><th onclick="sortTable('cashflow_table',7)">Maintenance</th><th onclick="sortTable('cashflow_table',8)">Capital Reserve</th><th onclick="sortTable('cashflow_table',9)">Monthly Cash Flow</th></tr></thead>
+        <tbody>
+          <tr><td>$100,000</td><td>$399,900</td><td>$2,337.8</td><td>$2,500</td><td>$2,375.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-794.86">-794.86</td></tr><tr><td>$100,000</td><td>$399,900</td><td>$2,337.8</td><td>$2,600</td><td>$2,470.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-699.86">-699.86</td></tr><tr><td>$100,000</td><td>$399,900</td><td>$2,337.8</td><td>$2,700</td><td>$2,565.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-604.86">-604.86</td></tr><tr><td>$100,000</td><td>$399,900</td><td>$2,337.8</td><td>$2,800</td><td>$2,660.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-509.86">-509.86</td></tr><tr><td>$100,000</td><td>$399,900</td><td>$2,337.8</td><td>$2,900</td><td>$2,755.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-414.86">-414.86</td></tr><tr><td>$150,000</td><td>$349,900</td><td>$2,045.5</td><td>$2,500</td><td>$2,375.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-502.56">-502.56</td></tr><tr><td>$150,000</td><td>$349,900</td><td>$2,045.5</td><td>$2,600</td><td>$2,470.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-407.56">-407.56</td></tr><tr><td>$150,000</td><td>$349,900</td><td>$2,045.5</td><td>$2,700</td><td>$2,565.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-312.56">-312.56</td></tr><tr><td>$150,000</td><td>$349,900</td><td>$2,045.5</td><td>$2,800</td><td>$2,660.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-217.56">-217.56</td></tr><tr><td>$150,000</td><td>$349,900</td><td>$2,045.5</td><td>$2,900</td><td>$2,755.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-122.56">-122.56</td></tr><tr><td>$175,000</td><td>$324,900</td><td>$1,899.3</td><td>$2,500</td><td>$2,375.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-356.42">-356.42</td></tr><tr><td>$175,000</td><td>$324,900</td><td>$1,899.3</td><td>$2,600</td><td>$2,470.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-261.42">-261.42</td></tr><tr><td>$175,000</td><td>$324,900</td><td>$1,899.3</td><td>$2,700</td><td>$2,565.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-166.42">-166.42</td></tr><tr><td>$175,000</td><td>$324,900</td><td>$1,899.3</td><td>$2,800</td><td>$2,660.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-71.42">-71.42</td></tr><tr><td>$175,000</td><td>$324,900</td><td>$1,899.3</td><td>$2,900</td><td>$2,755.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="23.58">23.58</td></tr><tr><td>$200,000</td><td>$299,900</td><td>$1,753.2</td><td>$2,500</td><td>$2,375.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-210.27">-210.27</td></tr><tr><td>$200,000</td><td>$299,900</td><td>$1,753.2</td><td>$2,600</td><td>$2,470.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-115.27">-115.27</td></tr><tr><td>$200,000</td><td>$299,900</td><td>$1,753.2</td><td>$2,700</td><td>$2,565.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-20.27">-20.27</td></tr><tr><td>$200,000</td><td>$299,900</td><td>$1,753.2</td><td>$2,800</td><td>$2,660.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="74.73">74.73</td></tr><tr><td>$200,000</td><td>$299,900</td><td>$1,753.2</td><td>$2,900</td><td>$2,755.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="169.73">169.73</td></tr><tr><td>$225,000</td><td>$274,900</td><td>$1,607.0</td><td>$2,500</td><td>$2,375.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num neg" data-sort="-64.12">-64.12</td></tr><tr><td>$225,000</td><td>$274,900</td><td>$1,607.0</td><td>$2,600</td><td>$2,470.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="30.88">30.88</td></tr><tr><td>$225,000</td><td>$274,900</td><td>$1,607.0</td><td>$2,700</td><td>$2,565.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="125.88">125.88</td></tr><tr><td>$225,000</td><td>$274,900</td><td>$1,607.0</td><td>$2,800</td><td>$2,660.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="220.88">220.88</td></tr><tr><td>$225,000</td><td>$274,900</td><td>$1,607.0</td><td>$2,900</td><td>$2,755.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="315.88">315.88</td></tr><tr><td>$250,000</td><td>$249,900</td><td>$1,460.9</td><td>$2,500</td><td>$2,375.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="82.03">82.03</td></tr><tr><td>$250,000</td><td>$249,900</td><td>$1,460.9</td><td>$2,600</td><td>$2,470.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="177.03">177.03</td></tr><tr><td>$250,000</td><td>$249,900</td><td>$1,460.9</td><td>$2,700</td><td>$2,565.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="272.03">272.03</td></tr><tr><td>$250,000</td><td>$249,900</td><td>$1,460.9</td><td>$2,800</td><td>$2,660.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="367.03">367.03</td></tr><tr><td>$250,000</td><td>$249,900</td><td>$1,460.9</td><td>$2,900</td><td>$2,755.0</td><td>$232.1</td><td>$150</td><td>$250</td><td>$200</td><td class="num pos" data-sort="462.03">462.03</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Break-even down payment targets</h3>
+    
+    <div class="table-wrap">
+      <input class="table-filter" type="text" placeholder="Filter this table..." onkeyup="filterTable('breakeven_table', this.value)">
+      <table id="breakeven_table">
+        <thead><tr><th onclick="sortTable('breakeven_table',0)">Underwritten Rent</th><th onclick="sortTable('breakeven_table',1)">Max Mortgage Payment for Break-even</th><th onclick="sortTable('breakeven_table',2)">Max Loan Amount</th><th onclick="sortTable('breakeven_table',3)">Break-even Down Payment</th></tr></thead>
+        <tbody>
+          <tr><td>$2,600</td><td>$1,637.9</td><td>$280,182</td><td class="num pos" data-sort="219717.9">219717.9</td></tr><tr><td>$2,700</td><td>$1,732.9</td><td>$296,433</td><td class="num pos" data-sort="203467.19">203467.19</td></tr><tr><td>$2,800</td><td>$1,827.9</td><td>$312,684</td><td class="num pos" data-sort="187216.49">187216.49</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </section>
+
+  <section id="tab-initial-work" class="tab-panel">
+    <h2>Initial Work / Turnover Budget</h2>
+    <p>This is the separate one-time budget for preparing the home as a rental. It is not included in monthly cash flow.</p>
+    
+    <div class="table-wrap">
+      <input class="table-filter" type="text" placeholder="Filter this table..." onkeyup="filterTable('initial_work_table', this.value)">
+      <table id="initial_work_table">
+        <thead><tr><th onclick="sortTable('initial_work_table',0)">Item</th><th onclick="sortTable('initial_work_table',1)">Low</th><th onclick="sortTable('initial_work_table',2)">High</th><th onclick="sortTable('initial_work_table',3)">Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Carpet replace 1–2 main rooms</td><td>$2,500</td><td>$5,000</td><td>Rental-grade broadloom or LVP swap in main areas if carpet condition is poor</td></tr><tr><td>Bathroom basic refresh</td><td>$2,500</td><td>$6,000</td><td>Toilet, vanity/sink, countertop, taps, mirror, paint, minor accessories</td></tr><tr><td>Paint and minor living-area updates</td><td>$2,500</td><td>$6,000</td><td>Patch/paint, trim touch-up, fixtures, minor cosmetic improvements</td></tr><tr><td>Rental safety and exterior lighting</td><td>$800</td><td>$2,000</td><td>Smoke/CO checks, smart locks or rekeying, exterior lighting, small safety items</td></tr><tr><td>Exterior camera/security</td><td>$500</td><td>$1,500</td><td>Basic entry/driveway camera coverage</td></tr><tr><td>Appliance contingency</td><td>$3,500</td><td>$6,500</td><td>Stove, fridge, microwave replacement reserve</td></tr><tr><td>Turnover / misc. prep</td><td>$1,000</td><td>$3,000</td><td>Cleaning, junk removal, hardware, blinds, minor fixes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="kpi">
+      <div class="panel">
+        <h3>Total initial work reserve</h3>
+        <p><strong>$13,300 – $30,000</strong></p>
+      </div>
+      <div class="panel">
+        <h3>Recommended working budget</h3>
+        <p><strong>$20,000 base</strong> if mostly cosmetic and appliances survive.</p>
+        <p><strong>$30,000 prudent</strong> if you want less risk around flooring, bathroom refresh, security, and appliance replacement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-rental-market" class="tab-panel">
+    <h2>Collingwood Rental Market Analysis</h2>
+    <div class="kpi">
+      <div class="panel">
+        <h3>Market reads</h3>
+        <ul class="tight">
+          <li>Zumper median rent all types: <strong>$2,552</strong></li>
+          <li>Zumper 3-bedroom average: <strong>$2,500</strong></li>
+          <li>Zillow 3-bedroom average: <strong>$2,700</strong></li>
+          <li>Zillow average house rent: <strong>$2,400</strong></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Underwrite recommendation</h3>
+        <p><strong>Use $2,600/month</strong> as the planning rent for this house.</p>
+        <p>Use <strong>$2,800–$2,900</strong> only as an upside case, not as the base case.</p>
+      </div>
+      <div class="panel">
+        <h3>Subject fit</h3>
+        <p>The subject is an older detached <strong>3/1</strong>. It does not compete at the same level as newer or better-finished <strong>3/2+</strong> rentals.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-rent-comps" class="tab-panel">
+    <h2>Rent Comp Analysis</h2>
+    <p>Delta compares each active asking rent to the subject underwriting rent of <strong>$2,600/month</strong>.</p>
+    
+    <div class="table-wrap">
+      <input class="table-filter" type="text" placeholder="Filter this table..." onkeyup="filterTable('rent_comp_table', this.value)">
+      <table id="rent_comp_table">
+        <thead><tr><th onclick="sortTable('rent_comp_table',0)">Comp</th><th onclick="sortTable('rent_comp_table',1)">Ask Rent</th><th onclick="sortTable('rent_comp_table',2)">Type</th><th onclick="sortTable('rent_comp_table',3)">Source</th><th onclick="sortTable('rent_comp_table',4)">Delta vs Subject Underwrite</th></tr></thead>
+        <tbody>
+          <tr><td>4 Shipley Avenue</td><td>$2,700</td><td>3 bed</td><td>REALTOR.ca ask</td><td class="num pos" data-sort="100">100</td></tr><tr><td>130 Conservation Way</td><td>$3,200</td><td>3 bed</td><td>REALTOR.ca ask</td><td class="num pos" data-sort="600">600</td></tr><tr><td>200 Escarpment Crescent</td><td>$2,800</td><td>3 bed / 2 bath / 1,200–1,399 sqft</td><td>Point2Homes ask</td><td class="num pos" data-sort="200">200</td></tr><tr><td>5-100 Fairway Crescent</td><td>$2,400</td><td>3 bed / 2 bath / 1,200–1,399 sqft</td><td>Point2Homes ask</td><td class="num neg" data-sort="-200">-200</td></tr><tr><td>124 Escarpment Crescent</td><td>$2,400</td><td>3 bed / 2 bath / 1,000–1,199 sqft</td><td>Point2Homes ask</td><td class="num neg" data-sort="-200">-200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </section>
+
+  <section id="tab-sale-comps" class="tab-panel">
+    <h2>Sale Comp Analysis</h2>
+    <p>Delta compares each ask price to the subject price of <strong>$499,900</strong>.</p>
+    
+    <div class="table-wrap">
+      <input class="table-filter" type="text" placeholder="Filter this table..." onkeyup="filterTable('sale_comp_table', this.value)">
+      <table id="sale_comp_table">
+        <thead><tr><th onclick="sortTable('sale_comp_table',0)">Property</th><th onclick="sortTable('sale_comp_table',1)">Ask Price</th><th onclick="sortTable('sale_comp_table',2)">Source</th><th onclick="sortTable('sale_comp_table',3)">Beds/Baths</th><th onclick="sortTable('sale_comp_table',4)">Read-through</th><th onclick="sortTable('sale_comp_table',5)">Delta vs Subject</th></tr></thead>
+        <tbody>
+          <tr><td>108 Eighth Street</td><td>$499,900</td><td>Subject</td><td>3 / 1</td><td>Entry-priced detached; older 3/1 positioning</td><td class="num" data-sort="0">0</td></tr><tr><td>13 Arthur St</td><td>$500,000</td><td>Zillow listing</td><td>2 / 1</td><td>Similar price but only 2 bedrooms</td><td class="num pos" data-sort="100">100</td></tr><tr><td>115 Robinson St</td><td>$650,000</td><td>Zillow listing</td><td>2 / 1</td><td>Higher ask despite fewer bedrooms</td><td class="num pos" data-sort="150100">150100</td></tr><tr><td>117 Elm St</td><td>$675,000</td><td>Zillow listing</td><td>3 / 2</td><td>Similar bed count with extra bath; higher utility</td><td class="num pos" data-sort="175100">175100</td></tr><tr><td>46 Erie St</td><td>$639,000</td><td>Zillow listing</td><td>4 / 2</td><td>More utility than subject</td><td class="num pos" data-sort="139100">139100</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </section>
+
+  <section id="tab-cash-needed" class="tab-panel">
+    <h2>Total Cash Needed</h2>
+    <p>This combines down payment, closing costs, initial work budget, and a reserve buffer.</p>
+    
+    <div class="table-wrap">
+      <input class="table-filter" type="text" placeholder="Filter this table..." onkeyup="filterTable('cash_needed_table', this.value)">
+      <table id="cash_needed_table">
+        <thead><tr><th onclick="sortTable('cash_needed_table',0)">Down Payment</th><th onclick="sortTable('cash_needed_table',1)">Initial Work Budget</th><th onclick="sortTable('cash_needed_table',2)">Closing Cost Low</th><th onclick="sortTable('cash_needed_table',3)">Closing Cost High</th><th onclick="sortTable('cash_needed_table',4)">Reserve Buffer Low</th><th onclick="sortTable('cash_needed_table',5)">Reserve Buffer High</th><th onclick="sortTable('cash_needed_table',6)">Total Cash Low</th><th onclick="sortTable('cash_needed_table',7)">Total Cash High</th></tr></thead>
+        <tbody>
+          <tr><td>$150,000</td><td>$20,000</td><td>$12,000</td><td>$18,000</td><td>$5,000</td><td>$10,000</td><td>$187,000</td><td>$198,000</td></tr><tr><td>$150,000</td><td>$30,000</td><td>$12,000</td><td>$18,000</td><td>$5,000</td><td>$10,000</td><td>$197,000</td><td>$208,000</td></tr><tr><td>$175,000</td><td>$20,000</td><td>$12,000</td><td>$18,000</td><td>$5,000</td><td>$10,000</td><td>$212,000</td><td>$223,000</td></tr><tr><td>$175,000</td><td>$30,000</td><td>$12,000</td><td>$18,000</td><td>$5,000</td><td>$10,000</td><td>$222,000</td><td>$233,000</td></tr><tr><td>$200,000</td><td>$20,000</td><td>$12,000</td><td>$18,000</td><td>$5,000</td><td>$10,000</td><td>$237,000</td><td>$248,000</td></tr><tr><td>$200,000</td><td>$30,000</td><td>$12,000</td><td>$18,000</td><td>$5,000</td><td>$10,000</td><td>$247,000</td><td>$258,000</td></tr><tr><td>$225,000</td><td>$20,000</td><td>$12,000</td><td>$18,000</td><td>$5,000</td><td>$10,000</td><td>$262,000</td><td>$273,000</td></tr><tr><td>$225,000</td><td>$30,000</td><td>$12,000</td><td>$18,000</td><td>$5,000</td><td>$10,000</td><td>$272,000</td><td>$283,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </section>
+
+  <section id="tab-assumptions" class="tab-panel">
+    <h2>Assumptions / Constraints / Notes</h2>
+    <h3>Core assumptions</h3>
+    <ul class="tight">
+      <li>Purchase price: <strong>$499,900</strong></li>
+      <li>Tax assumption: <strong>$2,785/year</strong></li>
+      <li>Mortgage rate used for modeling: <strong>5.00%</strong></li>
+      <li>Amortization: <strong>25 years</strong></li>
+      <li>Insurance placeholder: <strong>$150/month</strong></li>
+      <li>Maintenance reserve: <strong>$250/month</strong></li>
+      <li>Capital reserve: <strong>$200/month</strong></li>
+      <li>Vacancy allowance: <strong>5%</strong></li>
+      <li>Property management not included</li>
+    </ul>
+    <h3>What is included in the monthly model</h3>
+    <ul class="tight">
+      <li>Mortgage</li>
+      <li>Taxes</li>
+      <li>Insurance</li>
+      <li>Typical repairs / maintenance reserve</li>
+      <li>Capital reserve for hot water heater, furnace, appliances, larger items</li>
+      <li>Vacancy haircut</li>
+    </ul>
+    <h3>What is not inside the monthly model</h3>
+    <ul class="tight">
+      <li>Initial carpet replacement</li>
+      <li>Bathroom refresh</li>
+      <li>Living-area cosmetic updates</li>
+      <li>Security cameras and lighting installation</li>
+      <li>Major surprise structural/mechanical issues</li>
+      <li>Property management fees</li>
+      <li>Income tax effects</li>
+    </ul>
+    <h3>Constraint</h3>
+    <p>The sale and rent comp review is based on currently visible online active listings and public rent trackers. It is a planning analysis, not a formal appraisal, inspection, or lender quote.</p>
+  </section>
+
+  <section id="tab-sources" class="tab-panel">
+    <h2>Reference Appendix</h2>
+    <p>These links are the reference set used for the public-market portions of the analysis.</p>
+    <ol>
+      <li><a href="https://www.realtor.ca/real-estate/29542338/108-eighth-street-collingwood" target="_blank" rel="noopener">REALTOR.ca listing for 108 Eighth Street</a> — Subject property facts and active asking price</li><li><a href="https://www.remax.ca/on/collingwood-real-estate/108-eighth-street-wp_idm73000005-29542338-lst" target="_blank" rel="noopener">RE/MAX listing mirror</a> — Tax figure and listing mirror</li><li><a href="https://www.zumper.com/rent-research/collingwood-on" target="_blank" rel="noopener">Zumper Collingwood rent research</a> — Median and 3-bedroom market rent data</li><li><a href="https://www.zillow.com/rental-manager/market-trends/collingwood-on/" target="_blank" rel="noopener">Zillow rent trends Collingwood</a> — 3-bedroom and house rent trend reference</li><li><a href="https://www.realtor.ca/on/collingwood/3-bedroom-homes-for-rent" target="_blank" rel="noopener">REALTOR.ca 3-bedroom rentals in Collingwood</a> — Active 3-bedroom rental asks</li><li><a href="https://www.point2homes.com/CA/Houses-For-Rent/ON/Collingwood.html" target="_blank" rel="noopener">Point2Homes Collingwood houses for rent</a> — Active rental asks and range context</li><li><a href="https://www.zillow.com/homedetails/108-8th-St-Collingwood-ON-L9Y-2C5/461437129_zpid/" target="_blank" rel="noopener">Zillow 108 8th Street listing mirror</a> — Comparable active sale context</li><li><a href="https://www.truenorthmortgage.ca/blog/mortgage-rate-forecast" target="_blank" rel="noopener">True North Mortgage rate forecast</a> — Current Canada mortgage-rate context</li><li><a href="https://www.nesto.ca/mortgage-basics/mortgage-rates-forecast-canada/" target="_blank" rel="noopener">Nesto Canada rate forecast</a> — Current mortgage-rate outlook context</li>
+    </ol>
+  </section>
+
+  <div class="footer">
+    Built as a single-file HTML document with tabs, sortable tables, per-table filtering, and color-coded positive/negative numbers.
+  </div>
+</div>
+
+<script>
+function openTab(evt, tabId) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  evt.currentTarget.classList.add('active');
+}
+function filterTable(tableId, query) {
+  query = query.toLowerCase();
+  const table = document.getElementById(tableId);
+  const rows = table.querySelectorAll('tbody tr');
+  rows.forEach(row => {
+    const text = row.innerText.toLowerCase();
+    row.style.display = text.includes(query) ? '' : 'none';
+  });
+}
+function sortTable(tableId, colIndex) {
+  const table = document.getElementById(tableId);
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const current = table.getAttribute('data-sort-dir') || 'asc';
+  const next = current === 'asc' ? 'desc' : 'asc';
+  rows.sort((a, b) => {
+    const aCell = a.children[colIndex];
+    const bCell = b.children[colIndex];
+    const aSort = aCell.getAttribute('data-sort') || aCell.innerText.trim();
+    const bSort = bCell.getAttribute('data-sort') || bCell.innerText.trim();
+    const aNum = parseFloat(aSort);
+    const bNum = parseFloat(bSort);
+    let result = 0;
+    if (!isNaN(aNum) && !isNaN(bNum)) {
+      result = aNum - bNum;
+    } else {
+      result = aSort.localeCompare(bSort);
+    }
+    return next === 'asc' ? result : -result;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+  table.setAttribute('data-sort-dir', next);
+}
+</script>
+</body>
+</html>

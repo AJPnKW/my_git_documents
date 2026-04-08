@@ -1,0 +1,15 @@
+{
+  "description": "Copy to auth_config.local.json and replace hashes with local private values.",
+  "sites": {
+    "yellow_house": {
+      "title": "Continue to Yellow House",
+      "prompt": "Enter the shared phrase for this area.",
+      "sha256": "replace_me"
+    },
+    "resumes": {
+      "title": "Continue to Resumes",
+      "prompt": "Enter the workspace phrase for this area.",
+      "sha256": "replace_me"
+    }
+  }
+}

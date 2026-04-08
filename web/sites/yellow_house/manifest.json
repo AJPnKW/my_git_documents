@@ -1,0 +1,38 @@
+{
+  "site_key": "yellow_house",
+  "title": "Yellow House",
+  "description": "Private family-facing document site with a clean landing page and easy card-based browsing.",
+  "access_mode": "neutral_phrase",
+  "landing_summary": "House analysis, supporting material, and future family-share pages.",
+  "sections": [
+    {
+      "title": "Featured",
+      "cards": [
+        {
+          "label": "108 Eighth Street Investor Analysis",
+          "summary": "Imported from the supplied Collingwood source file and ready for browser or print review.",
+          "href": "./documents/collingwood_rental_investor_analysis.html"
+        }
+      ]
+    },
+    {
+      "title": "Supporting Material",
+      "cards": [
+        {
+          "label": "Imported reference asset folder",
+          "summary": "Attachment example copied from the supplied HP 920 reference folder for traceable related material.",
+          "href": "./attachments/hp_920_home_server_linux_tv_console_setup_files/"
+        }
+      ]
+    }
+  ],
+  "traceability": {
+    "primary_imports": [
+      {
+        "target": "app/sites/yellow_house/documents/collingwood_rental_investor_analysis.html",
+        "source": "C:/Users/andrew/Downloads/collingwood_rental_investor_analysis_108_eighth_street.html",
+        "normalized_name": "collingwood_rental_investor_analysis.html"
+      }
+    ]
+  }
+}
