@@ -12,7 +12,6 @@
   <header class="topbar">
     <div>
       <a class="brand" href="./index.html">Resumes</a>
-      <div class="subtle">Interview workspace</div>
     </div>
   </header>
   <main class="shell">
@@ -29,28 +28,29 @@
       <div class="workspace-shell">
         <aside class="workspace-sidebar">
           <h1 id="workspace-title" class="workspace-title">Resumes</h1>
-          <p id="workspace-subtitle" class="workspace-subtitle">Interview workspace with a shared document viewer.</p>
+          <p id="workspace-subtitle" class="workspace-subtitle">Interview workspace</p>
           <div id="workspace-tree"></div>
         </aside>
         <section class="workspace-main">
-          <div class="toolbar">
+          <div class="toolbar icon-toolbar">
             <div class="button-row">
-              <button data-mode-button="single" type="button">1 Page</button>
-              <button data-mode-button="dual" type="button">2 Page</button>
-              <button data-mode-button="tri" type="button">3 Page</button>
-              <button id="zoom-in" type="button">Zoom In</button>
-              <button id="zoom-out" type="button">Zoom Out</button>
-              <button id="zoom-reset" type="button">Reset Zoom</button>
-              <button id="fit-width" type="button">Fit Width</button>
-              <button id="fit-page" type="button">Fit Page</button>
+              <button class="icon-button" data-mode-button="single" type="button" title="Single document">◧</button>
+              <button class="icon-button" data-mode-button="compare" type="button" title="Side by side">◫</button>
+              <button class="icon-button" data-mode-button="columns" type="button" title="Three columns">▥</button>
+              <button class="icon-button" data-mode-button="stack" type="button" title="Cascade stack">▤</button>
+              <button class="icon-button" id="zoom-in" type="button" title="Zoom in">＋</button>
+              <button class="icon-button" id="zoom-out" type="button" title="Zoom out">－</button>
+              <button class="icon-button" id="zoom-reset" type="button" title="Reset zoom">↺</button>
+              <button class="icon-button" id="fit-width" type="button" title="Fit width">↔</button>
+              <button class="icon-button" id="fit-page" type="button" title="Fit page">⬚</button>
               <input id="viewer-find" type="text" placeholder="Find in current document">
-              <button id="viewer-find-button" type="button">Find</button>
-              <button id="print-view" type="button">Print</button>
+              <button class="icon-button" id="viewer-find-button" type="button" title="Find">⌕</button>
+              <button class="icon-button" id="print-view" type="button" title="Print">⎙</button>
             </div>
           </div>
           <p id="toolbar-status" class="toolbar-status"></p>
-          <div id="viewer-grid" class="layout-grid" data-mode="dual"></div>
-          <section class="notes-panel">
+          <div id="viewer-grid" class="layout-grid" data-mode="compare"></div>
+          <section id="notes-panel" class="notes-panel">
             <h2 class="notes-label">Interview Notes</h2>
             <p class="notes-helper">Use this bottom input area for interview questions, follow-ups, answers, and general notes you want to reread.</p>
             <textarea id="notes-text" placeholder="Write the question they asked, your follow-up points, or general interview notes here."></textarea>
@@ -66,39 +66,48 @@
     <script id="workspace-config" type="application/json">
       {
         "siteTitle": "Resumes",
-        "siteSummary": "Interview workspace with a shared document viewer.",
+        "siteSummary": "Interview workspace",
         "noteStorageKey": "mgd:notes:resumes:venuiti:technology_project_manager",
+        "showNotes": true,
+        "showToolbarStatus": false,
+        "showPanelHeader": false,
+        "defaultMode": "compare",
         "notePlaceholder": "Write the interview question, your answer notes, follow-up tasks, or any general notes here.",
         "groups": [
           {
             "label": "Company",
             "heading": "Venuiti",
+            "items": []
+          },
+          {
+            "label": "Posting",
+            "heading": "Technology Project Manager",
             "items": [
               {
                 "id": "venuiti-posting",
-                "label": "Technology Project Manager / Job Posting",
-                "description": "Normalized source posting.",
+                "label": "Job Posting",
+                "description": "",
                 "href": "./companies/venuiti/postings/technology_project_manager/job_posting.html",
                 "selected": true
               },
               {
                 "id": "venuiti-resume",
-                "label": "Technology Project Manager / Resume",
-                "description": "Submitted resume.",
+                "label": "Resume",
+                "description": "",
                 "href": "./companies/venuiti/postings/technology_project_manager/resume.html",
                 "selected": true
               },
               {
                 "id": "venuiti-questions",
-                "label": "Technology Project Manager / Interview Questions",
-                "description": "Prepared prompts and reference questions.",
+                "label": "Interview Planning Notes",
+                "description": "",
                 "href": "./companies/venuiti/postings/technology_project_manager/interview_questions.html",
                 "selected": false
               },
               {
                 "id": "venuiti-notes",
-                "label": "Technology Project Manager / Notes Artifact",
-                "description": "Normalized notes page for the posting.",
+                "label": "Notes Artifact",
+                "description": "",
                 "href": "./companies/venuiti/postings/technology_project_manager/notes.html",
                 "selected": false
               }

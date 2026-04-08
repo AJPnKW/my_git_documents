@@ -16,6 +16,7 @@ function buildConfigFromQuery() {
   const labels = params.getAll("labels");
   return {
     siteTitle: params.get("title") || "Viewer",
+    defaultMode: params.get("mode") || "single",
     noteStorageKey: params.get("notesKey") || "mgd:notes:default",
     notePlaceholder: "Capture notes here.",
     groups: [
@@ -57,7 +58,7 @@ function renderSidebar(config) {
     <section class="tree-group">
       <span class="tree-label">${group.label}</span>
       <div class="tree-heading">${group.heading}</div>
-      <ul class="tree-items">
+      ${group.items.length ? `<ul class="tree-items">
         ${group.items.map((item) => `
           <li class="tree-item">
             <input type="checkbox" id="${item.id}" data-doc-id="${item.id}" ${item.selected ? "checked" : ""}>
@@ -67,29 +68,48 @@ function renderSidebar(config) {
             </label>
           </li>
         `).join("")}
-      </ul>
+      </ul>` : ""}
     </section>
   `).join("");
+}
+
+function modeLimit(mode, items) {
+  if (mode === "single") {
+    return 1;
+  }
+  if (mode === "compare") {
+    return 2;
+  }
+  if (mode === "columns") {
+    return 3;
+  }
+  return items.length;
 }
 
 function renderDocuments(config) {
   const grid = document.getElementById("viewer-grid");
   const mode = grid.dataset.mode || "single";
-  const limit = mode === "single" ? 1 : mode === "dual" ? 2 : 3;
   const items = selectedItems(config);
+  const limit = modeLimit(mode, items);
   const visible = items.slice(0, limit);
-
-  document.getElementById("toolbar-status").textContent =
-    items.length > limit
-      ? `${items.length} documents selected. Showing the first ${limit}.`
-      : `${items.length || 0} documents selected.`;
+  const status = document.getElementById("toolbar-status");
+  if (config.showToolbarStatus === false) {
+    status.hidden = true;
+  } else {
+    status.hidden = false;
+    status.textContent =
+      items.length > limit
+        ? `${items.length} selected. Showing ${limit}.`
+        : `${items.length || 0} selected.`;
+  }
 
   grid.innerHTML = visible.map((item, index) => `
     <section class="viewer-panel">
+      ${config.showPanelHeader === false ? "" : `
       <div class="viewer-head">
         <strong>${item.label}</strong>
         <a class="button-link" href="${item.href}" target="_blank" rel="noreferrer">Open direct</a>
-      </div>
+      </div>`}
       <div class="doc-frame">
         <iframe src="${item.href}" title="Document ${index + 1}" data-zoom="1"></iframe>
       </div>
@@ -114,21 +134,21 @@ function setZoom(delta) {
     const next = Math.max(0.6, Math.min(1.8, current + delta));
     frame.dataset.zoom = String(next);
     frame.style.transform = `scale(${next})`;
-    frame.style.height = `${Math.round(66 / next)}vh`;
+    frame.style.height = `calc((100vh - var(--topbar-height) - var(--toolbar-height) - 18px) / ${next})`;
   });
 }
 
 function fitWidth() {
   document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
     frame.style.width = "100%";
-    frame.style.height = "66vh";
+    frame.style.height = "calc(100vh - var(--topbar-height) - var(--toolbar-height) - 18px)";
   });
 }
 
 function fitPage() {
   document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
     frame.style.width = "100%";
-    frame.style.height = "82vh";
+    frame.style.height = "calc(100vh - var(--topbar-height) - 4px)";
   });
 }
 
@@ -149,6 +169,7 @@ function bootViewer() {
   const title = document.getElementById("workspace-title");
   const subtitle = document.getElementById("workspace-subtitle");
   const notes = document.getElementById("notes-text");
+  const notesPanel = document.getElementById("notes-panel");
 
   if (title && config.siteTitle) {
     title.textContent = config.siteTitle;
@@ -161,7 +182,7 @@ function bootViewer() {
   }
 
   renderSidebar(config);
-  const initialMode = localStorage.getItem("mgd:last_view_mode") || "single";
+  const initialMode = config.defaultMode || localStorage.getItem("mgd:last_view_mode") || "single";
   setViewerMode(initialMode);
   renderDocuments(config);
 
@@ -186,23 +207,27 @@ function bootViewer() {
     });
   });
 
-  const key = noteStorageKey(config);
-  notes.value = localStorage.getItem(key) || "";
-  notes.addEventListener("input", () => saveViewerNotes(config));
-  document.getElementById("insert-timestamp").addEventListener("click", () => {
-    notes.setRangeText(`[${new Date().toLocaleTimeString()}] `, notes.selectionStart, notes.selectionEnd, "end");
-    saveViewerNotes(config);
-  });
-  document.getElementById("copy-notes").addEventListener("click", async () => {
-    await navigator.clipboard.writeText(notes.value);
-  });
+  if (config.showNotes === false) {
+    notesPanel.hidden = true;
+  } else {
+    const key = noteStorageKey(config);
+    notes.value = localStorage.getItem(key) || "";
+    notes.addEventListener("input", () => saveViewerNotes(config));
+    document.getElementById("insert-timestamp").addEventListener("click", () => {
+      notes.setRangeText(`[${new Date().toLocaleTimeString()}] `, notes.selectionStart, notes.selectionEnd, "end");
+      saveViewerNotes(config);
+    });
+    document.getElementById("copy-notes").addEventListener("click", async () => {
+      await navigator.clipboard.writeText(notes.value);
+    });
+  }
   document.getElementById("zoom-in").addEventListener("click", () => setZoom(0.1));
   document.getElementById("zoom-out").addEventListener("click", () => setZoom(-0.1));
   document.getElementById("zoom-reset").addEventListener("click", () => {
     document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
       frame.dataset.zoom = "1";
       frame.style.transform = "scale(1)";
-      frame.style.height = "66vh";
+      frame.style.height = "calc(100vh - var(--topbar-height) - var(--toolbar-height) - 18px)";
     });
   });
   document.getElementById("fit-width").addEventListener("click", fitWidth);

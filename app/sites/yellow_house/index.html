@@ -12,7 +12,6 @@
   <header class="topbar">
     <div>
       <a class="brand" href="./index.html">Yellow House</a>
-      <div class="subtle">Private document workspace</div>
     </div>
   </header>
   <main class="shell">
@@ -29,28 +28,29 @@
       <div class="workspace-shell">
         <aside class="workspace-sidebar">
           <h1 id="workspace-title" class="workspace-title">Yellow House</h1>
-          <p id="workspace-subtitle" class="workspace-subtitle">Property and related reference documents.</p>
+          <p id="workspace-subtitle" class="workspace-subtitle">Private document workspace</p>
           <div id="workspace-tree"></div>
         </aside>
         <section class="workspace-main">
-          <div class="toolbar">
+          <div class="toolbar icon-toolbar">
             <div class="button-row">
-              <button data-mode-button="single" type="button">1 Page</button>
-              <button data-mode-button="dual" type="button">2 Page</button>
-              <button data-mode-button="tri" type="button">3 Page</button>
-              <button id="zoom-in" type="button">Zoom In</button>
-              <button id="zoom-out" type="button">Zoom Out</button>
-              <button id="zoom-reset" type="button">Reset Zoom</button>
-              <button id="fit-width" type="button">Fit Width</button>
-              <button id="fit-page" type="button">Fit Page</button>
+              <button class="icon-button" data-mode-button="single" type="button" title="Single document">◧</button>
+              <button class="icon-button" data-mode-button="compare" type="button" title="Side by side">◫</button>
+              <button class="icon-button" data-mode-button="columns" type="button" title="Three columns">▥</button>
+              <button class="icon-button" data-mode-button="stack" type="button" title="Cascade stack">▤</button>
+              <button class="icon-button" id="zoom-in" type="button" title="Zoom in">＋</button>
+              <button class="icon-button" id="zoom-out" type="button" title="Zoom out">－</button>
+              <button class="icon-button" id="zoom-reset" type="button" title="Reset zoom">↺</button>
+              <button class="icon-button" id="fit-width" type="button" title="Fit width">↔</button>
+              <button class="icon-button" id="fit-page" type="button" title="Fit page">⬚</button>
               <input id="viewer-find" type="text" placeholder="Find in current document">
-              <button id="viewer-find-button" type="button">Find</button>
-              <button id="print-view" type="button">Print</button>
+              <button class="icon-button" id="viewer-find-button" type="button" title="Find">⌕</button>
+              <button class="icon-button" id="print-view" type="button" title="Print">⎙</button>
             </div>
           </div>
           <p id="toolbar-status" class="toolbar-status"></p>
           <div id="viewer-grid" class="layout-grid" data-mode="single"></div>
-          <section class="notes-panel">
+          <section id="notes-panel" class="notes-panel">
             <h2 class="notes-label">Notes</h2>
             <p class="notes-helper">Use this space for questions, follow-ups, reminders, or conversation notes.</p>
             <textarea id="notes-text" placeholder="Type notes here."></textarea>
@@ -66,33 +66,24 @@
     <script id="workspace-config" type="application/json">
       {
         "siteTitle": "Yellow House",
-        "siteSummary": "Property and related reference documents.",
+        "siteSummary": "Private document workspace",
         "noteStorageKey": "mgd:notes:yellow_house",
-        "notePlaceholder": "Write questions, family follow-up items, or general notes here.",
+        "showNotes": false,
+        "showToolbarStatus": false,
+        "showPanelHeader": false,
+        "defaultMode": "single",
+        "notePlaceholder": "",
         "groups": [
           {
-            "label": "Property",
-            "heading": "108 Eighth Street",
+            "label": "Files",
+            "heading": "Yellow House",
             "items": [
               {
                 "id": "yellow-analysis",
-                "label": "Investor Analysis",
-                "description": "Primary property analysis document.",
+                "label": "Rental Investor Analysis",
+                "description": "",
                 "href": "./documents/collingwood_rental_investor_analysis.html",
                 "selected": true
-              }
-            ]
-          },
-          {
-            "label": "Reference",
-            "heading": "Imported Assets",
-            "items": [
-              {
-                "id": "yellow-reference",
-                "label": "Saved Reference Page",
-                "description": "Imported supporting reference page.",
-                "href": "./attachments/hp_920_home_server_linux_tv_console_setup_files/saved_resource.html",
-                "selected": false
               }
             ]
           }

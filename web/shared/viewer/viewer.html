@@ -11,7 +11,7 @@
   <header class="topbar">
     <div>
       <a class="brand" href="../../index.html">my_git_documents</a>
-      <div class="subtle">Single, dual, and tri-view reading workspace</div>
+      <div class="subtle">Document workspace</div>
     </div>
     <nav class="topnav">
       <a href="../../index.html">Home</a>
@@ -23,12 +23,15 @@
     <section class="viewer-shell">
       <div class="breadcrumbs"><a href="../../index.html">Home</a> / Viewer</div>
       <h1>Viewer</h1>
-      <div class="toolbar">
-        <button data-mode-button="single" type="button">1 Panel</button>
-        <button data-mode-button="dual" type="button">2 Panel</button>
-        <button data-mode-button="tri" type="button">3 Panel</button>
+      <div class="toolbar icon-toolbar">
+        <div class="button-row">
+          <button class="icon-button" data-mode-button="single" type="button" title="Single document">◧</button>
+          <button class="icon-button" data-mode-button="compare" type="button" title="Side by side">◫</button>
+          <button class="icon-button" data-mode-button="columns" type="button" title="Three columns">▥</button>
+          <button class="icon-button" data-mode-button="stack" type="button" title="Cascade stack">▤</button>
+        </div>
       </div>
-      <div id="viewer-grid" class="layout-grid" data-mode="tri"></div>
+      <div id="viewer-grid" class="layout-grid" data-mode="columns"></div>
     </section>
     <section class="notes-panel">
       <h2>Notes</h2>
