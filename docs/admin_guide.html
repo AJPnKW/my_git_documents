@@ -11,11 +11,12 @@
     <section class="hero">
       <div class="breadcrumbs"><a href="index.html">Docs</a> / Admin Guide</div>
       <h1>Admin Guide</h1>
-      <p>Use the scripts under <code>scripts/</code> to build indexes, validate manifests, create a baseline snapshot, package a release, and run a local preview server.</p>
+      <p>Use the scripts under <code>scripts/</code> to build indexes, generate workspace data from <code>files/</code>, validate manifests, create a baseline snapshot, package a release, and run a local preview server.</p>
     </section>
     <section class="section">
       <ul class="doc-list">
         <li><code>python tests/run_all.py</code> runs the current validation set.</li>
+        <li>Add new shared documents under <code>files/single_page/</code>, <code>files/multi_page/</code>, or <code>files/resumes/</code> before regenerating the workspace data.</li>
         <li><code>python scripts/create_baseline.py</code> creates a traceable snapshot in <code>backups/</code>.</li>
         <li><code>python scripts/package_release.py</code> creates a release zip in <code>reports/packages/</code>.</li>
         <li><code>powershell -File scripts/run_local.ps1</code> starts a simple local server.</li>

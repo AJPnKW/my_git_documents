@@ -20,29 +20,48 @@
     </nav>
   </header>
   <main class="shell">
-    <section class="viewer-shell">
-      <div class="breadcrumbs"><a href="../../index.html">Home</a> / Viewer</div>
-      <h1>Viewer</h1>
-      <div class="toolbar icon-toolbar">
-        <div class="button-row">
-          <button class="icon-button" data-mode-button="single" type="button" title="Single document">◧</button>
-          <button class="icon-button" data-mode-button="compare" type="button" title="Side by side">◫</button>
-          <button class="icon-button" data-mode-button="columns" type="button" title="Three columns">▥</button>
-          <button class="icon-button" data-mode-button="stack" type="button" title="Cascade stack">▤</button>
+    <div class="workspace-shell">
+      <aside class="workspace-sidebar">
+        <div id="workspace-header" class="workspace-header">
+          <h1 id="workspace-title" class="workspace-title">Viewer</h1>
+          <p id="workspace-subtitle" class="workspace-subtitle">Document workspace</p>
         </div>
-      </div>
-      <div id="viewer-grid" class="layout-grid" data-mode="columns"></div>
-    </section>
-    <section class="notes-panel">
-      <h2>Notes</h2>
-      <p class="subtle">Saved locally in browser storage for this baseline. Export wiring comes in the automation block.</p>
-      <textarea id="notes-text" placeholder="Capture notes during the interview here."></textarea>
-      <div class="button-row">
-        <button id="insert-timestamp" type="button">Insert Timestamp</button>
-        <button id="copy-notes" type="button">Copy</button>
-      </div>
-      <p id="save-status" class="subtle">Notes are stored locally in the browser.</p>
-    </section>
+        <div id="workspace-tree"></div>
+      </aside>
+      <section class="workspace-main">
+        <div class="toolbar icon-toolbar">
+          <div class="button-row">
+            <button class="icon-button" data-mode-button="single" type="button" title="Single document">◧</button>
+            <button class="icon-button" data-mode-button="split" type="button" title="Split view">◫</button>
+            <button class="icon-button" data-mode-button="columns" type="button" title="Three columns">▥</button>
+            <button class="icon-button" data-mode-button="rows" type="button" title="Rows">☰</button>
+            <button class="icon-button" data-mode-button="tile" type="button" title="Tile">⊞</button>
+            <button class="icon-button" data-mode-button="arrange" type="button" title="Arrange all">✢</button>
+            <button class="icon-button" id="sync-scroll" type="button" title="Synchronous scrolling">⇅</button>
+            <button class="icon-button" id="zoom-in" type="button" title="Zoom in">＋</button>
+            <button class="icon-button" id="zoom-out" type="button" title="Zoom out">－</button>
+            <button class="icon-button" id="zoom-reset" type="button" title="Reset zoom">↺</button>
+            <button class="icon-button" id="fit-width" type="button" title="Fit width">↔</button>
+            <button class="icon-button" id="fit-page" type="button" title="Fit page">⬚</button>
+            <input id="viewer-find" type="text" placeholder="Find in current document">
+            <button class="icon-button" id="viewer-find-button" type="button" title="Find">⌕</button>
+            <button class="icon-button" id="print-view" type="button" title="Print">⎙</button>
+          </div>
+        </div>
+        <p id="toolbar-status" class="toolbar-status"></p>
+        <div id="viewer-grid" class="layout-grid" data-mode="arrange"></div>
+        <section id="notes-panel" class="notes-panel">
+          <h2 class="notes-label">Notes</h2>
+          <p class="notes-helper">Saved locally in browser storage for this baseline.</p>
+          <textarea id="notes-text" placeholder="Capture notes during the interview here."></textarea>
+          <div class="button-row">
+            <button id="insert-timestamp" type="button">Insert Timestamp</button>
+            <button id="copy-notes" type="button">Copy</button>
+          </div>
+          <p id="save-status" class="subtle">Notes are stored locally in the browser.</p>
+        </section>
+      </section>
+    </div>
   </main>
 </body>
 </html>

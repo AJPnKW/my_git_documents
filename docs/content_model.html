@@ -11,13 +11,15 @@
     <section class="hero">
       <div class="breadcrumbs"><a href="index.html">Docs</a> / Content Model</div>
       <h1>Content Model</h1>
-      <p>A central site registry defines the top-level areas. Each sub-site has a manifest and its own content folder. Resume postings use normalized artifact names and a posting metadata file for association.</p>
+      <p>The repo now treats <code>files/</code> as the primary content root. Folder structure defines the navigation tree, normalized filenames define document roles, and generated workspace JSON feeds the shared viewer shell.</p>
     </section>
     <section class="section">
       <ul class="doc-list">
-        <li>Yellow House content lives under <code>sites/yellow_house/</code>.</li>
-        <li>Resume postings live under <code>sites/resumes/companies/&lt;company&gt;/postings/&lt;posting&gt;/</code>.</li>
-        <li>Required normalized posting files: <code>job_posting.html</code>, <code>resume.html</code>, <code>notes.html</code>, <code>interview_questions.html</code>, <code>posting.json</code>.</li>
+        <li><code>files/single_page/&lt;topic&gt;/</code> is for a single primary document workspace such as Yellow House.</li>
+        <li><code>files/multi_page/&lt;topic&gt;/</code> is reserved for future ordered multi-document workspaces.</li>
+        <li><code>files/resumes/&lt;company&gt;/&lt;posting&gt;/</code> holds normalized interview artifacts.</li>
+        <li>Normalized resume artifact names currently include <code>posting.html</code>, <code>resume.html</code>, <code>posting_analysis.html</code>, <code>interview_prep.html</code>, and <code>interview_notes.html</code>.</li>
+        <li><code>app/data/workspaces/</code> and <code>web/data/workspaces/</code> are generated from the <code>files/</code> tree by <code>scripts/build_site_index.py</code>.</li>
       </ul>
     </section>
   </main>

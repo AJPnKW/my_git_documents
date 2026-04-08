@@ -1,0 +1,2642 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><title>Venuiti TPM Analysis</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#222}
+h1,h2,h3{color:#123b5d}
+table{border-collapse:collapse;width:100%;font-size:12px;margin:12px 0 28px 0}
+th,td{border:1px solid #cfd8df;padding:6px 8px;vertical-align:top}
+th{background:#eaf2f8;position:sticky;top:0}
+tr:nth-child(even){background:#fafcfe}
+code, .legend{background:#f4f6f8;padding:8px 10px;border-radius:6px;display:inline-block}
+.small{font-size:12px;color:#555}
+.section{margin-bottom:28px}
+.good{background:#e9f7ef}
+.mid{background:#fcf3cf}
+.low{background:#fbeee6}
+ul{margin-top:6px}.toc ul{margin:10px 0 0 20px;padding:0}.toc a{color:#123b5d;text-decoration:none}.toc a:hover{text-decoration:underline}
+</style></head><body><h1>Venuiti Technology Project Manager — Full-Spectrum Career Alignment System</h1><div class='small'>Built from the attached posting and archived career documents. Legends: CDI = E/L/A/S/N. Evidence = P/D/C/K/N.</div><div class='section toc'><h2>Index</h2><ul><li><a href="#step-1-requirement-inventory">Step 1 — Requirement Inventory</a></li><li><a href="#step-2-normalization">Step 2 — Normalization</a></li><li><a href="#step-3-quartile-ranking">Step 3 — Quartile Ranking</a></li><li><a href="#step-4-role-baseline">Step 4 — Role Baseline</a></li><li><a href="#step-5-matrix-1-cdi">Step 5 — Matrix 1 (CDI)</a></li><li><a href="#step-6-matrix-2-evidence">Step 6 — Matrix 2 (Evidence)</a></li><li><a href="#step-7-gap-analysis">Step 7 — Gap Analysis</a></li><li><a href="#step-8-role-strength-analysis">Step 8 — Role Strength Analysis</a></li><li><a href="#step-9-strongest-experience-stories">Step 9 — Strongest Experience Stories</a></li><li><a href="#step-10-resume-structure">Step 10 — Resume Structure</a></li><li><a href="#step-11-heat-map">Step 11 — Heat Map</a></li><li><a href="#step-12-output-formats">Step 12 — Output Formats</a></li></ul></div><div class='section'><h2 id="step-1-requirement-inventory">Step 1 — Requirement Inventory</h2><table class="dataframe matrix">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Req ID</th>
+      <th>Requirement (Atomic)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>REQ01</td>
+      <td>Manage and oversee software development projects across the full execution lifecycle</td>
+    </tr>
+    <tr>
+      <td>REQ02</td>
+      <td>Provide top-down oversight of project execution across all phases</td>
+    </tr>
+    <tr>
+      <td>REQ03</td>
+      <td>Deliver projects to approved scope</td>
+    </tr>
+    <tr>
+      <td>REQ04</td>
+      <td>Deliver projects to approved budget</td>
+    </tr>
+    <tr>
+      <td>REQ05</td>
+      <td>Deliver projects to approved timeline</td>
+    </tr>
+    <tr>
+      <td>REQ06</td>
+      <td>Develop comprehensive project plans for software delivery</td>
+    </tr>
+    <tr>
+      <td>REQ07</td>
+      <td>Align company goals with consumer requirements in project plans</td>
+    </tr>
+    <tr>
+      <td>REQ08</td>
+      <td>Coordinate managers across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ09</td>
+      <td>Coordinate developers across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ10</td>
+      <td>Coordinate technical personnel across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ11</td>
+      <td>Coordinate external partners across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ12</td>
+      <td>Coordinate healthcare partners across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ13</td>
+      <td>Monitor project progress continuously</td>
+    </tr>
+    <tr>
+      <td>REQ14</td>
+      <td>Produce detailed scheduled project status reports</td>
+    </tr>
+    <tr>
+      <td>REQ15</td>
+      <td>Track project milestones</td>
+    </tr>
+    <tr>
+      <td>REQ16</td>
+      <td>Track project deliverables</td>
+    </tr>
+    <tr>
+      <td>REQ17</td>
+      <td>Track measurable project items</td>
+    </tr>
+    <tr>
+      <td>REQ18</td>
+      <td>Communicate proactively with team members</td>
+    </tr>
+    <tr>
+      <td>REQ19</td>
+      <td>Communicate proactively with stakeholders</td>
+    </tr>
+    <tr>
+      <td>REQ20</td>
+      <td>Identify project problems early</td>
+    </tr>
+    <tr>
+      <td>REQ21</td>
+      <td>Create solutions to project problems</td>
+    </tr>
+    <tr>
+      <td>REQ22</td>
+      <td>Implement efficiency improvements in delivery execution</td>
+    </tr>
+    <tr>
+      <td>REQ23</td>
+      <td>Review proposed modifications to project plans</td>
+    </tr>
+    <tr>
+      <td>REQ24</td>
+      <td>Meet with stakeholders to approve project changes</td>
+    </tr>
+    <tr>
+      <td>REQ25</td>
+      <td>Perform project documentation</td>
+    </tr>
+    <tr>
+      <td>REQ26</td>
+      <td>Maintain complete project documentation</td>
+    </tr>
+    <tr>
+      <td>REQ27</td>
+      <td>Bring software development background to the role</td>
+    </tr>
+    <tr>
+      <td>REQ28</td>
+      <td>Bring at least six years of project management experience</td>
+    </tr>
+    <tr>
+      <td>REQ29</td>
+      <td>Demonstrate extensive leadership experience</td>
+    </tr>
+    <tr>
+      <td>REQ30</td>
+      <td>Demonstrate strong team-building ability</td>
+    </tr>
+    <tr>
+      <td>REQ31</td>
+      <td>Apply Agile project management methodologies</td>
+    </tr>
+    <tr>
+      <td>REQ32</td>
+      <td>Demonstrate strong documentation and reporting experience</td>
+    </tr>
+    <tr>
+      <td>REQ33</td>
+      <td>Demonstrate strong communication and interpersonal skills</td>
+    </tr>
+    <tr>
+      <td>REQ34</td>
+      <td>Work 100 percent on-site in Waterloo</td>
+    </tr>
+    <tr>
+      <td>REQ35</td>
+      <td>Reliably commute to Waterloo or relocate before start</td>
+    </tr>
+    <tr>
+      <td>REQ36</td>
+      <td>Hold Canadian citizenship for security clearance</td>
+    </tr>
+    <tr>
+      <td>REQ37</td>
+      <td>Bring healthcare, health-tech, or digital health experience</td>
+    </tr>
+    <tr>
+      <td>REQ38</td>
+      <td>Bring familiarity with integration projects and enterprise software ecosystems</td>
+    </tr>
+    <tr>
+      <td>REQ39</td>
+      <td>Bring exposure to compliance, security, or regulated industry requirements</td>
+    </tr>
+    <tr>
+      <td>REQ40</td>
+      <td>Show motivation to build meaningful-purpose software</td>
+    </tr>
+    <tr>
+      <td>REQ41</td>
+      <td>Align with an inclusive and diverse team culture</td>
+    </tr>
+  </tbody>
+</table></div><div class='section'><h2 id="step-2-normalization">Step 2 — Normalization</h2><table class="dataframe matrix">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Req ID</th>
+      <th>Requirement (Normalized)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>REQ01</td>
+      <td>Manage and oversee software development projects across the full execution lifecycle</td>
+    </tr>
+    <tr>
+      <td>REQ02</td>
+      <td>Provide top-down oversight of project execution across all phases</td>
+    </tr>
+    <tr>
+      <td>REQ03</td>
+      <td>Deliver projects to approved scope</td>
+    </tr>
+    <tr>
+      <td>REQ04</td>
+      <td>Deliver projects to approved budget</td>
+    </tr>
+    <tr>
+      <td>REQ05</td>
+      <td>Deliver projects to approved timeline</td>
+    </tr>
+    <tr>
+      <td>REQ06</td>
+      <td>Develop comprehensive project plans for software delivery</td>
+    </tr>
+    <tr>
+      <td>REQ07</td>
+      <td>Align company goals with consumer requirements in project plans</td>
+    </tr>
+    <tr>
+      <td>REQ08</td>
+      <td>Coordinate managers across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ09</td>
+      <td>Coordinate developers across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ10</td>
+      <td>Coordinate technical personnel across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ11</td>
+      <td>Coordinate external partners across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ12</td>
+      <td>Coordinate healthcare partners across project phases</td>
+    </tr>
+    <tr>
+      <td>REQ13</td>
+      <td>Monitor project progress continuously</td>
+    </tr>
+    <tr>
+      <td>REQ14</td>
+      <td>Produce detailed scheduled project status reports</td>
+    </tr>
+    <tr>
+      <td>REQ15</td>
+      <td>Track project milestones</td>
+    </tr>
+    <tr>
+      <td>REQ16</td>
+      <td>Track project deliverables</td>
+    </tr>
+    <tr>
+      <td>REQ17</td>
+      <td>Track measurable project items</td>
+    </tr>
+    <tr>
+      <td>REQ18</td>
+      <td>Communicate proactively with team members</td>
+    </tr>
+    <tr>
+      <td>REQ19</td>
+      <td>Communicate proactively with stakeholders</td>
+    </tr>
+    <tr>
+      <td>REQ20</td>
+      <td>Identify project problems early</td>
+    </tr>
+    <tr>
+      <td>REQ21</td>
+      <td>Create solutions to project problems</td>
+    </tr>
+    <tr>
+      <td>REQ22</td>
+      <td>Implement efficiency improvements in delivery execution</td>
+    </tr>
+    <tr>
+      <td>REQ23</td>
+      <td>Review proposed modifications to project plans</td>
+    </tr>
+    <tr>
+      <td>REQ24</td>
+      <td>Meet with stakeholders to approve project changes</td>
+    </tr>
+    <tr>
+      <td>REQ25</td>
+      <td>Perform project documentation</td>
+    </tr>
+    <tr>
+      <td>REQ26</td>
+      <td>Maintain complete project documentation</td>
+    </tr>
+    <tr>
+      <td>REQ27</td>
+      <td>Bring software development background to the role</td>
+    </tr>
+    <tr>
+      <td>REQ28</td>
+      <td>Bring at least six years of project management experience</td>
+    </tr>
+    <tr>
+      <td>REQ29</td>
+      <td>Demonstrate extensive leadership experience</td>
+    </tr>
+    <tr>
+      <td>REQ30</td>
+      <td>Demonstrate strong team-building ability</td>
+    </tr>
+    <tr>
+      <td>REQ31</td>
+      <td>Apply Agile project management methodologies</td>
+    </tr>
+    <tr>
+      <td>REQ32</td>
+      <td>Demonstrate strong documentation and reporting experience</td>
+    </tr>
+    <tr>
+      <td>REQ33</td>
+      <td>Demonstrate strong communication and interpersonal skills</td>
+    </tr>
+    <tr>
+      <td>REQ34</td>
+      <td>Work 100 percent on-site in Waterloo</td>
+    </tr>
+    <tr>
+      <td>REQ35</td>
+      <td>Reliably commute to Waterloo or relocate before start</td>
+    </tr>
+    <tr>
+      <td>REQ36</td>
+      <td>Hold Canadian citizenship for security clearance</td>
+    </tr>
+    <tr>
+      <td>REQ37</td>
+      <td>Bring healthcare, health-tech, or digital health experience</td>
+    </tr>
+    <tr>
+      <td>REQ38</td>
+      <td>Bring familiarity with integration projects and enterprise software ecosystems</td>
+    </tr>
+    <tr>
+      <td>REQ39</td>
+      <td>Bring exposure to compliance, security, or regulated industry requirements</td>
+    </tr>
+    <tr>
+      <td>REQ40</td>
+      <td>Show motivation to build meaningful-purpose software</td>
+    </tr>
+    <tr>
+      <td>REQ41</td>
+      <td>Align with an inclusive and diverse team culture</td>
+    </tr>
+  </tbody>
+</table></div><div class='section'><h2 id="step-3-quartile-ranking">Step 3 — Quartile Ranking</h2><table class="dataframe matrix">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Req ID</th>
+      <th>Requirement</th>
+      <th>Quartile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>REQ01</td>
+      <td>Manage and oversee software development projects across the full execution lifecycle</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ02</td>
+      <td>Provide top-down oversight of project execution across all phases</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ03</td>
+      <td>Deliver projects to approved scope</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ04</td>
+      <td>Deliver projects to approved budget</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ05</td>
+      <td>Deliver projects to approved timeline</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ06</td>
+      <td>Develop comprehensive project plans for software delivery</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ07</td>
+      <td>Align company goals with consumer requirements in project plans</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ08</td>
+      <td>Coordinate managers across project phases</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ09</td>
+      <td>Coordinate developers across project phases</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ10</td>
+      <td>Coordinate technical personnel across project phases</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ11</td>
+      <td>Coordinate external partners across project phases</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ12</td>
+      <td>Coordinate healthcare partners across project phases</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ13</td>
+      <td>Monitor project progress continuously</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ14</td>
+      <td>Produce detailed scheduled project status reports</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ15</td>
+      <td>Track project milestones</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ16</td>
+      <td>Track project deliverables</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ17</td>
+      <td>Track measurable project items</td>
+      <td>Q3</td>
+    </tr>
+    <tr>
+      <td>REQ18</td>
+      <td>Communicate proactively with team members</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ19</td>
+      <td>Communicate proactively with stakeholders</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ20</td>
+      <td>Identify project problems early</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ21</td>
+      <td>Create solutions to project problems</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ22</td>
+      <td>Implement efficiency improvements in delivery execution</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ23</td>
+      <td>Review proposed modifications to project plans</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ24</td>
+      <td>Meet with stakeholders to approve project changes</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ25</td>
+      <td>Perform project documentation</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ26</td>
+      <td>Maintain complete project documentation</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ27</td>
+      <td>Bring software development background to the role</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ28</td>
+      <td>Bring at least six years of project management experience</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ29</td>
+      <td>Demonstrate extensive leadership experience</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ30</td>
+      <td>Demonstrate strong team-building ability</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ31</td>
+      <td>Apply Agile project management methodologies</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ32</td>
+      <td>Demonstrate strong documentation and reporting experience</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ33</td>
+      <td>Demonstrate strong communication and interpersonal skills</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ34</td>
+      <td>Work 100 percent on-site in Waterloo</td>
+      <td>Q3</td>
+    </tr>
+    <tr>
+      <td>REQ35</td>
+      <td>Reliably commute to Waterloo or relocate before start</td>
+      <td>Q3</td>
+    </tr>
+    <tr>
+      <td>REQ36</td>
+      <td>Hold Canadian citizenship for security clearance</td>
+      <td>Q1</td>
+    </tr>
+    <tr>
+      <td>REQ37</td>
+      <td>Bring healthcare, health-tech, or digital health experience</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ38</td>
+      <td>Bring familiarity with integration projects and enterprise software ecosystems</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ39</td>
+      <td>Bring exposure to compliance, security, or regulated industry requirements</td>
+      <td>Q2</td>
+    </tr>
+    <tr>
+      <td>REQ40</td>
+      <td>Show motivation to build meaningful-purpose software</td>
+      <td>Q4</td>
+    </tr>
+    <tr>
+      <td>REQ41</td>
+      <td>Align with an inclusive and diverse team culture</td>
+      <td>Q4</td>
+    </tr>
+  </tbody>
+</table></div><div class='section'><h2 id="step-4-role-baseline">Step 4 — Role Baseline</h2><table><tr><th>Role ID</th><th>Role</th></tr><tr><td>R1</td><td>Sabbatical — Governance/Cyber/Resilience</td></tr><tr><td>R2a</td><td>OpenText — Manager Risk Mgmt</td></tr><tr><td>R2b</td><td>OpenText — ISO Compliance Lead</td></tr><tr><td>R3a</td><td>Manulife — Risk Consultant</td></tr><tr><td>R3b</td><td>Manulife — IT Risk Lead</td></tr><tr><td>R4</td><td>Economical — Risk &amp; Compliance Lead</td></tr><tr><td>R5a</td><td>Spaenaur — Manager IS</td></tr><tr><td>R5b</td><td>Spaenaur — Acting Director IS</td></tr><tr><td>R6a</td><td>Sun Life — Sr PM</td></tr><tr><td>R6b</td><td>Sun Life — PM</td></tr><tr><td>R7a</td><td>Manulife — IS PM</td></tr><tr><td>R7b</td><td>Manulife — Service Delivery Lead</td></tr><tr><td>R8</td><td>Hubble — ERP Consultant</td></tr><tr><td>R9</td><td>Kuntz — Business Apps Manager</td></tr><tr><td>R10</td><td>Speaker / Instructor</td></tr></table></div><div class='section'><h2 id="step-5-matrix-1-cdi">Step 5 — Matrix 1 (CDI)</h2><div class='legend'>Legend: E = Expert / Designed, L = Led, A = Applied, S = Supported, N = No experience</div><table class="dataframe matrix">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Req ID</th>
+      <th>Requirement</th>
+      <th>Quartile</th>
+      <th>R1</th>
+      <th>R2a</th>
+      <th>R2b</th>
+      <th>R3a</th>
+      <th>R3b</th>
+      <th>R4</th>
+      <th>R5a</th>
+      <th>R5b</th>
+      <th>R6a</th>
+      <th>R6b</th>
+      <th>R7a</th>
+      <th>R7b</th>
+      <th>R8</th>
+      <th>R9</th>
+      <th>R10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>REQ01</td>
+      <td>Manage and oversee software development projects across the full execution lifecycle</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>L</td>
+      <td>E</td>
+      <td>E</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ02</td>
+      <td>Provide top-down oversight of project execution across all phases</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ03</td>
+      <td>Deliver projects to approved scope</td>
+      <td>Q1</td>
+      <td>N</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>S</td>
+      <td>S</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ04</td>
+      <td>Deliver projects to approved budget</td>
+      <td>Q1</td>
+      <td>N</td>
+      <td>A</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ05</td>
+      <td>Deliver projects to approved timeline</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ06</td>
+      <td>Develop comprehensive project plans for software delivery</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>E</td>
+      <td>L</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ07</td>
+      <td>Align company goals with consumer requirements in project plans</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ08</td>
+      <td>Coordinate managers across project phases</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ09</td>
+      <td>Coordinate developers across project phases</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ10</td>
+      <td>Coordinate technical personnel across project phases</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ11</td>
+      <td>Coordinate external partners across project phases</td>
+      <td>Q2</td>
+      <td>S</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ12</td>
+      <td>Coordinate healthcare partners across project phases</td>
+      <td>Q2</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>A</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ13</td>
+      <td>Monitor project progress continuously</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ14</td>
+      <td>Produce detailed scheduled project status reports</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ15</td>
+      <td>Track project milestones</td>
+      <td>Q2</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ16</td>
+      <td>Track project deliverables</td>
+      <td>Q2</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ17</td>
+      <td>Track measurable project items</td>
+      <td>Q3</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ18</td>
+      <td>Communicate proactively with team members</td>
+      <td>Q2</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <td>REQ19</td>
+      <td>Communicate proactively with stakeholders</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <td>REQ20</td>
+      <td>Identify project problems early</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ21</td>
+      <td>Create solutions to project problems</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ22</td>
+      <td>Implement efficiency improvements in delivery execution</td>
+      <td>Q2</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ23</td>
+      <td>Review proposed modifications to project plans</td>
+      <td>Q2</td>
+      <td>S</td>
+      <td>A</td>
+      <td>E</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ24</td>
+      <td>Meet with stakeholders to approve project changes</td>
+      <td>Q2</td>
+      <td>S</td>
+      <td>A</td>
+      <td>E</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ25</td>
+      <td>Perform project documentation</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+    </tr>
+    <tr>
+      <td>REQ26</td>
+      <td>Maintain complete project documentation</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+    </tr>
+    <tr>
+      <td>REQ27</td>
+      <td>Bring software development background to the role</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>A</td>
+      <td>S</td>
+      <td>A</td>
+      <td>S</td>
+      <td>S</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>E</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ28</td>
+      <td>Bring at least six years of project management experience</td>
+      <td>Q1</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>L</td>
+    </tr>
+    <tr>
+      <td>REQ29</td>
+      <td>Demonstrate extensive leadership experience</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+    </tr>
+    <tr>
+      <td>REQ30</td>
+      <td>Demonstrate strong team-building ability</td>
+      <td>Q2</td>
+      <td>S</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+    </tr>
+    <tr>
+      <td>REQ31</td>
+      <td>Apply Agile project management methodologies</td>
+      <td>Q1</td>
+      <td>S</td>
+      <td>S</td>
+      <td>S</td>
+      <td>A</td>
+      <td>A</td>
+      <td>S</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ32</td>
+      <td>Demonstrate strong documentation and reporting experience</td>
+      <td>Q2</td>
+      <td>A</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>A</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+    </tr>
+    <tr>
+      <td>REQ33</td>
+      <td>Demonstrate strong communication and interpersonal skills</td>
+      <td>Q2</td>
+      <td>A</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+      <td>L</td>
+      <td>L</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <td>REQ34</td>
+      <td>Work 100 percent on-site in Waterloo</td>
+      <td>Q3</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ35</td>
+      <td>Reliably commute to Waterloo or relocate before start</td>
+      <td>Q3</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ36</td>
+      <td>Hold Canadian citizenship for security clearance</td>
+      <td>Q1</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ37</td>
+      <td>Bring healthcare, health-tech, or digital health experience</td>
+      <td>Q2</td>
+      <td>S</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>A</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>A</td>
+      <td>E</td>
+      <td>A</td>
+      <td>A</td>
+      <td>N</td>
+      <td>N</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ38</td>
+      <td>Bring familiarity with integration projects and enterprise software ecosystems</td>
+      <td>Q2</td>
+      <td>S</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>E</td>
+      <td>L</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>REQ39</td>
+      <td>Bring exposure to compliance, security, or regulated industry requirements</td>
+      <td>Q2</td>
+      <td>A</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>E</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>REQ40</td>
+      <td>Show motivation to build meaningful-purpose software</td>
+      <td>Q4</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <td>REQ41</td>
+      <td>Align with an inclusive and diverse team culture</td>
+      <td>Q4</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>A</td>
+      <td>E</td>
+    </tr>
+  </tbody>
+</table></div><div class='section'><h2 id="step-6-matrix-2-evidence">Step 6 — Matrix 2 (Evidence)</h2><div class='legend'>Legend: P = Primary ownership, D = Direct execution, C = Collaborative contribution, K = Knowledge / exposure, N = No evidence</div><table class="dataframe matrix">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Req ID</th>
+      <th>Requirement</th>
+      <th>Quartile</th>
+      <th>R1</th>
+      <th>R2a</th>
+      <th>R2b</th>
+      <th>R3a</th>
+      <th>R3b</th>
+      <th>R4</th>
+      <th>R5a</th>
+      <th>R5b</th>
+      <th>R6a</th>
+      <th>R6b</th>
+      <th>R7a</th>
+      <th>R7b</th>
+      <th>R8</th>
+      <th>R9</th>
+      <th>R10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>REQ01</td>
+      <td>Manage and oversee software development projects across the full execution lifecycle</td>
+      <td>Q1</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ02</td>
+      <td>Provide top-down oversight of project execution across all phases</td>
+      <td>Q1</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ03</td>
+      <td>Deliver projects to approved scope</td>
+      <td>Q1</td>
+      <td>N</td>
+      <td>P</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ04</td>
+      <td>Deliver projects to approved budget</td>
+      <td>Q1</td>
+      <td>N</td>
+      <td>C</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ05</td>
+      <td>Deliver projects to approved timeline</td>
+      <td>Q1</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ06</td>
+      <td>Develop comprehensive project plans for software delivery</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>REQ07</td>
+      <td>Align company goals with consumer requirements in project plans</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>REQ08</td>
+      <td>Coordinate managers across project phases</td>
+      <td>Q1</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ09</td>
+      <td>Coordinate developers across project phases</td>
+      <td>Q1</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ10</td>
+      <td>Coordinate technical personnel across project phases</td>
+      <td>Q1</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ11</td>
+      <td>Coordinate external partners across project phases</td>
+      <td>Q2</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ12</td>
+      <td>Coordinate healthcare partners across project phases</td>
+      <td>Q2</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>C</td>
+      <td>P</td>
+      <td>C</td>
+      <td>C</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ13</td>
+      <td>Monitor project progress continuously</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ14</td>
+      <td>Produce detailed scheduled project status reports</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>REQ15</td>
+      <td>Track project milestones</td>
+      <td>Q2</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ16</td>
+      <td>Track project deliverables</td>
+      <td>Q2</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ17</td>
+      <td>Track measurable project items</td>
+      <td>Q3</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ18</td>
+      <td>Communicate proactively with team members</td>
+      <td>Q2</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ19</td>
+      <td>Communicate proactively with stakeholders</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ20</td>
+      <td>Identify project problems early</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>REQ21</td>
+      <td>Create solutions to project problems</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>REQ22</td>
+      <td>Implement efficiency improvements in delivery execution</td>
+      <td>Q2</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>REQ23</td>
+      <td>Review proposed modifications to project plans</td>
+      <td>Q2</td>
+      <td>C</td>
+      <td>C</td>
+      <td>P</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ24</td>
+      <td>Meet with stakeholders to approve project changes</td>
+      <td>Q2</td>
+      <td>C</td>
+      <td>C</td>
+      <td>P</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ25</td>
+      <td>Perform project documentation</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ26</td>
+      <td>Maintain complete project documentation</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ27</td>
+      <td>Bring software development background to the role</td>
+      <td>Q1</td>
+      <td>K</td>
+      <td>C</td>
+      <td>K</td>
+      <td>C</td>
+      <td>K</td>
+      <td>K</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>K</td>
+    </tr>
+    <tr>
+      <td>REQ28</td>
+      <td>Bring at least six years of project management experience</td>
+      <td>Q1</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ29</td>
+      <td>Demonstrate extensive leadership experience</td>
+      <td>Q1</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ30</td>
+      <td>Demonstrate strong team-building ability</td>
+      <td>Q2</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ31</td>
+      <td>Apply Agile project management methodologies</td>
+      <td>Q1</td>
+      <td>K</td>
+      <td>K</td>
+      <td>K</td>
+      <td>C</td>
+      <td>C</td>
+      <td>K</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>REQ32</td>
+      <td>Demonstrate strong documentation and reporting experience</td>
+      <td>Q2</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ33</td>
+      <td>Demonstrate strong communication and interpersonal skills</td>
+      <td>Q2</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ34</td>
+      <td>Work 100 percent on-site in Waterloo</td>
+      <td>Q3</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ35</td>
+      <td>Reliably commute to Waterloo or relocate before start</td>
+      <td>Q3</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ36</td>
+      <td>Hold Canadian citizenship for security clearance</td>
+      <td>Q1</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>REQ37</td>
+      <td>Bring healthcare, health-tech, or digital health experience</td>
+      <td>Q2</td>
+      <td>K</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>C</td>
+      <td>N</td>
+      <td>N</td>
+      <td>N</td>
+      <td>C</td>
+      <td>P</td>
+      <td>C</td>
+      <td>C</td>
+      <td>N</td>
+      <td>N</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>REQ38</td>
+      <td>Bring familiarity with integration projects and enterprise software ecosystems</td>
+      <td>Q2</td>
+      <td>K</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>K</td>
+    </tr>
+    <tr>
+      <td>REQ39</td>
+      <td>Bring exposure to compliance, security, or regulated industry requirements</td>
+      <td>Q2</td>
+      <td>D</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>P</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>REQ40</td>
+      <td>Show motivation to build meaningful-purpose software</td>
+      <td>Q4</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>P</td>
+    </tr>
+    <tr>
+      <td>REQ41</td>
+      <td>Align with an inclusive and diverse team culture</td>
+      <td>Q4</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>D</td>
+      <td>P</td>
+    </tr>
+  </tbody>
+</table></div><div class='section'><h2 id="step-7-gap-analysis">Step 7 — Gap Analysis</h2><table class="dataframe matrix">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Req ID</th>
+      <th>Requirement</th>
+      <th>Gap Type</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>REQ34</td>
+      <td>Work 100 percent on-site in Waterloo</td>
+      <td>Depth Gap</td>
+      <td>Logistical requirement. Not evidenced in role history; validate directly at application stage.</td>
+    </tr>
+    <tr>
+      <td>REQ35</td>
+      <td>Reliably commute to Waterloo or relocate before start</td>
+      <td>Depth Gap</td>
+      <td>Logistical requirement. Not evidenced in role history; validate directly at application stage.</td>
+    </tr>
+    <tr>
+      <td>REQ36</td>
+      <td>Hold Canadian citizenship for security clearance</td>
+      <td>Critical Gap</td>
+      <td>Eligibility requirement. Not role-evaluable from employment history; confirm outside the role matrix.</td>
+    </tr>
+    <tr>
+      <td>REQ36</td>
+      <td>Hold Canadian citizenship for security clearance</td>
+      <td>Story Gap</td>
+      <td>Eligibility requirement. Not role-evaluable from employment history; confirm outside the role matrix.</td>
+    </tr>
+    <tr>
+      <td>REQ36</td>
+      <td>Hold Canadian citizenship for security clearance</td>
+      <td>Depth Gap</td>
+      <td>Eligibility requirement. Not role-evaluable from employment history; confirm outside the role matrix.</td>
+    </tr>
+  </tbody>
+</table></div><div class='section'><h2 id="step-8-role-strength-analysis">Step 8 — Role Strength Analysis</h2><table class="dataframe matrix">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Role ID</th>
+      <th>Role</th>
+      <th>Q1 E+L Count</th>
+      <th>Strength</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>R1</td>
+      <td>Sabbatical — Governance/Cyber/Resilience</td>
+      <td>0</td>
+      <td>LOW</td>
+    </tr>
+    <tr>
+      <td>R2a</td>
+      <td>OpenText — Manager Risk Mgmt</td>
+      <td>18</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R2b</td>
+      <td>OpenText — ISO Compliance Lead</td>
+      <td>17</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R3a</td>
+      <td>Manulife — Risk Consultant</td>
+      <td>17</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R3b</td>
+      <td>Manulife — IT Risk Lead</td>
+      <td>9</td>
+      <td>MEDIUM</td>
+    </tr>
+    <tr>
+      <td>R4</td>
+      <td>Economical — Risk & Compliance Lead</td>
+      <td>13</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R5a</td>
+      <td>Spaenaur — Manager IS</td>
+      <td>19</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R5b</td>
+      <td>Spaenaur — Acting Director IS</td>
+      <td>21</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R6a</td>
+      <td>Sun Life — Sr PM</td>
+      <td>21</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R6b</td>
+      <td>Sun Life — PM</td>
+      <td>19</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R7a</td>
+      <td>Manulife — IS PM</td>
+      <td>20</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R7b</td>
+      <td>Manulife — Service Delivery Lead</td>
+      <td>14</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R8</td>
+      <td>Hubble — ERP Consultant</td>
+      <td>17</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R9</td>
+      <td>Kuntz — Business Apps Manager</td>
+      <td>18</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>R10</td>
+      <td>Speaker / Instructor</td>
+      <td>5</td>
+      <td>LOW</td>
+    </tr>
+  </tbody>
+</table></div><div class='section'><h2 id="step-9-strongest-experience-stories">Step 9 — Strongest Experience Stories</h2><h3>1. Sun Life — Multimillion-dollar application and Group Benefits delivery</h3><table><tr><th>Situation</th><td>Sun Life needed major application delivery across Individual Applications and Group Benefits, including the Health and Dental Claims Paperless Program.</td></tr><tr><th>Action</th><td>Led multimillion-dollar multi-stream projects using PMLC/SDLC, built integrated project plans across scope, time, cost, quality, resources, risk, communication and procurement, and managed onshore/offshore teams.</td></tr><tr><th>Result</th><td>Delivered high-visibility health and benefits initiatives with coordinated execution, stronger customer experience, and controlled delivery outcomes.</td></tr></table><h3>2. Manulife — Outsourced software project turned into structured IS delivery</h3><table><tr><th>Situation</th><td>A business-initiated outsourced software project in Group Benefits needed to be realigned to IS best practices and enterprise governance.</td></tr><tr><th>Action</th><td>Assumed ownership, completed initiation/planning/vendor selection, aligned the work to change/risk/release governance, led cross-functional teams, and managed stakeholder communication through steering and control groups.</td></tr><tr><th>Result</th><td>Improved data quality, reduced customer turnaround time, and increased customer satisfaction while bringing the project under formal delivery control.</td></tr></table><h3>3. Manulife — Internet releases with developers, BAs, contractors and vendors</h3><table><tr><th>Situation</th><td>Internet releases required coordinated execution across technical and business delivery groups.</td></tr><tr><th>Action</th><td>Managed all aspects of releases including cross-functional coordination, scope management, change management, stakeholder communications, and vendor/partner relationships while leading a dynamic e-commerce support team.</td></tr><tr><th>Result</th><td>Improved service reliability, operational efficiency, and delivery discipline in a developer-facing environment.</td></tr></table><h3>4. Spaenaur — Application, ERP, COTS and custom development portfolio</h3><table><tr><th>Situation</th><td>Spaenaur needed stronger application delivery, systems-development practices, and portfolio leadership across enterprise systems.</td></tr><tr><th>Action</th><td>Led applications, development and support operations; sponsored ERP, COTS and custom development project implementations; introduced better project management, change management, requirements and agile delivery practices.</td></tr><tr><th>Result</th><td>Improved operational agility, applications stability, executive alignment, and delivery maturity across the portfolio.</td></tr></table><h3>5. Hubble — ERP upgrade delivery with zero downtime</h3><table><tr><th>Situation</th><td>Multiple client ERP upgrade projects required formalized delivery methodology, controlled change, and safe cutover.</td></tr><tr><th>Action</th><td>Implemented project management methodology with defined statements of work, formal requirements gathering, and change control, then led Lawson ERP upgrade projects and business productivity tool implementations.</td></tr><tr><th>Result</th><td>Achieved zero downtime, 100 percent safe data migration, and a 50 percent improvement in on-time/on-budget/on-scope completion.</td></tr></table><h3>6. Kuntz — Business systems modernization and Lawson HRMS implementation</h3><table><tr><th>Situation</th><td>Kuntz needed to replace fragmented legacy HR/payroll systems and improve business application delivery discipline.</td></tr><tr><th>Action</th><td>Managed a cross-functional team through analysis, selection and implementation of a Tier 1 HRMS, oversaw Lawson HRMS rollout, and applied PMBOK-based project methodology and systems-development practices.</td></tr><tr><th>Result</th><td>Delivered the first on-schedule, on-budget project, improved payroll timelines fourfold, and reduced support cost by more than $1 million over three years.</td></tr></table></div><div class='section'><h2 id="step-10-resume-structure">Step 10 — Resume Structure</h2><h3>Headline</h3><p>Technical Project / Program Manager | Software, Application, ERP and Internet Delivery | Agile | SDLC | Health-tech / Regulated Environments</p><h3>Executive Summary</h3><p>Technical Project and Program Manager with 20+ years leading software, application, ERP, internet and business systems delivery across financial services, insurance, manufacturing, consulting and technology environments. Strong record across scope, schedule, budget, project planning, change control, reporting, documentation, cross-functional coordination and stakeholder communication. Background includes developer-facing delivery teams, Group Benefits / healthcare-adjacent programs, enterprise integrations, regulated environments, and continuous-improvement initiatives.</p><h3>Core Competencies</h3><ul><li>Full-lifecycle software project delivery</li><li>Scope / budget / timeline control</li><li>Project planning and roadmap development</li><li>Cross-functional coordination across managers, developers and partners</li><li>Progress monitoring and milestone tracking</li><li>Stakeholder reporting and communication</li><li>Problem solving and delivery issue resolution</li><li>Change control and plan modification governance</li><li>Project documentation and reporting</li><li>Software development and enterprise application background</li><li>Agile / SDLC / PMLC delivery</li><li>Leadership and team building</li><li>Integration / enterprise ecosystem delivery</li><li>Regulated / compliance-heavy environments</li></ul><h3>Key Programs / Initiatives</h3><ul><li>Sun Life — Health and Dental Claims Paperless Program</li><li>Sun Life — Individual Applications portfolio</li><li>Manulife — Group Benefits outsourced software project</li><li>Manulife — Internet releases and e-commerce support delivery</li><li>Spaenaur — ERP, COTS and custom development portfolio</li><li>Hubble — Lawson ERP upgrade delivery</li><li>Kuntz — Lawson HRMS implementation and self-service rollout</li><li>OpenText — Global Security Risk Management Program</li></ul></div><div class='section'><h2 id="step-11-heat-map">Step 11 — Heat Map</h2><table class="dataframe matrix">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Req ID</th>
+      <th>Requirement</th>
+      <th>R1</th>
+      <th>R2a</th>
+      <th>R2b</th>
+      <th>R3a</th>
+      <th>R3b</th>
+      <th>R4</th>
+      <th>R5a</th>
+      <th>R5b</th>
+      <th>R6a</th>
+      <th>R6b</th>
+      <th>R7a</th>
+      <th>R7b</th>
+      <th>R8</th>
+      <th>R9</th>
+      <th>R10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>REQ01</td>
+      <td>Manage and oversee software development projects across the full execution lifecycle</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>LOW</td>
+    </tr>
+    <tr>
+      <td>REQ03</td>
+      <td>Deliver projects to approved scope</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+    </tr>
+    <tr>
+      <td>REQ04</td>
+      <td>Deliver projects to approved budget</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+      <td>LOW</td>
+      <td>LOW</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+    </tr>
+    <tr>
+      <td>REQ05</td>
+      <td>Deliver projects to approved timeline</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+    </tr>
+    <tr>
+      <td>REQ06</td>
+      <td>Develop comprehensive project plans for software delivery</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+    </tr>
+    <tr>
+      <td>REQ13</td>
+      <td>Monitor project progress continuously</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+    </tr>
+    <tr>
+      <td>REQ19</td>
+      <td>Communicate proactively with stakeholders</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+    </tr>
+    <tr>
+      <td>REQ20</td>
+      <td>Identify project problems early</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+    </tr>
+    <tr>
+      <td>REQ25</td>
+      <td>Perform project documentation</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+    </tr>
+    <tr>
+      <td>REQ27</td>
+      <td>Bring software development background to the role</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+      <td>LOW</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>MEDIUM</td>
+      <td>HIGH</td>
+      <td>LOW</td>
+    </tr>
+    <tr>
+      <td>REQ31</td>
+      <td>Apply Agile project management methodologies</td>
+      <td>LOW</td>
+      <td>LOW</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>LOW</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+      <td>MEDIUM</td>
+    </tr>
+  </tbody>
+</table></div><div class='section'><h2 id="step-12-output-formats">Step 12 — Output Formats</h2><p>CSV files included for Excel-ready import. This HTML document includes all requested sections and tables.</p></div></body></html>

@@ -1,0 +1,30 @@
+{
+  "siteKey": "yellow_house",
+  "siteTitle": "",
+  "siteSummary": "",
+  "hideSidebarHeader": true,
+  "showNotes": false,
+  "showToolbarStatus": false,
+  "showPanelHeader": false,
+  "defaultMode": "single",
+  "noteStorageKey": "mgd:notes:yellow_house",
+  "notePlaceholder": "",
+  "tree": [
+    {
+      "id": "yellow_house-files",
+      "type": "folder",
+      "label": "Files",
+      "open": true,
+      "children": [
+        {
+          "id": "yellow_house-doc-1",
+          "type": "file",
+          "label": "Rental Investor Analysis",
+          "description": "",
+          "href": "../../../files/single_page/yellow_house/source.html",
+          "selected": true
+        }
+      ]
+    }
+  ]
+}

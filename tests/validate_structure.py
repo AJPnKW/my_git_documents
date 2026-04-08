@@ -12,7 +12,13 @@ def main() -> int:
         ROOT / "app" / "sites" / "_site_registry.json",
         ROOT / "app" / "sites" / "yellow_house" / "index.html",
         ROOT / "app" / "sites" / "resumes" / "index.html",
+        ROOT / "files" / "single_page" / "yellow_house" / "source.html",
+        ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager" / "posting.html",
+        ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager" / "resume.html",
+        ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager" / "posting_analysis.html",
         ROOT / "app" / "shared" / "viewer" / "viewer.html",
+        ROOT / "app" / "data" / "workspaces" / "yellow_house.json",
+        ROOT / "app" / "data" / "workspaces" / "resumes.json",
         ROOT / "docs" / "index.html",
         ROOT / "scripts" / "build_site_index.py",
     ]

@@ -17,10 +17,15 @@ def main() -> int:
         for field in ["site_key", "title", "access_mode"]:
             if field not in data:
                 failures.append(f"{path}: missing {field}")
-    posting = APP / "sites" / "resumes" / "companies" / "venuiti" / "postings" / "technology_project_manager"
-    for name in ["job_posting.html", "resume.html", "notes.html", "interview_questions.html", "posting.json"]:
+    posting = ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager"
+    for name in ["posting.html", "resume.html", "posting_analysis.html", "interview_prep.html", "interview_notes.html"]:
         if not (posting / name).exists():
             failures.append(f"missing {name}")
+    if not (ROOT / "files" / "single_page" / "yellow_house" / "source.html").exists():
+        failures.append("missing files/single_page/yellow_house/source.html")
+    for name in ["yellow_house.json", "resumes.json"]:
+        if not (APP / "data" / "workspaces" / name).exists():
+            failures.append(f"missing app/data/workspaces/{name}")
     if failures:
       print("\n".join(failures))
       return 1
