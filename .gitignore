@@ -1,0 +1,6 @@
+app/config/auth_config.local.json
+local_project_summary.html
+reports/packages/*.zip
+backups/baseline__*
+__pycache__/
+*.pyc
