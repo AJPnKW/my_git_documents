@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
+import stat
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -178,9 +180,14 @@ def write_workspace_json(target_root: Path, workspaces: dict[str, dict]) -> None
         (data_root / f"{name}.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
+def on_rm_error(func, path, exc_info):
+    os.chmod(path, stat.S_IWRITE)
+    func(path)
+
+
 def sync_web_from_app() -> None:
     if WEB.exists():
-        shutil.rmtree(WEB)
+        shutil.rmtree(WEB, onerror=on_rm_error)
     shutil.copytree(
         APP,
         WEB,

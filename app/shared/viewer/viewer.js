@@ -361,10 +361,26 @@ function fitWidth() {
   });
 }
 
+function fitHeight() {
+  document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
+    frame.style.width = "auto";
+    frame.style.height = "calc(100vh - var(--topbar-height) - var(--toolbar-height) - 18px)";
+  });
+}
+
 function fitPage() {
   document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
     frame.style.width = "100%";
     frame.style.height = "calc(100vh - var(--topbar-height) - 4px)";
+  });
+}
+
+function fitAll() {
+  document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
+    frame.dataset.zoom = "1";
+    frame.style.transform = "scale(1)";
+    frame.style.width = "100%";
+    frame.style.height = "calc(100vh - var(--topbar-height) - var(--toolbar-height) - 18px)";
   });
 }
 
@@ -470,7 +486,9 @@ async function bootViewer() {
     });
   });
   document.getElementById("fit-width").addEventListener("click", fitWidth);
+  document.getElementById("fit-height").addEventListener("click", fitHeight);
   document.getElementById("fit-page").addEventListener("click", fitPage);
+  document.getElementById("fit-all").addEventListener("click", fitAll);
   document.getElementById("viewer-find-button").addEventListener("click", findInCurrent);
   document.getElementById("print-view").addEventListener("click", () => window.print());
 }
