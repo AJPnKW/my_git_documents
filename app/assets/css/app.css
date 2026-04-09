@@ -121,6 +121,10 @@ a:hover {
   min-height: calc(100vh - var(--topbar-height));
 }
 
+.workspace-shell.is-sidebar-hidden {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .workspace-sidebar,
 .workspace-main,
 .notes-panel {
@@ -148,6 +152,10 @@ a:hover {
 .workspace-main {
   min-width: 0;
   background: #f2eee6;
+}
+
+.workspace-shell.is-sidebar-hidden .workspace-sidebar {
+  display: none;
 }
 
 .workspace-title {
@@ -368,17 +376,21 @@ a:hover {
   flex-wrap: wrap;
   gap: 6px;
   padding: 8px 8px 0;
+  align-items: center;
+  border-bottom: 1px solid rgba(208, 200, 187, 0.8);
+  background: #f7f3eb;
 }
 
 .viewer-tab {
   border: 1px solid var(--line);
   background: #fffdfa;
   border-radius: 999px;
-  padding: 6px 10px;
+  padding: 7px 12px;
   color: var(--ink);
   font: inherit;
   font-size: 0.8rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .viewer-tab.is-active,

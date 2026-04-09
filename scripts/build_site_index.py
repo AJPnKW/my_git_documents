@@ -5,6 +5,7 @@ import os
 import re
 import shutil
 import stat
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -181,18 +182,33 @@ def write_workspace_json(target_root: Path, workspaces: dict[str, dict]) -> None
 
 
 def on_rm_error(func, path, exc_info):
+    target = Path(path)
+    if target.is_dir():
+        shutil.rmtree(target, onerror=on_rm_error)
+        return
     os.chmod(path, stat.S_IWRITE)
     func(path)
 
 
 def sync_web_from_app() -> None:
-    if WEB.exists():
-        shutil.rmtree(WEB, onerror=on_rm_error)
+    temp_parent = Path(tempfile.mkdtemp(prefix="mgd_web_build_", dir=ROOT))
+    temp_web = temp_parent / "web"
     shutil.copytree(
         APP,
-        WEB,
+        temp_web,
         ignore=shutil.ignore_patterns("auth_config.local.json"),
     )
+    old_web = None
+    if WEB.exists():
+        old_web = ROOT / f"web__old__{next(tempfile._get_candidate_names())}"
+        WEB.replace(old_web)
+    temp_web.replace(WEB)
+    shutil.rmtree(temp_parent, onerror=on_rm_error)
+    if old_web and old_web.exists():
+        try:
+            shutil.rmtree(old_web, onerror=on_rm_error)
+        except Exception:
+            pass
 
 
 def main() -> int:

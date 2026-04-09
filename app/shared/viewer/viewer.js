@@ -3,6 +3,7 @@ const viewerState = {
   syncScroll: false,
   syncLock: false,
   activeTabIndex: 0,
+  sidebarHidden: false,
 };
 
 function workspaceParams() {
@@ -147,6 +148,18 @@ function setViewerMode(mode, config) {
   document.querySelectorAll("[data-mode-button]").forEach((button) => {
     button.classList.toggle("is-active", button.dataset.modeButton === viewerState.requestedMode);
   });
+}
+
+function applySidebarState() {
+  const shell = document.querySelector(".workspace-shell");
+  const button = document.getElementById("toggle-sidebar");
+  if (!shell || !button) {
+    return;
+  }
+  shell.classList.toggle("is-sidebar-hidden", viewerState.sidebarHidden);
+  button.classList.toggle("is-active", viewerState.sidebarHidden);
+  button.setAttribute("aria-pressed", viewerState.sidebarHidden ? "true" : "false");
+  button.title = viewerState.sidebarHidden ? "Show navigation" : "Hide navigation";
 }
 
 function renderNode(node, depth = 0) {
@@ -442,7 +455,9 @@ async function bootViewer() {
 
   renderSidebar(config);
   viewerState.requestedMode = config.defaultMode || localStorage.getItem("mgd:last_view_mode") || "single";
+  viewerState.sidebarHidden = localStorage.getItem("mgd:sidebar:hidden") === "true";
   setViewerMode(viewerState.requestedMode, config);
+  applySidebarState();
   renderDocuments(config);
   bindFileToggles(config);
 
@@ -458,6 +473,15 @@ async function bootViewer() {
     syncButton.addEventListener("click", () => {
       viewerState.syncScroll = !viewerState.syncScroll;
       updateToolbar(config);
+    });
+  }
+
+  const sidebarButton = document.getElementById("toggle-sidebar");
+  if (sidebarButton) {
+    sidebarButton.addEventListener("click", () => {
+      viewerState.sidebarHidden = !viewerState.sidebarHidden;
+      localStorage.setItem("mgd:sidebar:hidden", viewerState.sidebarHidden ? "true" : "false");
+      applySidebarState();
     });
   }
 
