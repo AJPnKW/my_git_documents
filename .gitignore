@@ -5,3 +5,4 @@ reports/packages/*.zip
 backups/baseline__*
 __pycache__/
 *.pyc
+/.examples
