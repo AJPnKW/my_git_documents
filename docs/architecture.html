@@ -11,7 +11,7 @@
     <section class="hero">
       <div class="breadcrumbs"><a href="index.html">Docs</a> / Architecture</div>
       <h1>Architecture</h1>
-      <p>The platform is static-first with one shared viewer shell under <code>app/shared/viewer/</code>. Content now lives under the repo-root <code>files/</code> tree, a generator writes workspace JSON into <code>app/data/workspaces/</code> and <code>web/data/workspaces/</code>, and the served mirror remains under <code>web/</code> for GitHub Pages compatibility.</p>
+      <p>The platform is static-first with one shared viewer shell under <code>app/shared/viewer/</code>. Content lives under the repo-root <code>files/</code> tree, a generator writes workspace JSON into <code>app/data/workspaces/</code>, and <code>web/</code> is regenerated from <code>app/</code> as publish output rather than being maintained as a second source tree.</p>
     </section>
   </main>
 </body>

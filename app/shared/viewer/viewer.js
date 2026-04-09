@@ -2,10 +2,15 @@ const viewerState = {
   requestedMode: "single",
   syncScroll: false,
   syncLock: false,
+  activeTabIndex: 0,
 };
 
 function workspaceParams() {
   return new URLSearchParams(window.location.search);
+}
+
+function viewerParam(name) {
+  return workspaceParams().get(name);
 }
 
 function readEmbeddedConfig() {
@@ -17,7 +22,7 @@ function readEmbeddedConfig() {
 }
 
 async function readDataConfig() {
-  const path = document.body?.dataset.workspaceJson;
+  const path = viewerParam("workspaceJson") || document.body?.dataset.workspaceJson;
   if (!path) {
     return null;
   }
@@ -108,7 +113,7 @@ function normalizeMode(mode, count) {
   if (mode === "columns" && count < 3) {
     return "split";
   }
-  if (["split", "rows", "tile", "arrange"].includes(mode) && count >= 2) {
+  if (["split", "rows", "tabs", "arrange"].includes(mode) && count >= 2) {
     return mode;
   }
   if (mode === "columns" && count >= 3) {
@@ -126,6 +131,9 @@ function modeLimit(mode, items) {
   }
   if (mode === "columns") {
     return 3;
+  }
+  if (mode === "tabs") {
+    return 1;
   }
   return items.length;
 }
@@ -192,15 +200,18 @@ function renderSidebar(config) {
 
 function updateToolbar(config) {
   const count = selectedCount(config);
+  const totalEnabled = countEnabledFiles(config.tree || []);
   document.querySelectorAll("[data-mode-button]").forEach((button) => {
     const mode = button.dataset.modeButton;
     let visible = true;
-    if (mode === "split") {
-      visible = count >= 2;
+    if (mode === "single") {
+      visible = totalEnabled > 1;
+    } else if (mode === "split") {
+      visible = totalEnabled >= 2;
     } else if (mode === "columns") {
-      visible = count >= 3;
-    } else if (["rows", "tile", "arrange"].includes(mode)) {
-      visible = count >= 2;
+      visible = totalEnabled >= 3;
+    } else if (["rows", "tabs", "arrange"].includes(mode)) {
+      visible = totalEnabled >= 2;
     }
     button.hidden = !visible;
   });
@@ -266,7 +277,11 @@ function renderDocuments(config) {
   const grid = document.getElementById("viewer-grid");
   grid.dataset.mode = viewerState.requestedMode;
   const limit = modeLimit(viewerState.requestedMode, items);
-  const visible = items.slice(0, limit);
+  let visible = items.slice(0, limit);
+  if (viewerState.requestedMode === "tabs") {
+    viewerState.activeTabIndex = Math.max(0, Math.min(viewerState.activeTabIndex, items.length - 1));
+    visible = items.length ? [items[viewerState.activeTabIndex]] : [];
+  }
   const status = document.getElementById("toolbar-status");
   if (config.showToolbarStatus === false) {
     status.hidden = true;
@@ -275,7 +290,26 @@ function renderDocuments(config) {
     status.textContent = `${count} selected`;
   }
 
-  grid.innerHTML = visible.map((item, index) => `
+  const tabsMarkup = viewerState.requestedMode === "tabs" && items.length > 1
+    ? `
+      <div class="viewer-tabs" role="tablist" aria-label="Documents">
+        ${items.map((item, index) => `
+          <button
+            class="viewer-tab ${index === viewerState.activeTabIndex ? "is-active" : ""}"
+            type="button"
+            role="tab"
+            aria-selected="${index === viewerState.activeTabIndex ? "true" : "false"}"
+            data-tab-index="${index}">
+            ${item.label}
+          </button>
+        `).join("")}
+      </div>
+    `
+    : "";
+
+  grid.innerHTML = `
+    ${tabsMarkup}
+    ${visible.map((item, index) => `
     <section class="viewer-panel">
       ${config.showPanelHeader === false ? "" : `
       <div class="viewer-head">
@@ -286,7 +320,15 @@ function renderDocuments(config) {
         <iframe src="${item.href}" title="Document ${index + 1}" data-zoom="1"></iframe>
       </div>
     </section>
-  `).join("");
+  `).join("")}
+  `;
+
+  document.querySelectorAll("[data-tab-index]").forEach((button) => {
+    button.addEventListener("click", () => {
+      viewerState.activeTabIndex = Number(button.dataset.tabIndex || "0");
+      renderDocuments(config);
+    });
+  });
 
   bindFrameBehaviors();
 }
@@ -353,6 +395,7 @@ function bindFileToggles(config) {
       }
       if (selectedCount(config) === 1) {
         viewerState.requestedMode = "single";
+        viewerState.activeTabIndex = 0;
       }
       renderDocuments(config);
     });
@@ -369,6 +412,7 @@ async function bootViewer() {
 
   if (title && config.siteTitle) {
     title.textContent = config.siteTitle;
+    document.title = config.siteTitle;
   }
   if (subtitle) {
     subtitle.textContent = config.siteSummary || "";
@@ -435,4 +479,8 @@ window.addEventListener("DOMContentLoaded", () => {
   bootViewer().catch((error) => {
     console.error(error);
   });
+  const siteKey = viewerParam("siteKey");
+  if (siteKey && window.MyGitDocumentsAuth?.bootGate) {
+    window.MyGitDocumentsAuth.bootGate(siteKey);
+  }
 });

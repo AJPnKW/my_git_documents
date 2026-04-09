@@ -6,9 +6,8 @@
   <title>Resumes</title>
   <link rel="stylesheet" href="../../assets/css/app.css">
   <script defer src="../../shared/auth/auth.js"></script>
-  <script defer src="../../shared/viewer/viewer.js"></script>
 </head>
-<body data-workspace-json="../../data/workspaces/resumes.json">
+<body>
   <header class="topbar">
     <div>
       <a class="brand" href="./index.html">Resumes</a>
@@ -25,48 +24,19 @@
       <p class="subtle" data-gate-error></p>
     </section>
     <div data-protected-body>
-      <div class="workspace-shell">
-        <aside class="workspace-sidebar">
-          <div id="workspace-header" class="workspace-header">
-            <h1 id="workspace-title" class="workspace-title"></h1>
-            <p id="workspace-subtitle" class="workspace-subtitle"></p>
-          </div>
-          <div id="workspace-tree"></div>
-        </aside>
-        <section class="workspace-main">
-          <div class="toolbar icon-toolbar">
-            <div class="button-row">
-              <button class="icon-button" data-mode-button="single" type="button" title="Single document">◧</button>
-              <button class="icon-button" data-mode-button="split" type="button" title="Split view">◫</button>
-              <button class="icon-button" data-mode-button="columns" type="button" title="Three columns">▥</button>
-              <button class="icon-button" data-mode-button="rows" type="button" title="Rows">☰</button>
-              <button class="icon-button" data-mode-button="tile" type="button" title="Tile">⊞</button>
-              <button class="icon-button" data-mode-button="arrange" type="button" title="Arrange all">✢</button>
-              <button class="icon-button" id="sync-scroll" type="button" title="Synchronous scrolling">⇅</button>
-              <button class="icon-button" id="zoom-in" type="button" title="Zoom in">＋</button>
-              <button class="icon-button" id="zoom-out" type="button" title="Zoom out">－</button>
-              <button class="icon-button" id="zoom-reset" type="button" title="Reset zoom">↺</button>
-              <button class="icon-button" id="fit-width" type="button" title="Fit width">↔</button>
-              <button class="icon-button" id="fit-page" type="button" title="Fit page">⬚</button>
-              <input id="viewer-find" type="text" placeholder="Find in current document">
-              <button class="icon-button" id="viewer-find-button" type="button" title="Find">⌕</button>
-              <button class="icon-button" id="print-view" type="button" title="Print">⎙</button>
-            </div>
-          </div>
-          <p id="toolbar-status" class="toolbar-status"></p>
-          <div id="viewer-grid" class="layout-grid" data-mode="split"></div>
-          <section id="notes-panel" class="notes-panel">
-            <h2 class="notes-label">Interview Notes</h2>
-            <p class="notes-helper">Use this bottom input area for interview questions, follow-ups, answers, and general notes you want to reread.</p>
-            <textarea id="notes-text" placeholder="Write the question they asked, your follow-up points, or general interview notes here."></textarea>
-            <div class="button-row">
-              <button id="insert-timestamp" type="button">Insert Timestamp</button>
-              <button id="copy-notes" type="button">Copy</button>
-            </div>
-            <p id="save-status" class="subtle">Notes are stored locally in the browser.</p>
-          </section>
-        </section>
-      </div>
+      <section class="hero">
+        <div class="breadcrumbs"><a href="../../index.html">Home</a> / Resumes</div>
+        <h1>Resumes And Interview Workspace</h1>
+        <p>Open the shared document interface for the resumes scope. The generated workspace tree determines the folders, files, and notes context that render.</p>
+        <div class="button-row">
+          <a class="button-link" href="../../shared/viewer/viewer.html?workspaceJson=../../data/workspaces/resumes.json&siteKey=resumes">Open Workspace</a>
+        </div>
+        <ul class="doc-list">
+          <li>Uses the shared viewer instead of embedding a page-specific shell.</li>
+          <li>The workspace tree is generated from the normalized source files.</li>
+          <li>Document scope selection lives in workspace data, not duplicated page markup.</li>
+        </ul>
+      </section>
     </div>
   </main>
   <script>

@@ -254,6 +254,8 @@ a:hover {
   color: var(--ink);
   text-align: left;
   cursor: pointer;
+  font-size: 0.82rem;
+  line-height: 1.2;
 }
 
 .tree-folder-row {
@@ -270,7 +272,7 @@ a:hover {
 }
 
 .tree-folder-name {
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 600;
 }
 
@@ -283,6 +285,15 @@ a:hover {
 
 .tree-file-text {
   min-width: 0;
+}
+
+.tree-file-text strong {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.tree-file-text .tree-item-meta {
+  font-size: 0.72rem;
 }
 
 .tree-file-row.is-disabled {
@@ -344,9 +355,36 @@ a:hover {
   grid-template-columns: 1fr;
 }
 
-.layout-grid[data-mode="tile"],
+.layout-grid[data-mode="tabs"] {
+  grid-template-columns: 1fr;
+}
+
 .layout-grid[data-mode="arrange"] {
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.viewer-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 8px 0;
+}
+
+.viewer-tab {
+  border: 1px solid var(--line);
+  background: #fffdfa;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.viewer-tab.is-active,
+.viewer-tab:hover {
+  background: var(--soft);
+  border-color: var(--accent);
 }
 
 .viewer-panel {

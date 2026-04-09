@@ -1,0 +1,457 @@
+{
+  "stamp": "20260409__115806",
+  "status": "success",
+  "package_path": "reports/packages/my_git_documents__package__20260409__115806.zip",
+  "package_bytes": 1220730,
+  "package_kb": 1192.12,
+  "max_package_bytes": 10240000,
+  "max_package_kb": 10000.0,
+  "source_file_count": 107,
+  "source_bytes": 3422197,
+  "source_kb": 3341.99,
+  "package_purpose": "Create a bounded release package of repo source assets only.",
+  "excluded_parts": [
+    ".git",
+    "__pycache__",
+    "backups",
+    "cache",
+    "reports",
+    "temp",
+    "web"
+  ],
+  "excluded_names": [
+    "auth_config.local.json",
+    "local_project_summary.html"
+  ],
+  "error": null,
+  "files": [
+    {
+      "path": ".examples/Screenshot 2026-04-08 170848.png",
+      "bytes": 75574
+    },
+    {
+      "path": ".examples/Screenshot 2026-04-08 171017.png",
+      "bytes": 317681
+    },
+    {
+      "path": ".examples/Screenshot 2026-04-08 171118.png",
+      "bytes": 179539
+    },
+    {
+      "path": ".examples/Screenshot 2026-04-08 171159.png",
+      "bytes": 183344
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 66
+    },
+    {
+      "path": ".github/workflows/package.yml",
+      "bytes": 541
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "bytes": 288
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 157
+    },
+    {
+      "path": "app/assets/css/app.css",
+      "bytes": 7954
+    },
+    {
+      "path": "app/assets/js/app.js",
+      "bytes": 62
+    },
+    {
+      "path": "app/config/auth_config.template.json",
+      "bytes": 428
+    },
+    {
+      "path": "app/data/workspaces/resumes.json",
+      "bytes": 2460
+    },
+    {
+      "path": "app/data/workspaces/yellow_house.json",
+      "bytes": 728
+    },
+    {
+      "path": "app/index.html",
+      "bytes": 1632
+    },
+    {
+      "path": "app/shared/auth/auth.js",
+      "bytes": 1782
+    },
+    {
+      "path": "app/shared/viewer/viewer.html",
+      "bytes": 4053
+    },
+    {
+      "path": "app/shared/viewer/viewer.js",
+      "bytes": 15447
+    },
+    {
+      "path": "app/sites/_site_registry.json",
+      "bytes": 531
+    },
+    {
+      "path": "app/sites/resumes/companies/venuiti/company.json",
+      "bytes": 225
+    },
+    {
+      "path": "app/sites/resumes/companies/venuiti/company_home.html",
+      "bytes": 1060
+    },
+    {
+      "path": "app/sites/resumes/companies/venuiti/postings/technology_project_manager/index.html",
+      "bytes": 2510
+    },
+    {
+      "path": "app/sites/resumes/companies/venuiti/postings/technology_project_manager/interview_questions.html",
+      "bytes": 910
+    },
+    {
+      "path": "app/sites/resumes/companies/venuiti/postings/technology_project_manager/job_posting.html",
+      "bytes": 6785
+    },
+    {
+      "path": "app/sites/resumes/companies/venuiti/postings/technology_project_manager/notes.html",
+      "bytes": 595
+    },
+    {
+      "path": "app/sites/resumes/companies/venuiti/postings/technology_project_manager/posting.json",
+      "bytes": 1244
+    },
+    {
+      "path": "app/sites/resumes/companies/venuiti/postings/technology_project_manager/resume.html",
+      "bytes": 20138
+    },
+    {
+      "path": "app/sites/resumes/index.html",
+      "bytes": 1830
+    },
+    {
+      "path": "app/sites/resumes/manifest.json",
+      "bytes": 619
+    },
+    {
+      "path": "app/sites/site_index.json",
+      "bytes": 517
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/1427326a-e34e-4b33-81e0-3ad525edfa91.png",
+      "bytes": 40010
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/ansi-1f6vhsjh.css",
+      "bytes": 820
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/code-block-editor-pane-fzo1sbww.css",
+      "bytes": 992
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/code-block-m2vhenll.css",
+      "bytes": 90
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/conversation-small-kpdqvkho.css",
+      "bytes": 24981
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/cot-message-lq73ofyy.css",
+      "bytes": 1495
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/favicons",
+      "bytes": 650
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/favicons(1)",
+      "bytes": 335
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/favicons(2)",
+      "bytes": 447
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/favicons(3)",
+      "bytes": 317
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/favicons(4)",
+      "bytes": 306
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/fullscreen-lxd7vmcm.css",
+      "bytes": 463
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/index-ivzj8m6u.css",
+      "bytes": 116
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/map-with-entities-flte3k5i.css",
+      "bytes": 9369
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/mapbox-gl-cw20al50.css",
+      "bytes": 38558
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/product-variants-ga945uk2.css",
+      "bytes": 572
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/root-4h823zuh.css",
+      "bytes": 1037769
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/saved_resource.html",
+      "bytes": 520
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/silk-hq-lutwos9z.css",
+      "bytes": 29278
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/table-components-ca43bz4f.css",
+      "bytes": 416
+    },
+    {
+      "path": "app/sites/yellow_house/attachments/hp_920_home_server_linux_tv_console_setup_files/writing-block-editor-isk65msv.css",
+      "bytes": 13006
+    },
+    {
+      "path": "app/sites/yellow_house/documents/collingwood_rental_investor_analysis.html",
+      "bytes": 29901
+    },
+    {
+      "path": "app/sites/yellow_house/index.html",
+      "bytes": 1971
+    },
+    {
+      "path": "app/sites/yellow_house/manifest.json",
+      "bytes": 1353
+    },
+    {
+      "path": "docs/admin_guide.html",
+      "bytes": 1357
+    },
+    {
+      "path": "docs/architecture.html",
+      "bytes": 817
+    },
+    {
+      "path": "docs/baselines/index.html",
+      "bytes": 801
+    },
+    {
+      "path": "docs/change_log.html",
+      "bytes": 936
+    },
+    {
+      "path": "docs/codex_delivery_plan.html",
+      "bytes": 1014
+    },
+    {
+      "path": "docs/configuration.html",
+      "bytes": 1358
+    },
+    {
+      "path": "docs/content_model.html",
+      "bytes": 1536
+    },
+    {
+      "path": "docs/index.html",
+      "bytes": 1287
+    },
+    {
+      "path": "docs/operations_dashboard.html",
+      "bytes": 1093
+    },
+    {
+      "path": "docs/project_scope.html",
+      "bytes": 613
+    },
+    {
+      "path": "docs/qa_validation.html",
+      "bytes": 877
+    },
+    {
+      "path": "docs/security_model.html",
+      "bytes": 1000
+    },
+    {
+      "path": "docs/user_workflows.html",
+      "bytes": 1244
+    },
+    {
+      "path": "files/multi_page/.gitkeep",
+      "bytes": 1
+    },
+    {
+      "path": "files/resumes/venuiti/technology_project_manager/interview_notes.html",
+      "bytes": 595
+    },
+    {
+      "path": "files/resumes/venuiti/technology_project_manager/interview_prep.html",
+      "bytes": 910
+    },
+    {
+      "path": "files/resumes/venuiti/technology_project_manager/posting.html",
+      "bytes": 6785
+    },
+    {
+      "path": "files/resumes/venuiti/technology_project_manager/posting_analysis.html",
+      "bytes": 67498
+    },
+    {
+      "path": "files/resumes/venuiti/technology_project_manager/resume.html",
+      "bytes": 20138
+    },
+    {
+      "path": "files/single_page/yellow_house/source.html",
+      "bytes": 29901
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/1427326a-e34e-4b33-81e0-3ad525edfa91.png",
+      "bytes": 40010
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/ansi-1f6vhsjh.css",
+      "bytes": 820
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/code-block-editor-pane-fzo1sbww.css",
+      "bytes": 992
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/code-block-m2vhenll.css",
+      "bytes": 90
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/conversation-small-kpdqvkho.css",
+      "bytes": 24981
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/cot-message-lq73ofyy.css",
+      "bytes": 1495
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/favicons",
+      "bytes": 650
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/favicons(1)",
+      "bytes": 335
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/favicons(2)",
+      "bytes": 447
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/favicons(3)",
+      "bytes": 317
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/favicons(4)",
+      "bytes": 306
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/fullscreen-lxd7vmcm.css",
+      "bytes": 463
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/index-ivzj8m6u.css",
+      "bytes": 116
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/map-with-entities-flte3k5i.css",
+      "bytes": 9369
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/mapbox-gl-cw20al50.css",
+      "bytes": 38558
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/product-variants-ga945uk2.css",
+      "bytes": 572
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/root-4h823zuh.css",
+      "bytes": 1037769
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/saved_resource.html",
+      "bytes": 520
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/silk-hq-lutwos9z.css",
+      "bytes": 29278
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/table-components-ca43bz4f.css",
+      "bytes": 416
+    },
+    {
+      "path": "files/single_page/yellow_house/supporting_assets/writing-block-editor-isk65msv.css",
+      "bytes": 13006
+    },
+    {
+      "path": "index.html",
+      "bytes": 403
+    },
+    {
+      "path": "README.html",
+      "bytes": 369
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 29
+    },
+    {
+      "path": "scripts/build_site_index.py",
+      "bytes": 6765
+    },
+    {
+      "path": "scripts/create_baseline.py",
+      "bytes": 1067
+    },
+    {
+      "path": "scripts/package_release.py",
+      "bytes": 4232
+    },
+    {
+      "path": "scripts/remove_corrupt_package.ps1",
+      "bytes": 582
+    },
+    {
+      "path": "scripts/run_local.ps1",
+      "bytes": 243
+    },
+    {
+      "path": "scripts/validate_manifests.py",
+      "bytes": 1343
+    },
+    {
+      "path": "tests/run_all.py",
+      "bytes": 799
+    },
+    {
+      "path": "tests/validate_docs_presence.py",
+      "bytes": 1023
+    },
+    {
+      "path": "tests/validate_release_hygiene.py",
+      "bytes": 1339
+    },
+    {
+      "path": "tests/validate_structure.py",
+      "bytes": 1297
+    }
+  ]
+}
