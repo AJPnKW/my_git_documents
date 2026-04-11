@@ -20,6 +20,10 @@ ROLE_ORDER = [
     ("posting_analysis", "Posting Analysis", False),
     ("interview_prep", "Interview Prep", False),
     ("interview_notes", "Interview Notes", False),
+    ("interview_questions", "Interview Questions", False),
+    ("response_bank", "Response Bank", False),
+    ("org_chart", "Org Chart", False),
+    ("people_graph", "People Graph", False),
 ]
 DOC_EXTENSIONS = {".html", ".pdf", ".docx"}
 

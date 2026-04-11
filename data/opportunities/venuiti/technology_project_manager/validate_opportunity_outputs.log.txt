@@ -1,0 +1,15 @@
+2026-04-10 20:16:48,570 | INFO | validated json payload: data\opportunities\venuiti\technology_project_manager\opportunity_profile.json
+2026-04-10 20:16:48,571 | INFO | validated json payload: data\opportunities\venuiti\technology_project_manager\opportunity_interview_response_bank.json
+2026-04-10 20:16:48,572 | INFO | validated json payload: data\opportunities\venuiti\technology_project_manager\live_interview_config.json
+2026-04-10 20:16:48,572 | INFO | validated html doc: docs\opportunity_design_venuiti_technology_project_manager.html
+2026-04-10 20:16:48,572 | INFO | validated html doc: docs\opportunity_runbook_venuiti_technology_project_manager.html
+2026-04-10 20:16:48,572 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\posting.html
+2026-04-10 20:16:48,573 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\resume.html
+2026-04-10 20:16:48,573 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\posting_analysis.html
+2026-04-10 20:16:48,573 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\interview_prep.html
+2026-04-10 20:16:48,573 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\interview_notes.html
+2026-04-10 20:16:48,573 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\interview_questions.html
+2026-04-10 20:16:48,573 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\response_bank.html
+2026-04-10 20:16:48,573 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\org_chart.html
+2026-04-10 20:16:48,573 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\people_graph.html
+2026-04-10 20:16:48,575 | INFO | opportunity validation passed

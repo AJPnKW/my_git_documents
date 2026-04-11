@@ -16,6 +16,7 @@ def main() -> int:
     commands = [
         [sys.executable, "scripts/build_site_index.py"],
         [sys.executable, "scripts/validate_manifests.py"],
+        [sys.executable, "scripts/opportunities/validate_opportunity_outputs.py"],
         [sys.executable, "tests/validate_structure.py"],
         [sys.executable, "tests/validate_docs_presence.py"],
         [sys.executable, "tests/validate_release_hygiene.py"],

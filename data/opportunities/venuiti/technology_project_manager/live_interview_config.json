@@ -1,0 +1,159 @@
+{
+  "opportunity_id": "venuiti__technology_project_manager",
+  "role_title": "Technology Project Manager",
+  "company_group": "Venuiti / DevStaff Canada / Venuiti Healthcare",
+  "target_brand": "Venuiti Healthcare",
+  "interview_mode": "live_capture_starter",
+  "opening_positioning": "Technical project manager with deep software, application, and enterprise delivery experience who can bring structured execution, technical-team fluency, and regulated-environment discipline to healthcare software delivery.",
+  "priority_story_order": [
+    "sun_life_health_and_benefits_delivery",
+    "manulife_group_benefits_recovery_project",
+    "manulife_internet_release_delivery",
+    "spaenaur_application_portfolio_leadership",
+    "hubble_erp_upgrade_zero_downtime",
+    "kuntz_hrms_modernization",
+    "opentext_security_governance"
+  ],
+  "response_controls": {
+    "default_answer_shape": [
+      "direct answer",
+      "one anchored example",
+      "business or delivery result",
+      "short relevance tie-back to Venuiti"
+    ],
+    "max_primary_example_count": 1,
+    "use_followup_example_only_if_asked": true,
+    "tone_target": "calm, specific, collaborative, execution-oriented",
+    "avoid": [
+      "long chronology",
+      "over-explaining certifications",
+      "inflating healthcare depth",
+      "sounding process-heavy without outcomes"
+    ]
+  },
+  "question_prompts_to_ask_them": [
+    "What does success look like in the first 90 days for this role?",
+    "How are development, business, and partner priorities balanced when delivery pressure increases?",
+    "Which parts of the delivery model are most affected by compliance or security-clearance requirements?",
+    "Where does this role need the most immediate improvement: execution rhythm, reporting, stakeholder alignment, or process discipline?"
+  ],
+  "live_note_template": {
+    "capture_fields": [
+      "question",
+      "primary_answer_used",
+      "story_used",
+      "follow_up_needed",
+      "interviewer_signal",
+      "post_interview_action"
+    ],
+    "interviewer_signal_values": [
+      "positive",
+      "neutral",
+      "needs_more_detail",
+      "needs_more_concise",
+      "risk_flag"
+    ]
+  },
+  "operational_fit_flags": {
+    "onsite_waterloo": "answer_directly_yes_if_asked",
+    "canadian_citizenship": "answer_directly_yes_if_true_and_requested",
+    "healthcare_depth": "frame_as_adjacent_and_transferable_not_absolute",
+    "recent_security_background": "connect_to_execution_discipline_not_identity"
+  },
+  "logging": {
+    "enabled": true,
+    "log_fields": [
+      "question_id",
+      "timestamp_optional_external",
+      "story_id",
+      "answer_variant",
+      "confidence",
+      "follow_up_required"
+    ],
+    "deterministic_internal_default": true
+  },
+  "validation": {
+    "required_sections_present": true,
+    "deterministic_output": true,
+    "starter_config_only": true,
+    "notes": [
+      "This is a role-specific starter and intentionally avoids runtime timestamps.",
+      "External live-capture systems may append timestamps without changing the baseline starter file.",
+      "Priority story order now includes canonical story resolution for live retrieval systems."
+    ]
+  },
+  "build_log": [
+    {
+      "step": 1,
+      "action": "Selected opening position, story order, and response controls from the role-specific opportunity profile."
+    },
+    {
+      "step": 2,
+      "action": "Added live-note structure, interviewer questions, and operational-fit flags for interview use."
+    },
+    {
+      "step": 3,
+      "action": "Resolved live interview priority story aliases to canonical master-story IDs."
+    }
+  ],
+  "priority_story_order_canonical": [
+    "story_ae8a593ce62a",
+    "story_5735bedc9111"
+  ],
+  "priority_story_alias_resolution": [
+    {
+      "alias_story_id": "sun_life_health_and_benefits_delivery",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "anchor_role_titles": [
+        "SR. PROJECT MANAGEMENT \u2013 IT GROUP BENEFITS",
+        "SR. PROJECT MANAGER \u2013 IT INDIVIDUAL APPLICATIONS"
+      ]
+    },
+    {
+      "alias_story_id": "manulife_group_benefits_recovery_project",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "anchor_role_titles": [
+        "IT RISK MANAGEMENT CONSULTANT, GROUP BENEFITS AND RETIREMENT SOLUTION TECHNOLOGIES",
+        "PROJECT RISK MANAGEMENT CONSULTANT, TECHNOLOGY RISK MANAGEMENT, GLOBAL INFORMATION RISK MANAGEMENT"
+      ]
+    },
+    {
+      "alias_story_id": "manulife_internet_release_delivery",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "anchor_role_titles": [
+        "TEAM LEADER - SERVICE DELIVERY AND SUPPORT",
+        "PROJECT MANAGER - INFORMATION SYSTEMS"
+      ]
+    },
+    {
+      "alias_story_id": "spaenaur_application_portfolio_leadership",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "anchor_role_titles": [
+        "MANAGER OF APPLICATIONS, DEVELOPMENT AND SUPPORT",
+        "DIRECTOR (ACTING) OF INFORMATION SERVICES"
+      ]
+    },
+    {
+      "alias_story_id": "hubble_erp_upgrade_zero_downtime",
+      "canonical_story_id": "story_5735bedc9111",
+      "anchor_role_titles": [
+        "ERP PROJECT MANAGER AND ERP CONSULTANT"
+      ]
+    },
+    {
+      "alias_story_id": "kuntz_hrms_modernization",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "anchor_role_titles": [
+        "MANAGER OF BUSINESS APPLICATIONS, TRAINING AND SUPPORT"
+      ]
+    },
+    {
+      "alias_story_id": "opentext_security_governance",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "anchor_role_titles": [
+        "LEAD SECURITY COMPLIANCE ANALYST, GLOBAL INFORMATION SECURITY, GOVERNANCE & RISK",
+        "MANAGER INFORMATION SECURITY, GLOBAL INFORMATION SECURITY, GOVERNANCE & RISK"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "group": "venuiti",
+  "role": "technology_project_manager",
+  "validated_files": [
+    "data/opportunities/venuiti/technology_project_manager/opportunity_profile.json",
+    "data/opportunities/venuiti/technology_project_manager/opportunity_interview_response_bank.json",
+    "data/opportunities/venuiti/technology_project_manager/live_interview_config.json",
+    "docs/opportunity_design_venuiti_technology_project_manager.html",
+    "docs/opportunity_runbook_venuiti_technology_project_manager.html"
+  ]
+}

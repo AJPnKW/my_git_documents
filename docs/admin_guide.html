@@ -17,6 +17,8 @@
       <ul class="doc-list">
         <li><code>python tests/run_all.py</code> runs the current validation set.</li>
         <li>Add new shared documents under <code>files/single_page/</code>, <code>files/multi_page/</code>, or <code>files/resumes/</code> before regenerating the workspace data.</li>
+        <li><code>python scripts/opportunities/validate_opportunity_outputs.py</code> validates the Venuiti opportunity layer and writes a summary under <code>data/opportunities/venuiti/technology_project_manager/</code>.</li>
+        <li><code>python scripts/opportunities/package_opportunity.py</code> creates the deterministic opportunity bundle under <code>.ai_downloads/</code>.</li>
         <li><code>python scripts/create_baseline.py</code> creates a traceable snapshot in <code>backups/</code>.</li>
         <li><code>python scripts/package_release.py</code> creates a release zip in <code>reports/packages/</code>.</li>
         <li><code>powershell -File scripts/run_local.ps1</code> starts a simple local server.</li>

@@ -1,0 +1,18 @@
+{
+  "group": "venuiti",
+  "role": "technology_project_manager",
+  "package_path": ".ai_downloads/venuiti_technology_project_manager_opportunity_outputs.zip",
+  "files": [
+    "data/opportunities/venuiti/technology_project_manager/opportunity_profile.json",
+    "data/opportunities/venuiti/technology_project_manager/opportunity_interview_response_bank.json",
+    "data/opportunities/venuiti/technology_project_manager/live_interview_config.json",
+    "data/opportunities/venuiti/technology_project_manager/opportunity_validation_summary.json",
+    "data/opportunities/venuiti/technology_project_manager/validate_opportunity_outputs.log.txt",
+    "docs/opportunity_design_venuiti_technology_project_manager.html",
+    "docs/opportunity_runbook_venuiti_technology_project_manager.html",
+    "docs/venuiti_inventory.html",
+    "files/resumes/venuiti/technology_project_manager/response_bank.html",
+    "files/resumes/venuiti/technology_project_manager/org_chart.html",
+    "files/resumes/venuiti/technology_project_manager/people_graph.html"
+  ]
+}

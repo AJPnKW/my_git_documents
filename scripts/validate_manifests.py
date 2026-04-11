@@ -18,9 +18,13 @@ def main() -> int:
             if field not in data:
                 failures.append(f"{path}: missing {field}")
     posting = ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager"
-    for name in ["posting.html", "resume.html", "posting_analysis.html", "interview_prep.html", "interview_notes.html"]:
+    for name in ["posting.html", "resume.html", "posting_analysis.html", "interview_prep.html", "interview_notes.html", "interview_questions.html", "response_bank.html", "org_chart.html", "people_graph.html"]:
         if not (posting / name).exists():
             failures.append(f"missing {name}")
+    opportunity_dir = ROOT / "data" / "opportunities" / "venuiti" / "technology_project_manager"
+    for name in ["opportunity_profile.json", "opportunity_interview_response_bank.json", "live_interview_config.json"]:
+        if not (opportunity_dir / name).exists():
+            failures.append(f"missing data/opportunities/venuiti/technology_project_manager/{name}")
     if not (ROOT / "files" / "single_page" / "yellow_house" / "source.html").exists():
         failures.append("missing files/single_page/yellow_house/source.html")
     for name in ["yellow_house.json", "resumes.json"]:

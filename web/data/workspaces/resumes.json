@@ -61,6 +61,38 @@
               "description": "",
               "href": "../../../files/resumes/venuiti/technology_project_manager/interview_notes.html",
               "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-interview_questions",
+              "type": "file",
+              "label": "Interview Questions",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/interview_questions.html",
+              "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-response_bank",
+              "type": "file",
+              "label": "Response Bank",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/response_bank.html",
+              "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-org_chart",
+              "type": "file",
+              "label": "Org Chart",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/org_chart.html",
+              "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-people_graph",
+              "type": "file",
+              "label": "People Graph",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/people_graph.html",
+              "selected": false
             }
           ]
         }

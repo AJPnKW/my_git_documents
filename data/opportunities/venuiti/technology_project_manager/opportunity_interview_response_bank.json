@@ -1,0 +1,399 @@
+{
+  "opportunity_id": "venuiti__technology_project_manager",
+  "question_categories": [
+    "fit_and_motivation",
+    "project_delivery",
+    "stakeholder_management",
+    "risk_and_problem_solving",
+    "agile_and_process",
+    "healthcare_and_regulated_environment",
+    "technical_fluency",
+    "documentation_and_reporting",
+    "operational_fit"
+  ],
+  "mapped_stories": [
+    {
+      "story_id": "sun_life_health_and_benefits_delivery",
+      "label": "Sun Life health and benefits delivery",
+      "source_status": "opportunity_alias_anchored_to_career_master_and_role_materials",
+      "best_for": [
+        "healthcare fit",
+        "program scale",
+        "scope schedule budget control",
+        "cross-functional coordination"
+      ],
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_fa27dd0c5c23",
+        "role_dbf6d3c39931"
+      ],
+      "anchor_role_titles": [
+        "SR. PROJECT MANAGEMENT \u2013 IT GROUP BENEFITS",
+        "SR. PROJECT MANAGER \u2013 IT INDIVIDUAL APPLICATIONS"
+      ]
+    },
+    {
+      "story_id": "manulife_group_benefits_recovery_project",
+      "label": "Manulife outsourced project recovery",
+      "source_status": "opportunity_alias_anchored_to_career_master_and_role_materials",
+      "best_for": [
+        "problem solving",
+        "governance alignment",
+        "vendor management",
+        "delivery recovery"
+      ],
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_3240a334a2fe",
+        "role_d0b5d8fcbe1d"
+      ],
+      "anchor_role_titles": [
+        "IT RISK MANAGEMENT CONSULTANT, GROUP BENEFITS AND RETIREMENT SOLUTION TECHNOLOGIES",
+        "PROJECT RISK MANAGEMENT CONSULTANT, TECHNOLOGY RISK MANAGEMENT, GLOBAL INFORMATION RISK MANAGEMENT"
+      ]
+    },
+    {
+      "story_id": "manulife_internet_release_delivery",
+      "label": "Manulife internet release delivery",
+      "source_status": "opportunity_alias_anchored_to_career_master_and_role_materials",
+      "best_for": [
+        "developer coordination",
+        "release management",
+        "stakeholder communication",
+        "technical environment credibility"
+      ],
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_cc90a0d28347",
+        "role_9cb218f6df9c"
+      ],
+      "anchor_role_titles": [
+        "TEAM LEADER - SERVICE DELIVERY AND SUPPORT",
+        "PROJECT MANAGER - INFORMATION SYSTEMS"
+      ]
+    },
+    {
+      "story_id": "spaenaur_application_portfolio_leadership",
+      "label": "Spaenaur application and development portfolio leadership",
+      "source_status": "opportunity_alias_anchored_to_career_master_and_role_materials",
+      "best_for": [
+        "technical leadership",
+        "application portfolio management",
+        "executive alignment",
+        "process improvement"
+      ],
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_cfa9e90f2f34",
+        "role_3eb67e6ba1bc"
+      ],
+      "anchor_role_titles": [
+        "MANAGER OF APPLICATIONS, DEVELOPMENT AND SUPPORT",
+        "DIRECTOR (ACTING) OF INFORMATION SERVICES"
+      ]
+    },
+    {
+      "story_id": "hubble_erp_upgrade_zero_downtime",
+      "label": "Hubble zero-downtime ERP upgrade",
+      "source_status": "opportunity_alias_anchored_to_career_master_and_role_materials",
+      "best_for": [
+        "planning discipline",
+        "change control",
+        "implementation reliability",
+        "measurable outcomes"
+      ],
+      "canonical_story_id": "story_5735bedc9111",
+      "canonical_story_key": "enterprise_risk_vendor_assurance",
+      "anchor_role_ids": [
+        "role_5bf6b2ac62eb"
+      ],
+      "anchor_role_titles": [
+        "ERP PROJECT MANAGER AND ERP CONSULTANT"
+      ]
+    },
+    {
+      "story_id": "kuntz_hrms_modernization",
+      "label": "Kuntz HRMS modernization",
+      "source_status": "opportunity_alias_anchored_to_career_master_and_role_materials",
+      "best_for": [
+        "cross-functional implementation",
+        "team leadership",
+        "business value",
+        "enterprise systems"
+      ],
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_e1fc08be4ed8"
+      ],
+      "anchor_role_titles": [
+        "MANAGER OF BUSINESS APPLICATIONS, TRAINING AND SUPPORT"
+      ]
+    },
+    {
+      "story_id": "opentext_security_governance",
+      "label": "OpenText security and governance leadership",
+      "source_status": "opportunity_alias_anchored_to_career_master_and_role_materials",
+      "best_for": [
+        "regulated environment",
+        "security-sensitive execution",
+        "vendor governance",
+        "documentation rigor"
+      ],
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_5fe3216c441d",
+        "role_6b972ad9aec3"
+      ],
+      "anchor_role_titles": [
+        "LEAD SECURITY COMPLIANCE ANALYST, GLOBAL INFORMATION SECURITY, GOVERNANCE & RISK",
+        "MANAGER INFORMATION SECURITY, GLOBAL INFORMATION SECURITY, GOVERNANCE & RISK"
+      ]
+    }
+  ],
+  "likely_question_bank": [
+    {
+      "question_id": "q01",
+      "category": "fit_and_motivation",
+      "priority": "high",
+      "question": "Tell me about yourself and why you are interested in this Technology Project Manager role.",
+      "mapped_story_ids": [
+        "sun_life_health_and_benefits_delivery",
+        "manulife_internet_release_delivery"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a"
+      ]
+    },
+    {
+      "question_id": "q02",
+      "category": "project_delivery",
+      "priority": "high",
+      "question": "Describe a software project you led from planning through execution.",
+      "mapped_story_ids": [
+        "sun_life_health_and_benefits_delivery",
+        "hubble_erp_upgrade_zero_downtime"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a",
+        "story_5735bedc9111"
+      ]
+    },
+    {
+      "question_id": "q03",
+      "category": "stakeholder_management",
+      "priority": "high",
+      "question": "How do you balance developers, business stakeholders, and external partners when priorities conflict?",
+      "mapped_story_ids": [
+        "manulife_group_benefits_recovery_project",
+        "spaenaur_application_portfolio_leadership"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a"
+      ]
+    },
+    {
+      "question_id": "q04",
+      "category": "risk_and_problem_solving",
+      "priority": "high",
+      "question": "Tell me about a project problem you identified early and how you handled it.",
+      "mapped_story_ids": [
+        "manulife_group_benefits_recovery_project",
+        "hubble_erp_upgrade_zero_downtime"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a",
+        "story_5735bedc9111"
+      ]
+    },
+    {
+      "question_id": "q05",
+      "category": "agile_and_process",
+      "priority": "medium",
+      "question": "How do you apply Agile methods without losing delivery discipline?",
+      "mapped_story_ids": [
+        "spaenaur_application_portfolio_leadership",
+        "sun_life_health_and_benefits_delivery"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a"
+      ]
+    },
+    {
+      "question_id": "q06",
+      "category": "healthcare_and_regulated_environment",
+      "priority": "high",
+      "question": "What experience do you have in healthcare or regulated environments that translates to this role?",
+      "mapped_story_ids": [
+        "sun_life_health_and_benefits_delivery",
+        "opentext_security_governance"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a"
+      ]
+    },
+    {
+      "question_id": "q07",
+      "category": "technical_fluency",
+      "priority": "high",
+      "question": "How technical are you when working with software teams?",
+      "mapped_story_ids": [
+        "manulife_internet_release_delivery",
+        "spaenaur_application_portfolio_leadership"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a"
+      ]
+    },
+    {
+      "question_id": "q08",
+      "category": "documentation_and_reporting",
+      "priority": "high",
+      "question": "What do your project reporting and documentation practices look like?",
+      "mapped_story_ids": [
+        "sun_life_health_and_benefits_delivery",
+        "opentext_security_governance"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a"
+      ]
+    },
+    {
+      "question_id": "q09",
+      "category": "operational_fit",
+      "priority": "high",
+      "question": "Are you comfortable with the Waterloo on-site requirement and the citizenship requirement tied to security clearance?",
+      "mapped_story_ids": [],
+      "canonical_story_ids": []
+    },
+    {
+      "question_id": "q10",
+      "category": "fit_and_motivation",
+      "priority": "medium",
+      "question": "What would success look like for you in the first 90 days here?",
+      "mapped_story_ids": [
+        "manulife_group_benefits_recovery_project",
+        "sun_life_health_and_benefits_delivery"
+      ],
+      "canonical_story_ids": [
+        "story_ae8a593ce62a"
+      ]
+    }
+  ],
+  "response_variants": {
+    "fit_and_motivation": {
+      "concise_direct": "I bring long-running software and enterprise application delivery experience, including health and benefits work at Sun Life and developer-facing release delivery at Manulife. This role fits because it combines structured project leadership, technical coordination, and meaningful healthcare software impact in Waterloo.",
+      "strategic_managerial": "My background is strongest where software delivery needs both execution discipline and technical credibility. I have led projects across scope, schedule, budget, risk, reporting, vendor coordination, and cross-functional delivery, and I see this role as a strong fit because Venuiti needs a project manager who can keep an established healthcare application moving in a controlled, stakeholder-aware way.",
+      "warmer_conversational": "What pulls me to this role is that it sits at the intersection of two things I like most: organized software delivery and work that actually matters to people. I have managed complex technology projects for a long time, and the chance to bring that experience into healthcare, in a team close to home, is genuinely appealing."
+    },
+    "project_delivery": {
+      "concise_direct": "A strong example is Sun Life, where I led multimillion-dollar application and Group Benefits initiatives. I built integrated plans across scope, time, cost, risk, communication, and procurement, coordinated multiple teams, and kept delivery controlled through execution.",
+      "strategic_managerial": "When I lead software delivery, I start by defining decision paths, scope boundaries, milestones, dependencies, and reporting expectations early so execution stays stable later. At Sun Life, that meant running high-visibility application work with disciplined planning, stakeholder alignment, and controlled execution across multiple streams and teams.",
+      "warmer_conversational": "One of the better examples is from Sun Life. It was the kind of project where a lot of teams had to move together, so my job was to make sure the plan was clear, the tradeoffs were visible, and people stayed aligned as the work progressed."
+    },
+    "stakeholder_management": {
+      "concise_direct": "I make priorities explicit, document tradeoffs, and bring the right people into the decision at the right level. In a Manulife recovery project, that helped align business sponsors, vendors, and IS governance without losing momentum.",
+      "strategic_managerial": "I separate opinion from impact by grounding conflicts in scope, risk, timing, and customer outcome. My role is to create enough structure that developers, business stakeholders, and partners can understand the tradeoff, then move the decision through the right governance path instead of letting conflict linger informally.",
+      "warmer_conversational": "Usually the first step is slowing the conversation down just enough to get everyone talking about the same problem. Once people can see what the tradeoff actually is, it becomes much easier to protect the team, keep trust with stakeholders, and make a practical decision."
+    },
+    "risk_and_problem_solving": {
+      "concise_direct": "I look for unclear ownership, unstable scope, missing governance, and unresolved dependencies early. In a Manulife outsourced project, I stepped in, imposed planning and governance discipline, and turned a loosely structured effort into controlled delivery with better customer outcomes.",
+      "strategic_managerial": "My approach is to identify whether the real issue is execution, structure, or decision latency. Once I know that, I put in the lightest control that will stabilize the work, because the goal is not process for its own sake; the goal is restoring predictability and reducing downstream cost.",
+      "warmer_conversational": "Most delivery problems start showing themselves before they become visible on a dashboard. I try to catch them when they still look small, usually through gaps in ownership or unclear decisions, and then deal with them directly before the team spends weeks working around them."
+    },
+    "agile_and_process": {
+      "concise_direct": "I use Agile as a way to improve feedback and adaptability, but I still keep scope, dependencies, reporting, and decision controls visible. Agile should increase delivery clarity, not reduce it.",
+      "strategic_managerial": "The balance is to preserve iterative delivery at the team level while maintaining management-level control over commitments, cross-team dependencies, risks, and change decisions. I am comfortable working in Agile environments as long as the operating model still supports accountability and predictable delivery.",
+      "warmer_conversational": "I like Agile when it helps teams learn and move, but I do not treat it as a reason to become vague. The team still needs clarity on what matters, what is changing, and who is making the hard calls."
+    },
+    "healthcare_and_regulated_environment": {
+      "concise_direct": "My closest healthcare-adjacent experience is Sun Life Group Benefits and health-related initiatives, combined with many years in regulated and compliance-heavy environments. That means I understand how delivery changes when accuracy, traceability, and trust matter.",
+      "strategic_managerial": "I would not overstate myself as a deep hospital-operations specialist, but I do have relevant experience where health-related services, regulation, customer sensitivity, and controlled change all mattered. I can bring disciplined delivery habits that translate well into healthcare software, especially where stakeholder trust and traceability are important.",
+      "warmer_conversational": "What feels transferable here is not just the domain adjacency, but the way the work needs to be run. In the environments I have worked in, you cannot be casual about documentation, risk, or communication, and I see that as directly relevant to healthcare technology."
+    },
+    "technical_fluency": {
+      "concise_direct": "I am not positioning myself as a hands-on engineer, but I am technically fluent enough to work effectively with developers, application teams, integrations, databases, APIs, and release processes. I can ask useful questions, understand implications, and keep execution grounded.",
+      "strategic_managerial": "My value with technical teams is that I can bridge execution and technical reality without forcing developers to translate everything into management language first. I have worked in software, ERP, integration, and release-heavy environments long enough to understand architecture-adjacent discussions, delivery dependencies, and implementation risks.",
+      "warmer_conversational": "I am comfortable in technical conversations. I do not need to pretend to be the developer in the room, but I do need to understand enough to make good decisions, surface risk early, and help the team move."
+    },
+    "documentation_and_reporting": {
+      "concise_direct": "I keep reporting focused on status, decisions, risks, dependencies, changes, and what needs attention next. Good documentation should make execution easier, not heavier.",
+      "strategic_managerial": "My reporting style is to give stakeholders enough visibility to make timely decisions while keeping the team aligned on facts rather than interpretations. In regulated environments, that discipline also helps with traceability, audit readiness, and smoother change control.",
+      "warmer_conversational": "I treat documentation as part of delivery, not as cleanup at the end. If the project is being run well, the important decisions, changes, and risks should already be visible in how the work is managed."
+    },
+    "operational_fit": {
+      "concise_direct": "Yes. I am based in Waterloo Region, I understand the on-site expectation, and I can answer the citizenship requirement directly.",
+      "strategic_managerial": "I would treat both points as straightforward fit factors rather than open issues. I am local to the region, I understand the importance of the on-site model for this team, and I can address the citizenship and clearance requirement clearly.",
+      "warmer_conversational": "That part is simple for me. I am already in Waterloo Region, and I understand why an in-person and security-sensitive role needs a clear answer on both location and citizenship."
+    }
+  },
+  "watchouts": [
+    "Do not let answers drift into a long chronological autobiography.",
+    "Do not oversell cybersecurity work when the question is about software project execution.",
+    "Do not claim deep healthcare operations experience that is not evidenced in the repo materials.",
+    "Do not answer behavioral questions without naming a concrete project context.",
+    "Do not sound resistant to the on-site model or hesitant about citizenship-related screening."
+  ],
+  "continuity_rules": [
+    "Keep repeating the through-line: software delivery, technical coordination, regulated-environment discipline, and stakeholder trust.",
+    "Prefer Sun Life and Manulife before older ERP examples unless the question is specifically about methodology or implementation control.",
+    "Mention healthcare-adjacent relevance honestly, then pivot to how disciplined delivery transfers into Venuiti's environment.",
+    "When using a compliance-heavy example, reconnect it to project execution before closing the answer."
+  ],
+  "anti_overexplaining_guidance": [
+    "Answer the question first in one sentence before expanding.",
+    "Use one primary example per answer unless the interviewer explicitly asks for comparisons.",
+    "Cap background setup to the minimum needed to understand the stakes.",
+    "Close with the result or lesson instead of adding extra context after the point is already made."
+  ],
+  "examples_to_prioritize": [
+    "Sun Life health and benefits delivery",
+    "Manulife outsourced-project recovery",
+    "Manulife internet-release coordination",
+    "Spaenaur application and development portfolio leadership",
+    "Hubble zero-downtime ERP upgrade"
+  ],
+  "examples_to_avoid": [
+    "Generic statements about leadership with no project anchor",
+    "Purely compliance-only examples when the interviewer asked about software delivery",
+    "Examples that depend on deep technical implementation detail without a business outcome",
+    "Older experiences that are less relevant than Sun Life or Manulife unless the interviewer asks specifically about long-term history"
+  ],
+  "fallback_answer_patterns_for_uncertainty": [
+    "I have not worked in that exact setting, but the closest parallel in my background is ...",
+    "I would want to understand your operating model first, but my default approach would be ...",
+    "I cannot speak to Venuiti's internal process yet, though in similar environments I have typically ...",
+    "The way I would handle that is to start with scope, stakeholders, risk, and decision ownership, then ..."
+  ],
+  "validation": {
+    "required_sections_present": true,
+    "three_variants_per_major_question_type": true,
+    "opportunity_specific_not_master": true,
+    "deterministic_output": true,
+    "mapped_story_source_note": "Story mappings are resolved from provisional opportunity aliases to canonical master-story IDs.",
+    "master_story_resolution_complete": true
+  },
+  "build_log": [
+    {
+      "step": 1,
+      "action": "Derived likely interview themes from the Venuiti posting and interview-prep prompts."
+    },
+    {
+      "step": 2,
+      "action": "Anchored response patterns to the available career and story master inputs while keeping role-specific aliases for interview use."
+    },
+    {
+      "step": 3,
+      "action": "Added tone variants, continuity controls, watchouts, and fallback patterns for live interview use."
+    },
+    {
+      "step": 4,
+      "action": "Resolved mapped interview stories to canonical master-story IDs and anchor roles."
+    }
+  ]
+}

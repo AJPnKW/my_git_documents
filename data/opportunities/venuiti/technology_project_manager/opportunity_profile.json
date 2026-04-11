@@ -1,0 +1,284 @@
+{
+  "opportunity_identity": {
+    "opportunity_id": "venuiti__technology_project_manager",
+    "company_group": "Venuiti / DevStaff Canada / Venuiti Healthcare",
+    "target_company": "Venuiti",
+    "target_brand": "Venuiti Healthcare",
+    "role_title": "Technology Project Manager",
+    "role_slug": "technology_project_manager",
+    "location": "Waterloo, Ontario, Canada",
+    "work_model": "100% in-office",
+    "employment_type": "Full-time, permanent",
+    "salary_range_cad": {
+      "min": 100000,
+      "max": 120000
+    }
+  },
+  "role_summary": "Technical project manager role focused on full-lifecycle software delivery for an established healthcare application. The role emphasizes scope, budget, timeline, documentation, proactive stakeholder communication, and structured execution in a healthcare and security-sensitive environment.",
+  "must_haves": [
+    "Software development background",
+    "Six or more years of project management experience",
+    "Full-lifecycle software delivery ownership",
+    "Strong scope, budget, and timeline control",
+    "Project planning, reporting, and documentation discipline",
+    "Cross-functional coordination with managers, developers, technical staff, and partners",
+    "Agile project management experience",
+    "Strong communication and interpersonal skills",
+    "Ability to work fully on-site in Waterloo",
+    "Canadian citizenship for security clearance"
+  ],
+  "nice_to_haves": [
+    "Healthcare, health-tech, or digital health experience",
+    "Integration-project experience",
+    "Enterprise software ecosystem experience",
+    "Compliance, security, or regulated-environment experience",
+    "Experience improving delivery efficiency and governance maturity"
+  ],
+  "hidden_inferred_priorities": [
+    "They likely want a project manager who can speak comfortably with developers rather than a purely administrative PM.",
+    "Because the role is tied to an established healthcare application, they likely value controlled change, traceable decisions, and low-drama execution over transformation language.",
+    "The citizenship and in-office requirements suggest trust, dependability, and operational fit matter almost as much as delivery skill.",
+    "The posting repeatedly stresses documentation and reporting, which implies the team may need stronger execution hygiene or clearer delivery visibility.",
+    "Healthcare-partner coordination likely means external stakeholder management is a real workload, not a side task."
+  ],
+  "company_context_overlays": [
+    {
+      "theme": "Healthcare mission",
+      "overlay": "Tie delivery leadership to software with real user and patient-adjacent impact. Emphasize reliability, adoption, and execution quality."
+    },
+    {
+      "theme": "Cross-border footprint",
+      "overlay": "Reference comfort working across distributed stakeholders because the company research and posting both point to Waterloo and Atlanta operating presence."
+    },
+    {
+      "theme": "Founder-led continuity",
+      "overlay": "The company-people research suggests a founder-led operating style across the Venuiti group, so answers should signal steadiness, trust, and follow-through."
+    },
+    {
+      "theme": "Regulated environment",
+      "overlay": "Lead with governance strength without framing yourself as bureaucratic. Show that structure protects delivery speed and trust."
+    },
+    {
+      "theme": "Inclusive culture language",
+      "overlay": "Use collaborative and respectful language. Avoid overly hard-edged command-and-control framing."
+    }
+  ],
+  "interviewer_context_overlays": {
+    "available": true,
+    "notes": [
+      "Thomas Schroecker appears in company_people_research.json as a likely central decision-maker or culture carrier across the group.",
+      "The available people research does not confirm the interview panel, but it does suggest founder-led continuity and cross-brand operating overlap.",
+      "Assume interviewers will test delivery rigor, healthcare fit, and whether the candidate can partner well with technical teams in a relatively tight operating environment."
+    ],
+    "people_signals": [
+      {
+        "person_id": "person_thomas_schroecker",
+        "name": "Thomas Schroecker",
+        "relevance": "Likely central decision-maker or culture carrier across the group.",
+        "implication": "Use answers that show dependable execution, calm ownership, and practical business alignment."
+      },
+      {
+        "person_id": "person_alexey_sidelnikov",
+        "name": "Alexey Sidelnikov",
+        "relevance": "Cross-brand employee overlap reinforces tight operational linkage between Venuiti and DevStaff.",
+        "implication": "Expect a bias toward people who can work across fluid internal boundaries without losing clarity."
+      }
+    ]
+  },
+  "story_selection_priorities": [
+    {
+      "story_id": "sun_life_health_and_benefits_delivery",
+      "priority": "primary",
+      "why": "Closest domain match because it combines structured project leadership with health and benefits delivery.",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_fa27dd0c5c23",
+        "role_dbf6d3c39931"
+      ],
+      "anchor_role_titles": [
+        "SR. PROJECT MANAGEMENT \u2013 IT GROUP BENEFITS",
+        "SR. PROJECT MANAGER \u2013 IT INDIVIDUAL APPLICATIONS"
+      ],
+      "anchor_employers": [
+        "SUN LIFE FINANCIAL"
+      ]
+    },
+    {
+      "story_id": "manulife_group_benefits_recovery_project",
+      "priority": "primary",
+      "why": "Strong example for rescuing under-structured work, vendor management, and governance alignment.",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_3240a334a2fe",
+        "role_d0b5d8fcbe1d"
+      ],
+      "anchor_role_titles": [
+        "IT RISK MANAGEMENT CONSULTANT, GROUP BENEFITS AND RETIREMENT SOLUTION TECHNOLOGIES",
+        "PROJECT RISK MANAGEMENT CONSULTANT, TECHNOLOGY RISK MANAGEMENT, GLOBAL INFORMATION RISK MANAGEMENT"
+      ],
+      "anchor_employers": [
+        "MANULIFE FINANCIAL"
+      ]
+    },
+    {
+      "story_id": "manulife_internet_release_delivery",
+      "priority": "primary",
+      "why": "Useful when the interviewer wants developer-facing coordination, release execution, and partner management.",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_cc90a0d28347",
+        "role_9cb218f6df9c"
+      ],
+      "anchor_role_titles": [
+        "TEAM LEADER - SERVICE DELIVERY AND SUPPORT",
+        "PROJECT MANAGER - INFORMATION SYSTEMS"
+      ],
+      "anchor_employers": [
+        "MANULIFE FINANCIAL"
+      ]
+    },
+    {
+      "story_id": "spaenaur_application_portfolio_leadership",
+      "priority": "secondary",
+      "why": "Good proof of application portfolio leadership, executive alignment, and process improvement.",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_cfa9e90f2f34",
+        "role_3eb67e6ba1bc"
+      ],
+      "anchor_role_titles": [
+        "MANAGER OF APPLICATIONS, DEVELOPMENT AND SUPPORT",
+        "DIRECTOR (ACTING) OF INFORMATION SERVICES"
+      ],
+      "anchor_employers": [
+        "SPAENAUR INC."
+      ]
+    },
+    {
+      "story_id": "hubble_erp_upgrade_zero_downtime",
+      "priority": "secondary",
+      "why": "Strong for methodology, change control, and safe implementation outcomes.",
+      "canonical_story_id": "story_5735bedc9111",
+      "canonical_story_key": "enterprise_risk_vendor_assurance",
+      "anchor_role_ids": [
+        "role_5bf6b2ac62eb"
+      ],
+      "anchor_role_titles": [
+        "ERP PROJECT MANAGER AND ERP CONSULTANT"
+      ],
+      "anchor_employers": [
+        "HUBBLE TECHNOLOGY CONSULTING INC. (Lawson ERP Consulting)"
+      ]
+    },
+    {
+      "story_id": "kuntz_hrms_modernization",
+      "priority": "secondary",
+      "why": "Useful for cross-functional implementation, measurable business value, and enterprise systems credibility.",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_e1fc08be4ed8"
+      ],
+      "anchor_role_titles": [
+        "MANAGER OF BUSINESS APPLICATIONS, TRAINING AND SUPPORT"
+      ],
+      "anchor_employers": [
+        "KUNTZ ELECTROPLATING INC. (Tier 2 auto supplier)"
+      ]
+    },
+    {
+      "story_id": "opentext_security_governance",
+      "priority": "selective",
+      "why": "Use for compliance, audit, vendor governance, and security-sensitive execution, but do not let it dominate the conversation.",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_5fe3216c441d",
+        "role_6b972ad9aec3"
+      ],
+      "anchor_role_titles": [
+        "LEAD SECURITY COMPLIANCE ANALYST, GLOBAL INFORMATION SECURITY, GOVERNANCE & RISK",
+        "MANAGER INFORMATION SECURITY, GLOBAL INFORMATION SECURITY, GOVERNANCE & RISK"
+      ],
+      "anchor_employers": [
+        "OPENTEXT, SOFTWARE COMPANY"
+      ]
+    }
+  ],
+  "risk_areas_gaps_sensitivities": [
+    "Direct healthcare software delivery is adjacent rather than deep pure-provider health-tech experience, so connect Sun Life benefits work carefully and honestly.",
+    "Recent experience leans heavily toward risk, compliance, and security; rebalance toward software delivery and application leadership early in answers.",
+    "Do not let older ERP examples crowd out the more relevant Sun Life and Manulife application-delivery stories.",
+    "If asked about being fully on-site, answer directly and confidently because the requirement appears non-negotiable.",
+    "If asked about citizenship or clearance eligibility, answer plainly and immediately."
+  ],
+  "answer_tone_guidance": {
+    "core_tone": "Calm, execution-oriented, specific, and credible",
+    "emphasis": [
+      "Practical delivery leadership",
+      "Cross-functional coordination",
+      "Structured planning without bureaucracy",
+      "Problem identification and early intervention",
+      "Clear reporting and stakeholder trust"
+    ],
+    "avoid": [
+      "Overstating healthcare depth",
+      "Over-indexing on cybersecurity credentials when the question is about delivery",
+      "Abstract management theory",
+      "Long chronological background before answering the actual question"
+    ],
+    "opening_positioning": "Position yourself as a technical project manager who has repeatedly led software, application, ERP, and integration-heavy work in regulated environments and can bring that discipline to healthcare delivery."
+  },
+  "source_inputs_used": {
+    "found_in_repo": [
+      "data/career/career_master.json",
+      "data/career/story_alias_index.json",
+      "data/career/story_master.json",
+      "data/company_research/venuiti/company_people_research.json",
+      "files/resumes/venuiti/technology_project_manager/interview_prep.html",
+      "files/resumes/venuiti/technology_project_manager/interview_questions.html",
+      "files/resumes/venuiti/technology_project_manager/posting.html",
+      "files/resumes/venuiti/technology_project_manager/posting_analysis.html",
+      "files/resumes/venuiti/technology_project_manager/resume.html",
+      "web/sites/resumes/companies/venuiti/postings/technology_project_manager/interview_questions.html",
+      "web/sites/resumes/companies/venuiti/postings/technology_project_manager/job_posting.html"
+    ],
+    "requested_but_missing": []
+  },
+  "validation": {
+    "required_sections_present": true,
+    "deterministic_output": true,
+    "naming_rule_pass": true,
+    "job_posting_json_name_avoided": true,
+    "html_docs_required_elsewhere": true,
+    "notes": [
+      "Content is opportunity-specific, not a master profile.",
+      "Interviewer overlays now use available company-people research while avoiding unsupported org-chart certainty.",
+      "Story IDs remain role-specific opportunity aliases even though the source materials also include career_master and story_master warehouses.",
+      "Master career and story files are present and the provisional story selections are resolved to canonical master story IDs."
+    ],
+    "master_story_resolution_complete": true
+  },
+  "build_log": [
+    {
+      "step": 1,
+      "action": "Reviewed the Venuiti role workspace posting, resume, posting analysis, and interview-prep files."
+    },
+    {
+      "step": 2,
+      "action": "Anchored company and interviewer context to data/company_research/venuiti/company_people_research.json."
+    },
+    {
+      "step": 3,
+      "action": "Validated that career_master and story_master are present and updated source-input tracking accordingly."
+    },
+    {
+      "step": 4,
+      "action": "Activated provisional story priorities against the canonical career/story warehouse and company research inputs."
+    }
+  ]
+}

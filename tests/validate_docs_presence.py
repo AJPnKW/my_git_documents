@@ -19,6 +19,8 @@ def main() -> int:
         ROOT / "docs" / "change_log.html",
         ROOT / "docs" / "codex_delivery_plan.html",
         ROOT / "docs" / "operations_dashboard.html",
+        ROOT / "docs" / "opportunity_design_venuiti_technology_project_manager.html",
+        ROOT / "docs" / "opportunity_runbook_venuiti_technology_project_manager.html",
         ROOT / "docs" / "baselines" / "index.html",
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]

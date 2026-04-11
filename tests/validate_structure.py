@@ -16,10 +16,16 @@ def main() -> int:
         ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager" / "posting.html",
         ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager" / "resume.html",
         ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager" / "posting_analysis.html",
+        ROOT / "files" / "resumes" / "venuiti" / "technology_project_manager" / "response_bank.html",
+        ROOT / "data" / "opportunities" / "venuiti" / "technology_project_manager" / "opportunity_profile.json",
+        ROOT / "data" / "opportunities" / "venuiti" / "technology_project_manager" / "opportunity_interview_response_bank.json",
+        ROOT / "data" / "opportunities" / "venuiti" / "technology_project_manager" / "live_interview_config.json",
         ROOT / "app" / "shared" / "viewer" / "viewer.html",
         ROOT / "app" / "data" / "workspaces" / "yellow_house.json",
         ROOT / "app" / "data" / "workspaces" / "resumes.json",
         ROOT / "docs" / "index.html",
+        ROOT / "docs" / "opportunity_design_venuiti_technology_project_manager.html",
+        ROOT / "docs" / "opportunity_runbook_venuiti_technology_project_manager.html",
         ROOT / "scripts" / "build_site_index.py",
     ]
     missing = [str(path) for path in required if not path.exists()]
