@@ -1,0 +1,49 @@
+[2026-04-10T23:48:17.401616+00:00] START build: C:\Utilities\Python\3.12\python.exe scripts/company_research/build_company_people_research.py --group venuiti
+2026-04-10 19:48:17,677 | INFO | Building schema for group 'venuiti'.
+2026-04-10 19:48:17,678 | INFO | Resolving relationship candidates.
+2026-04-10 19:48:17,678 | INFO | Validating primary normalized payload.
+2026-04-10 19:48:17,687 | INFO | Writing normalized outputs.
+2026-04-10 19:48:17,695 | INFO | Build complete for 'venuiti'.
+[2026-04-10T23:48:17.718469+00:00] END build: exit_code=0
+[2026-04-10T23:48:17.718469+00:00] START render_visuals: C:\Utilities\Python\3.12\python.exe scripts/company_research/render_company_research_visuals.py --group venuiti
+2026-04-10 19:48:17,851 | INFO | Wrote C:\Users\andrew\PROJECTS\GitHub\my_git_documents\docs\venuiti_org_chart.html
+2026-04-10 19:48:17,851 | INFO | Wrote C:\Users\andrew\PROJECTS\GitHub\my_git_documents\docs\venuiti_people_graph.html
+[2026-04-10T23:48:17.862890+00:00] END render_visuals: exit_code=0
+[2026-04-10T23:48:17.862890+00:00] START validate_outputs: C:\Utilities\Python\3.12\python.exe scripts/company_research/validate_company_research_outputs.py --group venuiti
+company research validation passed; report written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\validate_company_research_outputs_report.json
+[2026-04-10T23:48:18.191029+00:00] END validate_outputs: exit_code=0
+[2026-04-10T23:48:18.191029+00:00] START package: C:\Utilities\Python\3.12\python.exe scripts/company_research/package_company_research.py --group venuiti
+2026-04-10 19:48:18,318 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-10 19:48:18,484 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-10 19:48:18,484 | INFO | Packaging complete.
+[2026-04-10T23:48:18.495417+00:00] END package: exit_code=0
+[2026-04-10T23:48:18.495417+00:00] START validate_package: C:\Utilities\Python\3.12\python.exe scripts/company_research/validate_company_research_outputs.py --group venuiti --require-package
+company research validation passed; report written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\validate_company_research_outputs_report.json
+[2026-04-10T23:48:18.840937+00:00] END validate_package: exit_code=0
+[2026-04-10T23:48:18.840937+00:00] START repo_validation: C:\Utilities\Python\3.12\python.exe tests/run_all.py
+site index built
+workspace data built
+web mirror generated from app
+manifest validation passed
+company research validation passed; report written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\validate_company_research_outputs_report.json
+structure validation passed
+docs presence validation passed
+release hygiene validation passed
+all validations passed
+2026-04-10 19:48:19,662 | INFO | validated json payload: data\opportunities\venuiti\technology_project_manager\opportunity_profile.json
+2026-04-10 19:48:19,663 | INFO | validated json payload: data\opportunities\venuiti\technology_project_manager\opportunity_interview_response_bank.json
+2026-04-10 19:48:19,664 | INFO | validated json payload: data\opportunities\venuiti\technology_project_manager\live_interview_config.json
+2026-04-10 19:48:19,664 | INFO | validated html doc: docs\opportunity_design_venuiti_technology_project_manager.html
+2026-04-10 19:48:19,665 | INFO | validated html doc: docs\opportunity_runbook_venuiti_technology_project_manager.html
+2026-04-10 19:48:19,665 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\posting.html
+2026-04-10 19:48:19,665 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\resume.html
+2026-04-10 19:48:19,665 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\posting_analysis.html
+2026-04-10 19:48:19,665 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\interview_prep.html
+2026-04-10 19:48:19,666 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\interview_notes.html
+2026-04-10 19:48:19,666 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\interview_questions.html
+2026-04-10 19:48:19,666 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\response_bank.html
+2026-04-10 19:48:19,666 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\org_chart.html
+2026-04-10 19:48:19,666 | INFO | validated role artifact: files\resumes\venuiti\technology_project_manager\people_graph.html
+2026-04-10 19:48:19,667 | INFO | opportunity validation passed
+[2026-04-10T23:48:19.946108+00:00] END repo_validation: exit_code=0
+Production run summary: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\run_company_research_production_summary.json

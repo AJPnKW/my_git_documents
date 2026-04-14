@@ -1,0 +1,218 @@
+2026-04-09 12:48:14,937 | ERROR | missing required json: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\career\career_master.json
+2026-04-09 12:48:14,938 | ERROR | missing required json: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\career\story_master.json
+2026-04-09 12:48:14,938 | ERROR | missing required json: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\career\career_source_index.json
+2026-04-09 12:48:14,938 | ERROR | missing required json: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\career\career_entity_timeline.json
+2026-04-09 12:48:14,938 | ERROR | missing required doc: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\docs\career_master_design.html
+2026-04-09 12:48:14,938 | ERROR | missing required doc: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\docs\story_master_design.html
+2026-04-09 12:48:14,938 | ERROR | missing required doc: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\docs\career_parsing_runbook.html
+2026-04-09 12:48:14,939 | ERROR | failed: [Errno 2] No such file or directory: 'C:\\Users\\andrew\\PROJECTS\\GitHub\\my_git_documents\\data\\career\\build_career_master.log.txt'
+2026-04-09 12:48:14,968 | ERROR | Traceback (most recent call last):
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\career_common.py", line 154, in run_logged
+    fn()
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\validate_career_outputs.py", line 84, in _run
+    create_zip_bundle(logger, required_for_zip)
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\career_common.py", line 958, in create_zip_bundle
+    archive.writestr(info, path.read_bytes())
+                           ^^^^^^^^^^^^^^^^^
+  File "C:\Utilities\Python\3.12\Lib\pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Utilities\Python\3.12\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\andrew\\PROJECTS\\GitHub\\my_git_documents\\data\\career\\build_career_master.log.txt'
+
+2026-04-09 13:02:28,600 | ERROR | missing required json: C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\career\story_master.json
+2026-04-09 13:02:28,649 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 13:02:28,668 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 13:02:28,766 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 13:02:28,969 | INFO | packaged data/career/career_master.json
+2026-04-09 13:02:28,995 | INFO | packaged data/career/career_source_index.json
+2026-04-09 13:02:29,115 | INFO | packaged data/career/story_master.json
+2026-04-09 13:02:29,138 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 13:02:29,172 | INFO | packaged docs/career_master_design.html
+2026-04-09 13:02:29,204 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 13:02:29,233 | INFO | packaged docs/story_master_design.html
+2026-04-09 13:02:29,235 | ERROR | failed: career output validation failed
+2026-04-09 13:02:29,244 | ERROR | Traceback (most recent call last):
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\career_common.py", line 248, in run_logged
+    fn()
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\validate_career_outputs.py", line 103, in _run
+    raise RuntimeError("career output validation failed")
+RuntimeError: career output validation failed
+
+2026-04-09 13:02:37,750 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 13:02:37,752 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 13:02:37,841 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 13:02:38,014 | INFO | packaged data/career/career_master.json
+2026-04-09 13:02:38,033 | INFO | packaged data/career/career_source_index.json
+2026-04-09 13:02:38,110 | INFO | packaged data/career/story_master.json
+2026-04-09 13:02:38,136 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 13:02:38,137 | INFO | packaged docs/career_master_design.html
+2026-04-09 13:02:38,138 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 13:02:38,138 | INFO | packaged docs/story_master_design.html
+2026-04-09 13:02:38,145 | INFO | completed successfully
+2026-04-09 13:05:22,537 | ERROR | failed: Expecting value: line 1 column 1 (char 0)
+2026-04-09 13:05:22,625 | ERROR | Traceback (most recent call last):
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\career_common.py", line 248, in run_logged
+    fn()
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\validate_career_outputs.py", line 89, in _run
+    result = validate_payloads()
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\validate_career_outputs.py", line 42, in validate_payloads
+    payloads[path.name] = json.loads(path.read_text(encoding="utf-8"))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Utilities\Python\3.12\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Utilities\Python\3.12\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Utilities\Python\3.12\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+2026-04-09 13:05:31,664 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 13:05:31,686 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 13:05:31,737 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 13:05:31,841 | INFO | packaged data/career/career_master.json
+2026-04-09 13:05:31,859 | INFO | packaged data/career/career_source_index.json
+2026-04-09 13:05:31,909 | INFO | packaged data/career/story_master.json
+2026-04-09 13:05:31,937 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 13:05:31,988 | INFO | packaged docs/career_master_design.html
+2026-04-09 13:05:32,018 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 13:05:32,021 | INFO | packaged docs/story_master_design.html
+2026-04-09 13:05:32,026 | INFO | completed successfully
+2026-04-09 13:11:59,524 | ERROR | story references missing roles: story_5735bedc9111 -> ['role_5d162c9837e3']
+2026-04-09 13:11:59,525 | ERROR | story references missing roles: story_ae8a593ce62a -> ['role_adf0552d31c3']
+2026-04-09 13:11:59,584 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 13:11:59,613 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 13:11:59,669 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 13:11:59,777 | INFO | packaged data/career/career_master.json
+2026-04-09 13:11:59,799 | INFO | packaged data/career/career_source_index.json
+2026-04-09 13:11:59,878 | INFO | packaged data/career/story_master.json
+2026-04-09 13:11:59,916 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 13:11:59,997 | INFO | packaged docs/career_master_design.html
+2026-04-09 13:12:00,001 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 13:12:00,009 | INFO | packaged docs/story_master_design.html
+2026-04-09 13:12:00,010 | ERROR | failed: career output validation failed
+2026-04-09 13:12:00,021 | ERROR | Traceback (most recent call last):
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\career_common.py", line 248, in run_logged
+    fn()
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\validate_career_outputs.py", line 103, in _run
+    raise RuntimeError("career output validation failed")
+RuntimeError: career output validation failed
+
+2026-04-09 13:12:17,889 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 13:12:17,892 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 13:12:17,946 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 13:12:18,054 | INFO | packaged data/career/career_master.json
+2026-04-09 13:12:18,077 | INFO | packaged data/career/career_source_index.json
+2026-04-09 13:12:18,125 | INFO | packaged data/career/story_master.json
+2026-04-09 13:12:18,165 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 13:12:18,166 | INFO | packaged docs/career_master_design.html
+2026-04-09 13:12:18,167 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 13:12:18,168 | INFO | packaged docs/story_master_design.html
+2026-04-09 13:12:18,173 | INFO | completed successfully
+2026-04-09 13:14:15,285 | ERROR | story references missing roles: story_ae8a593ce62a -> ['role_5427be171f23']
+2026-04-09 13:14:15,357 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 13:14:15,384 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 13:14:15,445 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 13:14:15,560 | INFO | packaged data/career/career_master.json
+2026-04-09 13:14:15,592 | INFO | packaged data/career/career_source_index.json
+2026-04-09 13:14:15,693 | INFO | packaged data/career/story_master.json
+2026-04-09 13:14:15,729 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 13:14:15,733 | INFO | packaged docs/career_master_design.html
+2026-04-09 13:14:15,737 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 13:14:15,742 | INFO | packaged docs/story_master_design.html
+2026-04-09 13:14:15,745 | ERROR | failed: career output validation failed
+2026-04-09 13:14:15,757 | ERROR | Traceback (most recent call last):
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\career_common.py", line 248, in run_logged
+    fn()
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\validate_career_outputs.py", line 103, in _run
+    raise RuntimeError("career output validation failed")
+RuntimeError: career output validation failed
+
+2026-04-09 13:14:30,335 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 13:14:30,336 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 13:14:30,370 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 13:14:30,435 | INFO | packaged data/career/career_master.json
+2026-04-09 13:14:30,449 | INFO | packaged data/career/career_source_index.json
+2026-04-09 13:14:30,478 | INFO | packaged data/career/story_master.json
+2026-04-09 13:14:30,496 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 13:14:30,497 | INFO | packaged docs/career_master_design.html
+2026-04-09 13:14:30,497 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 13:14:30,498 | INFO | packaged docs/story_master_design.html
+2026-04-09 13:14:30,500 | INFO | completed successfully
+2026-04-09 22:10:51,208 | INFO | packaged data/career/activate_career_outputs.log.txt
+2026-04-09 22:10:51,321 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 22:10:51,357 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 22:10:51,445 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 22:10:51,567 | INFO | packaged data/career/career_master.json
+2026-04-09 22:10:51,602 | INFO | packaged data/career/career_source_index.json
+2026-04-09 22:10:51,605 | INFO | packaged data/career/story_alias_index.json
+2026-04-09 22:10:51,667 | INFO | packaged data/career/story_master.json
+2026-04-09 22:10:51,698 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 22:10:51,731 | INFO | packaged docs/career_master_design.html
+2026-04-09 22:10:51,765 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 22:10:51,798 | INFO | packaged docs/story_master_design.html
+2026-04-09 22:10:51,804 | INFO | completed successfully
+2026-04-09 22:13:07,683 | INFO | packaged data/career/activate_career_outputs.log.txt
+2026-04-09 22:13:07,720 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 22:13:07,734 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 22:13:07,768 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 22:13:07,836 | INFO | packaged data/career/career_master.json
+2026-04-09 22:13:07,850 | INFO | packaged data/career/career_source_index.json
+2026-04-09 22:13:07,851 | INFO | packaged data/career/story_alias_index.json
+2026-04-09 22:13:07,881 | INFO | packaged data/career/story_master.json
+2026-04-09 22:13:07,899 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 22:13:07,901 | INFO | packaged docs/career_master_design.html
+2026-04-09 22:13:07,902 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 22:13:07,904 | INFO | packaged docs/story_master_design.html
+2026-04-09 22:13:07,908 | INFO | completed successfully
+2026-04-09 22:16:03,914 | INFO | packaged data/career/activate_career_outputs.log.txt
+2026-04-09 22:16:03,952 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 22:16:03,966 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 22:16:03,998 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 22:16:04,062 | INFO | packaged data/career/career_master.json
+2026-04-09 22:16:04,075 | INFO | packaged data/career/career_source_index.json
+2026-04-09 22:16:04,075 | INFO | packaged data/career/story_alias_index.json
+2026-04-09 22:16:04,104 | INFO | packaged data/career/story_master.json
+2026-04-09 22:16:04,122 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 22:16:04,122 | INFO | packaged data/opportunities/venuiti/technology_project_manager/live_interview_config.json
+2026-04-09 22:16:04,123 | INFO | packaged data/opportunities/venuiti/technology_project_manager/opportunity_interview_response_bank.json
+2026-04-09 22:16:04,124 | INFO | packaged data/opportunities/venuiti/technology_project_manager/opportunity_profile.json
+2026-04-09 22:16:04,125 | INFO | packaged docs/career_master_design.html
+2026-04-09 22:16:04,144 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 22:16:04,146 | INFO | packaged docs/story_master_design.html
+2026-04-09 22:16:04,146 | INFO | packaged reports/data/career_activation_summary.json
+2026-04-09 22:16:04,147 | INFO | packaged scripts/career/activate_career_outputs.py
+2026-04-09 22:16:04,148 | INFO | packaged scripts/career/build_career_master.py
+2026-04-09 22:16:04,148 | INFO | packaged scripts/career/build_story_master.py
+2026-04-09 22:16:04,151 | INFO | packaged scripts/career/career_common.py
+2026-04-09 22:16:04,151 | INFO | packaged scripts/career/run_career_pipeline.py
+2026-04-09 22:16:04,152 | INFO | packaged scripts/career/validate_career_outputs.py
+2026-04-09 22:16:04,154 | INFO | completed successfully
+2026-04-09 22:17:29,621 | INFO | packaged data/career/activate_career_outputs.log.txt
+2026-04-09 22:17:29,665 | INFO | packaged data/career/build_career_master.log.txt
+2026-04-09 22:17:29,681 | INFO | packaged data/career/build_story_master.log.txt
+2026-04-09 22:17:29,719 | INFO | packaged data/career/career_entity_timeline.json
+2026-04-09 22:17:29,794 | INFO | packaged data/career/career_master.json
+2026-04-09 22:17:29,810 | INFO | packaged data/career/career_source_index.json
+2026-04-09 22:17:29,810 | INFO | packaged data/career/story_alias_index.json
+2026-04-09 22:17:29,845 | INFO | packaged data/career/story_master.json
+2026-04-09 22:17:29,867 | INFO | packaged data/career/validate_career_outputs.log.txt
+2026-04-09 22:17:29,867 | INFO | packaged data/opportunities/venuiti/technology_project_manager/live_interview_config.json
+2026-04-09 22:17:29,869 | INFO | packaged data/opportunities/venuiti/technology_project_manager/opportunity_interview_response_bank.json
+2026-04-09 22:17:29,870 | INFO | packaged data/opportunities/venuiti/technology_project_manager/opportunity_profile.json
+2026-04-09 22:17:29,872 | INFO | packaged docs/career_master_design.html
+2026-04-09 22:17:29,874 | INFO | packaged docs/career_parsing_runbook.html
+2026-04-09 22:17:29,876 | INFO | packaged docs/story_master_design.html
+2026-04-09 22:17:29,876 | INFO | packaged reports/data/career_activation_summary.json
+2026-04-09 22:17:29,877 | INFO | packaged scripts/career/activate_career_outputs.py
+2026-04-09 22:17:29,878 | INFO | packaged scripts/career/build_career_master.py
+2026-04-09 22:17:29,878 | INFO | packaged scripts/career/build_story_master.py
+2026-04-09 22:17:29,882 | INFO | packaged scripts/career/career_common.py
+2026-04-09 22:17:29,882 | INFO | packaged scripts/career/run_career_pipeline.py
+2026-04-09 22:17:29,883 | INFO | packaged scripts/career/validate_career_outputs.py
+2026-04-09 22:17:29,886 | INFO | completed successfully

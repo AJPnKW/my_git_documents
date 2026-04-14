@@ -14,10 +14,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Build company research outputs
+        run: python scripts/company_research/run_company_research_production.py --group venuiti --skip-repo-validation
       - name: Build site index
         run: python scripts/build_site_index.py
       - name: Create package
         run: python scripts/package_release.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: venuiti-company-research-outputs
+          path: .ai_downloads/venuiti_company_research_outputs.zip
       - uses: actions/upload-artifact@v4
         with:
           name: my_git_documents-package

@@ -1,528 +1,299 @@
+
 const viewerState = {
-  requestedMode: "single",
-  syncScroll: false,
-  syncLock: false,
-  activeTabIndex: 0,
+  layout: "auto",
+  panelSize: "medium",
+  activeDocId: null,
   sidebarHidden: false,
 };
 
-function workspaceParams() {
-  return new URLSearchParams(window.location.search);
-}
-
-function viewerParam(name) {
-  return workspaceParams().get(name);
-}
-
-function readEmbeddedConfig() {
-  const tag = document.getElementById("workspace-config");
-  if (!tag) {
-    return null;
-  }
-  return JSON.parse(tag.textContent);
-}
+function workspaceParams() { return new URLSearchParams(window.location.search); }
+function viewerParam(name) { return workspaceParams().get(name); }
 
 async function readDataConfig() {
   const path = viewerParam("workspaceJson") || document.body?.dataset.workspaceJson;
-  if (!path) {
-    return null;
-  }
+  if (!path) return null;
   const response = await fetch(path, { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(`Workspace config failed: ${response.status}`);
-  }
+  if (!response.ok) throw new Error(`Workspace config failed: ${response.status}`);
   return response.json();
 }
 
 function buildConfigFromQuery() {
   const params = workspaceParams();
   const docs = (params.get("docs") || "").split(",").map((item) => item.trim()).filter(Boolean);
-  const labels = params.getAll("labels");
   return {
     siteTitle: params.get("title") || "Viewer",
     siteSummary: "",
-    hideSidebarHeader: false,
-    defaultMode: params.get("mode") || "single",
     noteStorageKey: params.get("notesKey") || "mgd:notes:default",
-    notePlaceholder: "Capture notes here.",
     showNotes: true,
-    showToolbarStatus: true,
-    showPanelHeader: true,
-    tree: [
-      {
-        "id": "query-documents",
-        "type": "folder",
-        "label": "Documents",
-        "open": true,
-        "children": docs.map((doc, index) => ({
-          "id": `doc-${index + 1}`,
-          "type": "file",
-          "label": labels[index] || decodeURIComponent(doc.split("/").pop()),
-          "description": "",
-          "href": doc,
-          "selected": index < 3
-        }))
-      }
-    ]
+    tree: [{
+      id: "query-documents",
+      type: "folder",
+      label: "Documents",
+      open: true,
+      children: docs.map((doc, index) => ({
+        id: `doc-${index + 1}`,
+        type: "file",
+        label: decodeURIComponent(doc.split("/").pop()),
+        href: doc,
+        selected: true
+      }))
+    }]
   };
 }
-
-async function workspaceConfig() {
-  return await readDataConfig() || readEmbeddedConfig() || buildConfigFromQuery();
-}
+async function workspaceConfig() { return await readDataConfig() || buildConfigFromQuery(); }
 
 function flattenFiles(nodes) {
-  return nodes.flatMap((node) => {
-    if (node.type === "folder") {
-      return flattenFiles(node.children || []);
-    }
-    return [node];
-  });
+  return nodes.flatMap((node) => node.type === "folder" ? flattenFiles(node.children || []) : [node]);
 }
-
-function selectedItems(config) {
-  return flattenFiles(config.tree || []).filter((item) => item.selected && item.href && !item.disabled);
-}
-
-function selectedCount(config) {
-  return selectedItems(config).length;
-}
-
+function selectedItems(config) { return flattenFiles(config.tree || []).filter((item) => item.selected && item.href && !item.disabled); }
+function selectedCount(config) { return selectedItems(config).length; }
+function countEnabledFiles(nodes) { return flattenFiles(nodes).filter((item) => item.href && !item.disabled).length; }
 function findNode(nodes, id) {
   for (const node of nodes) {
-    if (node.id === id) {
-      return node;
-    }
+    if (node.id === id) return node;
     if (node.type === "folder") {
       const child = findNode(node.children || [], id);
-      if (child) {
-        return child;
-      }
+      if (child) return child;
     }
   }
   return null;
 }
-
-function countEnabledFiles(nodes) {
-  return flattenFiles(nodes).filter((item) => item.href && !item.disabled).length;
+function normalizeLayout(layout, count) {
+  if (layout === "rows") return "rows";
+  if (layout === "auto") return "auto";
+  const numeric = Number(layout);
+  if (numeric >= 1 && numeric <= 5) return String(Math.min(numeric, Math.max(1, count)));
+  return "auto";
 }
-
-function normalizeMode(mode, count) {
-  if (count <= 1) {
-    return "single";
-  }
-  if (mode === "columns" && count < 3) {
-    return "split";
-  }
-  if (["split", "rows", "tabs", "arrange"].includes(mode) && count >= 2) {
-    return mode;
-  }
-  if (mode === "columns" && count >= 3) {
-    return mode;
-  }
-  return count >= 2 ? "split" : "single";
+function buildGridClass(count) {
+  const layout = viewerState.layout === "auto"
+    ? String(Math.min(5, Math.max(1, count)))
+    : normalizeLayout(viewerState.layout, count);
+  return layout;
 }
-
-function modeLimit(mode, items) {
-  if (mode === "single") {
-    return 1;
-  }
-  if (mode === "split") {
-    return 2;
-  }
-  if (mode === "columns") {
-    return 3;
-  }
-  if (mode === "tabs") {
-    return 1;
-  }
-  return items.length;
-}
-
-function setViewerMode(mode, config) {
-  const count = selectedCount(config);
-  viewerState.requestedMode = normalizeMode(mode, count);
-  const grid = document.getElementById("viewer-grid");
-  grid.dataset.mode = viewerState.requestedMode;
-  localStorage.setItem("mgd:last_view_mode", viewerState.requestedMode);
-  document.querySelectorAll("[data-mode-button]").forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.modeButton === viewerState.requestedMode);
-  });
-}
-
-function applySidebarState() {
-  const shell = document.querySelector(".workspace-shell");
-  const button = document.getElementById("toggle-sidebar");
-  if (!shell || !button) {
-    return;
-  }
-  shell.classList.toggle("is-sidebar-hidden", viewerState.sidebarHidden);
-  button.classList.toggle("is-active", viewerState.sidebarHidden);
-  button.setAttribute("aria-pressed", viewerState.sidebarHidden ? "true" : "false");
-  button.title = viewerState.sidebarHidden ? "Show navigation" : "Hide navigation";
-}
-
 function renderNode(node, depth = 0) {
   if (node.type === "folder") {
     const isOpen = node.open !== false;
     const children = (node.children || []).map((child) => renderNode(child, depth + 1)).join("");
-    return `
-      <li class="tree-node tree-folder-node">
-        <button class="tree-folder-row" type="button" data-folder-id="${node.id}" aria-expanded="${isOpen ? "true" : "false"}" style="padding-left:${depth * 14}px">
-          <span class="tree-folder-arrow">${isOpen ? "▾" : "▸"}</span>
-          <span class="tree-folder-icon">□</span>
-          <span class="tree-folder-name">${node.label}</span>
-        </button>
-        <ul class="tree-children" ${isOpen ? "" : "hidden"}>
-          ${children}
-        </ul>
-      </li>
-    `;
+    return `<li class="tree-node tree-folder-node">
+      <button class="tree-folder-row" type="button" data-folder-id="${node.id}" aria-expanded="${isOpen ? "true" : "false"}" style="padding-left:${depth * 14}px">
+        <span class="tree-folder-arrow">${isOpen ? "▾" : "▸"}</span>
+        <span class="tree-folder-icon">□</span>
+        <span class="tree-folder-name">${node.label}</span>
+      </button>
+      <ul class="tree-children" ${isOpen ? "" : "hidden"}>${children}</ul>
+    </li>`;
   }
-
-  return `
-    <li class="tree-node tree-file-node">
-      <label class="tree-file-row ${node.disabled ? "is-disabled" : ""}" style="padding-left:${depth * 14}px">
-        <input type="checkbox" data-doc-id="${node.id}" ${node.selected ? "checked" : ""} ${node.disabled ? "disabled" : ""}>
-        <span class="tree-file-icon">${node.placeholder ? "⋯" : "—"}</span>
-        <span class="tree-file-text">
-          <strong>${node.label}</strong>
-          ${node.description ? `<span class="tree-item-meta">${node.description}</span>` : ""}
-        </span>
-      </label>
-    </li>
-  `;
+  return `<li class="tree-node tree-file-node">
+    <label class="tree-file-row ${node.disabled ? "is-disabled" : ""}" style="padding-left:${depth * 14}px">
+      <input type="checkbox" data-doc-id="${node.id}" ${node.selected ? "checked" : ""} ${node.disabled ? "disabled" : ""}>
+      <span class="tree-file-icon">—</span>
+      <span class="tree-file-text"><strong>${node.label}</strong>${node.description ? `<span class="tree-item-meta">${node.description}</span>` : ""}</span>
+    </label>
+  </li>`;
 }
-
 function renderSidebar(config) {
   const root = document.getElementById("workspace-tree");
   root.innerHTML = `<ul class="tree-root">${(config.tree || []).map((node) => renderNode(node)).join("")}</ul>`;
-
   document.querySelectorAll("[data-folder-id]").forEach((button) => {
     button.addEventListener("click", () => {
       const folder = findNode(config.tree || [], button.dataset.folderId);
-      if (!folder) {
-        return;
-      }
+      if (!folder) return;
       folder.open = folder.open === false;
       renderSidebar(config);
       bindFileToggles(config);
     });
   });
 }
-
 function updateToolbar(config) {
   const count = selectedCount(config);
   const totalEnabled = countEnabledFiles(config.tree || []);
-  document.querySelectorAll("[data-mode-button]").forEach((button) => {
-    const mode = button.dataset.modeButton;
-    let visible = true;
-    if (mode === "single") {
-      visible = totalEnabled > 1;
-    } else if (mode === "split") {
-      visible = totalEnabled >= 2;
-    } else if (mode === "columns") {
-      visible = totalEnabled >= 3;
-    } else if (["rows", "tabs", "arrange"].includes(mode)) {
-      visible = totalEnabled >= 2;
+  document.querySelectorAll("[data-layout-button]").forEach((button) => {
+    const value = button.dataset.layoutButton;
+    button.classList.toggle("is-active", value === viewerState.layout);
+    if (value !== "auto" && value !== "rows") {
+      button.hidden = totalEnabled < Number(value);
+    } else if (value === "rows") {
+      button.hidden = totalEnabled < 2;
     }
-    button.hidden = !visible;
   });
-
-  const syncButton = document.getElementById("sync-scroll");
-  if (syncButton) {
-    syncButton.hidden = count < 2;
-    syncButton.classList.toggle("is-active", viewerState.syncScroll);
-    syncButton.setAttribute("aria-pressed", viewerState.syncScroll ? "true" : "false");
-  }
-}
-
-function syncFrames(sourceFrame) {
-  if (!viewerState.syncScroll || viewerState.syncLock) {
-    return;
-  }
-  try {
-    const sourceWindow = sourceFrame.contentWindow;
-    const sourceDoc = sourceWindow.document.documentElement;
-    const sourceMax = sourceDoc.scrollHeight - sourceWindow.innerHeight;
-    const ratio = sourceMax > 0 ? sourceWindow.scrollY / sourceMax : 0;
-    viewerState.syncLock = true;
-    document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
-      if (frame === sourceFrame) {
-        return;
-      }
-      try {
-        const targetWindow = frame.contentWindow;
-        const targetDoc = targetWindow.document.documentElement;
-        const targetMax = targetDoc.scrollHeight - targetWindow.innerHeight;
-        targetWindow.scrollTo(0, Math.max(0, targetMax * ratio));
-      } catch (error) {
-        console.warn(error);
-      }
-    });
-  } finally {
-    viewerState.syncLock = false;
-  }
-}
-
-function bindFrameBehaviors() {
-  document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
-    frame.addEventListener("load", () => {
-      try {
-        frame.contentWindow.addEventListener("scroll", () => syncFrames(frame));
-      } catch (error) {
-        console.warn(error);
-      }
-    });
-  });
-}
-
-function renderDocuments(config) {
-  updateToolbar(config);
-  const items = selectedItems(config);
-  const count = items.length;
-  if (count <= 1 && viewerState.requestedMode !== "single") {
-    viewerState.requestedMode = "single";
-  } else {
-    viewerState.requestedMode = normalizeMode(viewerState.requestedMode, count);
-  }
-
-  const grid = document.getElementById("viewer-grid");
-  grid.dataset.mode = viewerState.requestedMode;
-  const limit = modeLimit(viewerState.requestedMode, items);
-  let visible = items.slice(0, limit);
-  if (viewerState.requestedMode === "tabs") {
-    viewerState.activeTabIndex = Math.max(0, Math.min(viewerState.activeTabIndex, items.length - 1));
-    visible = items.length ? [items[viewerState.activeTabIndex]] : [];
-  }
+  document.getElementById("size-small").classList.toggle("is-active", viewerState.panelSize === "small");
+  document.getElementById("size-medium").classList.toggle("is-active", viewerState.panelSize === "medium");
+  document.getElementById("size-large").classList.toggle("is-active", viewerState.panelSize === "large");
   const status = document.getElementById("toolbar-status");
-  if (config.showToolbarStatus === false) {
-    status.hidden = true;
-  } else {
-    status.hidden = false;
-    status.textContent = `${count} selected`;
-  }
-
-  const tabsMarkup = viewerState.requestedMode === "tabs" && items.length > 1
-    ? `
-      <div class="viewer-tabs" role="tablist" aria-label="Documents">
-        ${items.map((item, index) => `
-          <button
-            class="viewer-tab ${index === viewerState.activeTabIndex ? "is-active" : ""}"
-            type="button"
-            role="tab"
-            aria-selected="${index === viewerState.activeTabIndex ? "true" : "false"}"
-            data-tab-index="${index}">
-            ${item.label}
-          </button>
-        `).join("")}
-      </div>
-    `
-    : "";
-
-  grid.innerHTML = `
-    ${tabsMarkup}
-    ${visible.map((item, index) => `
-    <section class="viewer-panel">
-      ${config.showPanelHeader === false ? "" : `
-      <div class="viewer-head">
-        <strong>${item.label}</strong>
-        <a class="button-link" href="${item.href}" target="_blank" rel="noreferrer">Open direct</a>
-      </div>`}
-      <div class="doc-frame">
-        <iframe src="${item.href}" title="Document ${index + 1}" data-zoom="1"></iframe>
-      </div>
-    </section>
-  `).join("")}
-  `;
-
-  document.querySelectorAll("[data-tab-index]").forEach((button) => {
+  status.textContent = `${count} selected`;
+}
+function renderTabs(config, items) {
+  const host = document.getElementById("viewer-tabs");
+  host.innerHTML = items.map((item) => `
+    <button class="viewer-tab ${item.id === viewerState.activeDocId ? "is-active" : ""}" type="button" data-doc-tab="${item.id}">
+      ${item.label}
+    </button>
+  `).join("");
+  host.querySelectorAll("[data-doc-tab]").forEach((button) => {
     button.addEventListener("click", () => {
-      viewerState.activeTabIndex = Number(button.dataset.tabIndex || "0");
-      renderDocuments(config);
+      viewerState.activeDocId = button.dataset.docTab;
+      const panel = document.querySelector(`.viewer-panel[data-doc-id="${viewerState.activeDocId}"]`);
+      if (panel) {
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        setActivePanel(viewerState.activeDocId);
+      }
     });
   });
-
-  bindFrameBehaviors();
 }
-
-function noteStorageKey(config) {
-  return config.noteStorageKey || "mgd:notes:default";
-}
-
+function noteStorageKey(config) { return config.noteStorageKey || "mgd:notes:default"; }
 function saveViewerNotes(config) {
   const key = noteStorageKey(config);
   const value = document.getElementById("notes-text").value;
   localStorage.setItem(key, value);
   document.getElementById("save-status").textContent = `Saved locally ${new Date().toLocaleString()}`;
 }
-
-function setZoom(delta) {
-  document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
-    const current = Number(frame.dataset.zoom || "1");
-    const next = Math.max(0.6, Math.min(1.8, current + delta));
-    frame.dataset.zoom = String(next);
-    frame.style.transform = `scale(${next})`;
-    frame.style.height = `calc((100vh - var(--topbar-height) - var(--toolbar-height) - 18px) / ${next})`;
+function panelHeightPx() {
+  if (viewerState.panelSize === "small") return 340;
+  if (viewerState.panelSize === "large") return 740;
+  return 520;
+}
+function setActivePanel(docId) {
+  viewerState.activeDocId = docId;
+  document.querySelectorAll(".viewer-panel").forEach((panel) => {
+    panel.classList.toggle("is-active", panel.dataset.docId === docId);
+  });
+  document.querySelectorAll(".viewer-tab").forEach((tab) => {
+    tab.classList.toggle("is-active", tab.dataset.docTab === docId);
   });
 }
-
-function fitWidth() {
-  document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
-    frame.style.width = "100%";
-    frame.style.height = "calc(100vh - var(--topbar-height) - var(--toolbar-height) - 18px)";
+function renderDocuments(config) {
+  const items = selectedItems(config);
+  if (!items.length) return;
+  if (!viewerState.activeDocId || !items.some((item) => item.id === viewerState.activeDocId)) viewerState.activeDocId = items[0].id;
+  updateToolbar(config);
+  renderTabs(config, items);
+  const grid = document.getElementById("viewer-grid");
+  grid.dataset.layout = buildGridClass(items.length);
+  grid.dataset.size = viewerState.panelSize;
+  grid.innerHTML = items.map((item) => `
+    <section class="viewer-panel ${item.id === viewerState.activeDocId ? "is-active" : ""}" data-doc-id="${item.id}">
+      <div class="viewer-head">
+        <strong>${item.label}</strong>
+        <a class="button-link" href="${item.href}" target="_blank" rel="noreferrer">Open direct</a>
+      </div>
+      <div class="doc-frame" style="height:${panelHeightPx()}px">
+        <iframe src="${item.href}" title="${item.label}"></iframe>
+      </div>
+    </section>
+  `).join("");
+  document.querySelectorAll(".viewer-panel").forEach((panel) => {
+    panel.addEventListener("click", () => setActivePanel(panel.dataset.docId));
   });
 }
-
-function fitHeight() {
-  document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
-    frame.style.width = "auto";
-    frame.style.height = "calc(100vh - var(--topbar-height) - var(--toolbar-height) - 18px)";
-  });
-}
-
-function fitPage() {
-  document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
-    frame.style.width = "100%";
-    frame.style.height = "calc(100vh - var(--topbar-height) - 4px)";
-  });
-}
-
-function fitAll() {
-  document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
-    frame.dataset.zoom = "1";
-    frame.style.transform = "scale(1)";
-    frame.style.width = "100%";
-    frame.style.height = "calc(100vh - var(--topbar-height) - var(--toolbar-height) - 18px)";
-  });
-}
-
-function findInCurrent() {
-  const frame = document.querySelector(".viewer-panel iframe");
-  const query = document.getElementById("viewer-find").value;
-  try {
-    if (frame && query) {
-      frame.contentWindow.find(query);
-    }
-  } catch (error) {
-    console.warn(error);
-  }
-}
-
 function bindFileToggles(config) {
   document.querySelectorAll("[data-doc-id]").forEach((checkbox) => {
     checkbox.addEventListener("change", () => {
       const node = findNode(config.tree || [], checkbox.dataset.docId);
-      if (!node) {
-        return;
-      }
+      if (!node) return;
       node.selected = checkbox.checked;
       if (selectedCount(config) === 0) {
         node.selected = true;
         checkbox.checked = true;
-        return;
-      }
-      if (selectedCount(config) === 1) {
-        viewerState.requestedMode = "single";
-        viewerState.activeTabIndex = 0;
       }
       renderDocuments(config);
+      renderGroups(config);
     });
   });
 }
-
+function groupStorageKey(config) { return `${noteStorageKey(config)}:groups`; }
+function readGroups(config) {
+  try { return JSON.parse(localStorage.getItem(groupStorageKey(config)) || "[]"); } catch { return []; }
+}
+function writeGroups(config, groups) { localStorage.setItem(groupStorageKey(config), JSON.stringify(groups)); }
+function applyGroup(config, ids) {
+  flattenFiles(config.tree || []).forEach((item) => { item.selected = ids.includes(item.id); });
+  if (selectedCount(config) === 0) {
+    const first = flattenFiles(config.tree || []).find((item) => item.href && !item.disabled);
+    if (first) first.selected = true;
+  }
+  renderSidebar(config);
+  bindFileToggles(config);
+  renderDocuments(config);
+  renderGroups(config);
+}
+function renderGroups(config) {
+  const host = document.getElementById("viewer-groups");
+  const groups = readGroups(config);
+  host.innerHTML = groups.map((group, index) => `
+    <button class="viewer-group-chip" type="button" data-group-index="${index}">${group.name}</button>
+  `).join("");
+  host.querySelectorAll("[data-group-index]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const group = groups[Number(button.dataset.groupIndex)];
+      if (group) applyGroup(config, group.ids || []);
+    });
+  });
+}
+function setLayout(value, config) {
+  viewerState.layout = value;
+  localStorage.setItem("mgd:last_layout", value);
+  renderDocuments(config);
+}
+function bindToolbar(config) {
+  document.querySelectorAll("[data-layout-button]").forEach((button) => {
+    button.addEventListener("click", () => setLayout(button.dataset.layoutButton, config));
+  });
+  document.getElementById("size-small").addEventListener("click", () => { viewerState.panelSize = "small"; renderDocuments(config); });
+  document.getElementById("size-medium").addEventListener("click", () => { viewerState.panelSize = "medium"; renderDocuments(config); });
+  document.getElementById("size-large").addEventListener("click", () => { viewerState.panelSize = "large"; renderDocuments(config); });
+  document.getElementById("viewer-find-button").addEventListener("click", () => {
+    const query = document.getElementById("viewer-find").value;
+    const frame = document.querySelector(`.viewer-panel[data-doc-id="${viewerState.activeDocId}"] iframe`);
+    try { if (frame && query) frame.contentWindow.find(query); } catch (error) { console.warn(error); }
+  });
+  document.getElementById("print-view").addEventListener("click", () => window.print());
+  document.getElementById("save-group").addEventListener("click", () => {
+    const name = window.prompt("Group name");
+    if (!name) return;
+    const groups = readGroups(config);
+    groups.push({ name, ids: selectedItems(config).map((item) => item.id) });
+    writeGroups(config, groups);
+    renderGroups(config);
+  });
+}
+function applySidebarState() {
+  const shell = document.querySelector(".workspace-shell");
+  shell.classList.toggle("is-sidebar-hidden", viewerState.sidebarHidden);
+}
 async function bootViewer() {
   const config = await workspaceConfig();
   const title = document.getElementById("workspace-title");
   const subtitle = document.getElementById("workspace-subtitle");
-  const header = document.getElementById("workspace-header");
-  const notes = document.getElementById("notes-text");
-  const notesPanel = document.getElementById("notes-panel");
-
-  if (title && config.siteTitle) {
-    title.textContent = config.siteTitle;
-    document.title = config.siteTitle;
-  }
-  if (subtitle) {
-    subtitle.textContent = config.siteSummary || "";
-  }
-  if (header && config.hideSidebarHeader) {
-    header.hidden = true;
-  }
-  if (notes && config.notePlaceholder) {
-    notes.placeholder = config.notePlaceholder;
-  }
-
+  if (title && config.siteTitle) { title.textContent = config.siteTitle; document.title = config.siteTitle; }
+  if (subtitle) subtitle.textContent = config.siteSummary || "";
   renderSidebar(config);
-  viewerState.requestedMode = config.defaultMode || localStorage.getItem("mgd:last_view_mode") || "single";
   viewerState.sidebarHidden = localStorage.getItem("mgd:sidebar:hidden") === "true";
-  setViewerMode(viewerState.requestedMode, config);
+  viewerState.layout = localStorage.getItem("mgd:last_layout") || "auto";
   applySidebarState();
-  renderDocuments(config);
   bindFileToggles(config);
+  bindToolbar(config);
+  renderDocuments(config);
+  renderGroups(config);
 
-  document.querySelectorAll("[data-mode-button]").forEach((button) => {
-    button.addEventListener("click", () => {
-      setViewerMode(button.dataset.modeButton, config);
-      renderDocuments(config);
-    });
+  document.getElementById("toggle-sidebar").addEventListener("click", () => {
+    viewerState.sidebarHidden = !viewerState.sidebarHidden;
+    localStorage.setItem("mgd:sidebar:hidden", viewerState.sidebarHidden ? "true" : "false");
+    applySidebarState();
   });
 
-  const syncButton = document.getElementById("sync-scroll");
-  if (syncButton) {
-    syncButton.addEventListener("click", () => {
-      viewerState.syncScroll = !viewerState.syncScroll;
-      updateToolbar(config);
-    });
-  }
-
-  const sidebarButton = document.getElementById("toggle-sidebar");
-  if (sidebarButton) {
-    sidebarButton.addEventListener("click", () => {
-      viewerState.sidebarHidden = !viewerState.sidebarHidden;
-      localStorage.setItem("mgd:sidebar:hidden", viewerState.sidebarHidden ? "true" : "false");
-      applySidebarState();
-    });
-  }
-
+  const notes = document.getElementById("notes-text");
+  const notesPanel = document.getElementById("notes-panel");
   if (config.showNotes === false) {
     notesPanel.hidden = true;
   } else {
-    const key = noteStorageKey(config);
-    notes.value = localStorage.getItem(key) || "";
+    notes.value = localStorage.getItem(noteStorageKey(config)) || "";
     notes.addEventListener("input", () => saveViewerNotes(config));
     document.getElementById("insert-timestamp").addEventListener("click", () => {
       notes.setRangeText(`[${new Date().toLocaleTimeString()}] `, notes.selectionStart, notes.selectionEnd, "end");
       saveViewerNotes(config);
     });
-    document.getElementById("copy-notes").addEventListener("click", async () => {
-      await navigator.clipboard.writeText(notes.value);
-    });
+    document.getElementById("copy-notes").addEventListener("click", async () => { await navigator.clipboard.writeText(notes.value); });
   }
-
-  document.getElementById("zoom-in").addEventListener("click", () => setZoom(0.1));
-  document.getElementById("zoom-out").addEventListener("click", () => setZoom(-0.1));
-  document.getElementById("zoom-reset").addEventListener("click", () => {
-    document.querySelectorAll(".viewer-panel iframe").forEach((frame) => {
-      frame.dataset.zoom = "1";
-      frame.style.transform = "scale(1)";
-      frame.style.height = "calc(100vh - var(--topbar-height) - var(--toolbar-height) - 18px)";
-    });
-  });
-  document.getElementById("fit-width").addEventListener("click", fitWidth);
-  document.getElementById("fit-height").addEventListener("click", fitHeight);
-  document.getElementById("fit-page").addEventListener("click", fitPage);
-  document.getElementById("fit-all").addEventListener("click", fitAll);
-  document.getElementById("viewer-find-button").addEventListener("click", findInCurrent);
-  document.getElementById("print-view").addEventListener("click", () => window.print());
 }
-
-window.addEventListener("DOMContentLoaded", () => {
-  bootViewer().catch((error) => {
-    console.error(error);
-  });
-  const siteKey = viewerParam("siteKey");
-  if (siteKey && window.MyGitDocumentsAuth?.bootGate) {
-    window.MyGitDocumentsAuth.bootGate(siteKey);
-  }
-});
+window.addEventListener("DOMContentLoaded", () => { bootViewer().catch((error) => { console.error(error); }); });

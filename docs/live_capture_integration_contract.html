@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Capture Integration Contract</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; margin: 0; background: #f4f6f8; color: #18222c; }
+    main { max-width: 1040px; margin: 0 auto; padding: 32px 20px 48px; }
+    section { background: #ffffff; border: 1px solid #d7e0e8; border-radius: 14px; padding: 20px 22px; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(18, 33, 48, 0.05); }
+    h1, h2, h3 { margin-top: 0; }
+    code, pre { font-family: Consolas, monospace; background: #eef3f7; border-radius: 6px; }
+    code { padding: 2px 6px; }
+    pre { padding: 14px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { border: 1px solid #d7e0e8; padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: #eef3f7; }
+    ul { padding-left: 18px; }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Live Capture Integration Contract</h1>
+      <p><strong>Scope boundary:</strong> <code>my_git_documents</code> is the browser and UI layer only. The execution layer remains the separate local toolkit at <code>C:\Users\andrew\PROJECTS\interview_capture_transcription_x1</code>.</p>
+      <p>The browser must never control OBS Studio, PowerShell, microphone routing, or desktop capture directly. All orchestration flows through a localhost JSON bridge bound to <code>127.0.0.1:8765</code>.</p>
+    </section>
+    <section>
+      <h2>Ownership Model</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Repository / Path</th>
+            <th>Responsibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Web UI</td>
+            <td><code>C:\Users\andrew\PROJECTS\GitHub\my_git_documents</code></td>
+            <td>Start and stop requests, status polling, UI state, warnings, result links, history display, and interview prep context.</td>
+          </tr>
+          <tr>
+            <td>Local toolkit</td>
+            <td><code>C:\Users\andrew\PROJECTS\interview_capture_transcription_x1</code></td>
+            <td>Recording orchestration, transcription, packaging, manifests, logs, and bridge-hosted artifact access.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Bridge Base Configuration</h2>
+      <p>The repo-side integration centralizes the bridge base URL and endpoint templates in a workspace-level config. The UI must not scatter <code>http://127.0.0.1:8765</code> through multiple pages or inline scripts.</p>
+      <pre>{
+  "bridgeBaseUrl": "http://127.0.0.1:8765",
+  "artifactRouteTemplate": "/api/runs/{run_id}/artifact/{artifact_key}",
+  "endpoints": {
+    "captureStart": "/api/capture/start",
+    "captureStop": "/api/capture/stop",
+    "captureStatus": "/api/capture/status",
+    "transcriptionStart": "/api/transcription/start",
+    "runs": "/api/runs",
+    "runDetailsTemplate": "/api/runs/{run_id}"
+  }
+}</pre>
+    </section>
+    <section>
+      <h2>Required Endpoints</h2>
+      <ul>
+        <li><code>POST /api/capture/start</code></li>
+        <li><code>POST /api/capture/stop</code></li>
+        <li><code>GET /api/capture/status</code></li>
+        <li><code>POST /api/transcription/start</code></li>
+        <li><code>GET /api/runs</code></li>
+        <li><code>GET /api/runs/{run_id}</code></li>
+      </ul>
+      <p>The UI also supports a bridge-hosted artifact route when available so transcript and ZIP links remain browser-safe even when raw output values are local Windows paths.</p>
+    </section>
+    <section>
+      <h2>Canonical Run States</h2>
+      <pre>idle
+starting
+running
+stopping
+recorded
+transcribing
+packaging
+complete
+warn
+fail</pre>
+      <p>Unknown future states should be displayed without breaking the panel. They are treated as non-fatal values and rendered as returned by the bridge.</p>
+    </section>
+    <section>
+      <h2>Start Request</h2>
+      <pre>{
+  "run_label": "venuiti_technology_project_manager_interview",
+  "source": "my_git_documents_viewer",
+  "mode": "bridge_orchestrated_capture",
+  "capture_profile": "screen_mic_fallback",
+  "auto_transcribe_on_stop": true,
+  "opportunity_id": "venuiti__technology_project_manager",
+  "role_title": "Technology Project Manager",
+  "target_brand": "Venuiti Healthcare"
+}</pre>
+      <p>Extra request fields are allowed. The UI intentionally tolerates backend-side expansion.</p>
+    </section>
+    <section>
+      <h2>Run Response Contract</h2>
+      <pre>{
+  "run_id": "",
+  "status": "idle",
+  "started_at": "",
+  "updated_at": "",
+  "input_file": "",
+  "duration_seconds": 0,
+  "warnings": [],
+  "outputs": {
+    "recording_file": "",
+    "transcript_txt": "",
+    "transcript_srt": "",
+    "run_summary_json": "",
+    "log_file": "",
+    "zip_bundle": ""
+  }
+}</pre>
+      <p>The repo-side parser treats missing optional fields as empty values and preserves unknown future fields.</p>
+    </section>
+    <section>
+      <h2>Browser-Safe Output Rules</h2>
+      <ul>
+        <li>If an output is already an HTTP or HTTPS URL, the page links to it directly.</li>
+        <li>If an output is a bridge-relative path, the page resolves it against the bridge base URL.</li>
+        <li>If an output is only a local Windows filesystem path, the page does not attempt direct browser file access.</li>
+        <li>When direct web linking is not available, the page falls back to the bridge artifact route template for transcript, ZIP, summary, log, and recording retrieval.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Transport vs Run Failure</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Condition</th>
+            <th>UI handling</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bridge unreachable, CORS failure, timeout, malformed JSON, non-2xx transport issue</td>
+            <td>Show <code>local capture service offline</code>, set service badge to offline, keep prior run details visible when possible, and retry polling on the offline cadence.</td>
+          </tr>
+          <tr>
+            <td>Bridge reachable but run status is <code>warn</code> or <code>fail</code></td>
+            <td>Keep the bridge online, render run state as returned, surface warnings, and allow the user to inspect logs and outputs.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

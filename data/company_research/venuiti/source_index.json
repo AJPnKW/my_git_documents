@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-04-09",
+  "group_slug": "venuiti",
+  "sources": [
+    {
+      "source_id": "devstaff_contact",
+      "title": "Contact Us \u2013 DevStaff",
+      "url": "https://devstaff.ca/contact-us/",
+      "source_type": "official_website",
+      "publisher": "DevStaff",
+      "domain": "devstaff.ca",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Contact page asks 'Looking to find out more about Venuiti?'",
+        "Main office listed as 283 Duke St W, Kitchener, ON N2H 3X7.",
+        "Page says Venuiti has been in business since 2001."
+      ]
+    },
+    {
+      "source_id": "devstaff_linkedin",
+      "title": "DevStaff Canada | LinkedIn",
+      "url": "https://ca.linkedin.com/company/devstaff-canada",
+      "source_type": "linkedin_profile",
+      "publisher": "LinkedIn",
+      "domain": "linkedin.com",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Headquarters listed as Kitchener, Ontario.",
+        "Employees shown include Alexey Sidelnikov, Thomas Schroecker, Shannon Teeter, and Jordan Schroecker.",
+        "Recent posts reference hiring for roles at Venuiti."
+      ]
+    },
+    {
+      "source_id": "devstaff_meet_thomas",
+      "title": "Meet Thomas Schroecker CEO at Venuiti Group of Companies \u2013 DevStaff",
+      "url": "https://devstaff.ca/p-meet-thomas-schroecker-ceo-at-venuiti-group-of-companies/",
+      "source_type": "official_website",
+      "publisher": "DevStaff",
+      "domain": "devstaff.ca",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Calls Thomas Schroecker the CEO at Venuiti Group of Companies.",
+        "States he runs three successful startups under Venuiti Group of Companies.",
+        "Explains DevStaff was added after roughly 10 years of prior custom software development work.",
+        "References the healthcare aspect of the company as part of the same broader story."
+      ]
+    },
+    {
+      "source_id": "linkedin_people_snapshot_20260409",
+      "title": "LinkedIn people snapshot for Venuiti Solutions, DevStaff Canada, and Venuiti Healthcare",
+      "url": "https://www.linkedin.com/",
+      "source_type": "provided_linkedin_snapshot",
+      "publisher": "LinkedIn",
+      "domain": "linkedin.com",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Thomas Schroecker is described as CEO & Founder of Venuiti Group of Companies across Venuiti Healthcare, Venuiti Solutions, and DevStaff Canada.",
+        "Alexey Sidelnikov is described as CTO at Venuiti Group of Companies across Venuiti Solutions, Venuiti Healthcare, and DevStaff Canada.",
+        "Jordan Schroecker is described as Director of Operations @ Venuiti Group of Companies, DevStaff Canada & Venuiti Healthcare.",
+        "Additional public profiles indicate talent acquisition, operations, AI engineering, frontend development, and healthcare software delivery roles across the group."
+      ]
+    },
+    {
+      "source_id": "venuiti_health_contact",
+      "title": "Contact Us \u2013 Venuiti Healthcare",
+      "url": "https://venuitihealth.com/contact-us/",
+      "source_type": "official_website",
+      "publisher": "Venuiti Healthcare",
+      "domain": "venuitihealth.com",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Page brands the company as Venuiti Healthcare.",
+        "States the company has multiple locations in Waterloo, Canada and Atlanta, Georgia.",
+        "States the company is 100% privately owned.",
+        "Footer copyright says Venuiti Healthcare Inc."
+      ]
+    },
+    {
+      "source_id": "venuiti_health_linkedin",
+      "title": "Venuiti Healthcare | LinkedIn",
+      "url": "https://www.linkedin.com/company/venuitihealthcare",
+      "source_type": "linkedin_profile",
+      "publisher": "LinkedIn",
+      "domain": "linkedin.com",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Headquarters listed as Waterloo, Ontario.",
+        "Founded year listed as 2001.",
+        "Primary location listed as 33 Dupont St E, Waterloo, ON N2J 2G8.",
+        "Employees shown include Thomas Schroecker."
+      ]
+    },
+    {
+      "source_id": "venuiti_health_services",
+      "title": "Our Services \u2013 Venuiti Healthcare",
+      "url": "https://venuitihealth.com/our-services/",
+      "source_type": "official_website",
+      "publisher": "Venuiti Healthcare",
+      "domain": "venuitihealth.com",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "States nearly two decades of dedicated service in healthcare software development.",
+        "Lists interoperability, compliance, staffing, and strategic consulting service lines.",
+        "Says end-to-end staffing is offered in collaboration with DevStaff Canada."
+      ]
+    },
+    {
+      "source_id": "venuiti_health_staffing",
+      "title": "Staffing \u2013 Venuiti Healthcare",
+      "url": "https://venuitihealth.com/staffing/",
+      "source_type": "official_website",
+      "publisher": "Venuiti Healthcare",
+      "domain": "venuitihealth.com",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "States Venuiti Healthcare works exclusively with DevStaff Canada.",
+        "Explicitly identifies DevStaff Canada as a member of the Venuiti Group of Companies.",
+        "Footer copyright says Venuiti Healthcare Inc."
+      ]
+    },
+    {
+      "source_id": "venuiti_solutions_linkedin",
+      "title": "Venuiti Solutions Inc. | LinkedIn",
+      "url": "https://ca.linkedin.com/company/venuiti-solutions-inc.",
+      "source_type": "linkedin_profile",
+      "publisher": "LinkedIn",
+      "domain": "linkedin.com",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Headquarters listed as Waterloo, Ontario.",
+        "Founded year listed as 2001.",
+        "Primary location listed as 33 Dupont St E, Waterloo, ON N2J 2G8.",
+        "Employees shown include Thomas Schroecker and Alexey Sidelnikov."
+      ]
+    },
+    {
+      "source_id": "venuiti_solutions_privacy",
+      "title": "Privacy - Venuiti Solutions Inc.",
+      "url": "https://www.venuiti.com/privacy/",
+      "source_type": "official_website",
+      "publisher": "Venuiti Solutions Inc.",
+      "domain": "venuiti.com",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Page chrome names Venuiti Solutions Inc.",
+        "Postal mail address lists 283 Duke St. W., Suite 214, Kitchener, ON N2H 3X7.",
+        "Phone number listed as 1-866-819-9155."
+      ]
+    },
+    {
+      "source_id": "venuiti_why_canada",
+      "title": "Why Canada \u2013 DevStaff",
+      "url": "https://devstaff.ca/why-canada/",
+      "source_type": "official_website",
+      "publisher": "DevStaff",
+      "domain": "devstaff.ca",
+      "snapshot_date": "2026-04-09",
+      "key_points": [
+        "Page states Venuiti has been in business since 2001-era timing.",
+        "Page positions Venuiti as Canada-based with U.S. locations."
+      ]
+    }
+  ]
+}

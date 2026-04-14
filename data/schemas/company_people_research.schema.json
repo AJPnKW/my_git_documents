@@ -1,0 +1,532 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/company_people_research.schema.json",
+  "title": "Company People Research",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "snapshot_date",
+    "group_slug",
+    "canonical_group",
+    "validation_logic",
+    "companies",
+    "group_relationships",
+    "people",
+    "risk_flags",
+    "interview_alignment_signals"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "snapshot_date": {
+      "type": "string"
+    },
+    "group_slug": {
+      "type": "string"
+    },
+    "target_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "canonical_group": {
+      "type": "object",
+      "required": [
+        "entity_id",
+        "name",
+        "entity_kind",
+        "validation_status",
+        "confidence",
+        "summary",
+        "evidence_source_ids"
+      ],
+      "properties": {
+        "entity_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "entity_kind": {
+          "type": "string"
+        },
+        "validation_status": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "evidence_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "validation_logic": {
+      "type": "object",
+      "required": [
+        "signal_weights",
+        "acceptance_rules",
+        "rejection_rules"
+      ],
+      "properties": {
+        "signal_weights": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "acceptance_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rejection_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "companies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/company"
+      }
+    },
+    "group_relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      }
+    },
+    "people": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/person"
+      }
+    },
+    "org_structure_inferred": {
+      "$ref": "#/$defs/org_structure_inferred"
+    },
+    "people_graph_inferred": {
+      "$ref": "#/$defs/people_graph_inferred"
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "interview_alignment_signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "company": {
+      "type": "object",
+      "required": [
+        "entity_id",
+        "display_name",
+        "entity_kind",
+        "status",
+        "classification",
+        "profile",
+        "source_ids",
+        "interview_signals",
+        "risk_flags"
+      ],
+      "properties": {
+        "entity_id": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "entity_kind": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "classification": {
+          "type": "object",
+          "required": [
+            "canonical_umbrella_name",
+            "legal_style_names",
+            "public_facing_brands",
+            "service_lines"
+          ],
+          "properties": {
+            "canonical_umbrella_name": {
+              "type": "string"
+            },
+            "legal_style_names": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "public_facing_brands": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "service_lines": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "profile": {
+          "type": "object"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "interview_signals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risk_flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "relationship": {
+      "type": "object",
+      "required": [
+        "relationship_id",
+        "from_entity_id",
+        "to_entity_id",
+        "relationship_type",
+        "confidence",
+        "decision",
+        "evidence_source_ids",
+        "signals",
+        "cautions"
+      ],
+      "properties": {
+        "relationship_id": {
+          "type": "string"
+        },
+        "from_entity_id": {
+          "type": "string"
+        },
+        "to_entity_id": {
+          "type": "string"
+        },
+        "relationship_type": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "decision": {
+          "type": "string"
+        },
+        "evidence_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "signals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "signal",
+              "strength",
+              "weight",
+              "weighted_score",
+              "source_ids",
+              "notes"
+            ],
+            "properties": {
+              "signal": {
+                "type": "string"
+              },
+              "strength": {
+                "type": "number"
+              },
+              "weight": {
+                "type": "number"
+              },
+              "weighted_score": {
+                "type": "number"
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "cautions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "person": {
+      "type": "object",
+      "required": [
+        "person_id",
+        "full_name",
+        "normalized_name",
+        "role_summary",
+        "affiliations",
+        "interview_relevance"
+      ],
+      "properties": {
+        "person_id": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "normalized_name": {
+          "type": "string"
+        },
+        "role_summary": {
+          "type": "string"
+        },
+        "affiliations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "interview_relevance": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "org_structure_inferred": {
+      "type": "object",
+      "required": [
+        "nodes",
+        "relationships"
+      ],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "type",
+              "parent_id",
+              "description",
+              "confidence",
+              "evidence"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "parent_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "description": {
+                "type": "string"
+              },
+              "confidence": {
+                "type": "number"
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "from_id",
+              "to_id",
+              "relationship_type",
+              "confidence",
+              "evidence"
+            ],
+            "properties": {
+              "from_id": {
+                "type": "string"
+              },
+              "to_id": {
+                "type": "string"
+              },
+              "relationship_type": {
+                "type": "string"
+              },
+              "confidence": {
+                "type": "number"
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "people_graph_inferred": {
+      "type": "object",
+      "required": [
+        "nodes",
+        "relationships"
+      ],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "person_id",
+              "name",
+              "associated_entities",
+              "likely_functions",
+              "confidence"
+            ],
+            "properties": {
+              "person_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "associated_entities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "likely_functions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "confidence": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "from_person_id",
+              "relationship_type",
+              "confidence",
+              "evidence"
+            ],
+            "properties": {
+              "from_person_id": {
+                "type": "string"
+              },
+              "to_person_id": {
+                "type": "string"
+              },
+              "to_entity_id": {
+                "type": "string"
+              },
+              "relationship_type": {
+                "type": "string"
+              },
+              "confidence": {
+                "type": "number"
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "to_person_id"
+                ]
+              },
+              {
+                "required": [
+                  "to_entity_id"
+                ]
+              }
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,414 @@
+{
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-04-09",
+  "group_slug": "venuiti",
+  "people": [
+    {
+      "person_id": "person_alexey_sidelnikov",
+      "full_name": "Alexey Sidelnikov",
+      "normalized_name": "alexey sidelnikov",
+      "role_summary": "Technology leader appearing across multiple Venuiti-linked brands.",
+      "affiliations": [
+        {
+          "entity_id": "group_venuiti",
+          "role_title": "CTO",
+          "relationship_type": "executive",
+          "confidence": 0.9,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        },
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "CTO / employee presence",
+          "relationship_type": "leadership_overlap",
+          "confidence": 0.86,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409",
+            "venuiti_solutions_linkedin"
+          ]
+        },
+        {
+          "entity_id": "company_devstaff_canada",
+          "role_title": "CTO / employee presence",
+          "relationship_type": "leadership_overlap",
+          "confidence": 0.83,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409",
+            "devstaff_linkedin"
+          ]
+        },
+        {
+          "entity_id": "company_venuiti_healthcare",
+          "role_title": "CTO / group technology leadership overlap",
+          "relationship_type": "leadership_overlap",
+          "confidence": 0.8,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Strong evidence of cross-brand technical leadership rather than simple employee overlap."
+      ]
+    },
+    {
+      "person_id": "person_anhad_lamba",
+      "full_name": "Anhad Lamba",
+      "normalized_name": "anhad lamba",
+      "role_summary": "AI-oriented full stack developer associated with Venuiti.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "AI Full Stack Developer",
+          "relationship_type": "employee",
+          "confidence": 0.72,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Supports an emerging AI/full-stack engineering specialization inside the Venuiti Solutions side of the group."
+      ]
+    },
+    {
+      "person_id": "person_brent_mcnatt",
+      "full_name": "Brent McNatt",
+      "normalized_name": "brent mcnatt",
+      "role_summary": "Full stack engineer appearing across Venuiti Healthcare and Venuiti Solutions.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_healthcare",
+          "role_title": "Full Stack Developer",
+          "relationship_type": "employee",
+          "confidence": 0.78,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        },
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "Full Stack Developer",
+          "relationship_type": "employee",
+          "confidence": 0.78,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Supports real technical talent overlap between the healthcare and solutions entities."
+      ]
+    },
+    {
+      "person_id": "person_dmytro_lavrentiev",
+      "full_name": "Dmytro Lavrentiev",
+      "normalized_name": "dmytro lavrentiev",
+      "role_summary": "Senior software developer associated with Venuiti Healthcare.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_healthcare",
+          "role_title": "Senior Software Developer",
+          "relationship_type": "employee",
+          "confidence": 0.76,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Supports the inference that Venuiti Healthcare has an actual in-house software engineering team, not only staffing/consulting language."
+      ]
+    },
+    {
+      "person_id": "person_gabriela_pereira",
+      "full_name": "Gabriela Pereira",
+      "normalized_name": "gabriela pereira",
+      "role_summary": "Software developer tied to Venuiti Solutions.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "Software Developer",
+          "relationship_type": "employee",
+          "confidence": 0.7,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Adds depth to the identified engineering bench inside Venuiti Solutions."
+      ]
+    },
+    {
+      "person_id": "person_jordan_hagedorn",
+      "full_name": "Jordan Hagedorn",
+      "normalized_name": "jordan hagedorn",
+      "role_summary": "AI-oriented full stack developer tied to Venuiti Solutions.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "Full Stack AI Developer",
+          "relationship_type": "employee",
+          "confidence": 0.73,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Adds repeated evidence for AI/full-stack engineering talent in Venuiti Solutions."
+      ]
+    },
+    {
+      "person_id": "person_jordan_schroecker",
+      "full_name": "Jordan Schroecker",
+      "normalized_name": "jordan schroecker",
+      "role_summary": "Cross-brand operations and recruiting leader visible in DevStaff and Venuiti Healthcare contexts.",
+      "affiliations": [
+        {
+          "entity_id": "group_venuiti",
+          "role_title": "Director of Operations",
+          "relationship_type": "executive",
+          "confidence": 0.88,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        },
+        {
+          "entity_id": "company_devstaff_canada",
+          "role_title": "Director of Operations",
+          "relationship_type": "executive",
+          "confidence": 0.87,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409",
+            "devstaff_linkedin"
+          ]
+        },
+        {
+          "entity_id": "company_venuiti_healthcare",
+          "role_title": "Director of Operations",
+          "relationship_type": "executive",
+          "confidence": 0.84,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409",
+            "venuiti_health_linkedin"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Useful bridge person between operations, technical recruiting, healthcare, and fintech narratives across the group."
+      ]
+    },
+    {
+      "person_id": "person_madison_weber",
+      "full_name": "Madison Weber",
+      "normalized_name": "madison weber",
+      "role_summary": "Front-end / React developer tied to Venuiti Solutions.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "React Developer",
+          "relationship_type": "employee",
+          "confidence": 0.7,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Supports a modern web product engineering capability in the solutions entity."
+      ]
+    },
+    {
+      "person_id": "person_melissa_shariff",
+      "full_name": "Melissa Shariff",
+      "normalized_name": "melissa shariff",
+      "role_summary": "Senior operations manager visible at Venuiti Group of Companies.",
+      "affiliations": [
+        {
+          "entity_id": "group_venuiti",
+          "role_title": "Sr. Manager of Operations / Project Manager",
+          "relationship_type": "executive",
+          "confidence": 0.8,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Strengthens the evidence for a formal operations layer inside the broader group."
+      ]
+    },
+    {
+      "person_id": "person_pleiades_chambers",
+      "full_name": "Pleiades Chambers",
+      "normalized_name": "pleiades chambers",
+      "role_summary": "Junior project manager associated with Venuiti.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_healthcare",
+          "role_title": "Junior Project Manager",
+          "relationship_type": "employee",
+          "confidence": 0.62,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Suggests dedicated project coordination capacity near the healthcare side, though entity mapping remains cautious."
+      ]
+    },
+    {
+      "person_id": "person_shannon_teeter",
+      "full_name": "Shannon Teeter",
+      "normalized_name": "shannon teeter",
+      "role_summary": "Executive-level group operator visible in DevStaff and Venuiti Healthcare adjacency.",
+      "affiliations": [
+        {
+          "entity_id": "group_venuiti",
+          "role_title": "Executive",
+          "relationship_type": "executive",
+          "confidence": 0.82,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409",
+            "devstaff_linkedin"
+          ]
+        },
+        {
+          "entity_id": "company_devstaff_canada",
+          "role_title": "Executive presence",
+          "relationship_type": "leadership_overlap",
+          "confidence": 0.73,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409",
+            "devstaff_linkedin"
+          ]
+        },
+        {
+          "entity_id": "company_venuiti_healthcare",
+          "role_title": "Executive presence",
+          "relationship_type": "leadership_overlap",
+          "confidence": 0.69,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Adds evidence of a broader executive/operator layer beyond founder-only leadership."
+      ]
+    },
+    {
+      "person_id": "person_shiv_patel",
+      "full_name": "Shiv Patel",
+      "normalized_name": "shiv patel",
+      "role_summary": "AI developer associated with Venuiti.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "AI Developer",
+          "relationship_type": "employee",
+          "confidence": 0.69,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Further supports an AI-oriented delivery capability, but exact sub-team structure remains inferred rather than explicit."
+      ]
+    },
+    {
+      "person_id": "person_sneha_gontu",
+      "full_name": "Sneha Gontu",
+      "normalized_name": "sneha gontu",
+      "role_summary": "Talent acquisition specialist repeatedly surfaced in Venuiti / DevStaff-linked LinkedIn people lists.",
+      "affiliations": [
+        {
+          "entity_id": "company_devstaff_canada",
+          "role_title": "Talent Acquisition Specialist",
+          "relationship_type": "employee",
+          "confidence": 0.56,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Suggests recruiting capacity beyond founder-level and operations leadership, but entity mapping remains cautious."
+      ]
+    },
+    {
+      "person_id": "person_susanne_roma",
+      "full_name": "Susanne Roma",
+      "normalized_name": "susanne roma",
+      "role_summary": "General manager tied directly to Venuiti Solutions Inc.",
+      "affiliations": [
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "General Manager",
+          "relationship_type": "executive",
+          "confidence": 0.82,
+          "source_ids": [
+            "linkedin_people_snapshot_20260409"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Suggests mature delivery/operations management inside Venuiti Solutions itself."
+      ]
+    },
+    {
+      "person_id": "person_thomas_schroecker",
+      "full_name": "Thomas Schroecker",
+      "normalized_name": "thomas schroecker",
+      "role_summary": "Founder / CEO-level leader associated with the Venuiti group and multiple operating brands.",
+      "affiliations": [
+        {
+          "entity_id": "group_venuiti",
+          "role_title": "CEO",
+          "relationship_type": "executive",
+          "confidence": 0.94,
+          "source_ids": [
+            "devstaff_meet_thomas"
+          ]
+        },
+        {
+          "entity_id": "company_venuiti_solutions",
+          "role_title": "Employee / leadership presence",
+          "relationship_type": "leadership_overlap",
+          "confidence": 0.75,
+          "source_ids": [
+            "venuiti_solutions_linkedin"
+          ]
+        },
+        {
+          "entity_id": "company_devstaff_canada",
+          "role_title": "CEO here at DevStaff Canada",
+          "relationship_type": "executive",
+          "confidence": 0.91,
+          "source_ids": [
+            "devstaff_meet_thomas",
+            "devstaff_linkedin"
+          ]
+        },
+        {
+          "entity_id": "company_venuiti_healthcare",
+          "role_title": "Employee / leadership presence",
+          "relationship_type": "leadership_overlap",
+          "confidence": 0.72,
+          "source_ids": [
+            "venuiti_health_linkedin"
+          ]
+        }
+      ],
+      "interview_relevance": [
+        "Likely central decision-maker or culture carrier across the group.",
+        "Signals founder-led operating style and continuity across business lines."
+      ]
+    }
+  ]
+}

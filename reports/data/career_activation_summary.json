@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "target_group": "venuiti",
+  "activated_at_runtime": "deterministic_no_timestamp",
+  "company_research_entity_id": "group_venuiti",
+  "resolved_alias_count": 7,
+  "canonical_story_ids_used": [
+    "story_ae8a593ce62a",
+    "story_5735bedc9111"
+  ],
+  "output_files": [
+    "data/career/story_alias_index.json",
+    "data/opportunities/venuiti/technology_project_manager/opportunity_profile.json",
+    "data/opportunities/venuiti/technology_project_manager/opportunity_interview_response_bank.json",
+    "data/opportunities/venuiti/technology_project_manager/live_interview_config.json"
+  ]
+}

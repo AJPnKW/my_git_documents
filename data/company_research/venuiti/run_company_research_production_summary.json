@@ -1,0 +1,29 @@
+{
+  "group": "venuiti",
+  "status": "passed",
+  "completed_at_utc": "2026-04-10T23:48:19.947127+00:00",
+  "steps": [
+    "build",
+    "render_visuals",
+    "validate_outputs",
+    "package",
+    "validate_package",
+    "repo_validation"
+  ],
+  "error": null,
+  "outputs": {
+    "research_json": "data/company_research/venuiti/company_people_research.json",
+    "package": ".ai_downloads/venuiti_company_research_outputs.zip",
+    "org_chart": "docs/venuiti_org_chart.html",
+    "people_graph": "docs/venuiti_people_graph.html",
+    "validation_report": "data/company_research/venuiti/validate_company_research_outputs_report.json"
+  },
+  "counts": {
+    "companies": 3,
+    "people": 15,
+    "org_nodes": 18,
+    "org_relationships": 22,
+    "people_graph_nodes": 15,
+    "people_graph_relationships": 38
+  }
+}

@@ -512,3 +512,71 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+
+.viewer-topbar {
+  justify-content: flex-start;
+}
+
+.toolbar-main-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+
+.toolbar-main-row .icon-button {
+  width: 28px;
+  height: 28px;
+  font-size: 0.82rem;
+}
+
+.toolbar-main-row #viewer-find {
+  flex: 0 1 220px;
+  max-width: 220px;
+  min-width: 120px;
+  height: 28px;
+}
+
+.toolbar-doc-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-top: 6px;
+}
+
+.doc-tab {
+  border: 1px solid var(--line);
+  background: #fffdfa;
+  border-radius: 999px;
+  padding: 5px 10px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.76rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.doc-tab.is-active,
+.doc-tab:hover {
+  background: var(--soft);
+  border-color: var(--accent);
+}
+
+.viewer-panel.is-active-panel {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(47, 100, 120, 0.2);
+}
+
+@media (max-width: 1200px) {
+  .toolbar-main-row {
+    flex-wrap: wrap;
+  }
+
+  .toolbar-main-row #viewer-find {
+    flex: 1 1 180px;
+    max-width: none;
+  }
+}

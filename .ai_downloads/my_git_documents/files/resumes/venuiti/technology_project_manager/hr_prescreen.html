@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPM Prescreen Interview Pack - Dense Collapsible Left Navigation</title>
+<style>
+  :root{
+    --bg:#f4f7fb;
+    --panel:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --line:#d8e1ee;
+    --accent:#1d4ed8;
+    --accent_soft:#eaf1ff;
+    --accent_soft_2:#f4f8ff;
+    --shadow:0 12px 28px rgba(15,23,42,.08);
+    --nav_w:420px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.42;
+  }
+  .page{
+    max-width:1880px;
+    margin:0 auto;
+    padding:18px;
+  }
+  .hero{
+    background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 100%);
+    color:#fff;
+    border-radius:22px;
+    padding:22px 26px;
+    box-shadow:var(--shadow);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    margin:0 0 4px 0;
+    font-size:30px;
+    line-height:1.1;
+  }
+  .hero p{
+    margin:4px 0 0 0;
+    color:#dbeafe;
+    font-size:14px;
+  }
+  .layout{
+    display:grid;
+    grid-template-columns: var(--nav_w) minmax(0,1fr);
+    gap:14px;
+    align-items:start;
+  }
+  .sidebar{
+    position:sticky;
+    top:14px;
+    max-height:calc(100vh - 28px);
+    overflow:auto;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    padding:12px;
+  }
+  .sidebar h2{
+    margin:0;
+    font-size:20px;
+    line-height:1.1;
+  }
+  .sub{
+    margin:4px 0 8px 0;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.2;
+  }
+  .quick-tools{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    margin:0 0 8px 0;
+  }
+  .tool-btn{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    background:var(--accent_soft);
+    border:1px solid #c6d8ff;
+    color:var(--accent);
+    padding:6px 8px;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:800;
+    line-height:1.1;
+  }
+  details.nav-group{
+    border-top:1px solid var(--line);
+    padding-top:6px;
+    margin-top:6px;
+  }
+  details.nav-group:first-of-type{
+    border-top:none;
+    padding-top:0;
+    margin-top:0;
+  }
+  details summary{
+    list-style:none;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:#475569;
+    padding:4px 4px 5px 4px;
+    line-height:1.1;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{
+    content:"+";
+    float:right;
+    color:#64748b;
+    font-size:14px;
+    font-weight:900;
+    margin-top:-1px;
+  }
+  details[open] summary::after{content:"−"}
+  .nav-list{
+    list-style:none;
+    margin:0;
+    padding:0 0 0 0;
+    display:grid;
+    gap:1px;
+  }
+  .nav-link{
+    display:block;
+    text-decoration:none;
+    color:var(--text);
+    font-size:11.6px;
+    padding:5px 7px;
+    border-radius:7px;
+    border:1px solid transparent;
+    background:#fff;
+    line-height:1.15;
+    margin:0;
+  }
+  .nav-link:hover{
+    background:var(--accent_soft_2);
+    border-color:#d7e3ff;
+  }
+  .nav-link.active{
+    background:var(--accent_soft);
+    color:var(--accent);
+    border-color:#c6d8ff;
+    font-weight:800;
+  }
+  .content{
+    display:grid;
+    gap:12px;
+  }
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    padding:14px;
+    scroll-margin-top:14px;
+  }
+  .panel h2{
+    margin:0 0 8px 0;
+    font-size:22px;
+    line-height:1.1;
+  }
+  .mini{
+    color:var(--muted);
+    font-size:12px;
+    margin:0 0 6px 0;
+    line-height:1.2;
+  }
+  table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    margin-top:6px;
+    font-size:13.5px;
+  }
+  th, td{
+    padding:10px;
+    text-align:left;
+    vertical-align:top;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:#fff;
+    line-height:1.3;
+  }
+  th{
+    background:#eef4ff;
+    color:#1e3a8a;
+    font-weight:700;
+  }
+  tr:first-child th:first-child{border-top-left-radius:10px}
+  tr:first-child th:last-child{border-top-right-radius:10px}
+  tr:last-child td:first-child{border-bottom-left-radius:10px}
+  tr:last-child td:last-child{border-bottom-right-radius:10px}
+  tr td:first-child, tr th:first-child{border-left:1px solid var(--line)}
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:8px;
+  }
+  .chip{
+    padding:5px 8px;
+    border-radius:999px;
+    background:var(--accent_soft);
+    color:var(--accent);
+    border:1px solid #c7d8ff;
+    font-size:11px;
+    font-weight:700;
+    line-height:1.1;
+  }
+  .q-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:var(--shadow);
+    margin-top:8px;
+    scroll-margin-top:14px;
+  }
+  .q-head{
+    background:#eef4ff;
+    color:#1e3a8a;
+    padding:9px 12px;
+    font-weight:800;
+    font-size:14px;
+    line-height:1.2;
+  }
+  .q-body{
+    padding:12px;
+    white-space:pre-wrap;
+    line-height:1.42;
+  }
+  .footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    padding:4px 0 0 0;
+  }
+  @media (max-width:1300px){
+    :root{ --nav_w:360px; }
+  }
+  @media (max-width:980px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:relative;top:auto;max-height:none}
+  }
+  @media print{
+    body{background:#fff}
+    .page{max-width:none;padding:0}
+    .hero,.sidebar,.panel,.q-card{box-shadow:none}
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:relative;max-height:none}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <section class="hero" id="top">
+    <h1>TPM Prescreen Interview Pack</h1>
+    <p>Dense collapsible left navigation with every question directly listed for fast access.</p>
+    <p><strong>Core tone:</strong> breadth and depth across the gamut of environment sizes and complexities, with disciplined delivery throughout.</p>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>Question Index</h2>
+      <div class="sub">Condensed menu. Click section headings to collapse or expand.</div>
+
+      <div class="quick-tools">
+        <a class="tool-btn" href="#top">Top</a>
+        <a class="tool-btn" href="#closing_statement">Closing</a>
+      </div>
+
+      <details class="nav-group" open>
+        <summary>Overview</summary>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#overview_positioning">Core positioning</a></li>
+          <li><a class="nav-link" href="#overview_fast_use">Fast use</a></li>
+        </ul>
+      </details>
+
+      <details class="nav-group" open>
+        <summary>Core questions</summary>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#q_tell_me_about_yourself">Tell me about yourself</a></li>
+          <li><a class="nav-link" href="#q_why_tpm_role">Why this TPM role</a></li>
+          <li><a class="nav-link" href="#q_project_end_to_end">Project end to end</a></li>
+          <li><a class="nav-link" href="#q_balance_priorities">Balance developers, business, external partners</a></li>
+          <li><a class="nav-link" href="#q_early_problem">Problem identified early</a></li>
+          <li><a class="nav-link" href="#q_agile_discipline">Agile without losing discipline</a></li>
+          <li><a class="nav-link" href="#q_regulated_experience">Healthcare / regulated experience</a></li>
+          <li><a class="nav-link" href="#q_reporting_docs">Reporting and documentation</a></li>
+          <li><a class="nav-link" href="#q_technical_depth">How technical are you</a></li>
+          <li><a class="nav-link" href="#q_first_90_days">First 90 days</a></li>
+        </ul>
+      </details>
+
+      <details class="nav-group">
+        <summary>Sabbatical / career gap</summary>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#sabbatical_story_main">Main answer</a></li>
+          <li><a class="nav-link" href="#sabbatical_story_short">Short version</a></li>
+          <li><a class="nav-link" href="#sabbatical_story_followup">If they ask more</a></li>
+          <li><a class="nav-link" href="#sabbatical_story_bridge">Bridge back to role</a></li>
+        </ul>
+      </details>
+
+      <details class="nav-group">
+        <summary>Additional likely questions</summary>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#aq_why_move_now">Why move now</a></li>
+          <li><a class="nav-link" href="#aq_best_environment">Best environment</a></li>
+          <li><a class="nav-link" href="#aq_strengths">Strengths as a TPM</a></li>
+          <li><a class="nav-link" href="#aq_developing">Area developing</a></li>
+          <li><a class="nav-link" href="#aq_ambiguity">Handle ambiguity</a></li>
+          <li><a class="nav-link" href="#aq_influence">Influence without authority</a></li>
+          <li><a class="nav-link" href="#aq_exec_expectations">Manage executive expectations</a></li>
+          <li><a class="nav-link" href="#aq_escalate">What to escalate</a></li>
+          <li><a class="nav-link" href="#aq_tools">Tracking and reporting tools</a></li>
+          <li><a class="nav-link" href="#aq_accountability">Ensure accountability</a></li>
+          <li><a class="nav-link" href="#aq_change_priorities">Priority changes</a></li>
+          <li><a class="nav-link" href="#aq_why_hire_you">Why hire you</a></li>
+        </ul>
+      </details>
+
+      <details class="nav-group">
+        <summary>Questions to ask them</summary>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#ask_outcomes">Most important outcomes</a></li>
+          <li><a class="nav-link" href="#ask_delivery_challenges">Biggest delivery challenges</a></li>
+          <li><a class="nav-link" href="#ask_success_measure">How success is measured</a></li>
+          <li><a class="nav-link" href="#ask_working_relationship">Working relationship</a></li>
+          <li><a class="nav-link" href="#ask_where_stuck">Where projects get stuck</a></li>
+          <li><a class="nav-link" href="#ask_project_strain">What causes strain first</a></li>
+          <li><a class="nav-link" href="#ask_exceptional_well">If I joined and did well</a></li>
+          <li><a class="nav-link" href="#ask_regulated_balance">Speed vs regulation</a></li>
+          <li><a class="nav-link" href="#ask_friction_points">Regulatory / security friction</a></li>
+        </ul>
+      </details>
+
+      <details class="nav-group">
+        <summary>Wrap-up</summary>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#closing_statement">Closing statement</a></li>
+          <li><a class="nav-link" href="#prep_notes">Prep notes</a></li>
+        </ul>
+      </details>
+    </aside>
+
+    <main class="content">
+      <section class="panel" id="overview_positioning">
+        <h2>Core Positioning</h2>
+        <table>
+          <tr>
+            <th style="width:22%">Area</th>
+            <th>Message</th>
+          </tr>
+          <tr>
+            <td><strong>Overall brand</strong></td>
+            <td>Delivery-disciplined TPM with breadth and depth across the gamut of environment sizes and complexities.</td>
+          </tr>
+          <tr>
+            <td><strong>Operating range</strong></td>
+            <td>Comfortable working in smaller, more hands-on settings as well as larger, more complex organizations where coordination, governance, and delivery rigor all matter.</td>
+          </tr>
+          <tr>
+            <td><strong>Technical depth</strong></td>
+            <td>Technical enough to work credibly with software teams, understand trade-offs, and keep delivery grounded without overstating engineering depth.</td>
+          </tr>
+          <tr>
+            <td><strong>Regulated fit</strong></td>
+            <td>Strong fit for healthcare or other regulated environments because of background in controls, risk, compliance, audit support, and traceable delivery.</td>
+          </tr>
+          <tr>
+            <td><strong>Main value</strong></td>
+            <td>Brings structure, early risk visibility, stakeholder alignment, and disciplined execution across different organizational scales and levels of complexity.</td>
+          </tr>
+        </table>
+        <div class="chips">
+          <span class="chip">Breadth and depth</span>
+          <span class="chip">Cross-functional alignment</span>
+          <span class="chip">Execution discipline</span>
+          <span class="chip">Risk visibility</span>
+          <span class="chip">Regulated delivery</span>
+        </div>
+      </section>
+
+      <section class="panel" id="overview_fast_use">
+        <h2>Fast Use</h2>
+        <table>
+          <tr>
+            <th style="width:28%">Do this</th>
+            <th>Reason</th>
+          </tr>
+          <tr>
+            <td><strong>Memorize 4 answers</strong></td>
+            <td>Tell me about yourself, why this role, first 90 days, and your sabbatical story. Those usually frame the prescreen.</td>
+          </tr>
+          <tr>
+            <td><strong>Reuse 2 examples</strong></td>
+            <td>Use the same strong examples across early risk detection, stakeholder conflict, prioritization, and reporting questions.</td>
+          </tr>
+          <tr>
+            <td><strong>Keep the tone broad</strong></td>
+            <td>Show that you can deliver in different organizational sizes and maturity levels, not just one environment type.</td>
+          </tr>
+          <tr>
+            <td><strong>Stay outcome-focused</strong></td>
+            <td>Prescreens reward clarity, fit, and delivery judgment more than detail-heavy storytelling.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Core Answers</h2>
+        <div class="mini">Primary prescreen questions.</div>
+
+        <article class="q-card" id="q_tell_me_about_yourself">
+          <div class="q-head">Tell me about yourself</div>
+          <div class="q-body">I’m a technical program and risk leader with a background in information security, compliance, IT controls, and cross-functional delivery. Over the years, I’ve worked across software, infrastructure, governance, third-party risk, audit support, and operational change in a range of environments, from more hands-on settings through to larger organizations with broader coordination needs.
+
+What makes me a strong fit for a TPM role is that I’m comfortable working at the intersection of technology, delivery discipline, stakeholder management, and operational reality. I can work with engineers on technical trade-offs, with business leaders on priorities and outcomes, and with control or compliance partners on what has to be true for delivery to be sustainable.
+
+One of the strengths I bring is breadth and depth across the gamut of environment sizes and complexities. I’m comfortable bringing structure where things are still forming, and I’m equally comfortable operating where there are already many teams, dependencies, and governance expectations. At this stage, I’m looking for a TPM role where I can bring that range to complex initiatives and help move work forward with clarity, discipline, and accountability.</div>
+        </article>
+
+        <article class="q-card" id="q_why_tpm_role">
+          <div class="q-head">Why are you interested in this TPM role?</div>
+          <div class="q-body">I’m interested in this TPM role because it brings together the things I do best: leading cross-functional work, creating structure around delivery, and helping technical and non-technical groups move in the same direction.
+
+What appeals to me is that TPM work sits in a space where breadth matters. The role needs someone who can understand delivery from different angles: technical reality, business urgency, stakeholder alignment, and operational sustainability. That fits the way I work. I’ve operated across different environment sizes and complexity levels, so I’m comfortable adapting my approach while still keeping delivery disciplined.
+
+I also like roles where ambiguity has to be turned into an executable plan. That is an area where I add value consistently, especially when there are dependencies, competing priorities, and a need to balance speed with quality and accountability.</div>
+        </article>
+
+        <article class="q-card" id="q_project_end_to_end">
+          <div class="q-head">Describe a software project you led from planning through execution</div>
+          <div class="q-body">One good example is a cross-functional technology and controls initiative where the work involved multiple stakeholders, technical dependencies, compliance expectations, and a need for disciplined execution. At the start, the challenge was that different groups were operating with different assumptions about scope, priorities, and readiness.
+
+I began by putting a practical structure around the work: clarified goals, scope boundaries, milestones, owners, dependencies, risks, and reporting cadence. I worked with technical teams to understand what the solution required in practice, not just in presentation form, and I worked with business and control stakeholders to define what success and acceptance would look like.
+
+As the work moved forward, I kept different stakeholder groups aligned around shared facts and visible trade-offs. Engineering cared about feasibility and sequencing, business leaders cared about timelines and outcomes, and control stakeholders cared about evidence, quality, and operational sustainability. My role was to connect those perspectives so decisions were made early and clearly.
+
+The result was stronger delivery predictability, earlier risk visibility, and fewer surprises late in the cycle because assumptions, ownership, and dependencies were surfaced early instead of being discovered at the point of implementation.</div>
+        </article>
+
+        <article class="q-card" id="q_balance_priorities">
+          <div class="q-head">How do you balance developers, business stakeholders, and external partners when priorities conflict?</div>
+          <div class="q-body">I start by making the conflict explicit instead of letting each group assume their priority is the default. Usually the issue is not that priorities conflict; it is that trade-offs have not yet been made visible.
+
+My approach is to anchor the discussion around three things: business outcome, delivery reality, and risk of the available options. With developers, I want to understand effort, sequencing, technical constraints, and quality implications. With business stakeholders, I want to understand what is truly time-critical versus preferred. With external partners, I want to understand contractual, operational, or dependency constraints.
+
+Then I frame the decision clearly: if we optimize for speed, what do we defer or increase risk on; if we optimize for completeness or lower risk, what timeline or scope changes follow. That helps move the conversation from competing opinions to real decision-making.
+
+That approach works across different environment sizes because the principle is the same even when the scale changes: make trade-offs visible early, get the right decision made, and then translate it into a clear plan.</div>
+        </article>
+
+        <article class="q-card" id="q_early_problem">
+          <div class="q-head">Tell me about a project problem you identified early and how you handled it</div>
+          <div class="q-body">In one initiative, I identified early that different teams were using the same language for scope, but not the same meaning. At first glance, the project looked aligned, but once I got into the details it was clear that engineering, business, and control stakeholders had different assumptions about deliverables, sequencing, and readiness.
+
+Instead of waiting for that to surface later as missed dates or rework, I pulled the assumptions into a structured review: deliverables, owners, entry criteria, exit criteria, and dependencies. That exposed the gaps quickly.
+
+From there, I reset the plan, clarified ownership, adjusted milestones, and created a more disciplined review cadence. The value was not only fixing the immediate issue. It prevented a much more expensive late-stage problem and improved stakeholder confidence because the project started operating on shared facts rather than parallel interpretations.</div>
+        </article>
+
+        <article class="q-card" id="q_agile_discipline">
+          <div class="q-head">How do you apply agile methods without losing delivery discipline?</div>
+          <div class="q-body">I see agile as a way to improve learning speed and responsiveness, not as an excuse for weak planning. Good agile delivery still needs scope control, clear ownership, dependency management, decision-making, and visible reporting.
+
+In practice, I use agile methods at the team level for iteration, feedback, and backlog refinement, while maintaining program-level discipline around milestones, dependencies, risks, and stakeholder commitments. I want teams to have flexibility in how they execute, but I do not want the broader program to become vague.
+
+That approach also scales well. In smaller environments, it keeps work practical and focused. In larger or more regulated environments, it helps preserve adaptability without losing control, traceability, or delivery discipline.</div>
+        </article>
+
+        <article class="q-card" id="q_regulated_experience">
+          <div class="q-head">What experience do you have in healthcare or regulated environments that translates into this role?</div>
+          <div class="q-body">My background is highly transferable to healthcare and other regulated environments because much of my experience has been in settings where control, traceability, risk awareness, and execution discipline matter. I’ve worked in information security, compliance, IT controls, audit-facing environments, third-party risk, and policy-driven delivery, where it is not enough to deliver something quickly; it has to be supportable, defensible, and aligned with defined requirements.
+
+That translates well to healthcare because healthcare environments typically require careful handling of sensitive data, clear accountability, strong change control, documented processes, and the ability to work across technical, operational, and governance stakeholders.
+
+A key advantage I bring is that I can apply that discipline in different operating environments, not just one kind of organization. The domain may change, but the need for structured delivery, visible accountability, and sustainable execution stays consistent.</div>
+        </article>
+
+        <article class="q-card" id="q_reporting_docs">
+          <div class="q-head">What do your project reporting and documentation practices look like?</div>
+          <div class="q-body">I like reporting that is concise, decision-oriented, and useful. I do not believe in reporting for the sake of activity. My reporting usually covers status, milestone progress, risks, issues, dependencies, decisions needed, and ownership. The goal is that a leader can quickly understand whether the project is on track, what may affect delivery, and where attention is required.
+
+For documentation, I focus on maintaining a practical source of truth: scope, plan, RAID items, decisions, meeting outcomes, and action owners. I want enough documentation that people can operate with clarity, but not so much that it becomes stale overhead.
+
+That balance matters across different environments. In smaller settings, it keeps teams aligned without slowing them down. In larger or more regulated settings, it gives enough structure and traceability to support stronger coordination and accountability.</div>
+        </article>
+
+        <article class="q-card" id="q_technical_depth">
+          <div class="q-head">How technical are you when working with software teams?</div>
+          <div class="q-body">I’m technical enough to work credibly with engineering teams, understand architecture and delivery implications at a meaningful level, ask the right questions, and identify where a decision has downstream impact on scope, timing, risk, or supportability.
+
+I do not position myself as the engineer on the team, but I do position myself as someone who can bridge technical and non-technical conversations effectively. I’m comfortable discussing system dependencies, controls, implementation risks, data sensitivity, integration points, operational readiness, and the implications of design trade-offs.
+
+That level of technical fluency is important in a TPM role because it helps avoid a common failure mode where business expectations, engineering reality, and delivery commitments drift apart.</div>
+        </article>
+
+        <article class="q-card" id="q_first_90_days">
+          <div class="q-head">What would success look like for you in the first 90 days?</div>
+          <div class="q-body">In the first 90 days, success would mean I have a clear understanding of the organization’s priorities, the key programs in flight, the stakeholder landscape, and where the delivery risks or friction points really are.
+
+I would want to build credibility with engineering, product or business partners, and leadership by showing that I can absorb context quickly, improve clarity, and help move work forward without creating overhead for its own sake.
+
+Concretely, I would expect to have mapped the active work, understood the major dependencies, established an effective reporting rhythm, clarified ambiguity that could cause drift, and contributed to at least one visible improvement in coordination, predictability, or execution quality.</div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>Career Gap / Sabbatical Story</h2>
+        <div class="mini">Keep it concise, professional, and forward-looking.</div>
+
+        <article class="q-card" id="sabbatical_story_main">
+          <div class="q-head">Main answer</div>
+          <div class="q-body">I took a planned career break for a combination of family and development reasons. During that time, several close family members were dealing with serious health issues and loss, so I spent part of that period supporting family through those circumstances and some major follow-on responsibilities.
+
+At the same time, I used the break productively. I completed a six-month post-graduate cybersecurity program, which helped me refresh and broaden my technical knowledge, and I also spent several months helping my mother through a major transition that included house-related work, sale preparation, renovation coordination, the sale itself, and the move and settling-in period afterward.
+
+So while it was a personally demanding period, it was also a very active one. It reinforced skills that are highly relevant to TPM work: prioritization, coordination, resilience, managing moving parts, and keeping things progressing through change. That phase is now behind me, and I’m ready and motivated to bring that energy back into a full-time role.</div>
+        </article>
+
+        <article class="q-card" id="sabbatical_story_short">
+          <div class="q-head">Short version</div>
+          <div class="q-body">I took a planned career break to handle significant family responsibilities and also used that time to complete a six-month post-graduate cybersecurity program. A large part of the period involved supporting family through serious health issues and then helping my mother through a house sale, renovations, move, and settling-in process. It was a demanding but very productive period, and I’m now fully ready to return my focus to a full-time role.</div>
+        </article>
+
+        <article class="q-card" id="sabbatical_story_followup">
+          <div class="q-head">If they ask more</div>
+          <div class="q-body">There were multiple serious family health situations during that period, including cancer diagnoses and loss in the family, so I needed to step in and help more directly than usual. I prefer to keep the family details at a respectful high level, but the time was used in a very practical way: family support, estate and household transition work, and formal education. It was not time away from responsibility; it was time spent managing a different set of responsibilities.</div>
+        </article>
+
+        <article class="q-card" id="sabbatical_story_bridge">
+          <div class="q-head">Bridge back to role</div>
+          <div class="q-body">One reason I’m comfortable talking about that period is that it strengthened the same capabilities I bring to work: handling complexity calmly, coordinating across people and priorities, staying organized under pressure, and moving important work through difficult circumstances. That’s part of why I feel ready for this role now.</div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>Additional Likely Questions</h2>
+        <div class="mini">Short HR prescreen follow-ups.</div>
+
+        <article class="q-card" id="aq_why_move_now">
+          <div class="q-head">Why are you looking to make a move now?</div>
+          <div class="q-body">I’m looking for a role where I can bring together delivery leadership, technical coordination, and disciplined execution in a more central way. My background has given me strong experience across risk, controls, and cross-functional technology work, and I’m looking to apply that in a TPM role where I can have direct impact on how complex initiatives are planned and delivered.</div>
+        </article>
+
+        <article class="q-card" id="aq_best_environment">
+          <div class="q-head">What kind of team or environment do you do your best work in?</div>
+          <div class="q-body">I do my best work in environments that are collaborative, accountable, and practical. I like teams that are open about risks, willing to make decisions, and focused on outcomes rather than appearances. I work well across different environment sizes, especially where there is enough complexity that structure and alignment make a real difference.</div>
+        </article>
+
+        <article class="q-card" id="aq_strengths">
+          <div class="q-head">What are your strengths as a TPM?</div>
+          <div class="q-body">My strongest areas are cross-functional alignment, risk visibility, delivery structure, stakeholder communication, and bringing calm to complex work. I’m good at seeing where assumptions are not aligned yet, where dependencies are under-managed, and where small issues could become large problems if they are not surfaced early.</div>
+        </article>
+
+        <article class="q-card" id="aq_developing">
+          <div class="q-head">What is one area you are continuing to develop?</div>
+          <div class="q-body">One area I continue to develop is staying very intentional about how much detail each audience needs. Because I naturally think systemically, I make sure to tailor communication so engineering teams get the depth they need, while executives get the concise decision-level view.</div>
+        </article>
+
+        <article class="q-card" id="aq_ambiguity">
+          <div class="q-head">How do you handle ambiguity?</div>
+          <div class="q-body">I handle ambiguity by turning it into a structured set of questions, assumptions, decisions, and owners. I do not wait for perfect information before moving, but I also do not let ambiguity remain invisible. My goal is to reduce uncertainty enough that the team can make progress confidently.</div>
+        </article>
+
+        <article class="q-card" id="aq_influence">
+          <div class="q-head">Tell me about a time you had to influence without authority.</div>
+          <div class="q-body">A large part of my work has involved influencing across teams that did not report to me directly. The way I do that is by creating clarity, building credibility, and framing decisions in terms of shared outcomes and real trade-offs. People are much more willing to align when the work is structured well and the reasoning is visible.</div>
+        </article>
+
+        <article class="q-card" id="aq_exec_expectations">
+          <div class="q-head">How do you manage executive expectations?</div>
+          <div class="q-body">I manage executive expectations by being clear, early, and specific. I do not wait until a milestone is at risk before surfacing concern. I prefer to communicate what is on track, what is changing, what the implications are, and what decision or support is needed so leaders are not surprised late.</div>
+        </article>
+
+        <article class="q-card" id="aq_escalate">
+          <div class="q-head">How do you decide what to escalate?</div>
+          <div class="q-body">I escalate when an issue crosses team boundaries, affects delivery dates materially, introduces meaningful risk, or requires a decision that the working team cannot make on its own. I do not escalate noise, but I also do not let important issues sit too low for too long.</div>
+        </article>
+
+        <article class="q-card" id="aq_tools">
+          <div class="q-head">What tools have you used for program tracking and reporting?</div>
+          <div class="q-body">I’ve worked with common delivery and reporting tools such as Jira, SharePoint, Excel, Power BI, and other structured reporting methods. The tool matters less to me than ensuring the program has a clear source of truth, consistent reporting, and information that supports decisions.</div>
+        </article>
+
+        <article class="q-card" id="aq_accountability">
+          <div class="q-head">How do you ensure accountability on a project?</div>
+          <div class="q-body">I make ownership explicit, define what done means, track decisions and actions visibly, and follow up consistently. Accountability works best when expectations are clear and progress is visible, not when it depends on memory or informal side conversations.</div>
+        </article>
+
+        <article class="q-card" id="aq_change_priorities">
+          <div class="q-head">How do you react when priorities change suddenly?</div>
+          <div class="q-body">I treat it as a re-planning exercise, not just a verbal shift. If priorities change, I want to know what moves with them: scope, sequencing, resourcing, risk, and stakeholder expectations. Then I update the plan and communicate the implications clearly.</div>
+        </article>
+
+        <article class="q-card" id="aq_why_hire_you">
+          <div class="q-head">Why should we hire you for this role?</div>
+          <div class="q-body">Because I bring a combination that is very useful in TPM work: strong delivery discipline, enough technical fluency to work effectively with software teams, and a background in regulated, risk-aware environments where execution quality matters. I also bring breadth and depth across different environment sizes and levels of complexity, which helps me adapt my approach without losing structure, accountability, or forward momentum.</div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>Questions to Ask Them</h2>
+
+        <article class="q-card" id="ask_outcomes">
+          <div class="q-head">What are the most important outcomes you need this TPM to drive in the first 6 to 12 months?</div>
+          <div class="q-body">Use this to understand what matters most early and what kind of mandate the role really has.</div>
+        </article>
+
+        <article class="q-card" id="ask_delivery_challenges">
+          <div class="q-head">What are the biggest delivery challenges facing the team right now: prioritization, dependencies, stakeholder alignment, capacity, or something else?</div>
+          <div class="q-body">Use this to learn where the pain is and how delivery difficulty actually shows up in their environment.</div>
+        </article>
+
+        <article class="q-card" id="ask_success_measure">
+          <div class="q-head">How is success measured for this role beyond simply shipping on time?</div>
+          <div class="q-body">Use this to hear whether they value predictability, stakeholder alignment, quality, operational readiness, or only dates.</div>
+        </article>
+
+        <article class="q-card" id="ask_working_relationship">
+          <div class="q-head">What does the working relationship look like between TPM, engineering, product, and business stakeholders here?</div>
+          <div class="q-body">Use this to understand whether the role has real coordination authority and how decisions get made.</div>
+        </article>
+
+        <article class="q-card" id="ask_where_stuck">
+          <div class="q-head">Where have previous projects tended to get stuck: decision-making, changing scope, external dependencies, or operational readiness?</div>
+          <div class="q-body">Use this to surface recurring delivery failure points early.</div>
+        </article>
+
+        <article class="q-card" id="ask_project_strain">
+          <div class="q-head">When projects become difficult here, what usually causes the strain first: unclear ownership, late risk visibility, dependency management, or decision latency?</div>
+          <div class="q-body">This is one of the stronger, less expected questions and often leads to a more honest answer.</div>
+        </article>
+
+        <article class="q-card" id="ask_exceptional_well">
+          <div class="q-head">If I joined and did exceptionally well in this role, what would people say had become noticeably better six months from now?</div>
+          <div class="q-body">This is another stronger question because it reframes success in practical outcomes instead of generic expectations.</div>
+        </article>
+
+        <article class="q-card" id="ask_regulated_balance">
+          <div class="q-head">In your environment, how do you balance delivery speed with the documentation, validation, privacy, and auditability expectations that come with a regulated space?</div>
+          <div class="q-body">This signals regulated-environment awareness without sounding heavy-handed.</div>
+        </article>
+
+        <article class="q-card" id="ask_friction_points">
+          <div class="q-head">For the teams this TPM supports, where do regulatory, security, or operational requirements most often create friction in the delivery lifecycle?</div>
+          <div class="q-body">This helps you understand whether the organization sees these as integrated delivery concerns or late-stage blockers.</div>
+        </article>
+      </section>
+
+      <section class="panel" id="closing_statement">
+        <h2>Closing Statement</h2>
+        <article class="q-card">
+          <div class="q-head">Use near the end</div>
+          <div class="q-body">This role appeals to me because it sits in the space where I add the most value: creating structure around complex work, helping technical and business teams stay aligned, and keeping delivery disciplined without becoming rigid. My background in risk-aware, cross-functional environments has made me strong at seeing issues early, managing stakeholders honestly, and helping work move forward in a practical way. I also bring breadth and depth across the gamut of environment sizes and complexities, which helps me adapt while still keeping execution strong and reliable. That combination is what I would bring here.</div>
+        </article>
+      </section>
+
+      <section class="panel" id="prep_notes">
+        <h2>Prep Notes</h2>
+        <table>
+          <tr>
+            <th style="width:28%">Focus area</th>
+            <th>Prep note</th>
+          </tr>
+          <tr>
+            <td><strong>Lead message</strong></td>
+            <td>Lead with delivery, structure, and cross-functional alignment.</td>
+          </tr>
+          <tr>
+            <td><strong>Tone</strong></td>
+            <td>Show breadth and depth across different environment sizes and complexities, not just one type of organization.</td>
+          </tr>
+          <tr>
+            <td><strong>Answer style</strong></td>
+            <td>Keep answers calm, direct, and outcome-focused.</td>
+          </tr>
+          <tr>
+            <td><strong>Examples</strong></td>
+            <td>Use examples that show early risk detection, stakeholder alignment, and execution discipline.</td>
+          </tr>
+          <tr>
+            <td><strong>Regulated experience</strong></td>
+            <td>Position regulated-environment experience as a strength, not a side story.</td>
+          </tr>
+          <tr>
+            <td><strong>Technical tone</strong></td>
+            <td>Be technical enough to sound credible with engineering, but do not overclaim software engineering depth.</td>
+          </tr>
+        </table>
+      </section>
+
+      <div class="footer">Dense HTML interview pack with collapsible left navigation and direct links to every question.</div>
+    </main>
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.nav-link');
+  const sections = Array.from(document.querySelectorAll('section[id], article[id]'));
+
+  function setActiveLink() {
+    let currentId = '';
+    const offset = 120;
+    for (const section of sections) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top - offset <= 0) currentId = section.id;
+    }
+    links.forEach(link => {
+      const isActive = link.getAttribute('href') === '#' + currentId;
+      link.classList.toggle('active', isActive);
+      if (isActive) {
+        const details = link.closest('details');
+        if (details) details.open = true;
+      }
+    });
+  }
+
+  window.addEventListener('scroll', setActiveLink, { passive: true });
+  window.addEventListener('load', setActiveLink);
+</script>
+</body>
+</html>

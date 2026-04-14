@@ -1,0 +1,361 @@
+{
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-04-09",
+  "group_slug": "venuiti",
+  "canonical_group": {
+    "entity_id": "group_venuiti",
+    "name": "Venuiti Group of Companies",
+    "entity_kind": "umbrella_group",
+    "validation_status": "validated_public_group_name",
+    "confidence": 0.87,
+    "summary": "Multiple official pages use 'Venuiti Group of Companies' as the umbrella label for related operating brands. Current evidence supports a public-facing umbrella name, not a verified legal holding-company conclusion.",
+    "evidence_source_ids": [
+      "devstaff_meet_thomas",
+      "venuiti_health_staffing"
+    ]
+  },
+  "aliases": [
+    {
+      "entity_id": "company_devstaff_canada",
+      "display_name": "DevStaff Canada",
+      "aliases": [
+        "DevStaff",
+        "DevStaff Canada"
+      ],
+      "canonical_umbrella_name": "Venuiti Group of Companies",
+      "validation_notes": [
+        "No independent registry source was captured for the exact legal entity name in this run, so the legal-style name remains unresolved.",
+        "LinkedIn's 'Public Company' label conflicts with the absence of equivalent language on official pages and should not be treated as ownership proof."
+      ]
+    },
+    {
+      "entity_id": "company_venuiti_healthcare",
+      "display_name": "Venuiti Healthcare",
+      "aliases": [
+        "Venuiti Health",
+        "Venuiti Healthcare",
+        "Venuiti Healthcare Inc."
+      ],
+      "canonical_umbrella_name": "Venuiti Group of Companies",
+      "validation_notes": [
+        "The legal-style name 'Venuiti Healthcare Inc.' is evidenced by page copyright language, which is useful but not equal to a registry filing.",
+        "Relationship to Venuiti Solutions is supported by strong overlap signals and group references, but direct ownership structure is still not independently verified."
+      ]
+    },
+    {
+      "entity_id": "company_venuiti_solutions",
+      "display_name": "Venuiti Solutions Inc.",
+      "aliases": [
+        "Venuiti",
+        "Venuiti Solutions",
+        "Venuiti Solutions Inc."
+      ],
+      "canonical_umbrella_name": "Venuiti Group of Companies",
+      "validation_notes": [
+        "Official website evidence confirms the name and contact address, but detailed corporate registry data was not independently verified in this run.",
+        "LinkedIn supplies founding year, Waterloo headquarters, and overlapping employee data; treat those fields as supporting evidence rather than primary legal proof."
+      ]
+    }
+  ],
+  "relationship_resolution": [
+    {
+      "relationship_id": "rel_group_to_devstaff",
+      "from_entity_id": "group_venuiti",
+      "to_entity_id": "company_devstaff_canada",
+      "relationship_type": "umbrella_member",
+      "confidence": 0.574,
+      "decision": "candidate_only",
+      "evidence_source_ids": [
+        "devstaff_contact",
+        "devstaff_linkedin",
+        "devstaff_meet_thomas",
+        "venuiti_health_staffing",
+        "venuiti_solutions_linkedin",
+        "venuiti_solutions_privacy"
+      ],
+      "signals": [
+        {
+          "signal": "official_domain_cross_reference",
+          "strength": 1.0,
+          "weight": 0.22,
+          "weighted_score": 0.22,
+          "source_ids": [
+            "venuiti_health_staffing"
+          ],
+          "notes": "Venuiti Healthcare explicitly names DevStaff Canada as a member of the Venuiti Group of Companies."
+        },
+        {
+          "signal": "explicit_group_language",
+          "strength": 1.0,
+          "weight": 0.2,
+          "weighted_score": 0.2,
+          "source_ids": [
+            "devstaff_meet_thomas"
+          ],
+          "notes": "DevStaff profile content uses Venuiti Group of Companies as umbrella language."
+        },
+        {
+          "signal": "shared_employee_overlap",
+          "strength": 0.7,
+          "weight": 0.1,
+          "weighted_score": 0.07,
+          "source_ids": [
+            "devstaff_linkedin",
+            "venuiti_solutions_linkedin"
+          ],
+          "notes": "Thomas Schroecker and Alexey Sidelnikov appear across related brands."
+        },
+        {
+          "signal": "shared_location",
+          "strength": 0.7,
+          "weight": 0.12,
+          "weighted_score": 0.084,
+          "source_ids": [
+            "devstaff_contact",
+            "venuiti_solutions_privacy"
+          ],
+          "notes": "Kitchener/Waterloo office corridor overlap is strong."
+        }
+      ],
+      "cautions": []
+    },
+    {
+      "relationship_id": "rel_group_to_venuiti_healthcare",
+      "from_entity_id": "group_venuiti",
+      "to_entity_id": "company_venuiti_healthcare",
+      "relationship_type": "umbrella_member",
+      "confidence": 0.545,
+      "decision": "candidate_only",
+      "evidence_source_ids": [
+        "venuiti_health_contact",
+        "venuiti_health_linkedin",
+        "venuiti_health_staffing",
+        "venuiti_solutions_linkedin"
+      ],
+      "signals": [
+        {
+          "signal": "direct_domain_match",
+          "strength": 1.0,
+          "weight": 0.28,
+          "weighted_score": 0.28,
+          "source_ids": [
+            "venuiti_health_contact",
+            "venuiti_health_staffing"
+          ],
+          "notes": "Official venuitihealth.com pages directly identify the brand."
+        },
+        {
+          "signal": "shared_employee_overlap",
+          "strength": 0.65,
+          "weight": 0.1,
+          "weighted_score": 0.065,
+          "source_ids": [
+            "venuiti_health_linkedin",
+            "venuiti_solutions_linkedin"
+          ],
+          "notes": "Thomas Schroecker is visible on both brand profiles."
+        },
+        {
+          "signal": "shared_location",
+          "strength": 1.0,
+          "weight": 0.12,
+          "weighted_score": 0.12,
+          "source_ids": [
+            "venuiti_health_linkedin",
+            "venuiti_solutions_linkedin"
+          ],
+          "notes": "Both brands cite 33 Dupont St E, Waterloo, Ontario."
+        },
+        {
+          "signal": "shared_founding_year",
+          "strength": 1.0,
+          "weight": 0.08,
+          "weighted_score": 0.08,
+          "source_ids": [
+            "venuiti_health_linkedin",
+            "venuiti_solutions_linkedin"
+          ],
+          "notes": "Both LinkedIn profiles cite 2001."
+        }
+      ],
+      "cautions": [
+        "No single official page in the source set directly states that Venuiti Healthcare is a legal subsidiary of a parent entity."
+      ]
+    },
+    {
+      "relationship_id": "rel_group_to_venuiti_solutions",
+      "from_entity_id": "group_venuiti",
+      "to_entity_id": "company_venuiti_solutions",
+      "relationship_type": "umbrella_member",
+      "confidence": 0.61,
+      "decision": "accepted_with_caution",
+      "evidence_source_ids": [
+        "devstaff_linkedin",
+        "devstaff_meet_thomas",
+        "venuiti_solutions_linkedin",
+        "venuiti_solutions_privacy"
+      ],
+      "signals": [
+        {
+          "signal": "direct_domain_match",
+          "strength": 1.0,
+          "weight": 0.28,
+          "weighted_score": 0.28,
+          "source_ids": [
+            "venuiti_solutions_privacy"
+          ],
+          "notes": "Official venuiti.com page names Venuiti Solutions."
+        },
+        {
+          "signal": "explicit_group_language",
+          "strength": 0.85,
+          "weight": 0.2,
+          "weighted_score": 0.17,
+          "source_ids": [
+            "devstaff_meet_thomas"
+          ],
+          "notes": "Thomas article describes the original 2001 company and the broader Venuiti Group together."
+        },
+        {
+          "signal": "shared_employee_overlap",
+          "strength": 0.8,
+          "weight": 0.1,
+          "weighted_score": 0.08,
+          "source_ids": [
+            "devstaff_linkedin",
+            "venuiti_solutions_linkedin"
+          ],
+          "notes": "Thomas Schroecker and Alexey Sidelnikov overlap with related brands."
+        },
+        {
+          "signal": "shared_founding_year",
+          "strength": 1.0,
+          "weight": 0.08,
+          "weighted_score": 0.08,
+          "source_ids": [
+            "devstaff_meet_thomas",
+            "venuiti_solutions_linkedin"
+          ],
+          "notes": "The 2001 origin story aligns with the core Venuiti business."
+        }
+      ],
+      "cautions": [
+        "This supports group membership and continuity, but does not independently establish a legal parent company filing."
+      ]
+    },
+    {
+      "relationship_id": "rel_venuiti_health_to_devstaff",
+      "from_entity_id": "company_venuiti_healthcare",
+      "to_entity_id": "company_devstaff_canada",
+      "relationship_type": "exclusive_staffing_partner",
+      "confidence": 0.504,
+      "decision": "candidate_only",
+      "evidence_source_ids": [
+        "devstaff_contact",
+        "venuiti_health_contact",
+        "venuiti_health_staffing"
+      ],
+      "signals": [
+        {
+          "signal": "official_domain_cross_reference",
+          "strength": 1.0,
+          "weight": 0.22,
+          "weighted_score": 0.22,
+          "source_ids": [
+            "venuiti_health_staffing"
+          ],
+          "notes": "Venuiti Healthcare says it works exclusively with DevStaff Canada."
+        },
+        {
+          "signal": "explicit_group_language",
+          "strength": 1.0,
+          "weight": 0.2,
+          "weighted_score": 0.2,
+          "source_ids": [
+            "venuiti_health_staffing"
+          ],
+          "notes": "The same page calls DevStaff a member of the Venuiti Group of Companies."
+        },
+        {
+          "signal": "shared_location",
+          "strength": 0.7,
+          "weight": 0.12,
+          "weighted_score": 0.084,
+          "source_ids": [
+            "devstaff_contact",
+            "venuiti_health_contact"
+          ],
+          "notes": "Both operate in the Kitchener-Waterloo region."
+        }
+      ],
+      "cautions": []
+    },
+    {
+      "relationship_id": "rel_venuiti_solutions_to_devstaff",
+      "from_entity_id": "company_venuiti_solutions",
+      "to_entity_id": "company_devstaff_canada",
+      "relationship_type": "group_peer_alignment",
+      "confidence": 0.24,
+      "decision": "rejected_weak_match",
+      "evidence_source_ids": [
+        "devstaff_contact",
+        "devstaff_linkedin",
+        "devstaff_meet_thomas",
+        "venuiti_solutions_linkedin",
+        "venuiti_solutions_privacy"
+      ],
+      "signals": [
+        {
+          "signal": "shared_employee_overlap",
+          "strength": 0.8,
+          "weight": 0.1,
+          "weighted_score": 0.08,
+          "source_ids": [
+            "devstaff_linkedin",
+            "venuiti_solutions_linkedin"
+          ],
+          "notes": "Thomas Schroecker and Alexey Sidelnikov appear on both profiles."
+        },
+        {
+          "signal": "shared_location",
+          "strength": 0.8,
+          "weight": 0.12,
+          "weighted_score": 0.096,
+          "source_ids": [
+            "devstaff_contact",
+            "venuiti_solutions_privacy"
+          ],
+          "notes": "Shared Kitchener-area address cluster."
+        },
+        {
+          "signal": "shared_founding_year",
+          "strength": 0.8,
+          "weight": 0.08,
+          "weighted_score": 0.064,
+          "source_ids": [
+            "devstaff_meet_thomas",
+            "venuiti_solutions_linkedin"
+          ],
+          "notes": "DevStaff is described as a later expansion from the earlier Venuiti operation."
+        }
+      ],
+      "cautions": [
+        "Treat as strong operating-group alignment, not direct proof of legal ownership."
+      ]
+    }
+  ],
+  "rejected_or_unverified_candidates": [
+    {
+      "candidate_name": "Venuiti Group of Companies as a legally registered holding company",
+      "decision": "not_verified",
+      "reason": "Current evidence validates the phrase as a public-facing umbrella descriptor, but no registry filing or equivalent primary legal source was captured.",
+      "confidence": 0.22
+    },
+    {
+      "candidate_name": "Direct reporting-line hierarchy between DevStaff Canada and Venuiti Healthcare",
+      "decision": "rejected",
+      "reason": "Official pages show collaboration and exclusive staffing partnership, but they do not prove that one brand legally reports into the other.",
+      "confidence": 0.16
+    }
+  ]
+}

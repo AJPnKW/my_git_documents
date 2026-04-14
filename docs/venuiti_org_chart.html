@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Venuiti Inferred Org Structure</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --panel: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #cbd5e1;
+      --warning: #fff7ed;
+      --warning-border: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 24%, #f3f4f6 100%);
+      color: var(--ink);
+    }
+    .page {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .main-panel, .side-panel {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(148,163,184,0.35);
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(15,23,42,0.08);
+      overflow: hidden;
+    }
+    .header {
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .header h1 { margin: 0 0 8px; font-size: 30px; }
+    .header p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .warning {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--warning-border);
+      background: var(--warning);
+      color: #9a3412;
+      font-weight: 600;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,0.15);
+      display: inline-block;
+    }
+    .canvas-wrap {
+      height: calc(100vh - 210px);
+      background:
+        radial-gradient(circle at 1px 1px, rgba(148,163,184,0.22) 1px, transparent 0) 0 0 / 22px 22px,
+        linear-gradient(180deg, #fff, #f8fafc);
+      position: relative;
+      overflow: hidden;
+    }
+    svg { width: 100%; height: 100%; display: block; cursor: grab; }
+    svg.dragging { cursor: grabbing; }
+    .node-label { font-size: 13px; fill: #0f172a; font-weight: 700; }
+    .node-sub { font-size: 11px; fill: #334155; }
+    .edge-label { font-size: 11px; fill: #475569; font-weight: 700; paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+    .side-panel {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .side-panel h2 { margin: 0; font-size: 18px; }
+    .detail {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #f8fafc;
+      min-height: 220px;
+    }
+    .detail h3 { margin: 0 0 8px; font-size: 18px; }
+    .detail p { margin: 0 0 10px; color: var(--muted); line-height: 1.45; }
+    .detail ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .help {
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    @media (max-width: 1180px) {
+      .page { grid-template-columns: 1fr; }
+      .canvas-wrap { height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="main-panel">
+      <div class="header">
+        <h1>Venuiti Inferred Org Structure</h1>
+        <p>Evidence-based operating hierarchy view of the Venuiti group, brands, and supported functions. This is an inferred structure view, not an authoritative legal org chart.</p>
+        <div class="warning">Inferred from public evidence; not an official org chart.</div>
+        <div class="legend"><span class="legend-item"><span class="swatch" style="background:#1d4ed8"></span>Company</span><span class="legend-item"><span class="swatch" style="background:#7c3aed"></span>Brand</span><span class="legend-item"><span class="swatch" style="background:#059669"></span>Function</span><span class="legend-item"><span class="swatch" style="background:#ea580c"></span>Department</span><span class="legend-item"><span class="swatch" style="background:#dc2626"></span>Team</span><span class="legend-item"><strong>Confidence:</strong> High &gt;= 0.80, Medium 0.60-0.79, Low &lt; 0.60</span></div>
+      </div>
+      <div class="canvas-wrap">
+        <svg viewBox="0 0 3220 1080" aria-label="Venuiti inferred org structure"><g id="viewport"><path d="M 1610.0 240 L 1610.0 280.0 L 1100.0 280.0 L 1100.0 320" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: group_venuiti -&gt; function_group_executive_leadership&quot;, &quot;body&quot;: &quot;Confidence 0.860. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Repeated group-level executive titles support an inferred executive leadership function without asserting a formal legal org chart.&quot;]}"></path><text x="1355.0" y="272.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 1610.0 240 L 1610.0 280.0 L 1440.0 280.0 L 1440.0 320" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: group_venuiti -&gt; function_group_operations&quot;, &quot;body&quot;: &quot;Confidence 0.820. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Multiple operations titles reference Venuiti Group of Companies directly and span more than one operating entity.&quot;]}"></path><text x="1525.0" y="272.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 1610.0 240 L 1610.0 280.0 L 1780.0 280.0 L 1780.0 320" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;belongs_to: group_venuiti -&gt; brand_venuiti&quot;, &quot;body&quot;: &quot;Confidence 0.840. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Official Venuiti materials use the Venuiti name as a public-facing brand under the broader umbrella identity.&quot;]}"></path><text x="1695.0" y="272.0" text-anchor="middle" class="edge-label">belongs_to</text><path d="M 1610.0 240 L 1610.0 280.0 L 2460.0 280.0 L 2460.0 320" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;belongs_to: group_venuiti -&gt; company_venuiti_solutions&quot;, &quot;body&quot;: &quot;Confidence 0.610. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;rel_group_to_venuiti_solutions: accepted_with_caution in the existing relationship model.&quot;]}"></path><text x="2035.0" y="272.0" text-anchor="middle" class="edge-label">belongs_to</text><path d="M 2460.0 420 L 2460.0 460.0 L 1270.0 460.0 L 1270.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_venuiti_solutions -&gt; function_venuiti_solutions_digital_delivery&quot;, &quot;body&quot;: &quot;Confidence 0.780. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Venuiti Solutions public service-line mix supports a blended digital and software delivery function.&quot;]}"></path><text x="1865.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 2460.0 420 L 2460.0 460.0 L 250.0 460.0 L 250.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_venuiti_solutions -&gt; function_venuiti_solutions_ai_engineering&quot;, &quot;body&quot;: &quot;Confidence 0.730. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Repeated AI-oriented employee titles support an inferred AI and applied engineering capability in Venuiti Solutions.&quot;]}"></path><text x="1355.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 1270.0 600 L 1270.0 640.0 L 1440.0 640.0 L 1440.0 680" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: function_venuiti_solutions_digital_delivery -&gt; team_venuiti_solutions_frontend_web&quot;, &quot;body&quot;: &quot;Confidence 0.690. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Repeated React and software developer titles support a distinct frontend and web delivery cluster.&quot;]}"></path><text x="1355.0" y="632.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 1610.0 240 L 1610.0 280.0 L 760.0 280.0 L 760.0 320" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;belongs_to: group_venuiti -&gt; company_devstaff_canada&quot;, &quot;body&quot;: &quot;Confidence 0.574. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;rel_group_to_devstaff: candidate_only because the umbrella label is public-facing rather than legally verified.&quot;]}"></path><text x="1185.0" y="272.0" text-anchor="middle" class="edge-label">belongs_to</text><path d="M 760.0 420 L 760.0 460.0 L 930.0 460.0 L 930.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_devstaff_canada -&gt; brand_devstaff&quot;, &quot;body&quot;: &quot;Confidence 0.820. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;DevStaff branding appears as the public short-form brand for DevStaff Canada on official pages and LinkedIn.&quot;]}"></path><text x="845.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 760.0 420 L 760.0 460.0 L 2630.0 460.0 L 2630.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_devstaff_canada -&gt; function_devstaff_staffing&quot;, &quot;body&quot;: &quot;Confidence 0.900. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;DevStaff service-line evidence strongly supports a dedicated staffing and recruitment function.&quot;]}"></path><text x="1695.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 2630.0 600 L 2630.0 640.0 L 1780.0 640.0 L 1780.0 680" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: function_devstaff_staffing -&gt; team_devstaff_talent_acquisition&quot;, &quot;body&quot;: &quot;Confidence 0.670. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Repeated talent acquisition and recruiting titles support a recruiting sub-team within the broader staffing function.&quot;]}"></path><text x="2205.0" y="632.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 1610.0 240 L 1610.0 280.0 L 2120.0 280.0 L 2120.0 320" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;belongs_to: group_venuiti -&gt; company_venuiti_healthcare&quot;, &quot;body&quot;: &quot;Confidence 0.545. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;rel_group_to_venuiti_healthcare: candidate_only because the umbrella label is public-facing rather than legally verified.&quot;]}"></path><text x="1865.0" y="272.0" text-anchor="middle" class="edge-label">belongs_to</text><path d="M 2120.0 420 L 2120.0 460.0 L 2970.0 460.0 L 2970.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_venuiti_healthcare -&gt; brand_venuiti_health&quot;, &quot;body&quot;: &quot;Confidence 0.810. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Venuiti Health appears as a short-form public-facing brand for Venuiti Healthcare.&quot;]}"></path><text x="2545.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 2120.0 420 L 2120.0 460.0 L 1610.0 460.0 L 1610.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_venuiti_healthcare -&gt; department_vh_engineering_integration&quot;, &quot;body&quot;: &quot;Confidence 0.840. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Venuiti Healthcare service lines explicitly support engineering and integration-oriented work.&quot;]}"></path><text x="1865.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 2120.0 420 L 2120.0 460.0 L 590.0 460.0 L 590.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_venuiti_healthcare -&gt; department_vh_compliance_conformance&quot;, &quot;body&quot;: &quot;Confidence 0.820. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Venuiti Healthcare service lines explicitly support compliance and conformance work.&quot;]}"></path><text x="1355.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 2120.0 420 L 2120.0 460.0 L 1950.0 460.0 L 1950.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_venuiti_healthcare -&gt; function_vh_consulting_strategy&quot;, &quot;body&quot;: &quot;Confidence 0.760. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Venuiti Healthcare service lines and services page support a distinct consulting and strategy capability.&quot;]}"></path><text x="2035.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 2120.0 420 L 2120.0 460.0 L 2290.0 460.0 L 2290.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;operates_within: company_venuiti_healthcare -&gt; team_vh_project_delivery&quot;, &quot;body&quot;: &quot;Confidence 0.640. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Project-management titles support a lightweight project delivery team inference on the healthcare side.&quot;]}"></path><text x="2205.0" y="452.0" text-anchor="middle" class="edge-label">operates_within</text><path d="M 1440.0 420 L 1440.0 550.0 L 1780.0 550.0 L 1780.0 680" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;supports: function_group_operations -&gt; team_devstaff_talent_acquisition&quot;, &quot;body&quot;: &quot;Confidence 0.660. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Jordan Schroecker&#x27;s group-level operations title plus DevStaff talent-acquisition profiles imply operational support for recruiting work across entities.&quot;]}"></path><text x="1610.0" y="542.0" text-anchor="middle" class="edge-label">supports</text><path d="M 1440.0 420 L 1440.0 460.0 L 2290.0 460.0 L 2290.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;supports: function_group_operations -&gt; team_vh_project_delivery&quot;, &quot;body&quot;: &quot;Confidence 0.620. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Group operations and project-management titles imply a shared operating support layer for healthcare delivery, but not a formal reporting line.&quot;]}"></path><text x="1865.0" y="452.0" text-anchor="middle" class="edge-label">supports</text><path d="M 2630.0 600 L 2630.0 550.0 L 1610.0 550.0 L 1610.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;cross_function: function_devstaff_staffing -&gt; department_vh_engineering_integration&quot;, &quot;body&quot;: &quot;Confidence 0.504. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;rel_venuiti_health_to_devstaff: official page says Venuiti Healthcare works exclusively with DevStaff Canada.&quot;]}"></path><text x="2120.0" y="542.0" text-anchor="middle" class="edge-label">cross_function</text><path d="M 2630.0 600 L 2630.0 550.0 L 1950.0 550.0 L 1950.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;supports: function_devstaff_staffing -&gt; function_vh_consulting_strategy&quot;, &quot;body&quot;: &quot;Confidence 0.480. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Official Venuiti Healthcare staffing language implies DevStaff recruiting support also feeds consulting and advisory delivery needs, but this remains an inferred operational link.&quot;]}"></path><text x="2290.0" y="542.0" text-anchor="middle" class="edge-label">supports</text><path d="M 250.0 600 L 250.0 550.0 L 1610.0 550.0 L 1610.0 500" fill="none" stroke="#94a3b8" stroke-width="2.4" data-detail="{&quot;title&quot;: &quot;cross_function: function_venuiti_solutions_ai_engineering -&gt; department_vh_engineering_integration&quot;, &quot;body&quot;: &quot;Confidence 0.450. Inferred operating link, not a legal reporting statement.&quot;, &quot;evidence&quot;: [&quot;Cross-entity engineering overlap is suggested by shared technical leadership and healthcare engineering profiles, but the sub-team relationship remains low-confidence.&quot;]}"></path><text x="930.0" y="542.0" text-anchor="middle" class="edge-label">cross_function</text><g transform="translate(1480.0 140)" data-detail="{&quot;title&quot;: &quot;Venuiti Group of Companies&quot;, &quot;body&quot;: &quot;Brand node with confidence 0.870. Public-facing umbrella identity used across related Venuiti operating brands.&quot;, &quot;evidence&quot;: [&quot;devstaff_meet_thomas: official DevStaff page calls Thomas Schroecker CEO at Venuiti Group of Companies.&quot;, &quot;venuiti_health_staffing: official Venuiti Healthcare page calls DevStaff Canada a member of the Venuiti Group of Companies.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#7c3aed" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#7c3aed"></rect><text x="16" y="34" class="node-label">Venuiti Group of Companies</text><text x="16" y="56" class="node-sub">Type: brand</text><text x="16" y="74" class="node-sub">Confidence: 0.870</text></g><g transform="translate(630.0 320)" data-detail="{&quot;title&quot;: &quot;DevStaff Canada&quot;, &quot;body&quot;: &quot;Company node with confidence 0.574. Staffing and recruiting brand aligned with the Venuiti group, especially for technical and healthcare roles.&quot;, &quot;evidence&quot;: [&quot;devstaff_meet_thomas: official page uses Venuiti Group of Companies language.&quot;, &quot;venuiti_health_staffing: official Venuiti Healthcare page calls DevStaff Canada a member of the group.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#1d4ed8" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#1d4ed8"></rect><text x="16" y="34" class="node-label">DevStaff Canada</text><text x="16" y="56" class="node-sub">Type: company</text><text x="16" y="74" class="node-sub">Confidence: 0.574</text></g><g transform="translate(970.0 320)" data-detail="{&quot;title&quot;: &quot;Group Executive Leadership&quot;, &quot;body&quot;: &quot;Function node with confidence 0.860. Executive leadership layer inferred from repeated group-level CEO, CTO, and executive titles.&quot;, &quot;evidence&quot;: [&quot;devstaff_meet_thomas: Thomas Schroecker is named CEO at Venuiti Group of Companies.&quot;, &quot;linkedin_people_snapshot_20260409: Alexey Sidelnikov is described as CTO at Venuiti Group of Companies and Shannon Teeter as Executive @ Venuiti Group of Companies.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Group Executive Leadership</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.860</text></g><g transform="translate(1310.0 320)" data-detail="{&quot;title&quot;: &quot;Group Operations&quot;, &quot;body&quot;: &quot;Function node with confidence 0.820. Shared operations layer inferred from group-level operations titles spanning multiple brands.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Jordan Schroecker is described as Director of Operations @ Venuiti Group of Companies, DevStaff Canada &amp; Venuiti Healthcare.&quot;, &quot;linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Group Operations</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.820</text></g><g transform="translate(1650.0 320)" data-detail="{&quot;title&quot;: &quot;Venuiti&quot;, &quot;body&quot;: &quot;Brand node with confidence 0.840. Primary public-facing Venuiti brand used alongside Venuiti Solutions in official materials.&quot;, &quot;evidence&quot;: [&quot;venuiti_solutions_privacy: official venuiti.com page uses Venuiti branding on the site for Venuiti Solutions Inc.&quot;, &quot;venuiti_why_canada: DevStaff page references Venuiti as the long-running technology business behind the broader operating story.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#7c3aed" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#7c3aed"></rect><text x="16" y="34" class="node-label">Venuiti</text><text x="16" y="56" class="node-sub">Type: brand</text><text x="16" y="74" class="node-sub">Confidence: 0.840</text></g><g transform="translate(1990.0 320)" data-detail="{&quot;title&quot;: &quot;Venuiti Healthcare&quot;, &quot;body&quot;: &quot;Company node with confidence 0.545. Healthcare-focused software and interoperability brand within the public Venuiti umbrella.&quot;, &quot;evidence&quot;: [&quot;venuiti_health_contact: official domain directly identifies the brand.&quot;, &quot;venuiti_health_linkedin and venuiti_solutions_linkedin: shared Waterloo location and founding year support close operating alignment.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#1d4ed8" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#1d4ed8"></rect><text x="16" y="34" class="node-label">Venuiti Healthcare</text><text x="16" y="56" class="node-sub">Type: company</text><text x="16" y="74" class="node-sub">Confidence: 0.545</text></g><g transform="translate(2330.0 320)" data-detail="{&quot;title&quot;: &quot;Venuiti Solutions Inc.&quot;, &quot;body&quot;: &quot;Company node with confidence 0.610. Core software and digital delivery company associated with the broader Venuiti group.&quot;, &quot;evidence&quot;: [&quot;venuiti_solutions_privacy: official venuiti.com page names Venuiti Solutions Inc.&quot;, &quot;devstaff_meet_thomas: official article ties the original custom software business to the broader Venuiti story.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#1d4ed8" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#1d4ed8"></rect><text x="16" y="34" class="node-label">Venuiti Solutions Inc.</text><text x="16" y="56" class="node-sub">Type: company</text><text x="16" y="74" class="node-sub">Confidence: 0.610</text></g><g transform="translate(120 500)" data-detail="{&quot;title&quot;: &quot;AI and Applied Engineering&quot;, &quot;body&quot;: &quot;Function node with confidence 0.730. AI-oriented engineering capability inferred from repeated public employee titles referencing AI developers and AI full-stack developers.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Anhad Lamba is listed as AI Full Stack Developer @ Venuiti.&quot;, &quot;linkedin_people_snapshot_20260409: Shiv Patel is listed as AI Developer at Venuiti and Jordan Hagedorn as Full Stack AI Developer at Venuiti Solutions.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">AI and Applied Engineering</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.730</text></g><g transform="translate(460 500)" data-detail="{&quot;title&quot;: &quot;Compliance and Conformance&quot;, &quot;body&quot;: &quot;Department node with confidence 0.820. Inferred function focused on conformance tooling, standards work, and healthcare compliance support.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing service lines include conformance tooling.&quot;, &quot;venuiti_health_services: official services page emphasizes compliance and interoperability support.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#ea580c" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#ea580c"></rect><text x="16" y="34" class="node-label">Compliance and Conformance</text><text x="16" y="56" class="node-sub">Type: department</text><text x="16" y="74" class="node-sub">Confidence: 0.820</text></g><g transform="translate(800 500)" data-detail="{&quot;title&quot;: &quot;DevStaff&quot;, &quot;body&quot;: &quot;Brand node with confidence 0.820. Short-form staffing brand used publicly alongside the full DevStaff Canada company name.&quot;, &quot;evidence&quot;: [&quot;devstaff_contact: official site branding uses DevStaff while contact details map to DevStaff Canada.&quot;, &quot;devstaff_linkedin: public company profile uses DevStaff Canada and DevStaff interchangeably in branding context.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#7c3aed" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#7c3aed"></rect><text x="16" y="34" class="node-label">DevStaff</text><text x="16" y="56" class="node-sub">Type: brand</text><text x="16" y="74" class="node-sub">Confidence: 0.820</text></g><g transform="translate(1140 500)" data-detail="{&quot;title&quot;: &quot;Digital and Software Delivery&quot;, &quot;body&quot;: &quot;Function node with confidence 0.780. Combined custom software, UX/UI, production, and media delivery capability inferred from public service-line language.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing service lines list custom software development, UX/UI, production, and media planning and engagement.&quot;, &quot;venuiti_why_canada: DevStaff page positions Venuiti as a long-running technology business with U.S.-facing operations.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Digital and Software Delivery</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.780</text></g><g transform="translate(1480 500)" data-detail="{&quot;title&quot;: &quot;Engineering and Integration&quot;, &quot;body&quot;: &quot;Department node with confidence 0.840. Inferred healthcare delivery unit covering software engineering, interface work, and implementation.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing service lines list healthcare software development, interoperability, and testing.&quot;, &quot;venuiti_health_services: official services page groups software development, interoperability work, and consulting together.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#ea580c" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#ea580c"></rect><text x="16" y="34" class="node-label">Engineering and Integration</text><text x="16" y="56" class="node-sub">Type: department</text><text x="16" y="74" class="node-sub">Confidence: 0.840</text></g><g transform="translate(1820 500)" data-detail="{&quot;title&quot;: &quot;Healthcare Consulting and Strategy&quot;, &quot;body&quot;: &quot;Function node with confidence 0.760. Inferred healthcare consulting and strategic advisory capability paired with implementation and standards work.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing service lines include strategic consulting.&quot;, &quot;venuiti_health_services: official services page groups consulting with healthcare software, interoperability, and compliance-oriented delivery.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Healthcare Consulting and Strategy</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.760</text></g><g transform="translate(2160 500)" data-detail="{&quot;title&quot;: &quot;Project Delivery&quot;, &quot;body&quot;: &quot;Team node with confidence 0.640. Project coordination and delivery team inferred from project management profiles associated with Venuiti Healthcare and the broader group.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Pleiades Chambers is listed as Junior Project Manager at Venuiti.&quot;, &quot;linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies | Project Manager.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#dc2626" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#dc2626"></rect><text x="16" y="34" class="node-label">Project Delivery</text><text x="16" y="56" class="node-sub">Type: team</text><text x="16" y="74" class="node-sub">Confidence: 0.640</text></g><g transform="translate(2500 500)" data-detail="{&quot;title&quot;: &quot;Staffing and Recruitment&quot;, &quot;body&quot;: &quot;Function node with confidence 0.900. Technical, healthcare, temporary, and permanent recruiting function run under DevStaff Canada.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing service lines list technical staffing, healthcare staffing, temporary staffing, permanent staffing, and full cycle recruitment.&quot;, &quot;venuiti_health_staffing: Venuiti Healthcare says it works exclusively with DevStaff Canada for staffing.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Staffing and Recruitment</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.900</text></g><g transform="translate(2840 500)" data-detail="{&quot;title&quot;: &quot;Venuiti Health&quot;, &quot;body&quot;: &quot;Brand node with confidence 0.810. Short-form public-facing healthcare brand used interchangeably with Venuiti Healthcare.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing classification lists Venuiti Health as a public-facing brand.&quot;, &quot;venuiti_health_contact and venuiti_health_services: official domain uses Venuiti Healthcare while the broader shorthand Venuiti Health appears in classification and public references.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#7c3aed" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#7c3aed"></rect><text x="16" y="34" class="node-label">Venuiti Health</text><text x="16" y="56" class="node-sub">Type: brand</text><text x="16" y="74" class="node-sub">Confidence: 0.810</text></g><g transform="translate(1310.0 680)" data-detail="{&quot;title&quot;: &quot;Frontend and Web Delivery&quot;, &quot;body&quot;: &quot;Team node with confidence 0.690. Web and frontend implementation cluster inferred from repeated React and software developer profiles tied to Venuiti Solutions.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Madison Weber is listed as React Developer at Venuiti Solutions Inc.&quot;, &quot;linkedin_people_snapshot_20260409: Gabriela Pereira is listed as Software Developer @ Venuiti Solutions.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#dc2626" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#dc2626"></rect><text x="16" y="34" class="node-label">Frontend and Web Delivery</text><text x="16" y="56" class="node-sub">Type: team</text><text x="16" y="74" class="node-sub">Confidence: 0.690</text></g><g transform="translate(1650.0 680)" data-detail="{&quot;title&quot;: &quot;Talent Acquisition&quot;, &quot;body&quot;: &quot;Team node with confidence 0.670. Dedicated recruiting team inferred from repeated talent acquisition and recruitment coordinator profiles associated with DevStaff and Venuiti Solutions.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Sneha Gontu is listed as Talent Acquisition Specialist.&quot;, &quot;linkedin_people_snapshot_20260409: Shannon Schroecker is listed as Recruitment Coordinator at Venuiti Solutions Inc., indicating an active recruiting function in the same operating environment.&quot;]}"><rect width="260" height="100" rx="18" fill="#ffffff" stroke="#dc2626" stroke-width="3"></rect><rect width="260" height="12" rx="18" fill="#dc2626"></rect><text x="16" y="34" class="node-label">Talent Acquisition</text><text x="16" y="56" class="node-sub">Type: team</text><text x="16" y="74" class="node-sub">Confidence: 0.670</text></g></g></svg>
+      </div>
+    </section>
+    <aside class="side-panel">
+      <h2>Details</h2>
+      <div class="detail" id="detail-panel">
+        <h3>Hover a node or edge</h3>
+        <p>Use the canvas to inspect inferred structure, confidence, and supporting evidence.</p>
+      </div>
+      <div class="help">
+        Drag to pan. Use the mouse wheel to zoom. Hover or click an item for details.
+      </div>
+    </aside>
+  </div>
+  <script>
+    const graphData = {
+  "width": 3220,
+  "height": 1080,
+  "nodes": [
+    {
+      "id": "group_venuiti",
+      "name": "Venuiti Group of Companies",
+      "type": "brand",
+      "parent_id": null,
+      "description": "Public-facing umbrella identity used across related Venuiti operating brands.",
+      "confidence": 0.87,
+      "evidence": [
+        "devstaff_meet_thomas: official DevStaff page calls Thomas Schroecker CEO at Venuiti Group of Companies.",
+        "venuiti_health_staffing: official Venuiti Healthcare page calls DevStaff Canada a member of the Venuiti Group of Companies."
+      ],
+      "x": 1480.0,
+      "y": 140,
+      "width": 260,
+      "height": 100,
+      "color": "#7c3aed"
+    },
+    {
+      "id": "company_devstaff_canada",
+      "name": "DevStaff Canada",
+      "type": "company",
+      "parent_id": "group_venuiti",
+      "description": "Staffing and recruiting brand aligned with the Venuiti group, especially for technical and healthcare roles.",
+      "confidence": 0.574,
+      "evidence": [
+        "devstaff_meet_thomas: official page uses Venuiti Group of Companies language.",
+        "venuiti_health_staffing: official Venuiti Healthcare page calls DevStaff Canada a member of the group."
+      ],
+      "x": 630.0,
+      "y": 320,
+      "width": 260,
+      "height": 100,
+      "color": "#1d4ed8"
+    },
+    {
+      "id": "function_group_executive_leadership",
+      "name": "Group Executive Leadership",
+      "type": "function",
+      "parent_id": "group_venuiti",
+      "description": "Executive leadership layer inferred from repeated group-level CEO, CTO, and executive titles.",
+      "confidence": 0.86,
+      "evidence": [
+        "devstaff_meet_thomas: Thomas Schroecker is named CEO at Venuiti Group of Companies.",
+        "linkedin_people_snapshot_20260409: Alexey Sidelnikov is described as CTO at Venuiti Group of Companies and Shannon Teeter as Executive @ Venuiti Group of Companies."
+      ],
+      "x": 970.0,
+      "y": 320,
+      "width": 260,
+      "height": 100,
+      "color": "#059669"
+    },
+    {
+      "id": "function_group_operations",
+      "name": "Group Operations",
+      "type": "function",
+      "parent_id": "group_venuiti",
+      "description": "Shared operations layer inferred from group-level operations titles spanning multiple brands.",
+      "confidence": 0.82,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Jordan Schroecker is described as Director of Operations @ Venuiti Group of Companies, DevStaff Canada & Venuiti Healthcare.",
+        "linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies."
+      ],
+      "x": 1310.0,
+      "y": 320,
+      "width": 260,
+      "height": 100,
+      "color": "#059669"
+    },
+    {
+      "id": "brand_venuiti",
+      "name": "Venuiti",
+      "type": "brand",
+      "parent_id": "group_venuiti",
+      "description": "Primary public-facing Venuiti brand used alongside Venuiti Solutions in official materials.",
+      "confidence": 0.84,
+      "evidence": [
+        "venuiti_solutions_privacy: official venuiti.com page uses Venuiti branding on the site for Venuiti Solutions Inc.",
+        "venuiti_why_canada: DevStaff page references Venuiti as the long-running technology business behind the broader operating story."
+      ],
+      "x": 1650.0,
+      "y": 320,
+      "width": 260,
+      "height": 100,
+      "color": "#7c3aed"
+    },
+    {
+      "id": "company_venuiti_healthcare",
+      "name": "Venuiti Healthcare",
+      "type": "company",
+      "parent_id": "group_venuiti",
+      "description": "Healthcare-focused software and interoperability brand within the public Venuiti umbrella.",
+      "confidence": 0.545,
+      "evidence": [
+        "venuiti_health_contact: official domain directly identifies the brand.",
+        "venuiti_health_linkedin and venuiti_solutions_linkedin: shared Waterloo location and founding year support close operating alignment."
+      ],
+      "x": 1990.0,
+      "y": 320,
+      "width": 260,
+      "height": 100,
+      "color": "#1d4ed8"
+    },
+    {
+      "id": "company_venuiti_solutions",
+      "name": "Venuiti Solutions Inc.",
+      "type": "company",
+      "parent_id": "group_venuiti",
+      "description": "Core software and digital delivery company associated with the broader Venuiti group.",
+      "confidence": 0.61,
+      "evidence": [
+        "venuiti_solutions_privacy: official venuiti.com page names Venuiti Solutions Inc.",
+        "devstaff_meet_thomas: official article ties the original custom software business to the broader Venuiti story."
+      ],
+      "x": 2330.0,
+      "y": 320,
+      "width": 260,
+      "height": 100,
+      "color": "#1d4ed8"
+    },
+    {
+      "id": "function_venuiti_solutions_ai_engineering",
+      "name": "AI and Applied Engineering",
+      "type": "function",
+      "parent_id": "company_venuiti_solutions",
+      "description": "AI-oriented engineering capability inferred from repeated public employee titles referencing AI developers and AI full-stack developers.",
+      "confidence": 0.73,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Anhad Lamba is listed as AI Full Stack Developer @ Venuiti.",
+        "linkedin_people_snapshot_20260409: Shiv Patel is listed as AI Developer at Venuiti and Jordan Hagedorn as Full Stack AI Developer at Venuiti Solutions."
+      ],
+      "x": 120,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#059669"
+    },
+    {
+      "id": "department_vh_compliance_conformance",
+      "name": "Compliance and Conformance",
+      "type": "department",
+      "parent_id": "company_venuiti_healthcare",
+      "description": "Inferred function focused on conformance tooling, standards work, and healthcare compliance support.",
+      "confidence": 0.82,
+      "evidence": [
+        "company_people_research existing service lines include conformance tooling.",
+        "venuiti_health_services: official services page emphasizes compliance and interoperability support."
+      ],
+      "x": 460,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#ea580c"
+    },
+    {
+      "id": "brand_devstaff",
+      "name": "DevStaff",
+      "type": "brand",
+      "parent_id": "company_devstaff_canada",
+      "description": "Short-form staffing brand used publicly alongside the full DevStaff Canada company name.",
+      "confidence": 0.82,
+      "evidence": [
+        "devstaff_contact: official site branding uses DevStaff while contact details map to DevStaff Canada.",
+        "devstaff_linkedin: public company profile uses DevStaff Canada and DevStaff interchangeably in branding context."
+      ],
+      "x": 800,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#7c3aed"
+    },
+    {
+      "id": "function_venuiti_solutions_digital_delivery",
+      "name": "Digital and Software Delivery",
+      "type": "function",
+      "parent_id": "company_venuiti_solutions",
+      "description": "Combined custom software, UX/UI, production, and media delivery capability inferred from public service-line language.",
+      "confidence": 0.78,
+      "evidence": [
+        "company_people_research existing service lines list custom software development, UX/UI, production, and media planning and engagement.",
+        "venuiti_why_canada: DevStaff page positions Venuiti as a long-running technology business with U.S.-facing operations."
+      ],
+      "x": 1140,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#059669"
+    },
+    {
+      "id": "department_vh_engineering_integration",
+      "name": "Engineering and Integration",
+      "type": "department",
+      "parent_id": "company_venuiti_healthcare",
+      "description": "Inferred healthcare delivery unit covering software engineering, interface work, and implementation.",
+      "confidence": 0.84,
+      "evidence": [
+        "company_people_research existing service lines list healthcare software development, interoperability, and testing.",
+        "venuiti_health_services: official services page groups software development, interoperability work, and consulting together."
+      ],
+      "x": 1480,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#ea580c"
+    },
+    {
+      "id": "function_vh_consulting_strategy",
+      "name": "Healthcare Consulting and Strategy",
+      "type": "function",
+      "parent_id": "company_venuiti_healthcare",
+      "description": "Inferred healthcare consulting and strategic advisory capability paired with implementation and standards work.",
+      "confidence": 0.76,
+      "evidence": [
+        "company_people_research existing service lines include strategic consulting.",
+        "venuiti_health_services: official services page groups consulting with healthcare software, interoperability, and compliance-oriented delivery."
+      ],
+      "x": 1820,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#059669"
+    },
+    {
+      "id": "team_vh_project_delivery",
+      "name": "Project Delivery",
+      "type": "team",
+      "parent_id": "company_venuiti_healthcare",
+      "description": "Project coordination and delivery team inferred from project management profiles associated with Venuiti Healthcare and the broader group.",
+      "confidence": 0.64,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Pleiades Chambers is listed as Junior Project Manager at Venuiti.",
+        "linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies | Project Manager."
+      ],
+      "x": 2160,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#dc2626"
+    },
+    {
+      "id": "function_devstaff_staffing",
+      "name": "Staffing and Recruitment",
+      "type": "function",
+      "parent_id": "company_devstaff_canada",
+      "description": "Technical, healthcare, temporary, and permanent recruiting function run under DevStaff Canada.",
+      "confidence": 0.9,
+      "evidence": [
+        "company_people_research existing service lines list technical staffing, healthcare staffing, temporary staffing, permanent staffing, and full cycle recruitment.",
+        "venuiti_health_staffing: Venuiti Healthcare says it works exclusively with DevStaff Canada for staffing."
+      ],
+      "x": 2500,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#059669"
+    },
+    {
+      "id": "brand_venuiti_health",
+      "name": "Venuiti Health",
+      "type": "brand",
+      "parent_id": "company_venuiti_healthcare",
+      "description": "Short-form public-facing healthcare brand used interchangeably with Venuiti Healthcare.",
+      "confidence": 0.81,
+      "evidence": [
+        "company_people_research existing classification lists Venuiti Health as a public-facing brand.",
+        "venuiti_health_contact and venuiti_health_services: official domain uses Venuiti Healthcare while the broader shorthand Venuiti Health appears in classification and public references."
+      ],
+      "x": 2840,
+      "y": 500,
+      "width": 260,
+      "height": 100,
+      "color": "#7c3aed"
+    },
+    {
+      "id": "team_venuiti_solutions_frontend_web",
+      "name": "Frontend and Web Delivery",
+      "type": "team",
+      "parent_id": "function_venuiti_solutions_digital_delivery",
+      "description": "Web and frontend implementation cluster inferred from repeated React and software developer profiles tied to Venuiti Solutions.",
+      "confidence": 0.69,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Madison Weber is listed as React Developer at Venuiti Solutions Inc.",
+        "linkedin_people_snapshot_20260409: Gabriela Pereira is listed as Software Developer @ Venuiti Solutions."
+      ],
+      "x": 1310.0,
+      "y": 680,
+      "width": 260,
+      "height": 100,
+      "color": "#dc2626"
+    },
+    {
+      "id": "team_devstaff_talent_acquisition",
+      "name": "Talent Acquisition",
+      "type": "team",
+      "parent_id": "function_devstaff_staffing",
+      "description": "Dedicated recruiting team inferred from repeated talent acquisition and recruitment coordinator profiles associated with DevStaff and Venuiti Solutions.",
+      "confidence": 0.67,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Sneha Gontu is listed as Talent Acquisition Specialist.",
+        "linkedin_people_snapshot_20260409: Shannon Schroecker is listed as Recruitment Coordinator at Venuiti Solutions Inc., indicating an active recruiting function in the same operating environment."
+      ],
+      "x": 1650.0,
+      "y": 680,
+      "width": 260,
+      "height": 100,
+      "color": "#dc2626"
+    }
+  ],
+  "relationships": [
+    {
+      "from_id": "group_venuiti",
+      "to_id": "function_group_executive_leadership",
+      "relationship_type": "operates_within",
+      "confidence": 0.86,
+      "evidence": [
+        "Repeated group-level executive titles support an inferred executive leadership function without asserting a formal legal org chart."
+      ],
+      "path": "M 1610.0 240 L 1610.0 280.0 L 1100.0 280.0 L 1100.0 320",
+      "label_x": 1355.0,
+      "label_y": 272.0
+    },
+    {
+      "from_id": "group_venuiti",
+      "to_id": "function_group_operations",
+      "relationship_type": "operates_within",
+      "confidence": 0.82,
+      "evidence": [
+        "Multiple operations titles reference Venuiti Group of Companies directly and span more than one operating entity."
+      ],
+      "path": "M 1610.0 240 L 1610.0 280.0 L 1440.0 280.0 L 1440.0 320",
+      "label_x": 1525.0,
+      "label_y": 272.0
+    },
+    {
+      "from_id": "group_venuiti",
+      "to_id": "brand_venuiti",
+      "relationship_type": "belongs_to",
+      "confidence": 0.84,
+      "evidence": [
+        "Official Venuiti materials use the Venuiti name as a public-facing brand under the broader umbrella identity."
+      ],
+      "path": "M 1610.0 240 L 1610.0 280.0 L 1780.0 280.0 L 1780.0 320",
+      "label_x": 1695.0,
+      "label_y": 272.0
+    },
+    {
+      "from_id": "group_venuiti",
+      "to_id": "company_venuiti_solutions",
+      "relationship_type": "belongs_to",
+      "confidence": 0.61,
+      "evidence": [
+        "rel_group_to_venuiti_solutions: accepted_with_caution in the existing relationship model."
+      ],
+      "path": "M 1610.0 240 L 1610.0 280.0 L 2460.0 280.0 L 2460.0 320",
+      "label_x": 2035.0,
+      "label_y": 272.0
+    },
+    {
+      "from_id": "company_venuiti_solutions",
+      "to_id": "function_venuiti_solutions_digital_delivery",
+      "relationship_type": "operates_within",
+      "confidence": 0.78,
+      "evidence": [
+        "Venuiti Solutions public service-line mix supports a blended digital and software delivery function."
+      ],
+      "path": "M 2460.0 420 L 2460.0 460.0 L 1270.0 460.0 L 1270.0 500",
+      "label_x": 1865.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "company_venuiti_solutions",
+      "to_id": "function_venuiti_solutions_ai_engineering",
+      "relationship_type": "operates_within",
+      "confidence": 0.73,
+      "evidence": [
+        "Repeated AI-oriented employee titles support an inferred AI and applied engineering capability in Venuiti Solutions."
+      ],
+      "path": "M 2460.0 420 L 2460.0 460.0 L 250.0 460.0 L 250.0 500",
+      "label_x": 1355.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "function_venuiti_solutions_digital_delivery",
+      "to_id": "team_venuiti_solutions_frontend_web",
+      "relationship_type": "operates_within",
+      "confidence": 0.69,
+      "evidence": [
+        "Repeated React and software developer titles support a distinct frontend and web delivery cluster."
+      ],
+      "path": "M 1270.0 600 L 1270.0 640.0 L 1440.0 640.0 L 1440.0 680",
+      "label_x": 1355.0,
+      "label_y": 632.0
+    },
+    {
+      "from_id": "group_venuiti",
+      "to_id": "company_devstaff_canada",
+      "relationship_type": "belongs_to",
+      "confidence": 0.574,
+      "evidence": [
+        "rel_group_to_devstaff: candidate_only because the umbrella label is public-facing rather than legally verified."
+      ],
+      "path": "M 1610.0 240 L 1610.0 280.0 L 760.0 280.0 L 760.0 320",
+      "label_x": 1185.0,
+      "label_y": 272.0
+    },
+    {
+      "from_id": "company_devstaff_canada",
+      "to_id": "brand_devstaff",
+      "relationship_type": "operates_within",
+      "confidence": 0.82,
+      "evidence": [
+        "DevStaff branding appears as the public short-form brand for DevStaff Canada on official pages and LinkedIn."
+      ],
+      "path": "M 760.0 420 L 760.0 460.0 L 930.0 460.0 L 930.0 500",
+      "label_x": 845.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "company_devstaff_canada",
+      "to_id": "function_devstaff_staffing",
+      "relationship_type": "operates_within",
+      "confidence": 0.9,
+      "evidence": [
+        "DevStaff service-line evidence strongly supports a dedicated staffing and recruitment function."
+      ],
+      "path": "M 760.0 420 L 760.0 460.0 L 2630.0 460.0 L 2630.0 500",
+      "label_x": 1695.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "function_devstaff_staffing",
+      "to_id": "team_devstaff_talent_acquisition",
+      "relationship_type": "operates_within",
+      "confidence": 0.67,
+      "evidence": [
+        "Repeated talent acquisition and recruiting titles support a recruiting sub-team within the broader staffing function."
+      ],
+      "path": "M 2630.0 600 L 2630.0 640.0 L 1780.0 640.0 L 1780.0 680",
+      "label_x": 2205.0,
+      "label_y": 632.0
+    },
+    {
+      "from_id": "group_venuiti",
+      "to_id": "company_venuiti_healthcare",
+      "relationship_type": "belongs_to",
+      "confidence": 0.545,
+      "evidence": [
+        "rel_group_to_venuiti_healthcare: candidate_only because the umbrella label is public-facing rather than legally verified."
+      ],
+      "path": "M 1610.0 240 L 1610.0 280.0 L 2120.0 280.0 L 2120.0 320",
+      "label_x": 1865.0,
+      "label_y": 272.0
+    },
+    {
+      "from_id": "company_venuiti_healthcare",
+      "to_id": "brand_venuiti_health",
+      "relationship_type": "operates_within",
+      "confidence": 0.81,
+      "evidence": [
+        "Venuiti Health appears as a short-form public-facing brand for Venuiti Healthcare."
+      ],
+      "path": "M 2120.0 420 L 2120.0 460.0 L 2970.0 460.0 L 2970.0 500",
+      "label_x": 2545.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "company_venuiti_healthcare",
+      "to_id": "department_vh_engineering_integration",
+      "relationship_type": "operates_within",
+      "confidence": 0.84,
+      "evidence": [
+        "Venuiti Healthcare service lines explicitly support engineering and integration-oriented work."
+      ],
+      "path": "M 2120.0 420 L 2120.0 460.0 L 1610.0 460.0 L 1610.0 500",
+      "label_x": 1865.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "company_venuiti_healthcare",
+      "to_id": "department_vh_compliance_conformance",
+      "relationship_type": "operates_within",
+      "confidence": 0.82,
+      "evidence": [
+        "Venuiti Healthcare service lines explicitly support compliance and conformance work."
+      ],
+      "path": "M 2120.0 420 L 2120.0 460.0 L 590.0 460.0 L 590.0 500",
+      "label_x": 1355.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "company_venuiti_healthcare",
+      "to_id": "function_vh_consulting_strategy",
+      "relationship_type": "operates_within",
+      "confidence": 0.76,
+      "evidence": [
+        "Venuiti Healthcare service lines and services page support a distinct consulting and strategy capability."
+      ],
+      "path": "M 2120.0 420 L 2120.0 460.0 L 1950.0 460.0 L 1950.0 500",
+      "label_x": 2035.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "company_venuiti_healthcare",
+      "to_id": "team_vh_project_delivery",
+      "relationship_type": "operates_within",
+      "confidence": 0.64,
+      "evidence": [
+        "Project-management titles support a lightweight project delivery team inference on the healthcare side."
+      ],
+      "path": "M 2120.0 420 L 2120.0 460.0 L 2290.0 460.0 L 2290.0 500",
+      "label_x": 2205.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "function_group_operations",
+      "to_id": "team_devstaff_talent_acquisition",
+      "relationship_type": "supports",
+      "confidence": 0.66,
+      "evidence": [
+        "Jordan Schroecker's group-level operations title plus DevStaff talent-acquisition profiles imply operational support for recruiting work across entities."
+      ],
+      "path": "M 1440.0 420 L 1440.0 550.0 L 1780.0 550.0 L 1780.0 680",
+      "label_x": 1610.0,
+      "label_y": 542.0
+    },
+    {
+      "from_id": "function_group_operations",
+      "to_id": "team_vh_project_delivery",
+      "relationship_type": "supports",
+      "confidence": 0.62,
+      "evidence": [
+        "Group operations and project-management titles imply a shared operating support layer for healthcare delivery, but not a formal reporting line."
+      ],
+      "path": "M 1440.0 420 L 1440.0 460.0 L 2290.0 460.0 L 2290.0 500",
+      "label_x": 1865.0,
+      "label_y": 452.0
+    },
+    {
+      "from_id": "function_devstaff_staffing",
+      "to_id": "department_vh_engineering_integration",
+      "relationship_type": "cross_function",
+      "confidence": 0.504,
+      "evidence": [
+        "rel_venuiti_health_to_devstaff: official page says Venuiti Healthcare works exclusively with DevStaff Canada."
+      ],
+      "path": "M 2630.0 600 L 2630.0 550.0 L 1610.0 550.0 L 1610.0 500",
+      "label_x": 2120.0,
+      "label_y": 542.0
+    },
+    {
+      "from_id": "function_devstaff_staffing",
+      "to_id": "function_vh_consulting_strategy",
+      "relationship_type": "supports",
+      "confidence": 0.48,
+      "evidence": [
+        "Official Venuiti Healthcare staffing language implies DevStaff recruiting support also feeds consulting and advisory delivery needs, but this remains an inferred operational link."
+      ],
+      "path": "M 2630.0 600 L 2630.0 550.0 L 1950.0 550.0 L 1950.0 500",
+      "label_x": 2290.0,
+      "label_y": 542.0
+    },
+    {
+      "from_id": "function_venuiti_solutions_ai_engineering",
+      "to_id": "department_vh_engineering_integration",
+      "relationship_type": "cross_function",
+      "confidence": 0.45,
+      "evidence": [
+        "Cross-entity engineering overlap is suggested by shared technical leadership and healthcare engineering profiles, but the sub-team relationship remains low-confidence."
+      ],
+      "path": "M 250.0 600 L 250.0 550.0 L 1610.0 550.0 L 1610.0 500",
+      "label_x": 930.0,
+      "label_y": 542.0
+    }
+  ]
+};
+    const detailPanel = document.getElementById('detail-panel');
+    function renderDetail(title, body, evidence) {
+      const items = Array.isArray(evidence) ? evidence.map((item) => `<li>${item}</li>`).join('') : '';
+      detailPanel.innerHTML = `<h3>${title}</h3><p>${body}</p>${items ? `<ul>${items}</ul>` : ''}`;
+    }
+    const svg = document.querySelector('svg');
+    const viewport = document.getElementById('viewport');
+    let scale = 1;
+    let tx = 0;
+    let ty = 0;
+    let dragging = false;
+    let lastX = 0;
+    let lastY = 0;
+    function applyTransform() {
+      viewport.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
+    }
+    svg.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      const delta = event.deltaY < 0 ? 1.08 : 0.92;
+      scale = Math.min(2.4, Math.max(0.45, scale * delta));
+      applyTransform();
+    }, { passive: false });
+    svg.addEventListener('mousedown', (event) => {
+      dragging = true;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      svg.classList.add('dragging');
+    });
+    window.addEventListener('mouseup', () => {
+      dragging = false;
+      svg.classList.remove('dragging');
+    });
+    window.addEventListener('mousemove', (event) => {
+      if (!dragging) return;
+      tx += event.clientX - lastX;
+      ty += event.clientY - lastY;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      applyTransform();
+    });
+    document.querySelectorAll('[data-detail]').forEach((element) => {
+      const payload = JSON.parse(element.dataset.detail);
+      const handler = () => renderDetail(payload.title, payload.body, payload.evidence);
+      element.addEventListener('mouseenter', handler);
+      element.addEventListener('click', handler);
+    });
+    applyTransform();
+  </script>
+</body>
+</html>

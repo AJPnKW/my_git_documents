@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Capture Runbook</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; margin: 0; background: #f4f6f8; color: #18222c; }
+    main { max-width: 1040px; margin: 0 auto; padding: 32px 20px 48px; }
+    section { background: #ffffff; border: 1px solid #d7e0e8; border-radius: 14px; padding: 20px 22px; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(18, 33, 48, 0.05); }
+    h1, h2 { margin-top: 0; }
+    code { font-family: Consolas, monospace; background: #eef3f7; border-radius: 6px; padding: 2px 6px; }
+    ol, ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Live Capture Runbook</h1>
+      <p>This runbook covers the repo-side workflow for the live interview capture integration. It assumes the separate toolkit at <code>C:\Users\andrew\PROJECTS\interview_capture_transcription_x1</code> is installed and operating independently.</p>
+    </section>
+    <section>
+      <h2>Normal Session Flow</h2>
+      <ol>
+        <li>Start the local toolkit and its localhost bridge so it listens on <code>127.0.0.1:8765</code>.</li>
+        <li>Open the Venuiti interview mode page in <code>my_git_documents</code> and launch the dedicated live-capture workspace.</li>
+        <li>Confirm the panel no longer shows <code>local capture service offline</code>.</li>
+        <li>Review the prep context loaded from the workspace data sources.</li>
+        <li>Press <code>Start Capture</code> to create a new run.</li>
+        <li>Use <code>Stop Capture</code> when the session ends.</li>
+        <li>If the backend does not auto-transcribe on stop, press <code>Start Transcription</code> once the run reaches <code>recorded</code>.</li>
+        <li>Monitor status transitions through <code>transcribing</code>, <code>packaging</code>, and <code>complete</code>.</li>
+        <li>Open transcript, summary, log, or ZIP links once they become ready.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>What The Browser Must Not Do</h2>
+      <ul>
+        <li>Do not embed PowerShell commands in webpage code.</li>
+        <li>Do not attempt direct OBS control from browser JavaScript.</li>
+        <li>Do not access raw Windows paths with <code>file://</code> links as the primary result flow.</li>
+        <li>Do not copy the local toolkit into this repository.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Offline Recovery</h2>
+      <ul>
+        <li>If the panel shows <code>local capture service offline</code>, verify that the localhost bridge is running and reachable.</li>
+        <li>The UI retries automatically on the offline polling cadence, so a page refresh is not required once the bridge comes back.</li>
+        <li>If the bridge recovers mid-session, the panel reloads the current run from <code>GET /api/capture/status</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Expected Output Handling</h2>
+      <ul>
+        <li>The panel treats transcript text, transcript SRT, summary JSON, log file, recording file, and ZIP bundle as bridge-owned outputs.</li>
+        <li>Browser-safe URLs are preferred. Artifact-route fallback is used when the bridge exposes files that way.</li>
+        <li>Warnings are visible but non-blocking, so the user can still inspect partial results.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

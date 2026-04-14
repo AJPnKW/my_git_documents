@@ -1,0 +1,110 @@
+{
+  "siteKey": "resumes",
+  "siteTitle": "",
+  "siteSummary": "",
+  "hideSidebarHeader": true,
+  "showNotes": true,
+  "showToolbarStatus": false,
+  "showPanelHeader": false,
+  "defaultMode": "split",
+  "noteStorageKey": "mgd:notes:resumes",
+  "notePlaceholder": "Write the interview question, your answer notes, follow-up tasks, or any general notes here.",
+  "tree": [
+    {
+      "id": "venuiti",
+      "type": "folder",
+      "label": "Venuiti",
+      "open": true,
+      "children": [
+        {
+          "id": "venuiti-technology_project_manager",
+          "type": "folder",
+          "label": "Technology Project Manager",
+          "open": true,
+          "children": [
+            {
+              "id": "venuiti-technology_project_manager-posting",
+              "type": "file",
+              "label": "Job Posting",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/posting.html",
+              "selected": true
+            },
+            {
+              "id": "venuiti-technology_project_manager-resume",
+              "type": "file",
+              "label": "Resume",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/resume.html",
+              "selected": true
+            },
+            {
+              "id": "venuiti-technology_project_manager-posting_analysis",
+              "type": "file",
+              "label": "Posting Analysis",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/posting_analysis.html",
+              "selected": true
+            },
+            {
+              "id": "venuiti-technology_project_manager-interview_prep",
+              "type": "file",
+              "label": "Interview Prep",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/interview_prep.html",
+              "selected": true
+            },
+            {
+              "id": "venuiti-technology_project_manager-hr_prescreen",
+              "type": "file",
+              "label": "HR Prescreen",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/hr_prescreen.html",
+              "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-interview_questions",
+              "type": "file",
+              "label": "Interview Questions",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/interview_questions.html",
+              "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-response_bank",
+              "type": "file",
+              "label": "Response Bank",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/response_bank.html",
+              "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-interview_notes",
+              "type": "file",
+              "label": "Interview Notes",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/interview_notes.html",
+              "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-org_chart",
+              "type": "file",
+              "label": "Org Chart",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/org_chart.html",
+              "selected": false
+            },
+            {
+              "id": "venuiti-technology_project_manager-people_graph",
+              "type": "file",
+              "label": "People Graph",
+              "description": "",
+              "href": "../../../files/resumes/venuiti/technology_project_manager/people_graph.html",
+              "selected": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

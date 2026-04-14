@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Venuiti Inferred People Graph</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --panel: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #cbd5e1;
+      --warning: #fff7ed;
+      --warning-border: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 24%, #f3f4f6 100%);
+      color: var(--ink);
+    }
+    .page {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .main-panel, .side-panel {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(148,163,184,0.35);
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(15,23,42,0.08);
+      overflow: hidden;
+    }
+    .header {
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .header h1 { margin: 0 0 8px; font-size: 30px; }
+    .header p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .warning {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--warning-border);
+      background: var(--warning);
+      color: #9a3412;
+      font-weight: 600;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,0.15);
+      display: inline-block;
+    }
+    .canvas-wrap {
+      height: calc(100vh - 210px);
+      background:
+        radial-gradient(circle at 1px 1px, rgba(148,163,184,0.22) 1px, transparent 0) 0 0 / 22px 22px,
+        linear-gradient(180deg, #fff, #f8fafc);
+      position: relative;
+      overflow: hidden;
+    }
+    svg { width: 100%; height: 100%; display: block; cursor: grab; }
+    svg.dragging { cursor: grabbing; }
+    .node-label { font-size: 13px; fill: #0f172a; font-weight: 700; }
+    .node-sub { font-size: 11px; fill: #334155; }
+    .edge-label { font-size: 11px; fill: #475569; font-weight: 700; paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+    .side-panel {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .side-panel h2 { margin: 0; font-size: 18px; }
+    .detail {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #f8fafc;
+      min-height: 220px;
+    }
+    .detail h3 { margin: 0 0 8px; font-size: 18px; }
+    .detail p { margin: 0 0 10px; color: var(--muted); line-height: 1.45; }
+    .detail ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .help {
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    @media (max-width: 1180px) {
+      .page { grid-template-columns: 1fr; }
+      .canvas-wrap { height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="main-panel">
+      <div class="header">
+        <h1>Venuiti Inferred People Graph</h1>
+        <p>Static network view of evidence-backed person-to-entity and person-to-person relationships across the Venuiti research set. Relationship labels are intentionally conservative and do not imply reporting lines.</p>
+        <div class="warning">Inferred from public evidence; not an official org chart.</div>
+        <div class="legend"><span class="legend-item"><span class="swatch" style="background:#0f766e"></span>Person</span><span class="legend-item"><span class="swatch" style="background:#1d4ed8"></span>Company</span><span class="legend-item"><span class="swatch" style="background:#7c3aed"></span>Brand</span><span class="legend-item"><span class="swatch" style="background:#059669"></span>Function</span><span class="legend-item"><span class="swatch" style="background:#ea580c"></span>Department</span><span class="legend-item"><span class="swatch" style="background:#dc2626"></span>Team</span><span class="legend-item"><strong>Confidence:</strong> High &gt;= 0.80, Medium 0.60-0.79, Low &lt; 0.60</span></div>
+      </div>
+      <div class="canvas-wrap">
+        <svg viewBox="0 0 2260 2162" aria-label="Venuiti inferred people graph"><g id="viewport"><text x="120" y="110" class="node-label">People</text><text x="940" y="110" class="node-label">Companies and Brands</text><text x="1680" y="110" class="node-label">Functions, Departments, and Teams</text><path d="M 340 1978.0 C 550.0 1978.0, 760.0 632.0, 940 632.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_thomas_schroecker linked to group_venuiti with confidence 0.940. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;devstaff_meet_thomas: official page calls Thomas Schroecker CEO at Venuiti Group of Companies.&quot;]}"></path><text x="640.0" y="1295.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1978.0 C 809.0 1978.0, 1278.0 722.0, 1680 722.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_thomas_schroecker linked to function_group_executive_leadership with confidence 0.900. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Group-level CEO title is strong evidence for executive-leadership association.&quot;]}"></path><text x="1010.0" y="1340.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1978.0 C 550.0 1978.0, 760.0 356.0, 940 356.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_thomas_schroecker linked to company_devstaff_canada with confidence 0.910. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;devstaff_meet_thomas: official page says he is CEO here at DevStaff Canada.&quot;, &quot;devstaff_linkedin: company profile shows Thomas Schroecker among employees.&quot;]}"></path><text x="640.0" y="1157.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1978.0 C 550.0 1978.0, 760.0 1046.0, 940 1046.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;cross_entity&quot;, &quot;body&quot;: &quot;person_thomas_schroecker linked to company_venuiti_solutions with confidence 0.750. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;venuiti_solutions_linkedin: Thomas Schroecker appears on the Venuiti Solutions profile.&quot;]}"></path><text x="640.0" y="1502.0" text-anchor="middle" class="edge-label">cross_entity</text><path d="M 340 1978.0 C 550.0 1978.0, 760.0 908.0, 940 908.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;cross_entity&quot;, &quot;body&quot;: &quot;person_thomas_schroecker linked to company_venuiti_healthcare with confidence 0.720. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;venuiti_health_linkedin: Thomas Schroecker appears on the Venuiti Healthcare profile.&quot;]}"></path><text x="640.0" y="1433.0" text-anchor="middle" class="edge-label">cross_entity</text><path d="M 340 214.0 C 550.0 214.0, 760.0 632.0, 940 632.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_alexey_sidelnikov linked to group_venuiti with confidence 0.900. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Alexey Sidelnikov is listed as CTO at Venuiti Group of Companies.&quot;]}"></path><text x="640.0" y="413.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 214.0 C 809.0 214.0, 1278.0 722.0, 1680 722.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_alexey_sidelnikov linked to function_group_executive_leadership with confidence 0.870. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;CTO title is strong evidence for executive and technology leadership association.&quot;]}"></path><text x="1010.0" y="458.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 214.0 C 550.0 214.0, 760.0 1046.0, 940 1046.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_alexey_sidelnikov linked to company_venuiti_solutions with confidence 0.860. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409 and venuiti_solutions_linkedin: Alexey Sidelnikov is surfaced in the Venuiti Solutions context.&quot;]}"></path><text x="640.0" y="620.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 214.0 C 550.0 214.0, 760.0 356.0, 940 356.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;cross_entity&quot;, &quot;body&quot;: &quot;person_alexey_sidelnikov linked to company_devstaff_canada with confidence 0.830. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409 and devstaff_linkedin: Alexey Sidelnikov is surfaced in the DevStaff Canada context.&quot;]}"></path><text x="640.0" y="275.0" text-anchor="middle" class="edge-label">cross_entity</text><path d="M 340 214.0 C 550.0 214.0, 760.0 908.0, 940 908.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;cross_entity&quot;, &quot;body&quot;: &quot;person_alexey_sidelnikov linked to company_venuiti_healthcare with confidence 0.800. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Alexey Sidelnikov&#x27;s CTO title is stated across Venuiti Healthcare, Venuiti Solutions, and DevStaff Canada.&quot;]}"></path><text x="640.0" y="551.0" text-anchor="middle" class="edge-label">cross_entity</text><path d="M 340 970.0 C 550.0 970.0, 760.0 632.0, 940 632.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_jordan_schroecker linked to group_venuiti with confidence 0.880. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Jordan Schroecker is listed as Director of Operations @ Venuiti Group of Companies.&quot;]}"></path><text x="640.0" y="791.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 970.0 C 809.0 970.0, 1278.0 848.0, 1680 848.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_jordan_schroecker linked to function_group_operations with confidence 0.860. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Group-level Director of Operations title is strong evidence for operations-function association.&quot;]}"></path><text x="1010.0" y="899.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 970.0 C 550.0 970.0, 760.0 356.0, 940 356.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_jordan_schroecker linked to company_devstaff_canada with confidence 0.870. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409 and devstaff_linkedin: Jordan Schroecker is listed in the DevStaff Canada context.&quot;]}"></path><text x="640.0" y="653.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 970.0 C 550.0 970.0, 760.0 908.0, 940 908.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;cross_entity&quot;, &quot;body&quot;: &quot;person_jordan_schroecker linked to company_venuiti_healthcare with confidence 0.840. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409 and venuiti_health_linkedin: Jordan Schroecker is listed in the Venuiti Healthcare context.&quot;]}"></path><text x="640.0" y="929.0" text-anchor="middle" class="edge-label">cross_entity</text><path d="M 340 1474.0 C 550.0 1474.0, 760.0 632.0, 940 632.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_shannon_teeter linked to group_venuiti with confidence 0.820. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Shannon Teeter is listed as Executive @ Venuiti Group of Companies.&quot;]}"></path><text x="640.0" y="1043.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1474.0 C 809.0 1474.0, 1278.0 722.0, 1680 722.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_shannon_teeter linked to function_group_executive_leadership with confidence 0.790. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Executive title is strong evidence for an executive-leadership association.&quot;]}"></path><text x="1010.0" y="1088.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1222.0 C 550.0 1222.0, 760.0 632.0, 940 632.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_melissa_shariff linked to group_venuiti with confidence 0.800. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies.&quot;]}"></path><text x="640.0" y="917.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1222.0 C 809.0 1222.0, 1278.0 848.0, 1680 848.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_melissa_shariff linked to function_group_operations with confidence 0.800. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Operations manager title directly supports group operations association.&quot;]}"></path><text x="1010.0" y="1025.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1726.0 C 809.0 1726.0, 1278.0 1226.0, 1680 1226.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_sneha_gontu linked to team_devstaff_talent_acquisition with confidence 0.630. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Sneha Gontu is listed as Talent Acquisition Specialist connecting with professionals in KW and the GTA.&quot;]}"></path><text x="1010.0" y="1466.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1852.0 C 550.0 1852.0, 760.0 1046.0, 940 1046.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_susanne_roma linked to company_venuiti_solutions with confidence 0.820. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Susanne Roma is listed as General Manager at Venuiti Solutions Inc.&quot;]}"></path><text x="640.0" y="1439.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 466.0 C 550.0 466.0, 760.0 908.0, 940 908.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_brent_mcnatt linked to company_venuiti_healthcare with confidence 0.780. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Brent McNatt is listed as Full Stack Developer | Venuiti Healthcare | Venuiti Solutions.&quot;]}"></path><text x="640.0" y="677.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 466.0 C 550.0 466.0, 760.0 1046.0, 940 1046.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;cross_entity&quot;, &quot;body&quot;: &quot;person_brent_mcnatt linked to company_venuiti_solutions with confidence 0.780. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Brent McNatt profile explicitly references both Venuiti Healthcare and Venuiti Solutions.&quot;]}"></path><text x="640.0" y="746.0" text-anchor="middle" class="edge-label">cross_entity</text><path d="M 340 340.0 C 809.0 340.0, 1278.0 218.0, 1680 218.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_anhad_lamba linked to function_venuiti_solutions_ai_engineering with confidence 0.720. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Anhad Lamba is listed as AI Full Stack Developer @ Venuiti.&quot;]}"></path><text x="1010.0" y="269.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1600.0 C 809.0 1600.0, 1278.0 218.0, 1680 218.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_shiv_patel linked to function_venuiti_solutions_ai_engineering with confidence 0.690. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Shiv Patel is listed as AI Developer at Venuiti.&quot;]}"></path><text x="1010.0" y="899.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 844.0 C 809.0 844.0, 1278.0 218.0, 1680 218.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_jordan_hagedorn linked to function_venuiti_solutions_ai_engineering with confidence 0.730. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Jordan Hagedorn is listed as Full Stack AI Developer at Venuiti Solutions.&quot;]}"></path><text x="1010.0" y="521.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1096.0 C 809.0 1096.0, 1278.0 596.0, 1680 596.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_madison_weber linked to team_venuiti_solutions_frontend_web with confidence 0.700. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Madison Weber is listed as React Developer at Venuiti Solutions Inc.&quot;]}"></path><text x="1010.0" y="836.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 718.0 C 809.0 718.0, 1278.0 596.0, 1680 596.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_gabriela_pereira linked to team_venuiti_solutions_frontend_web with confidence 0.700. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Gabriela Pereira is listed as Software Developer @ Venuiti Solutions.&quot;]}"></path><text x="1010.0" y="647.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 592.0 C 809.0 592.0, 1278.0 470.0, 1680 470.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_dmytro_lavrentiev linked to department_vh_engineering_integration with confidence 0.760. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Dmytro Lavrentiev is listed as Senior Software Developer @ Venuiti Healthcare.&quot;]}"></path><text x="1010.0" y="521.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1348.0 C 809.0 1348.0, 1278.0 974.0, 1680 974.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;associated_with&quot;, &quot;body&quot;: &quot;person_pleiades_chambers linked to team_vh_project_delivery with confidence 0.620. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Pleiades Chambers is listed as Junior Project Manager at Venuiti.&quot;]}"></path><text x="1010.0" y="1151.0" text-anchor="middle" class="edge-label">associated_with</text><path d="M 340 1978.0 C 263.0 1978.0, 186.0 214.0, 120 214.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;works_with&quot;, &quot;body&quot;: &quot;person_thomas_schroecker linked to person_alexey_sidelnikov with confidence 0.830. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Thomas Schroecker and Alexey Sidelnikov are both described with group-level executive titles.&quot;, &quot;devstaff_linkedin and venuiti_solutions_linkedin: both people appear in the same multi-entity operating environment.&quot;]}"></path><text x="230.0" y="1086.0" text-anchor="middle" class="edge-label">works_with</text><path d="M 340 1978.0 C 263.0 1978.0, 186.0 970.0, 120 970.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;works_with&quot;, &quot;body&quot;: &quot;person_thomas_schroecker linked to person_jordan_schroecker with confidence 0.740. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Thomas Schroecker and Jordan Schroecker are both presented in group-level and cross-entity operating contexts.&quot;]}"></path><text x="230.0" y="1464.0" text-anchor="middle" class="edge-label">works_with</text><path d="M 340 970.0 C 263.0 970.0, 186.0 1474.0, 120 1474.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;works_with&quot;, &quot;body&quot;: &quot;person_jordan_schroecker linked to person_shannon_teeter with confidence 0.680. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;devstaff_linkedin and venuiti_health_linkedin: both people appear in overlapping group-linked entity contexts.&quot;]}"></path><text x="230.0" y="1212.0" text-anchor="middle" class="edge-label">works_with</text><path d="M 340 970.0 C 263.0 970.0, 186.0 1222.0, 120 1222.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;works_with&quot;, &quot;body&quot;: &quot;person_jordan_schroecker linked to person_melissa_shariff with confidence 0.710. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: both hold operations titles in the broader Venuiti Group operating context.&quot;]}"></path><text x="230.0" y="1086.0" text-anchor="middle" class="edge-label">works_with</text><path d="M 340 970.0 C 263.0 970.0, 186.0 1726.0, 120 1726.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;works_with&quot;, &quot;body&quot;: &quot;person_jordan_schroecker linked to person_sneha_gontu with confidence 0.580. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Jordan Schroecker&#x27;s recruiting-oriented operations title and Sneha Gontu&#x27;s talent acquisition title support a cautious recruiting-team collaboration inference.&quot;]}"></path><text x="230.0" y="1338.0" text-anchor="middle" class="edge-label">works_with</text><path d="M 340 340.0 C 263.0 340.0, 186.0 1600.0, 120 1600.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;likely_same_team&quot;, &quot;body&quot;: &quot;person_anhad_lamba linked to person_shiv_patel with confidence 0.630. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Both profiles use AI-focused developer titles tied to Venuiti in the same public snapshot.&quot;]}"></path><text x="230.0" y="960.0" text-anchor="middle" class="edge-label">likely_same_team</text><path d="M 340 340.0 C 263.0 340.0, 186.0 844.0, 120 844.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;likely_same_team&quot;, &quot;body&quot;: &quot;person_anhad_lamba linked to person_jordan_hagedorn with confidence 0.650. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Both profiles use AI full-stack developer language tied to Venuiti Solutions / Venuiti.&quot;]}"></path><text x="230.0" y="582.0" text-anchor="middle" class="edge-label">likely_same_team</text><path d="M 340 1096.0 C 263.0 1096.0, 186.0 718.0, 120 718.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;likely_same_team&quot;, &quot;body&quot;: &quot;person_madison_weber linked to person_gabriela_pereira with confidence 0.610. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Both profiles place them in software or frontend development at Venuiti Solutions.&quot;]}"></path><text x="230.0" y="897.0" text-anchor="middle" class="edge-label">likely_same_team</text><path d="M 340 466.0 C 263.0 466.0, 186.0 592.0, 120 592.0" fill="none" stroke="#94a3b8" stroke-width="2.2" data-detail="{&quot;title&quot;: &quot;works_with&quot;, &quot;body&quot;: &quot;person_brent_mcnatt linked to person_dmytro_lavrentiev with confidence 0.590. No reporting line is implied.&quot;, &quot;evidence&quot;: [&quot;Both profiles place them in hands-on software engineering work tied to Venuiti Healthcare.&quot;]}"></path><text x="230.0" y="519.0" text-anchor="middle" class="edge-label">works_with</text><g transform="translate(120 170)" data-detail="{&quot;title&quot;: &quot;Alexey Sidelnikov&quot;, &quot;body&quot;: &quot;Person node with confidence 0.860. Likely functions: technology leadership, cross-brand engineering oversight, applied delivery strategy.&quot;, &quot;evidence&quot;: [&quot;Associated entities: group_venuiti, function_group_executive_leadership, company_devstaff_canada, company_venuiti_solutions, company_venuiti_healthcare&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Alexey Sidelnikov</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.860</text></g><g transform="translate(120 296)" data-detail="{&quot;title&quot;: &quot;Anhad Lamba&quot;, &quot;body&quot;: &quot;Person node with confidence 0.720. Likely functions: ai engineering, full-stack development.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_solutions, function_venuiti_solutions_ai_engineering&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Anhad Lamba</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.720</text></g><g transform="translate(120 422)" data-detail="{&quot;title&quot;: &quot;Brent McNatt&quot;, &quot;body&quot;: &quot;Person node with confidence 0.780. Likely functions: full-stack engineering, cross-entity technical delivery.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_healthcare, company_venuiti_solutions, department_vh_engineering_integration&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Brent McNatt</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.780</text></g><g transform="translate(120 548)" data-detail="{&quot;title&quot;: &quot;Dmytro Lavrentiev&quot;, &quot;body&quot;: &quot;Person node with confidence 0.760. Likely functions: software engineering, healthcare delivery engineering.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_healthcare, department_vh_engineering_integration&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Dmytro Lavrentiev</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.760</text></g><g transform="translate(120 674)" data-detail="{&quot;title&quot;: &quot;Gabriela Pereira&quot;, &quot;body&quot;: &quot;Person node with confidence 0.700. Likely functions: software development, web delivery.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_solutions, function_venuiti_solutions_digital_delivery, team_venuiti_solutions_frontend_web&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Gabriela Pereira</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.700</text></g><g transform="translate(120 800)" data-detail="{&quot;title&quot;: &quot;Jordan Hagedorn&quot;, &quot;body&quot;: &quot;Person node with confidence 0.730. Likely functions: ai engineering, full-stack development.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_solutions, function_venuiti_solutions_ai_engineering&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Jordan Hagedorn</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.730</text></g><g transform="translate(120 926)" data-detail="{&quot;title&quot;: &quot;Jordan Schroecker&quot;, &quot;body&quot;: &quot;Person node with confidence 0.860. Likely functions: operations, technical recruiting, cross-entity coordination.&quot;, &quot;evidence&quot;: [&quot;Associated entities: group_venuiti, function_group_operations, company_devstaff_canada, company_venuiti_healthcare, team_devstaff_talent_acquisition&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Jordan Schroecker</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.860</text></g><g transform="translate(120 1052)" data-detail="{&quot;title&quot;: &quot;Madison Weber&quot;, &quot;body&quot;: &quot;Person node with confidence 0.700. Likely functions: frontend engineering, react development.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_solutions, function_venuiti_solutions_digital_delivery, team_venuiti_solutions_frontend_web&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Madison Weber</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.700</text></g><g transform="translate(120 1178)" data-detail="{&quot;title&quot;: &quot;Melissa Shariff&quot;, &quot;body&quot;: &quot;Person node with confidence 0.800. Likely functions: operations management, project delivery.&quot;, &quot;evidence&quot;: [&quot;Associated entities: group_venuiti, function_group_operations, team_vh_project_delivery&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Melissa Shariff</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.800</text></g><g transform="translate(120 1304)" data-detail="{&quot;title&quot;: &quot;Pleiades Chambers&quot;, &quot;body&quot;: &quot;Person node with confidence 0.620. Likely functions: project management, delivery coordination.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_healthcare, team_vh_project_delivery&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Pleiades Chambers</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.620</text></g><g transform="translate(120 1430)" data-detail="{&quot;title&quot;: &quot;Shannon Teeter&quot;, &quot;body&quot;: &quot;Person node with confidence 0.780. Likely functions: executive leadership, cross-entity operations.&quot;, &quot;evidence&quot;: [&quot;Associated entities: group_venuiti, function_group_executive_leadership, company_devstaff_canada, company_venuiti_healthcare&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Shannon Teeter</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.780</text></g><g transform="translate(120 1556)" data-detail="{&quot;title&quot;: &quot;Shiv Patel&quot;, &quot;body&quot;: &quot;Person node with confidence 0.690. Likely functions: ai engineering.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_solutions, function_venuiti_solutions_ai_engineering&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Shiv Patel</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.690</text></g><g transform="translate(120 1682)" data-detail="{&quot;title&quot;: &quot;Sneha Gontu&quot;, &quot;body&quot;: &quot;Person node with confidence 0.630. Likely functions: talent acquisition, recruiting.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_devstaff_canada, function_devstaff_staffing, team_devstaff_talent_acquisition&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Sneha Gontu</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.630</text></g><g transform="translate(120 1808)" data-detail="{&quot;title&quot;: &quot;Susanne Roma&quot;, &quot;body&quot;: &quot;Person node with confidence 0.780. Likely functions: general management, delivery operations.&quot;, &quot;evidence&quot;: [&quot;Associated entities: company_venuiti_solutions, function_venuiti_solutions_digital_delivery&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Susanne Roma</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.780</text></g><g transform="translate(120 1934)" data-detail="{&quot;title&quot;: &quot;Thomas Schroecker&quot;, &quot;body&quot;: &quot;Person node with confidence 0.920. Likely functions: executive leadership, group strategy, cross-brand business oversight.&quot;, &quot;evidence&quot;: [&quot;Associated entities: group_venuiti, function_group_executive_leadership, brand_venuiti, brand_devstaff, brand_venuiti_health, company_devstaff_canada, company_venuiti_solutions, company_venuiti_healthcare&quot;]}"><rect width="220" height="88" rx="18" fill="#ecfeff" stroke="#0f766e" stroke-width="3"></rect><text x="16" y="32" class="node-label">Thomas Schroecker</text><text x="16" y="54" class="node-sub">Person</text><text x="16" y="72" class="node-sub">Confidence: 0.920</text></g><g transform="translate(940 170)" data-detail="{&quot;title&quot;: &quot;DevStaff&quot;, &quot;body&quot;: &quot;Brand node from the inferred structure graph with confidence 0.820. Short-form staffing brand used publicly alongside the full DevStaff Canada company name.&quot;, &quot;evidence&quot;: [&quot;devstaff_contact: official site branding uses DevStaff while contact details map to DevStaff Canada.&quot;, &quot;devstaff_linkedin: public company profile uses DevStaff Canada and DevStaff interchangeably in branding context.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#7c3aed" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#7c3aed"></rect><text x="16" y="34" class="node-label">DevStaff</text><text x="16" y="56" class="node-sub">Type: brand</text><text x="16" y="74" class="node-sub">Confidence: 0.820</text></g><g transform="translate(940 308)" data-detail="{&quot;title&quot;: &quot;DevStaff Canada&quot;, &quot;body&quot;: &quot;Company node from the inferred structure graph with confidence 0.574. Staffing and recruiting brand aligned with the Venuiti group, especially for technical and healthcare roles.&quot;, &quot;evidence&quot;: [&quot;devstaff_meet_thomas: official page uses Venuiti Group of Companies language.&quot;, &quot;venuiti_health_staffing: official Venuiti Healthcare page calls DevStaff Canada a member of the group.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#1d4ed8" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#1d4ed8"></rect><text x="16" y="34" class="node-label">DevStaff Canada</text><text x="16" y="56" class="node-sub">Type: company</text><text x="16" y="74" class="node-sub">Confidence: 0.574</text></g><g transform="translate(940 446)" data-detail="{&quot;title&quot;: &quot;Venuiti&quot;, &quot;body&quot;: &quot;Brand node from the inferred structure graph with confidence 0.840. Primary public-facing Venuiti brand used alongside Venuiti Solutions in official materials.&quot;, &quot;evidence&quot;: [&quot;venuiti_solutions_privacy: official venuiti.com page uses Venuiti branding on the site for Venuiti Solutions Inc.&quot;, &quot;venuiti_why_canada: DevStaff page references Venuiti as the long-running technology business behind the broader operating story.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#7c3aed" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#7c3aed"></rect><text x="16" y="34" class="node-label">Venuiti</text><text x="16" y="56" class="node-sub">Type: brand</text><text x="16" y="74" class="node-sub">Confidence: 0.840</text></g><g transform="translate(940 584)" data-detail="{&quot;title&quot;: &quot;Venuiti Group of Companies&quot;, &quot;body&quot;: &quot;Brand node from the inferred structure graph with confidence 0.870. Public-facing umbrella identity used across related Venuiti operating brands.&quot;, &quot;evidence&quot;: [&quot;devstaff_meet_thomas: official DevStaff page calls Thomas Schroecker CEO at Venuiti Group of Companies.&quot;, &quot;venuiti_health_staffing: official Venuiti Healthcare page calls DevStaff Canada a member of the Venuiti Group of Companies.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#7c3aed" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#7c3aed"></rect><text x="16" y="34" class="node-label">Venuiti Group of Companies</text><text x="16" y="56" class="node-sub">Type: brand</text><text x="16" y="74" class="node-sub">Confidence: 0.870</text></g><g transform="translate(940 722)" data-detail="{&quot;title&quot;: &quot;Venuiti Health&quot;, &quot;body&quot;: &quot;Brand node from the inferred structure graph with confidence 0.810. Short-form public-facing healthcare brand used interchangeably with Venuiti Healthcare.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing classification lists Venuiti Health as a public-facing brand.&quot;, &quot;venuiti_health_contact and venuiti_health_services: official domain uses Venuiti Healthcare while the broader shorthand Venuiti Health appears in classification and public references.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#7c3aed" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#7c3aed"></rect><text x="16" y="34" class="node-label">Venuiti Health</text><text x="16" y="56" class="node-sub">Type: brand</text><text x="16" y="74" class="node-sub">Confidence: 0.810</text></g><g transform="translate(940 860)" data-detail="{&quot;title&quot;: &quot;Venuiti Healthcare&quot;, &quot;body&quot;: &quot;Company node from the inferred structure graph with confidence 0.545. Healthcare-focused software and interoperability brand within the public Venuiti umbrella.&quot;, &quot;evidence&quot;: [&quot;venuiti_health_contact: official domain directly identifies the brand.&quot;, &quot;venuiti_health_linkedin and venuiti_solutions_linkedin: shared Waterloo location and founding year support close operating alignment.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#1d4ed8" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#1d4ed8"></rect><text x="16" y="34" class="node-label">Venuiti Healthcare</text><text x="16" y="56" class="node-sub">Type: company</text><text x="16" y="74" class="node-sub">Confidence: 0.545</text></g><g transform="translate(940 998)" data-detail="{&quot;title&quot;: &quot;Venuiti Solutions Inc.&quot;, &quot;body&quot;: &quot;Company node from the inferred structure graph with confidence 0.610. Core software and digital delivery company associated with the broader Venuiti group.&quot;, &quot;evidence&quot;: [&quot;venuiti_solutions_privacy: official venuiti.com page names Venuiti Solutions Inc.&quot;, &quot;devstaff_meet_thomas: official article ties the original custom software business to the broader Venuiti story.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#1d4ed8" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#1d4ed8"></rect><text x="16" y="34" class="node-label">Venuiti Solutions Inc.</text><text x="16" y="56" class="node-sub">Type: company</text><text x="16" y="74" class="node-sub">Confidence: 0.610</text></g><g transform="translate(1680 170)" data-detail="{&quot;title&quot;: &quot;AI and Applied Engineering&quot;, &quot;body&quot;: &quot;Function node from the inferred structure graph with confidence 0.730. AI-oriented engineering capability inferred from repeated public employee titles referencing AI developers and AI full-stack developers.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Anhad Lamba is listed as AI Full Stack Developer @ Venuiti.&quot;, &quot;linkedin_people_snapshot_20260409: Shiv Patel is listed as AI Developer at Venuiti and Jordan Hagedorn as Full Stack AI Developer at Venuiti Solutions.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">AI and Applied Engineering</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.730</text></g><g transform="translate(1680 296)" data-detail="{&quot;title&quot;: &quot;Digital and Software Delivery&quot;, &quot;body&quot;: &quot;Function node from the inferred structure graph with confidence 0.780. Combined custom software, UX/UI, production, and media delivery capability inferred from public service-line language.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing service lines list custom software development, UX/UI, production, and media planning and engagement.&quot;, &quot;venuiti_why_canada: DevStaff page positions Venuiti as a long-running technology business with U.S.-facing operations.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Digital and Software Delivery</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.780</text></g><g transform="translate(1680 422)" data-detail="{&quot;title&quot;: &quot;Engineering and Integration&quot;, &quot;body&quot;: &quot;Department node from the inferred structure graph with confidence 0.840. Inferred healthcare delivery unit covering software engineering, interface work, and implementation.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing service lines list healthcare software development, interoperability, and testing.&quot;, &quot;venuiti_health_services: official services page groups software development, interoperability work, and consulting together.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#ea580c" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#ea580c"></rect><text x="16" y="34" class="node-label">Engineering and Integration</text><text x="16" y="56" class="node-sub">Type: department</text><text x="16" y="74" class="node-sub">Confidence: 0.840</text></g><g transform="translate(1680 548)" data-detail="{&quot;title&quot;: &quot;Frontend and Web Delivery&quot;, &quot;body&quot;: &quot;Team node from the inferred structure graph with confidence 0.690. Web and frontend implementation cluster inferred from repeated React and software developer profiles tied to Venuiti Solutions.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Madison Weber is listed as React Developer at Venuiti Solutions Inc.&quot;, &quot;linkedin_people_snapshot_20260409: Gabriela Pereira is listed as Software Developer @ Venuiti Solutions.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#dc2626" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#dc2626"></rect><text x="16" y="34" class="node-label">Frontend and Web Delivery</text><text x="16" y="56" class="node-sub">Type: team</text><text x="16" y="74" class="node-sub">Confidence: 0.690</text></g><g transform="translate(1680 674)" data-detail="{&quot;title&quot;: &quot;Group Executive Leadership&quot;, &quot;body&quot;: &quot;Function node from the inferred structure graph with confidence 0.860. Executive leadership layer inferred from repeated group-level CEO, CTO, and executive titles.&quot;, &quot;evidence&quot;: [&quot;devstaff_meet_thomas: Thomas Schroecker is named CEO at Venuiti Group of Companies.&quot;, &quot;linkedin_people_snapshot_20260409: Alexey Sidelnikov is described as CTO at Venuiti Group of Companies and Shannon Teeter as Executive @ Venuiti Group of Companies.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Group Executive Leadership</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.860</text></g><g transform="translate(1680 800)" data-detail="{&quot;title&quot;: &quot;Group Operations&quot;, &quot;body&quot;: &quot;Function node from the inferred structure graph with confidence 0.820. Shared operations layer inferred from group-level operations titles spanning multiple brands.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Jordan Schroecker is described as Director of Operations @ Venuiti Group of Companies, DevStaff Canada &amp; Venuiti Healthcare.&quot;, &quot;linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Group Operations</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.820</text></g><g transform="translate(1680 926)" data-detail="{&quot;title&quot;: &quot;Project Delivery&quot;, &quot;body&quot;: &quot;Team node from the inferred structure graph with confidence 0.640. Project coordination and delivery team inferred from project management profiles associated with Venuiti Healthcare and the broader group.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Pleiades Chambers is listed as Junior Project Manager at Venuiti.&quot;, &quot;linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies | Project Manager.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#dc2626" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#dc2626"></rect><text x="16" y="34" class="node-label">Project Delivery</text><text x="16" y="56" class="node-sub">Type: team</text><text x="16" y="74" class="node-sub">Confidence: 0.640</text></g><g transform="translate(1680 1052)" data-detail="{&quot;title&quot;: &quot;Staffing and Recruitment&quot;, &quot;body&quot;: &quot;Function node from the inferred structure graph with confidence 0.900. Technical, healthcare, temporary, and permanent recruiting function run under DevStaff Canada.&quot;, &quot;evidence&quot;: [&quot;company_people_research existing service lines list technical staffing, healthcare staffing, temporary staffing, permanent staffing, and full cycle recruitment.&quot;, &quot;venuiti_health_staffing: Venuiti Healthcare says it works exclusively with DevStaff Canada for staffing.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#059669" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#059669"></rect><text x="16" y="34" class="node-label">Staffing and Recruitment</text><text x="16" y="56" class="node-sub">Type: function</text><text x="16" y="74" class="node-sub">Confidence: 0.900</text></g><g transform="translate(1680 1178)" data-detail="{&quot;title&quot;: &quot;Talent Acquisition&quot;, &quot;body&quot;: &quot;Team node from the inferred structure graph with confidence 0.670. Dedicated recruiting team inferred from repeated talent acquisition and recruitment coordinator profiles associated with DevStaff and Venuiti Solutions.&quot;, &quot;evidence&quot;: [&quot;linkedin_people_snapshot_20260409: Sneha Gontu is listed as Talent Acquisition Specialist.&quot;, &quot;linkedin_people_snapshot_20260409: Shannon Schroecker is listed as Recruitment Coordinator at Venuiti Solutions Inc., indicating an active recruiting function in the same operating environment.&quot;]}"><rect width="280" height="96" rx="18" fill="#ffffff" stroke="#dc2626" stroke-width="3"></rect><rect width="280" height="10" rx="18" fill="#dc2626"></rect><text x="16" y="34" class="node-label">Talent Acquisition</text><text x="16" y="56" class="node-sub">Type: team</text><text x="16" y="74" class="node-sub">Confidence: 0.670</text></g></g></svg>
+      </div>
+    </section>
+    <aside class="side-panel">
+      <h2>Details</h2>
+      <div class="detail" id="detail-panel">
+        <h3>Hover a node or edge</h3>
+        <p>Use the canvas to inspect inferred structure, confidence, and supporting evidence.</p>
+      </div>
+      <div class="help">
+        Drag to pan. Use the mouse wheel to zoom. Hover or click an item for details.
+      </div>
+    </aside>
+  </div>
+  <script>
+    const graphData = {
+  "width": 2260,
+  "height": 2162,
+  "people_nodes": [
+    {
+      "person_id": "person_alexey_sidelnikov",
+      "name": "Alexey Sidelnikov",
+      "associated_entities": [
+        "group_venuiti",
+        "function_group_executive_leadership",
+        "company_devstaff_canada",
+        "company_venuiti_solutions",
+        "company_venuiti_healthcare"
+      ],
+      "likely_functions": [
+        "technology leadership",
+        "cross-brand engineering oversight",
+        "applied delivery strategy"
+      ],
+      "confidence": 0.86,
+      "x": 120,
+      "y": 170,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_anhad_lamba",
+      "name": "Anhad Lamba",
+      "associated_entities": [
+        "company_venuiti_solutions",
+        "function_venuiti_solutions_ai_engineering"
+      ],
+      "likely_functions": [
+        "ai engineering",
+        "full-stack development"
+      ],
+      "confidence": 0.72,
+      "x": 120,
+      "y": 296,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_brent_mcnatt",
+      "name": "Brent McNatt",
+      "associated_entities": [
+        "company_venuiti_healthcare",
+        "company_venuiti_solutions",
+        "department_vh_engineering_integration"
+      ],
+      "likely_functions": [
+        "full-stack engineering",
+        "cross-entity technical delivery"
+      ],
+      "confidence": 0.78,
+      "x": 120,
+      "y": 422,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_dmytro_lavrentiev",
+      "name": "Dmytro Lavrentiev",
+      "associated_entities": [
+        "company_venuiti_healthcare",
+        "department_vh_engineering_integration"
+      ],
+      "likely_functions": [
+        "software engineering",
+        "healthcare delivery engineering"
+      ],
+      "confidence": 0.76,
+      "x": 120,
+      "y": 548,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_gabriela_pereira",
+      "name": "Gabriela Pereira",
+      "associated_entities": [
+        "company_venuiti_solutions",
+        "function_venuiti_solutions_digital_delivery",
+        "team_venuiti_solutions_frontend_web"
+      ],
+      "likely_functions": [
+        "software development",
+        "web delivery"
+      ],
+      "confidence": 0.7,
+      "x": 120,
+      "y": 674,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_jordan_hagedorn",
+      "name": "Jordan Hagedorn",
+      "associated_entities": [
+        "company_venuiti_solutions",
+        "function_venuiti_solutions_ai_engineering"
+      ],
+      "likely_functions": [
+        "ai engineering",
+        "full-stack development"
+      ],
+      "confidence": 0.73,
+      "x": 120,
+      "y": 800,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_jordan_schroecker",
+      "name": "Jordan Schroecker",
+      "associated_entities": [
+        "group_venuiti",
+        "function_group_operations",
+        "company_devstaff_canada",
+        "company_venuiti_healthcare",
+        "team_devstaff_talent_acquisition"
+      ],
+      "likely_functions": [
+        "operations",
+        "technical recruiting",
+        "cross-entity coordination"
+      ],
+      "confidence": 0.86,
+      "x": 120,
+      "y": 926,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_madison_weber",
+      "name": "Madison Weber",
+      "associated_entities": [
+        "company_venuiti_solutions",
+        "function_venuiti_solutions_digital_delivery",
+        "team_venuiti_solutions_frontend_web"
+      ],
+      "likely_functions": [
+        "frontend engineering",
+        "react development"
+      ],
+      "confidence": 0.7,
+      "x": 120,
+      "y": 1052,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_melissa_shariff",
+      "name": "Melissa Shariff",
+      "associated_entities": [
+        "group_venuiti",
+        "function_group_operations",
+        "team_vh_project_delivery"
+      ],
+      "likely_functions": [
+        "operations management",
+        "project delivery"
+      ],
+      "confidence": 0.8,
+      "x": 120,
+      "y": 1178,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_pleiades_chambers",
+      "name": "Pleiades Chambers",
+      "associated_entities": [
+        "company_venuiti_healthcare",
+        "team_vh_project_delivery"
+      ],
+      "likely_functions": [
+        "project management",
+        "delivery coordination"
+      ],
+      "confidence": 0.62,
+      "x": 120,
+      "y": 1304,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_shannon_teeter",
+      "name": "Shannon Teeter",
+      "associated_entities": [
+        "group_venuiti",
+        "function_group_executive_leadership",
+        "company_devstaff_canada",
+        "company_venuiti_healthcare"
+      ],
+      "likely_functions": [
+        "executive leadership",
+        "cross-entity operations"
+      ],
+      "confidence": 0.78,
+      "x": 120,
+      "y": 1430,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_shiv_patel",
+      "name": "Shiv Patel",
+      "associated_entities": [
+        "company_venuiti_solutions",
+        "function_venuiti_solutions_ai_engineering"
+      ],
+      "likely_functions": [
+        "ai engineering"
+      ],
+      "confidence": 0.69,
+      "x": 120,
+      "y": 1556,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_sneha_gontu",
+      "name": "Sneha Gontu",
+      "associated_entities": [
+        "company_devstaff_canada",
+        "function_devstaff_staffing",
+        "team_devstaff_talent_acquisition"
+      ],
+      "likely_functions": [
+        "talent acquisition",
+        "recruiting"
+      ],
+      "confidence": 0.63,
+      "x": 120,
+      "y": 1682,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_susanne_roma",
+      "name": "Susanne Roma",
+      "associated_entities": [
+        "company_venuiti_solutions",
+        "function_venuiti_solutions_digital_delivery"
+      ],
+      "likely_functions": [
+        "general management",
+        "delivery operations"
+      ],
+      "confidence": 0.78,
+      "x": 120,
+      "y": 1808,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    },
+    {
+      "person_id": "person_thomas_schroecker",
+      "name": "Thomas Schroecker",
+      "associated_entities": [
+        "group_venuiti",
+        "function_group_executive_leadership",
+        "brand_venuiti",
+        "brand_devstaff",
+        "brand_venuiti_health",
+        "company_devstaff_canada",
+        "company_venuiti_solutions",
+        "company_venuiti_healthcare"
+      ],
+      "likely_functions": [
+        "executive leadership",
+        "group strategy",
+        "cross-brand business oversight"
+      ],
+      "confidence": 0.92,
+      "x": 120,
+      "y": 1934,
+      "box_type": "person",
+      "color": "#dc2626",
+      "width": 220,
+      "height": 88
+    }
+  ],
+  "entity_nodes": [
+    {
+      "id": "brand_devstaff",
+      "name": "DevStaff",
+      "type": "brand",
+      "parent_id": "company_devstaff_canada",
+      "description": "Short-form staffing brand used publicly alongside the full DevStaff Canada company name.",
+      "confidence": 0.82,
+      "evidence": [
+        "devstaff_contact: official site branding uses DevStaff while contact details map to DevStaff Canada.",
+        "devstaff_linkedin: public company profile uses DevStaff Canada and DevStaff interchangeably in branding context."
+      ],
+      "x": 940,
+      "y": 170,
+      "box_type": "entity",
+      "color": "#7c3aed",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "company_devstaff_canada",
+      "name": "DevStaff Canada",
+      "type": "company",
+      "parent_id": "group_venuiti",
+      "description": "Staffing and recruiting brand aligned with the Venuiti group, especially for technical and healthcare roles.",
+      "confidence": 0.574,
+      "evidence": [
+        "devstaff_meet_thomas: official page uses Venuiti Group of Companies language.",
+        "venuiti_health_staffing: official Venuiti Healthcare page calls DevStaff Canada a member of the group."
+      ],
+      "x": 940,
+      "y": 308,
+      "box_type": "entity",
+      "color": "#1d4ed8",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "brand_venuiti",
+      "name": "Venuiti",
+      "type": "brand",
+      "parent_id": "group_venuiti",
+      "description": "Primary public-facing Venuiti brand used alongside Venuiti Solutions in official materials.",
+      "confidence": 0.84,
+      "evidence": [
+        "venuiti_solutions_privacy: official venuiti.com page uses Venuiti branding on the site for Venuiti Solutions Inc.",
+        "venuiti_why_canada: DevStaff page references Venuiti as the long-running technology business behind the broader operating story."
+      ],
+      "x": 940,
+      "y": 446,
+      "box_type": "entity",
+      "color": "#7c3aed",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "group_venuiti",
+      "name": "Venuiti Group of Companies",
+      "type": "brand",
+      "parent_id": null,
+      "description": "Public-facing umbrella identity used across related Venuiti operating brands.",
+      "confidence": 0.87,
+      "evidence": [
+        "devstaff_meet_thomas: official DevStaff page calls Thomas Schroecker CEO at Venuiti Group of Companies.",
+        "venuiti_health_staffing: official Venuiti Healthcare page calls DevStaff Canada a member of the Venuiti Group of Companies."
+      ],
+      "x": 940,
+      "y": 584,
+      "box_type": "entity",
+      "color": "#7c3aed",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "brand_venuiti_health",
+      "name": "Venuiti Health",
+      "type": "brand",
+      "parent_id": "company_venuiti_healthcare",
+      "description": "Short-form public-facing healthcare brand used interchangeably with Venuiti Healthcare.",
+      "confidence": 0.81,
+      "evidence": [
+        "company_people_research existing classification lists Venuiti Health as a public-facing brand.",
+        "venuiti_health_contact and venuiti_health_services: official domain uses Venuiti Healthcare while the broader shorthand Venuiti Health appears in classification and public references."
+      ],
+      "x": 940,
+      "y": 722,
+      "box_type": "entity",
+      "color": "#7c3aed",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "company_venuiti_healthcare",
+      "name": "Venuiti Healthcare",
+      "type": "company",
+      "parent_id": "group_venuiti",
+      "description": "Healthcare-focused software and interoperability brand within the public Venuiti umbrella.",
+      "confidence": 0.545,
+      "evidence": [
+        "venuiti_health_contact: official domain directly identifies the brand.",
+        "venuiti_health_linkedin and venuiti_solutions_linkedin: shared Waterloo location and founding year support close operating alignment."
+      ],
+      "x": 940,
+      "y": 860,
+      "box_type": "entity",
+      "color": "#1d4ed8",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "company_venuiti_solutions",
+      "name": "Venuiti Solutions Inc.",
+      "type": "company",
+      "parent_id": "group_venuiti",
+      "description": "Core software and digital delivery company associated with the broader Venuiti group.",
+      "confidence": 0.61,
+      "evidence": [
+        "venuiti_solutions_privacy: official venuiti.com page names Venuiti Solutions Inc.",
+        "devstaff_meet_thomas: official article ties the original custom software business to the broader Venuiti story."
+      ],
+      "x": 940,
+      "y": 998,
+      "box_type": "entity",
+      "color": "#1d4ed8",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "function_venuiti_solutions_ai_engineering",
+      "name": "AI and Applied Engineering",
+      "type": "function",
+      "parent_id": "company_venuiti_solutions",
+      "description": "AI-oriented engineering capability inferred from repeated public employee titles referencing AI developers and AI full-stack developers.",
+      "confidence": 0.73,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Anhad Lamba is listed as AI Full Stack Developer @ Venuiti.",
+        "linkedin_people_snapshot_20260409: Shiv Patel is listed as AI Developer at Venuiti and Jordan Hagedorn as Full Stack AI Developer at Venuiti Solutions."
+      ],
+      "x": 1680,
+      "y": 170,
+      "box_type": "entity",
+      "color": "#059669",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "function_venuiti_solutions_digital_delivery",
+      "name": "Digital and Software Delivery",
+      "type": "function",
+      "parent_id": "company_venuiti_solutions",
+      "description": "Combined custom software, UX/UI, production, and media delivery capability inferred from public service-line language.",
+      "confidence": 0.78,
+      "evidence": [
+        "company_people_research existing service lines list custom software development, UX/UI, production, and media planning and engagement.",
+        "venuiti_why_canada: DevStaff page positions Venuiti as a long-running technology business with U.S.-facing operations."
+      ],
+      "x": 1680,
+      "y": 296,
+      "box_type": "entity",
+      "color": "#059669",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "department_vh_engineering_integration",
+      "name": "Engineering and Integration",
+      "type": "department",
+      "parent_id": "company_venuiti_healthcare",
+      "description": "Inferred healthcare delivery unit covering software engineering, interface work, and implementation.",
+      "confidence": 0.84,
+      "evidence": [
+        "company_people_research existing service lines list healthcare software development, interoperability, and testing.",
+        "venuiti_health_services: official services page groups software development, interoperability work, and consulting together."
+      ],
+      "x": 1680,
+      "y": 422,
+      "box_type": "entity",
+      "color": "#ea580c",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "team_venuiti_solutions_frontend_web",
+      "name": "Frontend and Web Delivery",
+      "type": "team",
+      "parent_id": "function_venuiti_solutions_digital_delivery",
+      "description": "Web and frontend implementation cluster inferred from repeated React and software developer profiles tied to Venuiti Solutions.",
+      "confidence": 0.69,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Madison Weber is listed as React Developer at Venuiti Solutions Inc.",
+        "linkedin_people_snapshot_20260409: Gabriela Pereira is listed as Software Developer @ Venuiti Solutions."
+      ],
+      "x": 1680,
+      "y": 548,
+      "box_type": "entity",
+      "color": "#dc2626",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "function_group_executive_leadership",
+      "name": "Group Executive Leadership",
+      "type": "function",
+      "parent_id": "group_venuiti",
+      "description": "Executive leadership layer inferred from repeated group-level CEO, CTO, and executive titles.",
+      "confidence": 0.86,
+      "evidence": [
+        "devstaff_meet_thomas: Thomas Schroecker is named CEO at Venuiti Group of Companies.",
+        "linkedin_people_snapshot_20260409: Alexey Sidelnikov is described as CTO at Venuiti Group of Companies and Shannon Teeter as Executive @ Venuiti Group of Companies."
+      ],
+      "x": 1680,
+      "y": 674,
+      "box_type": "entity",
+      "color": "#059669",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "function_group_operations",
+      "name": "Group Operations",
+      "type": "function",
+      "parent_id": "group_venuiti",
+      "description": "Shared operations layer inferred from group-level operations titles spanning multiple brands.",
+      "confidence": 0.82,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Jordan Schroecker is described as Director of Operations @ Venuiti Group of Companies, DevStaff Canada & Venuiti Healthcare.",
+        "linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies."
+      ],
+      "x": 1680,
+      "y": 800,
+      "box_type": "entity",
+      "color": "#059669",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "team_vh_project_delivery",
+      "name": "Project Delivery",
+      "type": "team",
+      "parent_id": "company_venuiti_healthcare",
+      "description": "Project coordination and delivery team inferred from project management profiles associated with Venuiti Healthcare and the broader group.",
+      "confidence": 0.64,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Pleiades Chambers is listed as Junior Project Manager at Venuiti.",
+        "linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies | Project Manager."
+      ],
+      "x": 1680,
+      "y": 926,
+      "box_type": "entity",
+      "color": "#dc2626",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "function_devstaff_staffing",
+      "name": "Staffing and Recruitment",
+      "type": "function",
+      "parent_id": "company_devstaff_canada",
+      "description": "Technical, healthcare, temporary, and permanent recruiting function run under DevStaff Canada.",
+      "confidence": 0.9,
+      "evidence": [
+        "company_people_research existing service lines list technical staffing, healthcare staffing, temporary staffing, permanent staffing, and full cycle recruitment.",
+        "venuiti_health_staffing: Venuiti Healthcare says it works exclusively with DevStaff Canada for staffing."
+      ],
+      "x": 1680,
+      "y": 1052,
+      "box_type": "entity",
+      "color": "#059669",
+      "width": 280,
+      "height": 96
+    },
+    {
+      "id": "team_devstaff_talent_acquisition",
+      "name": "Talent Acquisition",
+      "type": "team",
+      "parent_id": "function_devstaff_staffing",
+      "description": "Dedicated recruiting team inferred from repeated talent acquisition and recruitment coordinator profiles associated with DevStaff and Venuiti Solutions.",
+      "confidence": 0.67,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Sneha Gontu is listed as Talent Acquisition Specialist.",
+        "linkedin_people_snapshot_20260409: Shannon Schroecker is listed as Recruitment Coordinator at Venuiti Solutions Inc., indicating an active recruiting function in the same operating environment."
+      ],
+      "x": 1680,
+      "y": 1178,
+      "box_type": "entity",
+      "color": "#dc2626",
+      "width": 280,
+      "height": 96
+    }
+  ],
+  "column_labels": [
+    {
+      "label": "People",
+      "x": 120,
+      "y": 110
+    },
+    {
+      "label": "Companies and Brands",
+      "x": 940,
+      "y": 110
+    },
+    {
+      "label": "Functions, Departments, and Teams",
+      "x": 1680,
+      "y": 110
+    }
+  ],
+  "relationships": [
+    {
+      "from_person_id": "person_thomas_schroecker",
+      "to_entity_id": "group_venuiti",
+      "relationship_type": "associated_with",
+      "confidence": 0.94,
+      "evidence": [
+        "devstaff_meet_thomas: official page calls Thomas Schroecker CEO at Venuiti Group of Companies."
+      ],
+      "path": "M 340 1978.0 C 550.0 1978.0, 760.0 632.0, 940 632.0",
+      "label_x": 640.0,
+      "label_y": 1295.0
+    },
+    {
+      "from_person_id": "person_thomas_schroecker",
+      "to_entity_id": "function_group_executive_leadership",
+      "relationship_type": "associated_with",
+      "confidence": 0.9,
+      "evidence": [
+        "Group-level CEO title is strong evidence for executive-leadership association."
+      ],
+      "path": "M 340 1978.0 C 809.0 1978.0, 1278.0 722.0, 1680 722.0",
+      "label_x": 1010.0,
+      "label_y": 1340.0
+    },
+    {
+      "from_person_id": "person_thomas_schroecker",
+      "to_entity_id": "company_devstaff_canada",
+      "relationship_type": "associated_with",
+      "confidence": 0.91,
+      "evidence": [
+        "devstaff_meet_thomas: official page says he is CEO here at DevStaff Canada.",
+        "devstaff_linkedin: company profile shows Thomas Schroecker among employees."
+      ],
+      "path": "M 340 1978.0 C 550.0 1978.0, 760.0 356.0, 940 356.0",
+      "label_x": 640.0,
+      "label_y": 1157.0
+    },
+    {
+      "from_person_id": "person_thomas_schroecker",
+      "to_entity_id": "company_venuiti_solutions",
+      "relationship_type": "cross_entity",
+      "confidence": 0.75,
+      "evidence": [
+        "venuiti_solutions_linkedin: Thomas Schroecker appears on the Venuiti Solutions profile."
+      ],
+      "path": "M 340 1978.0 C 550.0 1978.0, 760.0 1046.0, 940 1046.0",
+      "label_x": 640.0,
+      "label_y": 1502.0
+    },
+    {
+      "from_person_id": "person_thomas_schroecker",
+      "to_entity_id": "company_venuiti_healthcare",
+      "relationship_type": "cross_entity",
+      "confidence": 0.72,
+      "evidence": [
+        "venuiti_health_linkedin: Thomas Schroecker appears on the Venuiti Healthcare profile."
+      ],
+      "path": "M 340 1978.0 C 550.0 1978.0, 760.0 908.0, 940 908.0",
+      "label_x": 640.0,
+      "label_y": 1433.0
+    },
+    {
+      "from_person_id": "person_alexey_sidelnikov",
+      "to_entity_id": "group_venuiti",
+      "relationship_type": "associated_with",
+      "confidence": 0.9,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Alexey Sidelnikov is listed as CTO at Venuiti Group of Companies."
+      ],
+      "path": "M 340 214.0 C 550.0 214.0, 760.0 632.0, 940 632.0",
+      "label_x": 640.0,
+      "label_y": 413.0
+    },
+    {
+      "from_person_id": "person_alexey_sidelnikov",
+      "to_entity_id": "function_group_executive_leadership",
+      "relationship_type": "associated_with",
+      "confidence": 0.87,
+      "evidence": [
+        "CTO title is strong evidence for executive and technology leadership association."
+      ],
+      "path": "M 340 214.0 C 809.0 214.0, 1278.0 722.0, 1680 722.0",
+      "label_x": 1010.0,
+      "label_y": 458.0
+    },
+    {
+      "from_person_id": "person_alexey_sidelnikov",
+      "to_entity_id": "company_venuiti_solutions",
+      "relationship_type": "associated_with",
+      "confidence": 0.86,
+      "evidence": [
+        "linkedin_people_snapshot_20260409 and venuiti_solutions_linkedin: Alexey Sidelnikov is surfaced in the Venuiti Solutions context."
+      ],
+      "path": "M 340 214.0 C 550.0 214.0, 760.0 1046.0, 940 1046.0",
+      "label_x": 640.0,
+      "label_y": 620.0
+    },
+    {
+      "from_person_id": "person_alexey_sidelnikov",
+      "to_entity_id": "company_devstaff_canada",
+      "relationship_type": "cross_entity",
+      "confidence": 0.83,
+      "evidence": [
+        "linkedin_people_snapshot_20260409 and devstaff_linkedin: Alexey Sidelnikov is surfaced in the DevStaff Canada context."
+      ],
+      "path": "M 340 214.0 C 550.0 214.0, 760.0 356.0, 940 356.0",
+      "label_x": 640.0,
+      "label_y": 275.0
+    },
+    {
+      "from_person_id": "person_alexey_sidelnikov",
+      "to_entity_id": "company_venuiti_healthcare",
+      "relationship_type": "cross_entity",
+      "confidence": 0.8,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Alexey Sidelnikov's CTO title is stated across Venuiti Healthcare, Venuiti Solutions, and DevStaff Canada."
+      ],
+      "path": "M 340 214.0 C 550.0 214.0, 760.0 908.0, 940 908.0",
+      "label_x": 640.0,
+      "label_y": 551.0
+    },
+    {
+      "from_person_id": "person_jordan_schroecker",
+      "to_entity_id": "group_venuiti",
+      "relationship_type": "associated_with",
+      "confidence": 0.88,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Jordan Schroecker is listed as Director of Operations @ Venuiti Group of Companies."
+      ],
+      "path": "M 340 970.0 C 550.0 970.0, 760.0 632.0, 940 632.0",
+      "label_x": 640.0,
+      "label_y": 791.0
+    },
+    {
+      "from_person_id": "person_jordan_schroecker",
+      "to_entity_id": "function_group_operations",
+      "relationship_type": "associated_with",
+      "confidence": 0.86,
+      "evidence": [
+        "Group-level Director of Operations title is strong evidence for operations-function association."
+      ],
+      "path": "M 340 970.0 C 809.0 970.0, 1278.0 848.0, 1680 848.0",
+      "label_x": 1010.0,
+      "label_y": 899.0
+    },
+    {
+      "from_person_id": "person_jordan_schroecker",
+      "to_entity_id": "company_devstaff_canada",
+      "relationship_type": "associated_with",
+      "confidence": 0.87,
+      "evidence": [
+        "linkedin_people_snapshot_20260409 and devstaff_linkedin: Jordan Schroecker is listed in the DevStaff Canada context."
+      ],
+      "path": "M 340 970.0 C 550.0 970.0, 760.0 356.0, 940 356.0",
+      "label_x": 640.0,
+      "label_y": 653.0
+    },
+    {
+      "from_person_id": "person_jordan_schroecker",
+      "to_entity_id": "company_venuiti_healthcare",
+      "relationship_type": "cross_entity",
+      "confidence": 0.84,
+      "evidence": [
+        "linkedin_people_snapshot_20260409 and venuiti_health_linkedin: Jordan Schroecker is listed in the Venuiti Healthcare context."
+      ],
+      "path": "M 340 970.0 C 550.0 970.0, 760.0 908.0, 940 908.0",
+      "label_x": 640.0,
+      "label_y": 929.0
+    },
+    {
+      "from_person_id": "person_shannon_teeter",
+      "to_entity_id": "group_venuiti",
+      "relationship_type": "associated_with",
+      "confidence": 0.82,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Shannon Teeter is listed as Executive @ Venuiti Group of Companies."
+      ],
+      "path": "M 340 1474.0 C 550.0 1474.0, 760.0 632.0, 940 632.0",
+      "label_x": 640.0,
+      "label_y": 1043.0
+    },
+    {
+      "from_person_id": "person_shannon_teeter",
+      "to_entity_id": "function_group_executive_leadership",
+      "relationship_type": "associated_with",
+      "confidence": 0.79,
+      "evidence": [
+        "Executive title is strong evidence for an executive-leadership association."
+      ],
+      "path": "M 340 1474.0 C 809.0 1474.0, 1278.0 722.0, 1680 722.0",
+      "label_x": 1010.0,
+      "label_y": 1088.0
+    },
+    {
+      "from_person_id": "person_melissa_shariff",
+      "to_entity_id": "group_venuiti",
+      "relationship_type": "associated_with",
+      "confidence": 0.8,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Melissa Shariff is listed as Sr. Manager of Operations @ Venuiti Group of Companies."
+      ],
+      "path": "M 340 1222.0 C 550.0 1222.0, 760.0 632.0, 940 632.0",
+      "label_x": 640.0,
+      "label_y": 917.0
+    },
+    {
+      "from_person_id": "person_melissa_shariff",
+      "to_entity_id": "function_group_operations",
+      "relationship_type": "associated_with",
+      "confidence": 0.8,
+      "evidence": [
+        "Operations manager title directly supports group operations association."
+      ],
+      "path": "M 340 1222.0 C 809.0 1222.0, 1278.0 848.0, 1680 848.0",
+      "label_x": 1010.0,
+      "label_y": 1025.0
+    },
+    {
+      "from_person_id": "person_sneha_gontu",
+      "to_entity_id": "team_devstaff_talent_acquisition",
+      "relationship_type": "associated_with",
+      "confidence": 0.63,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Sneha Gontu is listed as Talent Acquisition Specialist connecting with professionals in KW and the GTA."
+      ],
+      "path": "M 340 1726.0 C 809.0 1726.0, 1278.0 1226.0, 1680 1226.0",
+      "label_x": 1010.0,
+      "label_y": 1466.0
+    },
+    {
+      "from_person_id": "person_susanne_roma",
+      "to_entity_id": "company_venuiti_solutions",
+      "relationship_type": "associated_with",
+      "confidence": 0.82,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Susanne Roma is listed as General Manager at Venuiti Solutions Inc."
+      ],
+      "path": "M 340 1852.0 C 550.0 1852.0, 760.0 1046.0, 940 1046.0",
+      "label_x": 640.0,
+      "label_y": 1439.0
+    },
+    {
+      "from_person_id": "person_brent_mcnatt",
+      "to_entity_id": "company_venuiti_healthcare",
+      "relationship_type": "associated_with",
+      "confidence": 0.78,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Brent McNatt is listed as Full Stack Developer | Venuiti Healthcare | Venuiti Solutions."
+      ],
+      "path": "M 340 466.0 C 550.0 466.0, 760.0 908.0, 940 908.0",
+      "label_x": 640.0,
+      "label_y": 677.0
+    },
+    {
+      "from_person_id": "person_brent_mcnatt",
+      "to_entity_id": "company_venuiti_solutions",
+      "relationship_type": "cross_entity",
+      "confidence": 0.78,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Brent McNatt profile explicitly references both Venuiti Healthcare and Venuiti Solutions."
+      ],
+      "path": "M 340 466.0 C 550.0 466.0, 760.0 1046.0, 940 1046.0",
+      "label_x": 640.0,
+      "label_y": 746.0
+    },
+    {
+      "from_person_id": "person_anhad_lamba",
+      "to_entity_id": "function_venuiti_solutions_ai_engineering",
+      "relationship_type": "associated_with",
+      "confidence": 0.72,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Anhad Lamba is listed as AI Full Stack Developer @ Venuiti."
+      ],
+      "path": "M 340 340.0 C 809.0 340.0, 1278.0 218.0, 1680 218.0",
+      "label_x": 1010.0,
+      "label_y": 269.0
+    },
+    {
+      "from_person_id": "person_shiv_patel",
+      "to_entity_id": "function_venuiti_solutions_ai_engineering",
+      "relationship_type": "associated_with",
+      "confidence": 0.69,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Shiv Patel is listed as AI Developer at Venuiti."
+      ],
+      "path": "M 340 1600.0 C 809.0 1600.0, 1278.0 218.0, 1680 218.0",
+      "label_x": 1010.0,
+      "label_y": 899.0
+    },
+    {
+      "from_person_id": "person_jordan_hagedorn",
+      "to_entity_id": "function_venuiti_solutions_ai_engineering",
+      "relationship_type": "associated_with",
+      "confidence": 0.73,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Jordan Hagedorn is listed as Full Stack AI Developer at Venuiti Solutions."
+      ],
+      "path": "M 340 844.0 C 809.0 844.0, 1278.0 218.0, 1680 218.0",
+      "label_x": 1010.0,
+      "label_y": 521.0
+    },
+    {
+      "from_person_id": "person_madison_weber",
+      "to_entity_id": "team_venuiti_solutions_frontend_web",
+      "relationship_type": "associated_with",
+      "confidence": 0.7,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Madison Weber is listed as React Developer at Venuiti Solutions Inc."
+      ],
+      "path": "M 340 1096.0 C 809.0 1096.0, 1278.0 596.0, 1680 596.0",
+      "label_x": 1010.0,
+      "label_y": 836.0
+    },
+    {
+      "from_person_id": "person_gabriela_pereira",
+      "to_entity_id": "team_venuiti_solutions_frontend_web",
+      "relationship_type": "associated_with",
+      "confidence": 0.7,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Gabriela Pereira is listed as Software Developer @ Venuiti Solutions."
+      ],
+      "path": "M 340 718.0 C 809.0 718.0, 1278.0 596.0, 1680 596.0",
+      "label_x": 1010.0,
+      "label_y": 647.0
+    },
+    {
+      "from_person_id": "person_dmytro_lavrentiev",
+      "to_entity_id": "department_vh_engineering_integration",
+      "relationship_type": "associated_with",
+      "confidence": 0.76,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Dmytro Lavrentiev is listed as Senior Software Developer @ Venuiti Healthcare."
+      ],
+      "path": "M 340 592.0 C 809.0 592.0, 1278.0 470.0, 1680 470.0",
+      "label_x": 1010.0,
+      "label_y": 521.0
+    },
+    {
+      "from_person_id": "person_pleiades_chambers",
+      "to_entity_id": "team_vh_project_delivery",
+      "relationship_type": "associated_with",
+      "confidence": 0.62,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Pleiades Chambers is listed as Junior Project Manager at Venuiti."
+      ],
+      "path": "M 340 1348.0 C 809.0 1348.0, 1278.0 974.0, 1680 974.0",
+      "label_x": 1010.0,
+      "label_y": 1151.0
+    },
+    {
+      "from_person_id": "person_thomas_schroecker",
+      "to_person_id": "person_alexey_sidelnikov",
+      "relationship_type": "works_with",
+      "confidence": 0.83,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Thomas Schroecker and Alexey Sidelnikov are both described with group-level executive titles.",
+        "devstaff_linkedin and venuiti_solutions_linkedin: both people appear in the same multi-entity operating environment."
+      ],
+      "path": "M 340 1978.0 C 263.0 1978.0, 186.0 214.0, 120 214.0",
+      "label_x": 230.0,
+      "label_y": 1086.0
+    },
+    {
+      "from_person_id": "person_thomas_schroecker",
+      "to_person_id": "person_jordan_schroecker",
+      "relationship_type": "works_with",
+      "confidence": 0.74,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: Thomas Schroecker and Jordan Schroecker are both presented in group-level and cross-entity operating contexts."
+      ],
+      "path": "M 340 1978.0 C 263.0 1978.0, 186.0 970.0, 120 970.0",
+      "label_x": 230.0,
+      "label_y": 1464.0
+    },
+    {
+      "from_person_id": "person_jordan_schroecker",
+      "to_person_id": "person_shannon_teeter",
+      "relationship_type": "works_with",
+      "confidence": 0.68,
+      "evidence": [
+        "devstaff_linkedin and venuiti_health_linkedin: both people appear in overlapping group-linked entity contexts."
+      ],
+      "path": "M 340 970.0 C 263.0 970.0, 186.0 1474.0, 120 1474.0",
+      "label_x": 230.0,
+      "label_y": 1212.0
+    },
+    {
+      "from_person_id": "person_jordan_schroecker",
+      "to_person_id": "person_melissa_shariff",
+      "relationship_type": "works_with",
+      "confidence": 0.71,
+      "evidence": [
+        "linkedin_people_snapshot_20260409: both hold operations titles in the broader Venuiti Group operating context."
+      ],
+      "path": "M 340 970.0 C 263.0 970.0, 186.0 1222.0, 120 1222.0",
+      "label_x": 230.0,
+      "label_y": 1086.0
+    },
+    {
+      "from_person_id": "person_jordan_schroecker",
+      "to_person_id": "person_sneha_gontu",
+      "relationship_type": "works_with",
+      "confidence": 0.58,
+      "evidence": [
+        "Jordan Schroecker's recruiting-oriented operations title and Sneha Gontu's talent acquisition title support a cautious recruiting-team collaboration inference."
+      ],
+      "path": "M 340 970.0 C 263.0 970.0, 186.0 1726.0, 120 1726.0",
+      "label_x": 230.0,
+      "label_y": 1338.0
+    },
+    {
+      "from_person_id": "person_anhad_lamba",
+      "to_person_id": "person_shiv_patel",
+      "relationship_type": "likely_same_team",
+      "confidence": 0.63,
+      "evidence": [
+        "Both profiles use AI-focused developer titles tied to Venuiti in the same public snapshot."
+      ],
+      "path": "M 340 340.0 C 263.0 340.0, 186.0 1600.0, 120 1600.0",
+      "label_x": 230.0,
+      "label_y": 960.0
+    },
+    {
+      "from_person_id": "person_anhad_lamba",
+      "to_person_id": "person_jordan_hagedorn",
+      "relationship_type": "likely_same_team",
+      "confidence": 0.65,
+      "evidence": [
+        "Both profiles use AI full-stack developer language tied to Venuiti Solutions / Venuiti."
+      ],
+      "path": "M 340 340.0 C 263.0 340.0, 186.0 844.0, 120 844.0",
+      "label_x": 230.0,
+      "label_y": 582.0
+    },
+    {
+      "from_person_id": "person_madison_weber",
+      "to_person_id": "person_gabriela_pereira",
+      "relationship_type": "likely_same_team",
+      "confidence": 0.61,
+      "evidence": [
+        "Both profiles place them in software or frontend development at Venuiti Solutions."
+      ],
+      "path": "M 340 1096.0 C 263.0 1096.0, 186.0 718.0, 120 718.0",
+      "label_x": 230.0,
+      "label_y": 897.0
+    },
+    {
+      "from_person_id": "person_brent_mcnatt",
+      "to_person_id": "person_dmytro_lavrentiev",
+      "relationship_type": "works_with",
+      "confidence": 0.59,
+      "evidence": [
+        "Both profiles place them in hands-on software engineering work tied to Venuiti Healthcare."
+      ],
+      "path": "M 340 466.0 C 263.0 466.0, 186.0 592.0, 120 592.0",
+      "label_x": 230.0,
+      "label_y": 519.0
+    }
+  ]
+};
+    const detailPanel = document.getElementById('detail-panel');
+    function renderDetail(title, body, evidence) {
+      const items = Array.isArray(evidence) ? evidence.map((item) => `<li>${item}</li>`).join('') : '';
+      detailPanel.innerHTML = `<h3>${title}</h3><p>${body}</p>${items ? `<ul>${items}</ul>` : ''}`;
+    }
+    const svg = document.querySelector('svg');
+    const viewport = document.getElementById('viewport');
+    let scale = 1;
+    let tx = 0;
+    let ty = 0;
+    let dragging = false;
+    let lastX = 0;
+    let lastY = 0;
+    function applyTransform() {
+      viewport.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
+    }
+    svg.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      const delta = event.deltaY < 0 ? 1.08 : 0.92;
+      scale = Math.min(2.4, Math.max(0.45, scale * delta));
+      applyTransform();
+    }, { passive: false });
+    svg.addEventListener('mousedown', (event) => {
+      dragging = true;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      svg.classList.add('dragging');
+    });
+    window.addEventListener('mouseup', () => {
+      dragging = false;
+      svg.classList.remove('dragging');
+    });
+    window.addEventListener('mousemove', (event) => {
+      if (!dragging) return;
+      tx += event.clientX - lastX;
+      ty += event.clientY - lastY;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      applyTransform();
+    });
+    document.querySelectorAll('[data-detail]').forEach((element) => {
+      const payload = JSON.parse(element.dataset.detail);
+      const handler = () => renderDetail(payload.title, payload.body, payload.evidence);
+      element.addEventListener('mouseenter', handler);
+      element.addEventListener('click', handler);
+    });
+    applyTransform();
+  </script>
+</body>
+</html>

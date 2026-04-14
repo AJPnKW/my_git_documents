@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0",
+  "target_group": "venuiti",
+  "company_research_entity_id": "group_venuiti",
+  "aliases": [
+    {
+      "alias_story_id": "hubble_erp_upgrade_zero_downtime",
+      "label": "Hubble ERP implementation and upgrade control",
+      "canonical_story_id": "story_5735bedc9111",
+      "canonical_story_key": "enterprise_risk_vendor_assurance",
+      "anchor_role_ids": [
+        "role_5bf6b2ac62eb"
+      ],
+      "anchor_role_titles": [
+        "ERP PROJECT MANAGER AND ERP CONSULTANT"
+      ],
+      "anchor_employers": [
+        "HUBBLE TECHNOLOGY CONSULTING INC. (Lawson ERP Consulting)"
+      ],
+      "domains": [
+        "client_delivery",
+        "consulting",
+        "erp",
+        "leadership",
+        "pm",
+        "training"
+      ],
+      "capability_tags": [
+        "client_training",
+        "implementation",
+        "program_delivery",
+        "stakeholder_engagement"
+      ],
+      "sensitivity_flags": [],
+      "resolved_status": "resolved_to_master_story"
+    },
+    {
+      "alias_story_id": "kuntz_hrms_modernization",
+      "label": "Kuntz HRMS modernization and support transformation",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_e1fc08be4ed8"
+      ],
+      "anchor_role_titles": [
+        "MANAGER OF BUSINESS APPLICATIONS, TRAINING AND SUPPORT"
+      ],
+      "anchor_employers": [
+        "KUNTZ ELECTROPLATING INC. (Tier 2 auto supplier)"
+      ],
+      "domains": [
+        "erp",
+        "leadership",
+        "pm",
+        "training"
+      ],
+      "capability_tags": [
+        "audit",
+        "client_training",
+        "implementation",
+        "program_delivery",
+        "stakeholder_engagement"
+      ],
+      "sensitivity_flags": [
+        "awkward_or_selective_employer",
+        "short_tenure"
+      ],
+      "resolved_status": "resolved_to_master_story"
+    },
+    {
+      "alias_story_id": "manulife_group_benefits_recovery_project",
+      "label": "Manulife group benefits recovery and risk delivery",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_3240a334a2fe",
+        "role_d0b5d8fcbe1d"
+      ],
+      "anchor_role_titles": [
+        "IT RISK MANAGEMENT CONSULTANT, GROUP BENEFITS AND RETIREMENT SOLUTION TECHNOLOGIES",
+        "PROJECT RISK MANAGEMENT CONSULTANT, TECHNOLOGY RISK MANAGEMENT, GLOBAL INFORMATION RISK MANAGEMENT"
+      ],
+      "anchor_employers": [
+        "MANULIFE FINANCIAL"
+      ],
+      "domains": [
+        "client_delivery",
+        "compliance",
+        "consulting",
+        "erp",
+        "grc",
+        "leadership",
+        "pm",
+        "security",
+        "training"
+      ],
+      "capability_tags": [
+        "audit",
+        "client_training",
+        "implementation",
+        "program_delivery",
+        "sox_soc",
+        "stakeholder_engagement",
+        "third_party_risk",
+        "vendor_management"
+      ],
+      "sensitivity_flags": [
+        "awkward_or_selective_employer",
+        "short_tenure"
+      ],
+      "resolved_status": "resolved_to_master_story"
+    },
+    {
+      "alias_story_id": "manulife_internet_release_delivery",
+      "label": "Manulife internet and application release delivery",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_cc90a0d28347",
+        "role_9cb218f6df9c"
+      ],
+      "anchor_role_titles": [
+        "TEAM LEADER - SERVICE DELIVERY AND SUPPORT",
+        "PROJECT MANAGER - INFORMATION SYSTEMS"
+      ],
+      "anchor_employers": [
+        "MANULIFE FINANCIAL"
+      ],
+      "domains": [
+        "client_delivery",
+        "compliance",
+        "grc",
+        "leadership",
+        "pm"
+      ],
+      "capability_tags": [
+        "implementation",
+        "program_delivery",
+        "stakeholder_engagement",
+        "third_party_risk",
+        "vendor_management"
+      ],
+      "sensitivity_flags": [
+        "awkward_or_selective_employer",
+        "short_tenure"
+      ],
+      "resolved_status": "resolved_to_master_story"
+    },
+    {
+      "alias_story_id": "opentext_security_governance",
+      "label": "OpenText security governance and execution discipline",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_5fe3216c441d",
+        "role_6b972ad9aec3"
+      ],
+      "anchor_role_titles": [
+        "LEAD SECURITY COMPLIANCE ANALYST, GLOBAL INFORMATION SECURITY, GOVERNANCE & RISK",
+        "MANAGER INFORMATION SECURITY, GLOBAL INFORMATION SECURITY, GOVERNANCE & RISK"
+      ],
+      "anchor_employers": [
+        "OPENTEXT, SOFTWARE COMPANY"
+      ],
+      "domains": [
+        "client_delivery",
+        "compliance",
+        "erp",
+        "grc",
+        "leadership",
+        "pm",
+        "security",
+        "training"
+      ],
+      "capability_tags": [
+        "audit",
+        "client_training",
+        "implementation",
+        "iso27001_27017",
+        "program_delivery",
+        "sox_soc",
+        "stakeholder_engagement",
+        "third_party_risk",
+        "vendor_management"
+      ],
+      "sensitivity_flags": [
+        "awkward_or_selective_employer",
+        "short_tenure"
+      ],
+      "resolved_status": "resolved_to_master_story"
+    },
+    {
+      "alias_story_id": "spaenaur_application_portfolio_leadership",
+      "label": "Spaenaur application portfolio leadership",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_cfa9e90f2f34",
+        "role_3eb67e6ba1bc"
+      ],
+      "anchor_role_titles": [
+        "MANAGER OF APPLICATIONS, DEVELOPMENT AND SUPPORT",
+        "DIRECTOR (ACTING) OF INFORMATION SERVICES"
+      ],
+      "anchor_employers": [
+        "SPAENAUR INC."
+      ],
+      "domains": [
+        "client_delivery",
+        "compliance",
+        "erp",
+        "grc",
+        "leadership",
+        "pm",
+        "security"
+      ],
+      "capability_tags": [
+        "implementation",
+        "program_delivery",
+        "stakeholder_engagement",
+        "third_party_risk",
+        "vendor_management"
+      ],
+      "sensitivity_flags": [
+        "awkward_or_selective_employer",
+        "short_tenure"
+      ],
+      "resolved_status": "resolved_to_master_story"
+    },
+    {
+      "alias_story_id": "sun_life_health_and_benefits_delivery",
+      "label": "Sun Life health and benefits delivery",
+      "canonical_story_id": "story_ae8a593ce62a",
+      "canonical_story_key": "audit_compliance_frameworks",
+      "anchor_role_ids": [
+        "role_fa27dd0c5c23",
+        "role_dbf6d3c39931"
+      ],
+      "anchor_role_titles": [
+        "SR. PROJECT MANAGEMENT \u2013 IT GROUP BENEFITS",
+        "SR. PROJECT MANAGER \u2013 IT INDIVIDUAL APPLICATIONS"
+      ],
+      "anchor_employers": [
+        "SUN LIFE FINANCIAL"
+      ],
+      "domains": [
+        "client_delivery",
+        "compliance",
+        "grc",
+        "leadership",
+        "pm"
+      ],
+      "capability_tags": [
+        "audit",
+        "implementation",
+        "program_delivery",
+        "stakeholder_engagement",
+        "vendor_management"
+      ],
+      "sensitivity_flags": [
+        "awkward_or_selective_employer",
+        "short_tenure"
+      ],
+      "resolved_status": "resolved_to_master_story"
+    }
+  ]
+}

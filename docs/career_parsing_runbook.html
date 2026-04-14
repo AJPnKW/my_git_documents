@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Career Parsing Runbook</title>
+  <link rel="stylesheet" href="../app/assets/css/app.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="breadcrumbs"><a href="index.html">Docs</a> / Career Warehouse</div>
+      <h1>Career Parsing Runbook</h1>
+    </section>
+    <section class="section"><p>The current run ingests 251 source artifacts from the configured historical job-search roots and writes whole-file outputs under <code>data/career/</code>.</p><ol class="doc-list"><li>Discover supported career-relevant files recursively from the configured source roots.</li><li>Extract text deterministically from DOCX/XLSX/HTML/TXT/CSV/JSON and best-effort PDF content.</li><li>Use the online-forms workbook as the canonical role and education spine.</li><li>Enrich facts from supporting documents while preserving every source reference.</li><li>Activate downstream Venuiti opportunity files through alias resolution to canonical master-story IDs.</li><li>Validate JSON structure, story references, downstream activation state, and Python compilation for all <code>scripts/career/*.py</code> files.</li><li>Generate the career master, story master, source index, entity timeline, activation summary, validation summary, logs, and zip bundle.</li></ol><p>Operational command: <code>python scripts/career/run_career_pipeline.py</code>.</p></section>
+  </main>
+</body>
+</html>

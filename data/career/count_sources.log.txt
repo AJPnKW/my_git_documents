@@ -1,0 +1,9 @@
+2026-04-09 12:49:24,394 | INFO | discovered 1754 candidate source files
+2026-04-09 12:49:50,216 | INFO | discovered 1754 candidate source files
+2026-04-09 12:50:45,045 | INFO | discovered 1517 candidate source files
+2026-04-09 12:52:56,253 | INFO | discovered 1528 candidate source files
+2026-04-09 12:56:45,490 | INFO | discovered 1305 candidate source files
+2026-04-09 12:57:16,378 | INFO | discovered 251 candidate source files
+2026-04-09 12:57:16,379 | INFO | deduplicated 1054 duplicate source candidates by normalized filename
+2026-04-09 12:59:09,285 | INFO | discovered 251 candidate source files
+2026-04-09 12:59:09,285 | INFO | deduplicated 1054 duplicate source candidates by normalized filename

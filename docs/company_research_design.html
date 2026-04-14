@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Company Research Design</title>
+  <link rel="stylesheet" href="../app/assets/css/app.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="breadcrumbs"><a href="index.html">Docs</a> / Company Research Design</div>
+      <h1>Company Research Design</h1>
+      <p>This subsystem provides deterministic, evidence-first company and people research outputs for interview support workflows. It is designed as a reusable normalization layer for future companies, not as a one-off Venuiti-specific scraper.</p>
+    </section>
+    <section class="card">
+      <h2>Folder Structure</h2>
+      <ul>
+        <li><code>data/schemas/company_people_research.schema.json</code> stores the shared schema.</li>
+        <li><code>data/company_research/&lt;group_slug&gt;/</code> stores normalized outputs, logs, and package manifests.</li>
+        <li><code>scripts/company_research/</code> stores the reusable generation and packaging scripts plus curated source data.</li>
+        <li><code>docs/</code> stores HTML-only documentation.</li>
+        <li><code>.ai_downloads/</code> stores the shareable output zip.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>JSON Purpose</h2>
+      <ul>
+        <li><code>company_people_research.json</code> is the interview-facing normalized dataset.</li>
+        <li><code>source_index.json</code> is the source ledger with URLs, domains, and extracted key points.</li>
+        <li><code>people_index.json</code> is the normalized person list with affiliations and confidence.</li>
+        <li><code>entity_resolution.json</code> stores alias handling, scored relationships, and rejects.</li>
+      </ul>
+      <p>The Venuiti payload also includes two additive inferred-graph sections. <code>org_structure_inferred</code> models the public operating structure as an evidence-backed functional graph rather than a legal org chart. <code>people_graph_inferred</code> models person-to-entity and person-to-person associations using conservative relationship labels.</p>
+    </section>
+    <section class="card">
+      <h2>Validation Logic</h2>
+      <p>The model uses explicit weighted signals instead of implicit merging.</p>
+      <ul>
+        <li>Direct domain match.</li>
+        <li>Official domain cross-reference.</li>
+        <li>Explicit group language.</li>
+        <li>Shared location.</li>
+        <li>Shared employee overlap.</li>
+        <li>Shared founding year.</li>
+      </ul>
+      <p>Weak signals are never allowed to convert into ownership claims. Shared people, geography, or founding year can support a candidate relationship, but they cannot independently prove legal ownership, control, or reporting lines.</p>
+      <p>For inferred graphs, confidence labels follow the same conservative posture. High confidence means the structure or association is explicitly stated on official sources. Medium confidence means multiple sources strongly imply the relationship. Low confidence means the relationship is preserved only as a lightweight inference. The model never emits <code>reports_to</code> edges without direct evidence.</p>
+    </section>
+    <section class="card">
+      <h2>Inferred Graphs</h2>
+      <ul>
+        <li><code>org_structure_inferred.nodes</code> includes companies, brands, functions, departments, and teams with parent references, confidence, and evidence.</li>
+        <li><code>org_structure_inferred.relationships</code> records inferred operating links such as <code>belongs_to</code>, <code>operates_within</code>, <code>supports</code>, and <code>cross_function</code>.</li>
+        <li><code>people_graph_inferred.nodes</code> summarizes each known person's associated entities, likely functions, and overall mapping confidence.</li>
+        <li><code>people_graph_inferred.relationships</code> uses only conservative labels such as <code>associated_with</code>, <code>works_with</code>, <code>likely_same_team</code>, and <code>cross_entity</code>.</li>
+      </ul>
+      <p>These sections are meant for interview context and navigation, not for asserting legal ownership or managerial hierarchy.</p>
+      <p>Visual views are published as <a href="venuiti_org_chart.html">venuiti_org_chart.html</a> and <a href="venuiti_people_graph.html">venuiti_people_graph.html</a>. Both are static standalone HTML artifacts with zoom, pan, hover details, explicit inferred-status warnings, and layout scaling tuned for denser people and team graphs.</p>
+      <p>Required node fields remain stable. <code>org_structure_inferred.nodes</code> must emit <code>id</code>, <code>name</code>, <code>type</code>, <code>parent_id</code>, <code>description</code>, <code>confidence</code>, and <code>evidence</code>. <code>people_graph_inferred.nodes</code> must emit <code>person_id</code>, <code>name</code>, <code>associated_entities</code>, <code>likely_functions</code>, and <code>confidence</code>.</p>
+      <p>Relationship records are also fixed. <code>org_structure_inferred.relationships</code> must emit <code>from_id</code>, <code>to_id</code>, <code>relationship_type</code>, <code>confidence</code>, and <code>evidence</code>. <code>people_graph_inferred.relationships</code> must emit <code>from_person_id</code> plus either <code>to_person_id</code> or <code>to_entity_id</code>, along with <code>relationship_type</code>, <code>confidence</code>, and <code>evidence</code>.</p>
+      <p>The inference rules stay deliberately conservative: derive structure from official sites, brand separation, service lines, job-posting patterns, domain specialization, and repeated public people-title snapshots; derive people links from repeated co-occurrence, shared entity association, and shared function. The model must not invent reporting chains and should prefer <code>associated_with</code>, <code>works_with</code>, and <code>likely_same_team</code> when evidence is indirect.</p>
+    </section>
+    <section class="card">
+      <h2>Confidence Model</h2>
+      <ul>
+        <li><code>&gt;= 0.80</code>: accepted high confidence.</li>
+        <li><code>0.60 - 0.79</code>: accepted with caution.</li>
+        <li><code>0.45 - 0.59</code>: candidate only.</li>
+        <li><code>&lt; 0.45</code>: rejected weak match.</li>
+      </ul>
+      <p>This keeps the subsystem safe for interview support, where documented uncertainty is preferable to overstated structure.</p>
+    </section>
+    <section class="card">
+      <h2>Reusable Design Choices</h2>
+      <ul>
+        <li>Group data is curated in Python structures, so future companies can be added without changing the output contract.</li>
+        <li>The schema is shared and group-agnostic.</li>
+        <li>The generator writes deterministic JSON with stable ordering and snapshot dates.</li>
+        <li>Build and package runs emit <code>.log.txt</code> files.</li>
+        <li>Packaging is deterministic and limited to the relevant outputs and docs.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

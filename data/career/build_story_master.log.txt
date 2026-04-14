@@ -1,0 +1,31 @@
+2026-04-09 12:48:14,937 | ERROR | failed: [Errno 2] No such file or directory: 'C:\\Users\\andrew\\PROJECTS\\GitHub\\my_git_documents\\data\\career\\career_master.json'
+2026-04-09 12:48:14,968 | ERROR | Traceback (most recent call last):
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\career_common.py", line 154, in run_logged
+    fn()
+  File "C:\Users\andrew\PROJECTS\GitHub\my_git_documents\scripts\career\build_story_master.py", line 68, in _run
+    career_master = json.loads((DATA_DIR / "career_master.json").read_text(encoding="utf-8"))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Utilities\Python\3.12\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Utilities\Python\3.12\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\andrew\\PROJECTS\\GitHub\\my_git_documents\\data\\career\\career_master.json'
+
+2026-04-09 13:02:28,565 | INFO | wrote 3 reusable stories
+2026-04-09 13:02:28,568 | INFO | completed successfully
+2026-04-09 13:05:22,540 | INFO | wrote 3 reusable stories
+2026-04-09 13:05:22,543 | INFO | completed successfully
+2026-04-09 13:11:59,449 | INFO | wrote 3 reusable stories
+2026-04-09 13:11:59,451 | INFO | completed successfully
+2026-04-09 13:14:15,211 | INFO | wrote 3 reusable stories
+2026-04-09 13:14:15,213 | INFO | completed successfully
+2026-04-09 22:10:49,635 | INFO | wrote 3 reusable stories
+2026-04-09 22:10:49,639 | INFO | completed successfully
+2026-04-09 22:13:07,258 | INFO | wrote 3 reusable stories
+2026-04-09 22:13:07,259 | INFO | completed successfully
+2026-04-09 22:16:03,446 | INFO | wrote 3 reusable stories
+2026-04-09 22:16:03,447 | INFO | completed successfully
+2026-04-09 22:17:29,089 | INFO | wrote 3 reusable stories
+2026-04-09 22:17:29,090 | INFO | completed successfully

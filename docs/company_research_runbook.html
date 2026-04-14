@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Company Research Runbook</title>
+  <link rel="stylesheet" href="../app/assets/css/app.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="breadcrumbs"><a href="index.html">Docs</a> / Company Research Runbook</div>
+      <h1>Company Research Runbook</h1>
+      <p>This runbook explains how to rebuild, validate, inspect, and package the company research outputs without rebuilding the repository or creating a second architecture.</p>
+    </section>
+    <section class="card">
+      <h2>Rerun Process</h2>
+      <ol>
+        <li>Update <code>scripts/company_research/company_research_data.py</code> with the source set, entity definitions, people, and relationship candidates.</li>
+        <li>Run <code>python scripts/company_research/run_company_research_production.py --group venuiti</code>.</li>
+        <li>For PowerShell users, run <code>powershell -ExecutionPolicy Bypass -File scripts/company_research/run_company_research_production.ps1</code>.</li>
+        <li>Inspect the generated files under <code>data/company_research/venuiti/</code> and the package under <code>.ai_downloads/</code>.</li>
+      </ol>
+    </section>
+    <section class="card">
+      <h2>Validation Steps</h2>
+      <ul>
+        <li>The build script rewrites the shared schema and validates <code>company_people_research.json</code> with Draft 2020-12.</li>
+        <li><code>scripts/company_research/validate_company_research_outputs.py</code> validates required outputs, inferred graph references, allowed relationship labels, package manifest alignment, and zip contents.</li>
+        <li><code>tests/run_all.py</code> includes the company research validator so pull-request validation catches drift before release.</li>
+        <li>Python files should pass <code>py_compile</code>.</li>
+        <li>Review <code>run_company_research_production.log.txt</code>, <code>build_company_people_research.log.txt</code>, <code>render_company_research_visuals.log.txt</code>, and <code>package_company_research.log.txt</code> after each run.</li>
+        <li>If a relationship score drops below acceptance thresholds, preserve that uncertainty instead of forcing a merge.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Updating Evidence</h2>
+      <ul>
+        <li>Add new official sources before relying on secondary sources.</li>
+        <li>Use secondary sources for corroboration, employee overlap, founding year, or headquarters support.</li>
+        <li>Do not convert group-language into legal-ownership language unless a primary legal source supports it.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Expected Outputs</h2>
+      <ul>
+        <li><code>data/schemas/company_people_research.schema.json</code></li>
+        <li><code>data/company_research/venuiti/company_people_research.json</code></li>
+        <li><code>data/company_research/venuiti/source_index.json</code></li>
+        <li><code>data/company_research/venuiti/people_index.json</code></li>
+        <li><code>data/company_research/venuiti/entity_resolution.json</code></li>
+        <li><code>data/company_research/venuiti/build_company_people_research.log.txt</code></li>
+        <li><code>data/company_research/venuiti/render_company_research_visuals.log.txt</code></li>
+        <li><code>data/company_research/venuiti/package_company_research.log.txt</code></li>
+        <li><code>data/company_research/venuiti/run_company_research_production.log.txt</code></li>
+        <li><code>data/company_research/venuiti/run_company_research_production_summary.json</code></li>
+        <li><code>data/company_research/venuiti/validate_company_research_outputs_report.json</code></li>
+        <li><code>docs/venuiti_org_chart.html</code></li>
+        <li><code>docs/venuiti_people_graph.html</code></li>
+        <li><code>.ai_downloads/venuiti_company_research_outputs.zip</code></li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Production Controls</h2>
+      <ul>
+        <li>The GitHub validation workflow installs Python dependencies from <code>requirements.txt</code> and runs <code>tests/run_all.py</code>.</li>
+        <li>The GitHub package workflow rebuilds the Venuiti company research package before creating release artifacts.</li>
+        <li>The production runner fails fast on any non-zero build, render, validation, package, or repository validation step.</li>
+        <li>The validator rejects broken inferred-graph references, unsupported relationship labels, missing evidence, and package/manifest mismatch.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Failure Handling</h2>
+      <p>If the production runner fails, open <code>data/company_research/venuiti/run_company_research_production_summary.json</code> first to identify the failed step. Correct schema mismatches or malformed curated data before re-running. If packaging fails, verify the normalized outputs, docs, and package manifest exist before re-running packaging. All production scripts return non-zero exit codes for deterministic automation behavior.</p>
+    </section>
+  </main>
+</body>
+</html>

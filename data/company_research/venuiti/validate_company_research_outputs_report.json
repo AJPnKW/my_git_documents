@@ -1,0 +1,13 @@
+{
+  "group": "venuiti",
+  "valid": true,
+  "errors": [],
+  "counts": {
+    "companies": 3,
+    "people": 15,
+    "org_nodes": 18,
+    "org_relationships": 22,
+    "people_graph_nodes": 15,
+    "people_graph_relationships": 38
+  }
+}

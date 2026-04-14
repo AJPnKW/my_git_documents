@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Venuiti Inventory and Table of Contents</title>
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --panel: #fffaf2;
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --line: #d9cdbb;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --chip: #e8f5f2;
+      --warn: #fff7ed;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(15,118,110,0.12), transparent 32rem),
+        linear-gradient(180deg, #fbf7ef 0%, var(--bg) 100%);
+      color: var(--ink);
+    }
+    main {
+      width: min(1220px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+    .hero, .card {
+      background: rgba(255,250,242,0.92);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 18px 48px rgba(23,32,51,0.08);
+    }
+    .hero {
+      padding: 30px;
+      margin-bottom: 22px;
+    }
+    .breadcrumbs {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    h1, h2, h3 { margin: 0; line-height: 1.1; }
+    h1 { font-size: clamp(32px, 5vw, 54px); letter-spacing: -0.035em; }
+    h2 { font-size: 25px; margin-bottom: 12px; }
+    h3 { font-size: 18px; margin-bottom: 8px; }
+    p { color: var(--muted); line-height: 1.55; margin: 12px 0 0; }
+    a { color: #0f5f59; font-weight: 700; text-decoration-thickness: 0.08em; text-underline-offset: 0.18em; }
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .quick-link {
+      display: block;
+      min-height: 94px;
+      padding: 16px;
+      border: 1px solid rgba(15,118,110,0.22);
+      border-radius: 18px;
+      background: #ffffff;
+      text-decoration: none;
+    }
+    .quick-link span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.4;
+      margin-top: 7px;
+    }
+    .card {
+      padding: 24px;
+      margin-top: 18px;
+    }
+    .note {
+      border-left: 5px solid var(--accent-2);
+      background: var(--warn);
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #7c2d12;
+      margin-top: 14px;
+      line-height: 1.45;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 15px;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    th, td {
+      border-bottom: 1px solid #eadfce;
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #ecf7f4;
+      color: #123c39;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: 0; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      color: #334155;
+      word-break: break-word;
+    }
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: #0f5f59;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      padding: 8px 12px;
+      text-decoration: none;
+    }
+    @media (max-width: 760px) {
+      main { width: min(100% - 24px, 1220px); padding-top: 18px; }
+      .hero, .card { padding: 18px; border-radius: 18px; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tr { border: 1px solid #eadfce; border-radius: 14px; margin: 12px 0; overflow: hidden; }
+      td { border-bottom: 1px solid #eadfce; }
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="breadcrumbs"><a href="index.html">Docs</a> / Venuiti Inventory</div>
+      <h1>Venuiti Inventory and Table of Contents</h1>
+      <p>One navigation page for the Venuiti company research, inferred org and people visuals, Technology Project Manager posting workspace, generated data, scripts, logs, and shareable packages stored in this repository.</p>
+      <div class="note">Company structure and people relationships are inferred from public evidence and saved research data. They are not an official Venuiti org chart and do not assert legal ownership or reporting lines.</div>
+      <div class="quick-grid">
+        <a class="quick-link" href="venuiti_org_chart.html">Open Inferred Org Chart<span>Visual hierarchy of Venuiti Group, brands, functions, teams, and confidence labels.</span></a>
+        <a class="quick-link" href="venuiti_people_graph.html">Open Inferred People Graph<span>Network view of people, entities, functions, and conservative relationship edges.</span></a>
+        <a class="quick-link" href="../web/sites/resumes/companies/venuiti/postings/technology_project_manager/index.html">Open Posting Workspace<span>Technology Project Manager workspace with job posting, resume, analysis, and interview links.</span></a>
+        <a class="quick-link" href="../.ai_downloads/venuiti_company_research_outputs.zip">Download Company Research Package<span>Zip package for normalized company research outputs and visuals.</span></a>
+      </div>
+      <nav class="toc" aria-label="Inventory sections">
+        <a href="#start">Start Here</a>
+        <a href="#company-research">Company Research</a>
+        <a href="#opportunity">Opportunity and Posting</a>
+        <a href="#viewer-files">Viewer Files</a>
+        <a href="#scripts">Scripts</a>
+        <a href="#logs-packages">Logs and Packages</a>
+      </nav>
+    </section>
+
+    <section class="card" id="start">
+      <h2>Start Here</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Type</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Item">Venuiti Inventory</td>
+            <td data-label="Type"><span class="tag">HTML index</span></td>
+            <td data-label="Purpose">This page. Master table of contents for Venuiti-related saved and generated files.</td>
+            <td data-label="Link"><a href="venuiti_inventory.html">docs/venuiti_inventory.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Posting Workspace</td>
+            <td data-label="Type"><span class="tag">HTML app page</span></td>
+            <td data-label="Purpose">Main Technology Project Manager workspace entry point.</td>
+            <td data-label="Link"><a href="../web/sites/resumes/companies/venuiti/postings/technology_project_manager/index.html">web/sites/resumes/companies/venuiti/postings/technology_project_manager/index.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Company Home</td>
+            <td data-label="Type"><span class="tag">HTML app page</span></td>
+            <td data-label="Purpose">Company-level web workspace entry for Venuiti.</td>
+            <td data-label="Link"><a href="../web/sites/resumes/companies/venuiti/company_home.html">web/sites/resumes/companies/venuiti/company_home.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Docs Index</td>
+            <td data-label="Type"><span class="tag">HTML docs</span></td>
+            <td data-label="Purpose">Repository documentation index with a link back to this inventory.</td>
+            <td data-label="Link"><a href="index.html">docs/index.html</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="company-research">
+      <h2>Company Research, Entity Resolution, and Visuals</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Type</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Item">Company Research Design</td>
+            <td data-label="Type"><span class="tag">HTML docs</span></td>
+            <td data-label="Purpose">Explains the reusable research subsystem, schema, confidence model, and inferred graph rules.</td>
+            <td data-label="Link"><a href="company_research_design.html">docs/company_research_design.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Company Research Runbook</td>
+            <td data-label="Type"><span class="tag">HTML docs</span></td>
+            <td data-label="Purpose">Operational rerun/update instructions for company research outputs.</td>
+            <td data-label="Link"><a href="company_research_runbook.html">docs/company_research_runbook.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Inferred Org Chart</td>
+            <td data-label="Type"><span class="tag">HTML visual</span></td>
+            <td data-label="Purpose">Zoomable/pannable inferred structure chart for Venuiti Group, brands, functions, departments, and teams.</td>
+            <td data-label="Link"><a href="venuiti_org_chart.html">docs/venuiti_org_chart.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Inferred People Graph</td>
+            <td data-label="Type"><span class="tag">HTML visual</span></td>
+            <td data-label="Purpose">Zoomable/pannable people-to-entity and people-to-people graph with conservative edge labels.</td>
+            <td data-label="Link"><a href="venuiti_people_graph.html">docs/venuiti_people_graph.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Normalized Company/People Research</td>
+            <td data-label="Type"><span class="tag">JSON data</span></td>
+            <td data-label="Purpose">Canonical Venuiti research payload used by visuals and interview support.</td>
+            <td data-label="Link"><a href="../data/company_research/venuiti/company_people_research.json">data/company_research/venuiti/company_people_research.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Source Index</td>
+            <td data-label="Type"><span class="tag">JSON data</span></td>
+            <td data-label="Purpose">Source ledger with domains, URLs, freshness dates, and key points.</td>
+            <td data-label="Link"><a href="../data/company_research/venuiti/source_index.json">data/company_research/venuiti/source_index.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">People Index</td>
+            <td data-label="Type"><span class="tag">JSON data</span></td>
+            <td data-label="Purpose">Normalized people and affiliations extracted from company research.</td>
+            <td data-label="Link"><a href="../data/company_research/venuiti/people_index.json">data/company_research/venuiti/people_index.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Entity Resolution</td>
+            <td data-label="Type"><span class="tag">JSON data</span></td>
+            <td data-label="Purpose">Alias handling, relationship candidates, source scoring, cautions, and rejects.</td>
+            <td data-label="Link"><a href="../data/company_research/venuiti/entity_resolution.json">data/company_research/venuiti/entity_resolution.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Shared Research Schema</td>
+            <td data-label="Type"><span class="tag">JSON schema</span></td>
+            <td data-label="Purpose">Reusable validation contract for company/entity/people research.</td>
+            <td data-label="Link"><a href="../data/schemas/company_people_research.schema.json">data/schemas/company_people_research.schema.json</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="opportunity">
+      <h2>Technology Project Manager Opportunity and Posting</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Type</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Item">Opportunity Design</td>
+            <td data-label="Type"><span class="tag">HTML docs</span></td>
+            <td data-label="Purpose">Design notes for the Venuiti Technology Project Manager opportunity subsystem.</td>
+            <td data-label="Link"><a href="opportunity_design_venuiti_technology_project_manager.html">docs/opportunity_design_venuiti_technology_project_manager.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity Runbook</td>
+            <td data-label="Type"><span class="tag">HTML docs</span></td>
+            <td data-label="Purpose">Update, validation, and packaging process for the opportunity outputs.</td>
+            <td data-label="Link"><a href="opportunity_runbook_venuiti_technology_project_manager.html">docs/opportunity_runbook_venuiti_technology_project_manager.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity Profile</td>
+            <td data-label="Type"><span class="tag">JSON data</span></td>
+            <td data-label="Purpose">Normalized role/posting profile for interview preparation and alignment.</td>
+            <td data-label="Link"><a href="../data/opportunities/venuiti/technology_project_manager/opportunity_profile.json">data/opportunities/venuiti/technology_project_manager/opportunity_profile.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Interview Response Bank</td>
+            <td data-label="Type"><span class="tag">JSON data</span></td>
+            <td data-label="Purpose">Structured response bank for the Technology Project Manager opportunity.</td>
+            <td data-label="Link"><a href="../data/opportunities/venuiti/technology_project_manager/opportunity_interview_response_bank.json">data/opportunities/venuiti/technology_project_manager/opportunity_interview_response_bank.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Live Interview Config</td>
+            <td data-label="Type"><span class="tag">JSON config</span></td>
+            <td data-label="Purpose">Config for live interview support and capture integration.</td>
+            <td data-label="Link"><a href="../data/opportunities/venuiti/technology_project_manager/live_interview_config.json">data/opportunities/venuiti/technology_project_manager/live_interview_config.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Live Capture Workspace</td>
+            <td data-label="Type"><span class="tag">JSON config</span></td>
+            <td data-label="Purpose">Viewer workspace configuration for the live interview/capture workflow.</td>
+            <td data-label="Link"><a href="../data/opportunities/venuiti/technology_project_manager/live_capture_workspace.json">data/opportunities/venuiti/technology_project_manager/live_capture_workspace.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity Validation Summary</td>
+            <td data-label="Type"><span class="tag">JSON validation</span></td>
+            <td data-label="Purpose">Saved validation status for opportunity outputs.</td>
+            <td data-label="Link"><a href="../data/opportunities/venuiti/technology_project_manager/opportunity_validation_summary.json">data/opportunities/venuiti/technology_project_manager/opportunity_validation_summary.json</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="viewer-files">
+      <h2>Posting Workspace Viewer Files</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Type</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Item">Job Posting</td>
+            <td data-label="Type"><span class="tag">HTML content</span></td>
+            <td data-label="Purpose">Saved Technology Project Manager posting content.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/posting.html">files/resumes/venuiti/technology_project_manager/posting.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Posting Analysis</td>
+            <td data-label="Type"><span class="tag">HTML analysis</span></td>
+            <td data-label="Purpose">Detailed role analysis and alignment notes.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/posting_analysis.html">files/resumes/venuiti/technology_project_manager/posting_analysis.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Resume</td>
+            <td data-label="Type"><span class="tag">HTML resume</span></td>
+            <td data-label="Purpose">Venuiti Technology Project Manager resume artifact.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/resume.html">files/resumes/venuiti/technology_project_manager/resume.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Interview Prep</td>
+            <td data-label="Type"><span class="tag">HTML prep</span></td>
+            <td data-label="Purpose">Saved interview prep page for the role.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/interview_prep.html">files/resumes/venuiti/technology_project_manager/interview_prep.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Interview Questions</td>
+            <td data-label="Type"><span class="tag">HTML prep</span></td>
+            <td data-label="Purpose">Role-specific interview question page.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/interview_questions.html">files/resumes/venuiti/technology_project_manager/interview_questions.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Interview Notes</td>
+            <td data-label="Type"><span class="tag">HTML notes</span></td>
+            <td data-label="Purpose">Saved notes area for the opportunity.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/interview_notes.html">files/resumes/venuiti/technology_project_manager/interview_notes.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Response Bank</td>
+            <td data-label="Type"><span class="tag">HTML prep</span></td>
+            <td data-label="Purpose">Human-readable opportunity response bank.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/response_bank.html">files/resumes/venuiti/technology_project_manager/response_bank.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity Org Chart Stub</td>
+            <td data-label="Type"><span class="tag">HTML bridge</span></td>
+            <td data-label="Purpose">Opportunity-local org chart reference page.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/org_chart.html">files/resumes/venuiti/technology_project_manager/org_chart.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity People Graph Stub</td>
+            <td data-label="Type"><span class="tag">HTML bridge</span></td>
+            <td data-label="Purpose">Opportunity-local people graph reference page.</td>
+            <td data-label="Link"><a href="../files/resumes/venuiti/technology_project_manager/people_graph.html">files/resumes/venuiti/technology_project_manager/people_graph.html</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Web Posting JSON</td>
+            <td data-label="Type"><span class="tag">JSON data</span></td>
+            <td data-label="Purpose">Posting metadata used by the web workspace.</td>
+            <td data-label="Link"><a href="../web/sites/resumes/companies/venuiti/postings/technology_project_manager/posting.json">web/sites/resumes/companies/venuiti/postings/technology_project_manager/posting.json</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="scripts">
+      <h2>Generation, Rendering, Validation, and Packaging Scripts</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Type</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Item">Company Research Data Seed</td>
+            <td data-label="Type"><span class="tag">Python source</span></td>
+            <td data-label="Purpose">Curated Venuiti source-of-truth data used to generate normalized JSON.</td>
+            <td data-label="Link"><a href="../scripts/company_research/company_research_data.py">scripts/company_research/company_research_data.py</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Build Company Research</td>
+            <td data-label="Type"><span class="tag">Python script</span></td>
+            <td data-label="Purpose">Builds schema, company research JSON, source index, people index, and entity resolution outputs.</td>
+            <td data-label="Link"><a href="../scripts/company_research/build_company_people_research.py">scripts/company_research/build_company_people_research.py</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Render Research Visuals</td>
+            <td data-label="Type"><span class="tag">Python script</span></td>
+            <td data-label="Purpose">Generates standalone org chart and people graph HTML pages.</td>
+            <td data-label="Link"><a href="../scripts/company_research/render_company_research_visuals.py">scripts/company_research/render_company_research_visuals.py</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Package Company Research</td>
+            <td data-label="Type"><span class="tag">Python script</span></td>
+            <td data-label="Purpose">Creates deterministic company research zip output.</td>
+            <td data-label="Link"><a href="../scripts/company_research/package_company_research.py">scripts/company_research/package_company_research.py</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Validate Opportunity Outputs</td>
+            <td data-label="Type"><span class="tag">Python script</span></td>
+            <td data-label="Purpose">Validates Venuiti Technology Project Manager opportunity outputs.</td>
+            <td data-label="Link"><a href="../scripts/opportunities/validate_opportunity_outputs.py">scripts/opportunities/validate_opportunity_outputs.py</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Package Opportunity</td>
+            <td data-label="Type"><span class="tag">Python script</span></td>
+            <td data-label="Purpose">Creates deterministic opportunity zip output.</td>
+            <td data-label="Link"><a href="../scripts/opportunities/package_opportunity.py">scripts/opportunities/package_opportunity.py</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="logs-packages">
+      <h2>Logs, Manifests, and Download Packages</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Type</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Item">Company Build Log</td>
+            <td data-label="Type"><span class="tag">Log</span></td>
+            <td data-label="Purpose">Last company research generation log.</td>
+            <td data-label="Link"><a href="../data/company_research/venuiti/build_company_people_research.log.txt">data/company_research/venuiti/build_company_people_research.log.txt</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Company Visual Render Log</td>
+            <td data-label="Type"><span class="tag">Log</span></td>
+            <td data-label="Purpose">Last org chart / people graph render log.</td>
+            <td data-label="Link"><a href="../data/company_research/venuiti/render_company_research_visuals.log.txt">data/company_research/venuiti/render_company_research_visuals.log.txt</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Company Package Log</td>
+            <td data-label="Type"><span class="tag">Log</span></td>
+            <td data-label="Purpose">Last company package generation log.</td>
+            <td data-label="Link"><a href="../data/company_research/venuiti/package_company_research.log.txt">data/company_research/venuiti/package_company_research.log.txt</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Company Package Manifest</td>
+            <td data-label="Type"><span class="tag">JSON manifest</span></td>
+            <td data-label="Purpose">File list included in the company research package.</td>
+            <td data-label="Link"><a href="../data/company_research/venuiti/package_company_research_manifest.json">data/company_research/venuiti/package_company_research_manifest.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Company Research Zip</td>
+            <td data-label="Type"><span class="tag">ZIP package</span></td>
+            <td data-label="Purpose">Shareable package of company research JSON, docs, visuals, logs, and this inventory.</td>
+            <td data-label="Link"><a href="../.ai_downloads/venuiti_company_research_outputs.zip">.ai_downloads/venuiti_company_research_outputs.zip</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity Validation Log</td>
+            <td data-label="Type"><span class="tag">Log</span></td>
+            <td data-label="Purpose">Last opportunity validation log.</td>
+            <td data-label="Link"><a href="../data/opportunities/venuiti/technology_project_manager/validate_opportunity_outputs.log.txt">data/opportunities/venuiti/technology_project_manager/validate_opportunity_outputs.log.txt</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity Package Log</td>
+            <td data-label="Type"><span class="tag">Log</span></td>
+            <td data-label="Purpose">Last opportunity package generation log.</td>
+            <td data-label="Link"><a href="../data/opportunities/venuiti/technology_project_manager/package_opportunity.log.txt">data/opportunities/venuiti/technology_project_manager/package_opportunity.log.txt</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity Package Manifest</td>
+            <td data-label="Type"><span class="tag">JSON manifest</span></td>
+            <td data-label="Purpose">File list included in the opportunity package.</td>
+            <td data-label="Link"><a href="../data/opportunities/venuiti/technology_project_manager/package_opportunity_manifest.json">data/opportunities/venuiti/technology_project_manager/package_opportunity_manifest.json</a></td>
+          </tr>
+          <tr>
+            <td data-label="Item">Opportunity Zip</td>
+            <td data-label="Type"><span class="tag">ZIP package</span></td>
+            <td data-label="Purpose">Shareable package of the Venuiti Technology Project Manager opportunity outputs.</td>
+            <td data-label="Link"><a href="../.ai_downloads/venuiti_technology_project_manager_opportunity_outputs.zip">.ai_downloads/venuiti_technology_project_manager_opportunity_outputs.zip</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

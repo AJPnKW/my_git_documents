@@ -1,0 +1,36 @@
+2026-04-09 12:47:16,674 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-09 12:47:16,764 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-09 12:47:16,764 | INFO | Packaging complete.
+2026-04-09 13:00:20,587 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-09 13:00:20,659 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-09 13:00:20,659 | INFO | Packaging complete.
+2026-04-09 13:09:07,571 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-09 13:09:07,747 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-09 13:09:07,747 | INFO | Packaging complete.
+2026-04-09 13:10:01,163 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-09 13:10:01,225 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-09 13:10:01,227 | INFO | Packaging complete.
+2026-04-09 13:10:28,938 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-09 13:10:29,199 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-09 13:10:29,200 | INFO | Packaging complete.
+2026-04-09 22:10:16,275 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-09 22:10:16,298 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-09 22:10:16,299 | INFO | Packaging complete.
+2026-04-09 22:10:34,311 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-09 22:10:34,869 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-09 22:10:34,870 | INFO | Packaging complete.
+2026-04-09 22:24:14,481 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-09 22:24:14,731 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-09 22:24:14,731 | INFO | Packaging complete.
+2026-04-10 19:47:42,976 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-10 19:47:43,538 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-10 19:47:43,539 | INFO | Packaging complete.
+2026-04-10 19:47:51,350 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-10 19:47:51,544 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-10 19:47:51,544 | INFO | Packaging complete.
+2026-04-10 19:48:08,714 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-10 19:48:08,875 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-10 19:48:08,875 | INFO | Packaging complete.
+2026-04-10 19:48:18,318 | INFO | Creating deterministic package at C:\Users\andrew\PROJECTS\GitHub\my_git_documents\.ai_downloads\venuiti_company_research_outputs.zip
+2026-04-10 19:48:18,484 | INFO | Package manifest written to C:\Users\andrew\PROJECTS\GitHub\my_git_documents\data\company_research\venuiti\package_company_research_manifest.json
+2026-04-10 19:48:18,484 | INFO | Packaging complete.

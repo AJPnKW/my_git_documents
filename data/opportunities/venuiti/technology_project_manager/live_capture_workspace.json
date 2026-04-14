@@ -1,0 +1,181 @@
+{
+  "siteKey": "resumes",
+  "siteTitle": "Venuiti Interview Capture Workspace",
+  "siteSummary": "Live interview workspace with localhost capture orchestration, prep context, and result retrieval through the local bridge.",
+  "hideSidebarHeader": false,
+  "showNotes": true,
+  "showToolbarStatus": false,
+  "showPanelHeader": false,
+  "defaultMode": "arrange",
+  "noteStorageKey": "mgd:notes:venuiti:technology_project_manager:live_capture",
+  "notePlaceholder": "Capture the question, your answer anchor, follow-up needed, interviewer signal, and any post-interview action.",
+  "liveCapture": {
+    "enabled": true,
+    "bridgeBaseUrl": "http://127.0.0.1:8765",
+    "toolkitRoot": "C:\\Users\\andrew\\PROJECTS\\interview_capture_transcription_x1",
+    "serviceLabel": "interview_capture_transcription_x1 localhost bridge",
+    "historyLimit": 10,
+    "pollIntervalsMs": {
+      "active": 3000,
+      "idle": 15000,
+      "offline": 5000
+    },
+    "artifactRouteTemplate": "/api/runs/{run_id}/artifact/{artifact_key}",
+    "statusStates": [
+      "idle",
+      "starting",
+      "running",
+      "stopping",
+      "recorded",
+      "transcribing",
+      "packaging",
+      "complete",
+      "warn",
+      "fail"
+    ],
+    "endpoints": {
+      "captureStart": "/api/capture/start",
+      "captureStop": "/api/capture/stop",
+      "captureStatus": "/api/capture/status",
+      "transcriptionStart": "/api/transcription/start",
+      "runs": "/api/runs",
+      "runDetailsTemplate": "/api/runs/{run_id}"
+    },
+    "startRequestTemplate": {
+      "source": "my_git_documents_viewer",
+      "mode": "bridge_orchestrated_capture",
+      "capture_profile": "screen_mic_fallback",
+      "auto_transcribe_on_stop": true
+    },
+    "transcriptionRequestTemplate": {
+      "source": "my_git_documents_viewer",
+      "transcription_profile": "default"
+    },
+    "runLabelDefault": "venuiti_technology_project_manager_interview",
+    "roleContext": {
+      "opportunity_id": "venuiti__technology_project_manager",
+      "company_group": "Venuiti / DevStaff Canada / Venuiti Healthcare",
+      "target_brand": "Venuiti Healthcare",
+      "role_title": "Technology Project Manager"
+    },
+    "docs": {
+      "integrationContract": "../../docs/live_capture_integration_contract.html",
+      "uiStateModel": "../../docs/live_capture_ui_state_model.html",
+      "runbook": "../../docs/live_capture_runbook.html"
+    },
+    "dataSources": [
+      {
+        "id": "career_master",
+        "label": "Career Master",
+        "path": "../../data/career/career_master.json"
+      },
+      {
+        "id": "story_master",
+        "label": "Story Master",
+        "path": "../../data/career/story_master.json"
+      },
+      {
+        "id": "company_people_research",
+        "label": "Company People Research",
+        "path": "../../data/company_research/venuiti/company_people_research.json"
+      },
+      {
+        "id": "opportunity_profile",
+        "label": "Opportunity Profile",
+        "path": "../../data/opportunities/venuiti/technology_project_manager/opportunity_profile.json"
+      },
+      {
+        "id": "opportunity_interview_response_bank",
+        "label": "Interview Response Bank",
+        "path": "../../data/opportunities/venuiti/technology_project_manager/opportunity_interview_response_bank.json"
+      },
+      {
+        "id": "live_interview_config",
+        "label": "Live Interview Config",
+        "path": "../../data/opportunities/venuiti/technology_project_manager/live_interview_config.json"
+      }
+    ]
+  },
+  "tree": [
+    {
+      "id": "live-capture-documents",
+      "type": "folder",
+      "label": "Interview Workspace",
+      "open": true,
+      "children": [
+        {
+          "id": "venuiti-technology_project_manager-posting",
+          "type": "file",
+          "label": "Job Posting",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/posting.html",
+          "selected": true
+        },
+        {
+          "id": "venuiti-technology_project_manager-resume",
+          "type": "file",
+          "label": "Resume",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/resume.html",
+          "selected": true
+        },
+        {
+          "id": "venuiti-technology_project_manager-posting_analysis",
+          "type": "file",
+          "label": "Posting Analysis",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/posting_analysis.html",
+          "selected": true
+        },
+        {
+          "id": "venuiti-technology_project_manager-interview_prep",
+          "type": "file",
+          "label": "Interview Prep",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/interview_prep.html",
+          "selected": false
+        },
+        {
+          "id": "venuiti-technology_project_manager-interview_notes",
+          "type": "file",
+          "label": "Interview Notes",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/interview_notes.html",
+          "selected": false
+        },
+        {
+          "id": "venuiti-technology_project_manager-interview_questions",
+          "type": "file",
+          "label": "Interview Questions",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/interview_questions.html",
+          "selected": false
+        },
+        {
+          "id": "venuiti-technology_project_manager-response_bank",
+          "type": "file",
+          "label": "Response Bank",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/response_bank.html",
+          "selected": false
+        },
+        {
+          "id": "venuiti-technology_project_manager-org_chart",
+          "type": "file",
+          "label": "Org Chart",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/org_chart.html",
+          "selected": false
+        },
+        {
+          "id": "venuiti-technology_project_manager-people_graph",
+          "type": "file",
+          "label": "People Graph",
+          "description": "",
+          "href": "../../files/resumes/venuiti/technology_project_manager/people_graph.html",
+          "selected": false
+        }
+      ]
+    }
+  ]
+}

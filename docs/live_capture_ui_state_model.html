@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Capture UI State Model</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; margin: 0; background: #f4f6f8; color: #18222c; }
+    main { max-width: 1040px; margin: 0 auto; padding: 32px 20px 48px; }
+    section { background: #ffffff; border: 1px solid #d7e0e8; border-radius: 14px; padding: 20px 22px; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(18, 33, 48, 0.05); }
+    h1, h2 { margin-top: 0; }
+    code { font-family: Consolas, monospace; background: #eef3f7; border-radius: 6px; padding: 2px 6px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { border: 1px solid #d7e0e8; padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: #eef3f7; }
+    ul { padding-left: 18px; }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Live Capture UI State Model</h1>
+      <p>This model defines how the shared viewer panel in <code>my_git_documents</code> reacts to bridge availability, run state changes, page refresh, and delayed outputs.</p>
+    </section>
+    <section>
+      <h2>Control State Rules</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Run state</th>
+            <th>Start</th>
+            <th>Stop</th>
+            <th>Start transcription</th>
+            <th>Polling</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>idle</code></td><td>enabled</td><td>disabled</td><td>disabled</td><td>idle cadence</td></tr>
+          <tr><td><code>starting</code></td><td>disabled</td><td>enabled</td><td>disabled</td><td>active cadence</td></tr>
+          <tr><td><code>running</code></td><td>disabled</td><td>enabled</td><td>disabled</td><td>active cadence</td></tr>
+          <tr><td><code>stopping</code></td><td>disabled</td><td>disabled</td><td>disabled</td><td>active cadence</td></tr>
+          <tr><td><code>recorded</code></td><td>disabled</td><td>disabled</td><td>enabled</td><td>active cadence</td></tr>
+          <tr><td><code>transcribing</code></td><td>disabled</td><td>disabled</td><td>disabled</td><td>active cadence</td></tr>
+          <tr><td><code>packaging</code></td><td>disabled</td><td>disabled</td><td>disabled</td><td>active cadence</td></tr>
+          <tr><td><code>complete</code></td><td>enabled</td><td>disabled</td><td>disabled</td><td>idle cadence</td></tr>
+          <tr><td><code>warn</code></td><td>enabled</td><td>disabled</td><td>disabled</td><td>idle cadence</td></tr>
+          <tr><td><code>fail</code></td><td>enabled</td><td>disabled</td><td>disabled</td><td>idle cadence</td></tr>
+          <tr><td>transport offline</td><td>disabled</td><td>disabled</td><td>disabled</td><td>offline cadence</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Refresh and Recovery</h2>
+      <ul>
+        <li>On page load, the panel requests <code>GET /api/capture/status</code> and <code>GET /api/runs</code>.</li>
+        <li>If the status response includes a current <code>run_id</code>, the UI then requests <code>GET /api/runs/{run_id}</code> for richer details.</li>
+        <li>This allows the panel to survive a browser refresh and rebuild the active run view from bridge state rather than browser memory.</li>
+        <li>The elapsed timer rehydrates from <code>duration_seconds</code> and <code>started_at</code> and continues locally while the run remains active.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Warning and Failure Rendering</h2>
+      <ul>
+        <li>Warnings returned by the bridge are shown in a visible warnings panel and do not block the rest of the UI.</li>
+        <li>Transport failures render separately from run-state failures so the user can tell whether the bridge is down or the run itself failed.</li>
+        <li><code>warn</code> and <code>fail</code> states still render available outputs and history.</li>
+        <li>Missing fields are rendered as <code>not ready</code>, <code>none</code>, or <code>not provided</code> rather than causing exceptions.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Display Rules</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>UI element</th>
+            <th>Rule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Status badge</td>
+            <td>Reflects the normalized run state or <code>offline</code> for transport failure.</td>
+          </tr>
+          <tr>
+            <td>Current Run ID</td>
+            <td>Shows the active run when available, otherwise <code>none</code>.</td>
+          </tr>
+          <tr>
+            <td>Result links</td>
+            <td>Enabled only when the bridge can provide a browser-safe URL or artifact route fallback.</td>
+          </tr>
+          <tr>
+            <td>Transcript preview</td>
+            <td>Attempts to fetch the transcript text through a browser-safe link. If unavailable, the panel explains why instead of trying local filesystem access.</td>
+          </tr>
+          <tr>
+            <td>Recent runs</td>
+            <td>Shows the most recent runs from <code>GET /api/runs</code>, with quick links and a per-run load action.</td>
+          </tr>
+          <tr>
+            <td>Prep context</td>
+            <td>Loads and summarizes the interview data inputs from career, story, company research, and opportunity JSON sources configured for the workspace.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

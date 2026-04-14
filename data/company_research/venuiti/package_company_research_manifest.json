@@ -1,0 +1,18 @@
+{
+  "group": "venuiti",
+  "package_path": ".ai_downloads/venuiti_company_research_outputs.zip",
+  "files": [
+    "data/schemas/company_people_research.schema.json",
+    "data/company_research/venuiti/company_people_research.json",
+    "data/company_research/venuiti/source_index.json",
+    "data/company_research/venuiti/people_index.json",
+    "data/company_research/venuiti/entity_resolution.json",
+    "data/company_research/venuiti/build_company_people_research.log.txt",
+    "data/company_research/venuiti/render_company_research_visuals.log.txt",
+    "docs/company_research_design.html",
+    "docs/company_research_runbook.html",
+    "docs/venuiti_inventory.html",
+    "docs/venuiti_org_chart.html",
+    "docs/venuiti_people_graph.html"
+  ]
+}
