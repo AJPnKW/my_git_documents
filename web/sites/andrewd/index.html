@@ -3,130 +3,71 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Andrew D Support Roadmap</title>
+<title>Your Support Roadmap</title>
 <meta name="description" content="Interactive Waterloo Region support roadmap for ODSP, DSO, Passport, employment, education, and accommodation supports.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-
 <div class="app-shell">
   <aside class="side-nav" aria-label="Roadmap navigation">
-    <div class="brand">
-      <div class="brand-mark">AD</div>
-      <div>
-        <h1>Andrew D</h1>
-        <p>Support Roadmap</p>
-      </div>
-    </div>
-
+    <div class="brand"><div class="brand-mark">AD</div><div><h1>Support Tool</h1><p>Roadmap</p></div></div>
     <button class="nav-tab active" data-tab="dashboard">1. Dashboard</button>
-    <button class="nav-tab" data-tab="workflow">2. Workflow Inquiry</button>
-    <button class="nav-tab" data-tab="roadmap">3. Generated Roadmap</button>
-    <button class="nav-tab" data-tab="journey">4. Support Journey</button>
+    <button class="nav-tab" data-tab="workflow">2. Inquiry</button>
+    <button class="nav-tab" data-tab="roadmap">3. Roadmap</button>
+    <button class="nav-tab" data-tab="journey">4. Journey</button>
     <button class="nav-tab" data-tab="odsp">5. ODSP</button>
     <button class="nav-tab" data-tab="dso">6. DSO + Passport</button>
     <button class="nav-tab" data-tab="employment">7. Employment</button>
     <button class="nav-tab" data-tab="education">8. Education</button>
-    <button class="nav-tab" data-tab="rights">9. Accommodation Rights</button>
+    <button class="nav-tab" data-tab="rights">9. Rights</button>
     <button class="nav-tab" data-tab="contacts">10. Contacts</button>
-    <a class="nav-link" href="references.html">References + Sources</a>
+    <a class="nav-link" href="references.html">References</a>
   </aside>
 
   <main id="main" class="main-content">
     <section class="hero">
       <div>
         <p class="eyebrow">Waterloo Region / KW support navigation</p>
-        <h2>Start with the inquiry. Then use the roadmap.</h2>
-        <p>This page helps Andrew D identify what support he already has, what is missing, and which contacts to use first.</p>
+        <h2>Start with the inquiry. Then use your roadmap.</h2>
+        <p>This tool helps you identify supports you already have, supports that may be missing, and which contacts to use first.</p>
       </div>
       <div class="hero-actions">
-        <button class="primary" data-go="workflow">Start Workflow Inquiry</button>
+        <button class="primary" data-go="workflow">Start Inquiry</button>
         <button class="secondary" data-go="roadmap">View Roadmap</button>
         <button class="secondary" onclick="window.print()">Print / Save PDF</button>
       </div>
     </section>
 
-    <section id="dashboard" class="tab-panel active" aria-labelledby="dashboard-tab">
-      <div class="section-head">
-        <h2>Main Dashboard</h2>
-        <p>The dashboard shows the first task, current support picture, and the next best action after the inquiry is completed.</p>
-      </div>
-
+    <section id="dashboard" class="tab-panel active">
+      <div class="section-head"><h2>Main Dashboard</h2><p>Complete the inquiry first. The page then builds a practical support path.</p></div>
       <div class="dashboard-grid">
-        <article class="metric-card action-card">
-          <span class="step-badge">Step 1</span>
-          <h3>Complete the Workflow Inquiry</h3>
-          <p>This captures ODSP, DSO, Passport, employment, education, accommodation, and documentation status.</p>
-          <button class="primary" data-go="workflow">Complete Inquiry</button>
-        </article>
-
-        <article class="metric-card">
-          <span class="step-badge">Status</span>
-          <h3>Current Snapshot</h3>
-          <div id="dashboardSnapshot" class="status-list">
-            <p>No inquiry answers saved yet.</p>
-          </div>
-        </article>
-
-        <article class="metric-card">
-          <span class="step-badge">Output</span>
-          <h3>Roadmap Readiness</h3>
-          <p id="readinessText">Complete the inquiry to generate the suggested action path.</p>
-          <button class="secondary" data-go="roadmap">Open Roadmap</button>
-        </article>
+        <article class="metric-card action-card"><span class="step-badge">Step 1</span><h3>Complete the Inquiry</h3><p>Capture ODSP, DSO, Passport, employment, education, accommodation, and document status.</p><button class="primary" data-go="workflow">Complete Inquiry</button></article>
+        <article class="metric-card"><span class="step-badge">Status</span><h3>Current Snapshot</h3><div id="dashboardSnapshot" class="status-list"><p>No inquiry answers saved yet.</p></div></article>
+        <article class="metric-card"><span class="step-badge">Output</span><h3>Roadmap Readiness</h3><p id="readinessText">Complete the inquiry to generate the suggested action path.</p><button class="secondary" data-go="roadmap">Open Roadmap</button></article>
       </div>
 
-      <h3>What Andrew should look at first</h3>
-      <table>
-        <thead>
-          <tr><th>Order</th><th>Area</th><th>Reason</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-          <tr><td data-label="Order">1</td><td data-label="Area">Workflow Inquiry</td><td data-label="Reason">The page needs his current context before the guidance can be useful.</td><td data-label="Action"><button class="table-button" data-go="workflow">Start</button></td></tr>
-          <tr><td data-label="Order">2</td><td data-label="Area">ODSP worker / ODSP supports</td><td data-label="Reason">He is already on ODSP, so this is the fastest formal support pathway to check.</td><td data-label="Action"><button class="table-button" data-go="odsp">Review</button></td></tr>
-          <tr><td data-label="Order">3</td><td data-label="Area">DSO + Passport</td><td data-label="Reason">If eligible, this can connect him to longer-term developmental-service supports and funding.</td><td data-label="Action"><button class="table-button" data-go="dso">Review</button></td></tr>
-          <tr><td data-label="Order">4</td><td data-label="Area">Employment supports</td><td data-label="Reason">Repeated short job placements suggest he needs job-retention support, not only job search.</td><td data-label="Action"><button class="table-button" data-go="employment">Review</button></td></tr>
-          <tr><td data-label="Order">5</td><td data-label="Area">Education supports</td><td data-label="Reason">If he returns to Conestoga, accessible learning planning should happen before re-enrolment.</td><td data-label="Action"><button class="table-button" data-go="education">Review</button></td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout">
-        <strong>Privacy note:</strong> answers stay in the browser. They are not sent to GitHub, Andrew Pearen, ODSP, DSO, or any organization.
-      </div>
+      <h3>What to look at first</h3>
+      <table><thead><tr><th>Order</th><th>Area</th><th>Reason</th><th>Action</th></tr></thead><tbody>
+        <tr><td data-label="Order">1</td><td data-label="Area">Inquiry</td><td data-label="Reason">The roadmap needs your current situation before it can guide next steps.</td><td data-label="Action"><button class="table-button" data-go="workflow">Start</button></td></tr>
+        <tr><td data-label="Order">2</td><td data-label="Area">ODSP worker / ODSP supports</td><td data-label="Reason">If you are on ODSP, this may be the fastest formal support path to check.</td><td data-label="Action"><button class="table-button" data-go="odsp">Review</button></td></tr>
+        <tr><td data-label="Order">3</td><td data-label="Area">DSO + Passport</td><td data-label="Reason">If eligible, this may connect you to longer-term supports and funding.</td><td data-label="Action"><button class="table-button" data-go="dso">Review</button></td></tr>
+        <tr><td data-label="Order">4</td><td data-label="Area">Employment supports</td><td data-label="Reason">If jobs end quickly, job-retention support may matter more than resume help.</td><td data-label="Action"><button class="table-button" data-go="employment">Review</button></td></tr>
+        <tr><td data-label="Order">5</td><td data-label="Area">Education supports</td><td data-label="Reason">If you return to college/training, support planning should happen before re-enrolment.</td><td data-label="Action"><button class="table-button" data-go="education">Review</button></td></tr>
+      </tbody></table>
+      <div class="callout"><strong>Privacy note:</strong> answers stay in your browser. They are not sent to GitHub, ODSP, DSO, or any organization.</div>
     </section>
 
     <section id="workflow" class="tab-panel">
-      <div class="section-head">
-        <h2>Workflow Inquiry</h2>
-        <p>Complete this first. It creates a support-gap profile and generates a suggested roadmap.</p>
-      </div>
-
+      <div class="section-head"><h2>Inquiry</h2><p>Answer what you can. Use “not sure” when needed.</p></div>
       <form id="intakeForm" class="form-grid">
-        <fieldset>
-          <legend>ODSP status</legend>
-          <label>ODSP status
-            <select id="odspStatus">
-              <option value="">Select one</option>
-              <option value="on_odsp">On ODSP</option>
-              <option value="thinks_on_odsp">Thinks he is on ODSP</option>
-              <option value="not_on_odsp">Not on ODSP</option>
-              <option value="unknown">Not sure</option>
-            </select>
-          </label>
-          <label>Does he know his ODSP caseworker?
-            <select id="odspWorker">
-              <option value="">Select one</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-              <option value="unknown">Not sure</option>
-            </select>
-          </label>
-          <div class="checkbox-group">
-            <p>What support is currently coming from ODSP?</p>
+        <fieldset><legend>ODSP status</legend>
+          <label>ODSP status<select id="odspStatus"><option value="">Select one</option><option value="on_odsp">On ODSP</option><option value="thinks_on_odsp">Think I am on ODSP</option><option value="not_on_odsp">Not on ODSP</option><option value="unknown">Not sure</option></select></label>
+          <label>Do you know your ODSP caseworker?<select id="odspWorker"><option value="">Select one</option><option value="yes">Yes</option><option value="no">No</option><option value="unknown">Not sure</option></select></label>
+          <div class="checkbox-group"><p>What support is currently coming from ODSP?</p>
             <label><input type="checkbox" name="odspSupports" value="income_only"> Income support only / no other support known</label>
             <label><input type="checkbox" name="odspSupports" value="employment_supports"> ODSP Employment Supports</label>
-            <label><input type="checkbox" name="odspSupports" value="provider_referral"> Referral to employment provider</label>
+            <label><input type="checkbox" name="odspSupports" value="provider_referral"> Referral to an employment provider</label>
             <label><input type="checkbox" name="odspSupports" value="job_retention"> Job-retention help</label>
             <label><input type="checkbox" name="odspSupports" value="training_costs"> Training / work-related cost help</label>
             <label><input type="checkbox" name="odspSupports" value="written_plan"> Written support plan or next steps</label>
@@ -134,29 +75,10 @@
           </div>
         </fieldset>
 
-        <fieldset>
-          <legend>DSO + Passport status</legend>
-          <label>DSO status
-            <select id="dsoStatus">
-              <option value="">Select one</option>
-              <option value="eligible_connected">Eligible / connected</option>
-              <option value="application_started">Application started</option>
-              <option value="not_started">Not started</option>
-              <option value="not_sure">Not sure</option>
-              <option value="not_eligible">Known not eligible</option>
-            </select>
-          </label>
-          <label>Passport funding status
-            <select id="passportStatus">
-              <option value="">Select one</option>
-              <option value="has_passport">Has Passport funding</option>
-              <option value="pending">Pending / waiting</option>
-              <option value="none">No Passport funding</option>
-              <option value="unknown">Not sure</option>
-            </select>
-          </label>
-          <div class="checkbox-group">
-            <p>Potential DSO/Passport support needs</p>
+        <fieldset><legend>DSO + Passport status</legend>
+          <label>DSO status<select id="dsoStatus"><option value="">Select one</option><option value="eligible_connected">Eligible / connected</option><option value="application_started">Application started</option><option value="not_started">Not started</option><option value="not_sure">Not sure</option><option value="not_eligible">Known not eligible</option></select></label>
+          <label>Passport funding status<select id="passportStatus"><option value="">Select one</option><option value="has_passport">Have Passport funding</option><option value="pending">Pending / waiting</option><option value="none">No Passport funding</option><option value="unknown">Not sure</option></select></label>
+          <div class="checkbox-group"><p>Support needs to mention if relevant</p>
             <label><input type="checkbox" name="supportNeeds" value="employment_retention"> Employment and job retention</label>
             <label><input type="checkbox" name="supportNeeds" value="daily_living"> Daily living / independent living</label>
             <label><input type="checkbox" name="supportNeeds" value="forms_calls"> Forms, calls, appointments, and follow-through</label>
@@ -166,20 +88,9 @@
           </div>
         </fieldset>
 
-        <fieldset>
-          <legend>Employment situation</legend>
-          <label>Current work pattern
-            <select id="jobPattern">
-              <option value="">Select one</option>
-              <option value="terminated_quickly">Often terminated shortly after starting</option>
-              <option value="struggles_keep_job">Can get work but struggles to keep it</option>
-              <option value="not_working">Not currently working</option>
-              <option value="looking">Looking for work</option>
-              <option value="unknown">Not sure</option>
-            </select>
-          </label>
-          <div class="checkbox-group">
-            <p>Employment supports already accessed</p>
+        <fieldset><legend>Employment situation</legend>
+          <label>Current work pattern<select id="jobPattern"><option value="">Select one</option><option value="terminated_quickly">Jobs often end shortly after starting</option><option value="struggles_keep_job">I can get work but struggle to keep it</option><option value="not_working">Not currently working</option><option value="looking">Looking for work</option><option value="unknown">Not sure</option></select></label>
+          <div class="checkbox-group"><p>Employment supports already tried</p>
             <label><input type="checkbox" name="employmentSupports" value="kw_career_compass"> KW Career Compass</label>
             <label><input type="checkbox" name="employmentSupports" value="starling"> Starling / Employment Ontario</label>
             <label><input type="checkbox" name="employmentSupports" value="job_coach"> Job coach</label>
@@ -187,8 +98,7 @@
             <label><input type="checkbox" name="employmentSupports" value="none"> None</label>
             <label><input type="checkbox" name="employmentSupports" value="unknown"> Not sure</label>
           </div>
-          <div class="checkbox-group">
-            <p>Workplace barriers</p>
+          <div class="checkbox-group"><p>Workplace barriers that may apply</p>
             <label><input type="checkbox" name="workBarriers" value="training_pace"> Training pace too fast</label>
             <label><input type="checkbox" name="workBarriers" value="instructions"> Instructions not clear or not written down</label>
             <label><input type="checkbox" name="workBarriers" value="schedule"> Schedule / time / attendance issues</label>
@@ -198,20 +108,9 @@
           </div>
         </fieldset>
 
-        <fieldset>
-          <legend>Education + documentation</legend>
-          <label>Conestoga / college status
-            <select id="educationStatus">
-              <option value="">Select one</option>
-              <option value="left_college">Left or had to stop college/training</option>
-              <option value="wants_return">Wants to return</option>
-              <option value="currently_student">Currently a student</option>
-              <option value="not_current_goal">Not a current goal</option>
-              <option value="unknown">Not sure</option>
-            </select>
-          </label>
-          <div class="checkbox-group">
-            <p>Documents available</p>
+        <fieldset><legend>Education + documents</legend>
+          <label>College / training status<select id="educationStatus"><option value="">Select one</option><option value="left_college">Left or had to stop college/training</option><option value="wants_return">Want to return</option><option value="currently_student">Currently a student</option><option value="not_current_goal">Not a current goal</option><option value="unknown">Not sure</option></select></label>
+          <div class="checkbox-group"><p>Documents available</p>
             <label><input type="checkbox" name="documents" value="psych_assessment"> Psychological / developmental assessment</label>
             <label><input type="checkbox" name="documents" value="iep"> IEP / school accommodation records</label>
             <label><input type="checkbox" name="documents" value="college_records"> College records / transcript / withdrawal information</label>
@@ -222,221 +121,31 @@
           </div>
         </fieldset>
 
-        <fieldset class="wide">
-          <legend>Plain-language notes</legend>
-          <label>What is the main goal?
-            <textarea id="mainGoal" placeholder="Example: stable part-time work, finish college, get job coaching, understand DSO/Passport, stop falling through the cracks."></textarea>
-          </label>
-          <label>What needs more context?
-            <textarea id="contextNotes" placeholder="Example: what jobs ended quickly, what supports were tried, what the ODSP worker has or has not done, what happened at Conestoga."></textarea>
-          </label>
+        <fieldset class="wide"><legend>Plain-language notes</legend>
+          <label>Main goal<textarea id="mainGoal" placeholder="Example: stable part-time work, finish training, get job coaching, understand DSO/Passport, get a written support plan."></textarea></label>
+          <label>Extra context<textarea id="contextNotes" placeholder="Example: what jobs ended quickly, what supports were tried, what the ODSP worker has or has not done, what happened at college/training."></textarea></label>
         </fieldset>
       </form>
-
-      <div class="button-row sticky-actions">
-        <button class="primary" onclick="generateRoadmap()">Generate Roadmap</button>
-        <button class="secondary" onclick="saveAnswers()">Save Answers</button>
-        <button class="secondary" onclick="loadAnswers()">Load Saved Answers</button>
-        <button class="secondary" onclick="clearAnswers()">Clear Answers</button>
-        <button class="secondary" onclick="window.print()">Print / Save PDF</button>
-      </div>
+      <div class="button-row sticky-actions"><button class="primary" onclick="generateRoadmap()">Generate Roadmap</button><button class="secondary" onclick="saveAnswers()">Save Answers</button><button class="secondary" onclick="loadAnswers()">Load Saved Answers</button><button class="secondary" onclick="clearAnswers()">Clear Answers</button><button class="secondary" onclick="window.print()">Print / Save PDF</button></div>
     </section>
 
-    <section id="roadmap" class="tab-panel">
-      <div class="section-head">
-        <h2>Generated Roadmap</h2>
-        <p>This is created from the Workflow Inquiry. Use it as the practical action plan.</p>
-      </div>
+    <section id="roadmap" class="tab-panel"><div class="section-head"><h2>Roadmap</h2><p>This is created from your inquiry answers.</p></div><div id="roadmapSummary" class="callout">Complete the Inquiry and select <strong>Generate Roadmap</strong>.</div><h3>Suggested Pathway</h3><table id="pathwayTable"><thead><tr><th>Order</th><th>Step</th><th>Why</th><th>Ask / Action</th><th>Contact</th></tr></thead><tbody><tr><td data-label="Order">—</td><td data-label="Step">No roadmap yet</td><td data-label="Why">Complete inquiry first.</td><td data-label="Ask / Action">Use the Inquiry tab.</td><td data-label="Contact">—</td></tr></tbody></table><h3>Support Gap Table</h3><table id="gapTable"><thead><tr><th>Area</th><th>Current status</th><th>Gap</th><th>Next action</th></tr></thead><tbody><tr><td data-label="Area">—</td><td data-label="Current status">No answers yet</td><td data-label="Gap">—</td><td data-label="Next action">Complete inquiry.</td></tr></tbody></table><h3>Call Script Built From Answers</h3><div id="generatedScript" class="script">Complete the inquiry first.</div><h3>Printable Plain-Text Plan</h3><div id="plainTextPlan" class="plain-plan">Complete the inquiry first.</div></section>
 
-      <div class="roadmap-output">
-        <div id="roadmapSummary" class="callout">
-          Complete the Workflow Inquiry and select <strong>Generate Roadmap</strong>.
-        </div>
+    <section id="journey" class="tab-panel"><div class="section-head"><h2>Support Journey</h2><p>Use this order to move through the information.</p></div><table><thead><tr><th>Stage</th><th>Question</th><th>Why it matters</th><th>Where to go</th></tr></thead><tbody><tr><td data-label="Stage">1. Current situation</td><td data-label="Question">What support do you already have?</td><td data-label="Why">Avoids repeating short-term supports that did not work.</td><td data-label="Where"><button class="table-button" data-go="workflow">Inquiry</button></td></tr><tr><td data-label="Stage">2. ODSP worker</td><td data-label="Question">Is ODSP helping with employment supports?</td><td data-label="Why">ODSP may open faster referral paths.</td><td data-label="Where"><button class="table-button" data-go="odsp">ODSP</button></td></tr><tr><td data-label="Stage">3. DSO eligibility</td><td data-label="Question">Is DSO active, incomplete, or unknown?</td><td data-label="Why">DSO may unlock developmental-service supports and Passport funding.</td><td data-label="Where"><button class="table-button" data-go="dso">DSO + Passport</button></td></tr><tr><td data-label="Stage">4. Job-retention support</td><td data-label="Question">Do you need support after hiring?</td><td data-label="Why">Repeated short employment points to workplace support, training, coaching, and fit.</td><td data-label="Where"><button class="table-button" data-go="employment">Employment</button></td></tr><tr><td data-label="Stage">5. Education repair</td><td data-label="Question">Did college/training fail because supports were missing?</td><td data-label="Why">Accessible Learning should be involved before another attempt.</td><td data-label="Where"><button class="table-button" data-go="education">Education</button></td></tr></tbody></table></section>
 
-        <h3>Suggested Pathway</h3>
-        <table id="pathwayTable">
-          <thead>
-            <tr><th>Order</th><th>Step</th><th>Why</th><th>Ask / Action</th><th>Contact</th></tr>
-          </thead>
-          <tbody>
-            <tr><td data-label="Order">—</td><td data-label="Step">No roadmap yet</td><td data-label="Why">Complete inquiry first.</td><td data-label="Ask / Action">Use the Workflow Inquiry tab.</td><td data-label="Contact">—</td></tr>
-          </tbody>
-        </table>
+    <section id="odsp" class="tab-panel"><div class="section-head"><h2>ODSP</h2><p>Check whether ODSP is helping with employment supports, job retention, and next-step planning.</p></div><table><thead><tr><th>Area</th><th>Check</th><th>Ask for</th><th>Output</th></tr></thead><tbody><tr><td data-label="Area">Assigned worker</td><td data-label="Check">Do you know the worker name and contact path?</td><td data-label="Ask">Worker name, contact path, and next appointment.</td><td data-label="Output">Written reply or appointment note.</td></tr><tr><td data-label="Area">Employment supports</td><td data-label="Check">Have you been referred to ODSP Employment Supports?</td><td data-label="Ask">Referral focused on job retention.</td><td data-label="Output">Referral confirmation.</td></tr><tr><td data-label="Area">Work-related costs</td><td data-label="Check">Are transportation, training, tools, or clothing barriers?</td><td data-label="Ask">What ODSP can cover or refer for.</td><td data-label="Output">Decision in writing.</td></tr></tbody></table><div class="contact-strip"><a href="tel:5198864700">Call ODSP Kitchener</a><a href="mailto:ODSP.Kitchener@ontario.ca">Email ODSP</a><a href="https://www.google.com/maps/search/?api=1&query=715%20Fischer%20Hallman%20Rd%20N%20Unit%20301%20Kitchener%20ON%20N2E%204E9" target="_blank" rel="noopener">Map</a></div></section>
 
-        <h3>Support Gap Table</h3>
-        <table id="gapTable">
-          <thead>
-            <tr><th>Area</th><th>Current status</th><th>Gap</th><th>Next action</th></tr>
-          </thead>
-          <tbody>
-            <tr><td data-label="Area">—</td><td data-label="Current status">No answers yet</td><td data-label="Gap">—</td><td data-label="Next action">Complete inquiry.</td></tr>
-          </tbody>
-        </table>
+    <section id="dso" class="tab-panel"><div class="section-head"><h2>DSO + Passport</h2><p>Use this to avoid missing support needs during intake or funding conversations.</p></div><table><thead><tr><th>Area</th><th>Meaning</th><th>Say</th><th>Why</th></tr></thead><tbody><tr><td data-label="Area">DSO eligibility</td><td data-label="Meaning">Access point for adult developmental services.</td><td data-label="Say">“I need to confirm eligibility or update my application.”</td><td data-label="Why">May unlock Ministry-funded supports.</td></tr><tr><td data-label="Area">Application package</td><td data-label="Meaning">Captures support needs.</td><td data-label="Say">“Please help me include every relevant support area.”</td><td data-label="Why">Understating needs can cause service gaps.</td></tr><tr><td data-label="Area">Passport</td><td data-label="Meaning">Reimbursement funding.</td><td data-label="Say">“Can Passport support employment readiness, planning, support workers, or agency services?”</td><td data-label="Why">May fund support not covered by short programs.</td></tr></tbody></table><div class="contact-strip"><a href="tel:18889411121">Call DSO Central West</a><a href="mailto:dso@sunbeamcommunity.ca">Email DSO</a><a href="https://www.google.com/maps/search/?api=1&query=2749%20Kingsway%20Drive%20Kitchener%20ON" target="_blank" rel="noopener">Map</a></div></section>
 
-        <h3>Call Script Built From Answers</h3>
-        <div id="generatedScript" class="script">Complete the inquiry first.</div>
+    <section id="employment" class="tab-panel"><div class="section-head"><h2>Employment Supports</h2><p>The key issue may be job retention and workplace fit, not just finding openings.</p></div><table><thead><tr><th>Support</th><th>Short-term only</th><th>Better-fit support</th><th>Provider</th></tr></thead><tbody><tr><td data-label="Support">Resume/interview help</td><td data-label="Short-term">May help get interviews.</td><td data-label="Better-fit">Add work-fit assessment and job matching.</td><td data-label="Provider">Starling / Employment Ontario</td></tr><tr><td data-label="Support">Job placement</td><td data-label="Short-term">May end after hire.</td><td data-label="Better-fit">Add follow-up after start and employer support.</td><td data-label="Provider">KW Career Compass / Starling</td></tr><tr><td data-label="Support">Job coaching</td><td data-label="Short-term">May be limited.</td><td data-label="Better-fit">Ask for long-term retention support.</td><td data-label="Provider">KW Career Compass</td></tr></tbody></table><div class="contact-strip"><a href="tel:5197446307">Call KW Career Compass</a><a href="tel:5197432460">Call Starling</a><a href="mailto:employmentservices@starlingcs.ca">Email Starling</a></div></section>
 
-        <h3>Printable Plain-Text Plan</h3>
-        <div id="plainTextPlan" class="plain-plan">Complete the inquiry first.</div>
-      </div>
-    </section>
+    <section id="education" class="tab-panel"><div class="section-head"><h2>Education / Training Return Path</h2><p>If you return to college or training, set up accessibility support before classes start.</p></div><table><thead><tr><th>Stage</th><th>Action</th><th>Ask</th><th>Output</th></tr></thead><tbody><tr><td data-label="Stage">Before restarting</td><td data-label="Action">Contact Accessible Learning.</td><td data-label="Ask">“What documentation do I need?”</td><td data-label="Output">Accommodation intake path.</td></tr><tr><td data-label="Stage">Documentation</td><td data-label="Action">Gather assessments, IEP, college records, and disability documentation.</td><td data-label="Ask">“Are these enough?”</td><td data-label="Output">Accepted document list.</td></tr><tr><td data-label="Stage">Course load</td><td data-label="Action">Ask about realistic pacing.</td><td data-label="Ask">“Is a reduced course load possible?”</td><td data-label="Output">Re-entry plan.</td></tr></tbody></table><div class="contact-strip"><a href="tel:5197485220,3232">Call Accessible Learning</a><a href="mailto:accessibility@conestogac.on.ca">Email Accessible Learning</a><a href="https://conestogac-accommodate.symplicity.com/public_accommodation/" target="_blank" rel="noopener">Open Intake Form</a></div></section>
 
-    <section id="journey" class="tab-panel">
-      <div class="section-head">
-        <h2>Support Journey Map</h2>
-        <p>This is the intended order for moving through the information.</p>
-      </div>
-      <table>
-        <thead><tr><th>Journey stage</th><th>Question to answer</th><th>Why it matters</th><th>Where to go</th></tr></thead>
-        <tbody>
-          <tr><td data-label="Journey stage">1. Current situation</td><td data-label="Question">What support does he already have?</td><td data-label="Why">Avoids repeating short-term supports that already failed.</td><td data-label="Where"><button class="table-button" data-go="workflow">Workflow Inquiry</button></td></tr>
-          <tr><td data-label="Journey stage">2. ODSP worker</td><td data-label="Question">Is the ODSP worker actively helping with employment supports?</td><td data-label="Why">ODSP is already connected and may open faster referral paths.</td><td data-label="Where"><button class="table-button" data-go="odsp">ODSP</button></td></tr>
-          <tr><td data-label="Journey stage">3. DSO eligibility</td><td data-label="Question">Is DSO active, incomplete, or unknown?</td><td data-label="Why">DSO may unlock developmental-service supports and Passport funding.</td><td data-label="Where"><button class="table-button" data-go="dso">DSO + Passport</button></td></tr>
-          <tr><td data-label="Journey stage">4. Job-retention support</td><td data-label="Question">Does he need support after hiring?</td><td data-label="Why">Repeated short employment points to workplace support, training, coaching, and fit.</td><td data-label="Where"><button class="table-button" data-go="employment">Employment</button></td></tr>
-          <tr><td data-label="Journey stage">5. Education repair</td><td data-label="Question">Did college fail because supports were missing?</td><td data-label="Why">Accessible Learning should be involved before another attempt.</td><td data-label="Where"><button class="table-button" data-go="education">Education</button></td></tr>
-          <tr><td data-label="Journey stage">6. Rights check</td><td data-label="Question">Were disability accommodation needs considered?</td><td data-label="Why">Work and school may require reasonable accommodation planning.</td><td data-label="Where"><button class="table-button" data-go="rights">Rights</button></td></tr>
-        </tbody>
-      </table>
-    </section>
+    <section id="rights" class="tab-panel"><div class="section-head"><h2>Accommodation Rights</h2><p>Use this as a check when work or education difficulty may be connected to support needs.</p></div><table><thead><tr><th>Area</th><th>Document</th><th>Ask</th><th>Who can help</th></tr></thead><tbody><tr><td data-label="Area">Training</td><td data-label="Document">Instructions, training pace, and what was unclear.</td><td data-label="Ask">Written instructions, extra demonstration, check-ins.</td><td data-label="Who">Employment advisor / job coach</td></tr><tr><td data-label="Area">Performance feedback</td><td data-label="Document">Dates, examples, feedback, and expectations.</td><td data-label="Ask">Clear expectations and time to correct issues.</td><td data-label="Who">Job coach / HRLSC if needed</td></tr><tr><td data-label="Area">Education barriers</td><td data-label="Document">Course tasks, pace, tests, assignments, or support gaps.</td><td data-label="Ask">Formal accommodation planning.</td><td data-label="Who">Accessible Learning</td></tr></tbody></table><div class="contact-strip"><a href="tel:18666255179">Call HRLSC</a><a href="https://hrlsc.on.ca/contact-hrlsc/" target="_blank" rel="noopener">HRLSC Website</a></div></section>
 
-    <section id="odsp" class="tab-panel">
-      <div class="section-head">
-        <h2>ODSP: Caseworker + Employment Supports</h2>
-        <p>Use this section to check whether the ODSP worker is doing more than income-support administration.</p>
-      </div>
-      <table>
-        <thead><tr><th>ODSP area</th><th>What to check</th><th>What to ask for</th><th>Evidence to request</th></tr></thead>
-        <tbody>
-          <tr><td data-label="ODSP area">Assigned worker</td><td data-label="What to check">Does he know the worker name and how to contact them?</td><td data-label="Ask">Worker name, direct contact path, and next appointment.</td><td data-label="Evidence">Written reply or appointment note.</td></tr>
-          <tr><td data-label="ODSP area">Employment supports</td><td data-label="What to check">Has he been referred to ODSP Employment Supports or a provider?</td><td data-label="Ask">Referral for employment support focused on retention.</td><td data-label="Evidence">Referral confirmation and provider contact.</td></tr>
-          <tr><td data-label="ODSP area">Job retention</td><td data-label="What to check">Is the worker addressing repeated job loss after start?</td><td data-label="Ask">Job coach, check-ins after hire, employer-support planning.</td><td data-label="Evidence">Action plan with dates and responsible contacts.</td></tr>
-          <tr><td data-label="ODSP area">Work-related costs</td><td data-label="What to check">Are transportation, clothing, tools, training, or disability-related work costs barriers?</td><td data-label="Ask">What ODSP can cover or refer for.</td><td data-label="Evidence">Benefit/referral decision in writing.</td></tr>
-          <tr><td data-label="ODSP area">Working while on ODSP</td><td data-label="What to check">Does he understand earnings reporting and benefit impacts?</td><td data-label="Ask">Plain explanation of earnings rules and reporting steps.</td><td data-label="Evidence">Written instructions.</td></tr>
-        </tbody>
-      </table>
-      <div class="contact-strip">
-        <a href="tel:5198864700">Call ODSP Kitchener</a>
-        <a href="mailto:ODSP.Kitchener@ontario.ca">Email ODSP Kitchener</a>
-        <a href="https://www.google.com/maps/search/?api=1&query=715%20Fischer%20Hallman%20Rd%20N%20Unit%20301%20Kitchener%20ON%20N2E%204E9" target="_blank" rel="noopener">Open Map</a>
-      </div>
-    </section>
-
-    <section id="dso" class="tab-panel">
-      <div class="section-head">
-        <h2>DSO + Passport</h2>
-        <p>Use this section to prevent support needs from being missed during intake or funding conversations.</p>
-      </div>
-      <table>
-        <thead><tr><th>Area</th><th>What it means</th><th>What to say</th><th>Why it matters</th></tr></thead>
-        <tbody>
-          <tr><td data-label="Area">DSO eligibility</td><td data-label="Meaning">Adult developmental services access point.</td><td data-label="Say">“I need to confirm eligibility or update my application.”</td><td data-label="Why">Eligibility may unlock Ministry-funded supports.</td></tr>
-          <tr><td data-label="Area">Application package</td><td data-label="Meaning">Captures support needs and service requests.</td><td data-label="Say">“Please help me include every relevant support area.”</td><td data-label="Why">Understating needs can cause service gaps.</td></tr>
-          <tr><td data-label="Area">Passport</td><td data-label="Meaning">Reimbursement funding for eligible adults.</td><td data-label="Say">“Can Passport support employment readiness, planning, support workers, or agency services?”</td><td data-label="Why">May fund supports not covered by a short program.</td></tr>
-          <tr><td data-label="Area">Person-directed planning</td><td data-label="Meaning">Help building a practical life/work roadmap.</td><td data-label="Say">“I need a plan for stable work and supports.”</td><td data-label="Why">This matches the need for long-term direction.</td></tr>
-          <tr><td data-label="Area">Documentation</td><td data-label="Meaning">Assessment or records may be needed.</td><td data-label="Say">“What documents do I need, and what if I do not have them?”</td><td data-label="Why">Prevents the process from stopping at paperwork.</td></tr>
-        </tbody>
-      </table>
-      <div class="contact-strip">
-        <a href="tel:18889411121">Call DSO Central West</a>
-        <a href="mailto:dso@sunbeamcommunity.ca">Email DSO</a>
-        <a href="https://www.google.com/maps/search/?api=1&query=2749%20Kingsway%20Drive%20Kitchener%20ON" target="_blank" rel="noopener">Open Map</a>
-      </div>
-    </section>
-
-    <section id="employment" class="tab-panel">
-      <div class="section-head">
-        <h2>Employment Supports</h2>
-        <p>The key issue is likely job retention and workplace fit, not just finding openings.</p>
-      </div>
-      <table>
-        <thead><tr><th>Support type</th><th>Short-term program only</th><th>Better-fit support</th><th>Provider to ask</th></tr></thead>
-        <tbody>
-          <tr><td data-label="Support">Resume/interview help</td><td data-label="Short-term">May help get interviews.</td><td data-label="Better-fit">Add work-fit assessment and job matching.</td><td data-label="Provider">Starling / Employment Ontario</td></tr>
-          <tr><td data-label="Support">Job placement</td><td data-label="Short-term">May end after hire.</td><td data-label="Better-fit">Add follow-up after start and employer support.</td><td data-label="Provider">KW Career Compass / Starling</td></tr>
-          <tr><td data-label="Support">Job coaching</td><td data-label="Short-term">May be limited or temporary.</td><td data-label="Better-fit">Ask for long-term retention support.</td><td data-label="Provider">KW Career Compass</td></tr>
-          <tr><td data-label="Support">Training</td><td data-label="Short-term">May not match learning needs.</td><td data-label="Better-fit">Ask for repeated demonstration, written steps, and pace support.</td><td data-label="Provider">Employment provider + employer</td></tr>
-          <tr><td data-label="Support">Accommodation plan</td><td data-label="Short-term">Often not included.</td><td data-label="Better-fit">Prepare functional needs and support language.</td><td data-label="Provider">Employment advisor / legal support if needed</td></tr>
-        </tbody>
-      </table>
-      <div class="contact-strip">
-        <a href="tel:5197446307">Call KW Career Compass</a>
-        <a href="tel:5197432460">Call Starling</a>
-        <a href="mailto:employmentservices@starlingcs.ca">Email Starling</a>
-      </div>
-    </section>
-
-    <section id="education" class="tab-panel">
-      <div class="section-head">
-        <h2>Education / Conestoga Return Path</h2>
-        <p>If college failed because supports were missing, the return path starts with Accessible Learning before classes.</p>
-      </div>
-      <table>
-        <thead><tr><th>Stage</th><th>Action</th><th>Ask</th><th>Output needed</th></tr></thead>
-        <tbody>
-          <tr><td data-label="Stage">Before applying/restarting</td><td data-label="Action">Contact Accessible Learning.</td><td data-label="Ask">“What documentation do I need?”</td><td data-label="Output">Accommodation intake path.</td></tr>
-          <tr><td data-label="Stage">Documentation</td><td data-label="Action">Gather assessments, IEP, college records, medical/disability documentation.</td><td data-label="Ask">“Are these enough?”</td><td data-label="Output">Accepted documentation list.</td></tr>
-          <tr><td data-label="Stage">Program fit</td><td data-label="Action">Speak with academic guidance.</td><td data-label="Ask">“Is this program/course load realistic?”</td><td data-label="Output">Re-entry plan.</td></tr>
-          <tr><td data-label="Stage">Accommodations</td><td data-label="Action">Create accommodation plan before classes.</td><td data-label="Ask">“What supports can be documented?”</td><td data-label="Output">Formal accommodation letter/plan.</td></tr>
-          <tr><td data-label="Stage">Follow-through</td><td data-label="Action">Schedule check-ins after restart.</td><td data-label="Ask">“Who do I contact if I fall behind?”</td><td data-label="Output">Named support contact.</td></tr>
-        </tbody>
-      </table>
-      <div class="contact-strip">
-        <a href="tel:5197485220,3232">Call Accessible Learning</a>
-        <a href="mailto:accessibility@conestogac.on.ca">Email Accessible Learning</a>
-        <a href="https://conestogac-accommodate.symplicity.com/public_accommodation/" target="_blank" rel="noopener">Open Intake Form</a>
-      </div>
-    </section>
-
-    <section id="rights" class="tab-panel">
-      <div class="section-head">
-        <h2>Accommodation Rights</h2>
-        <p>Use this as a check when job loss or education difficulty may be connected to disability-related needs.</p>
-      </div>
-      <table>
-        <thead><tr><th>Area</th><th>What to document</th><th>What to ask</th><th>Who can help</th></tr></thead>
-        <tbody>
-          <tr><td data-label="Area">Workplace training</td><td data-label="Document">What instructions were given, how training happened, what was unclear.</td><td data-label="Ask">Written instructions, extra demonstration, check-ins.</td><td data-label="Who">Employment advisor / job coach</td></tr>
-          <tr><td data-label="Area">Performance feedback</td><td data-label="Document">Dates, examples, feedback, and whether expectations were clear.</td><td data-label="Ask">Clear expectations and time to correct issues.</td><td data-label="Who">Job coach / HRLSC if needed</td></tr>
-          <tr><td data-label="Area">Disclosure</td><td data-label="Document">What support needs were shared and with whom.</td><td data-label="Ask">Functional accommodations without oversharing diagnosis.</td><td data-label="Who">Employment advisor / HRLSC</td></tr>
-          <tr><td data-label="Area">College barriers</td><td data-label="Document">What course tasks, pace, tests, assignments, or supports failed.</td><td data-label="Ask">Formal accommodation planning.</td><td data-label="Who">Conestoga Accessible Learning</td></tr>
-        </tbody>
-      </table>
-      <div class="contact-strip">
-        <a href="tel:18666255179">Call HRLSC</a>
-        <a href="https://hrlsc.on.ca/contact-hrlsc/" target="_blank" rel="noopener">HRLSC Website</a>
-      </div>
-    </section>
-
-    <section id="contacts" class="tab-panel">
-      <div class="section-head">
-        <h2>Contact Directory</h2>
-        <p>Phone numbers open the phone app on mobile. Map buttons open Google Maps.</p>
-      </div>
-
-      <table>
-        <thead><tr><th>Organization</th><th>Use for</th><th>Phone</th><th>Email / Website</th><th>Map</th></tr></thead>
-        <tbody>
-          <tr><td data-label="Organization">ODSP Kitchener</td><td data-label="Use for">ODSP worker, employment supports, income/work questions.</td><td data-label="Phone"><a href="tel:5198864700">519-886-4700</a><br><a href="tel:18004419820">1-800-441-9820</a></td><td data-label="Email / Website"><a href="mailto:ODSP.Kitchener@ontario.ca">Email</a><br><a href="https://211ontario.ca/service/73444788/ontario-ministry-of-community-and-social-services-ontario-disability-support-program/" target="_blank" rel="noopener">Website</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=715%20Fischer%20Hallman%20Rd%20N%20Unit%20301%20Kitchener%20ON%20N2E%204E9" target="_blank" rel="noopener">Map</a></td></tr>
-          <tr><td data-label="Organization">DSO Central West</td><td data-label="Use for">Developmental-services eligibility, application, Passport path.</td><td data-label="Phone"><a href="tel:18889411121">1-888-941-1121</a></td><td data-label="Email / Website"><a href="mailto:dso@sunbeamcommunity.ca">Email</a><br><a href="https://www.dsocwr.ca/" target="_blank" rel="noopener">Website</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=2749%20Kingsway%20Drive%20Kitchener%20ON" target="_blank" rel="noopener">Map</a></td></tr>
-          <tr><td data-label="Organization">KW Career Compass</td><td data-label="Use for">Job coaching, retention, DSO/Passport/fee-for-service employment support.</td><td data-label="Phone"><a href="tel:5197446307">519-744-6307</a></td><td data-label="Email / Website"><a href="mailto:info@kwhab.ca">Email</a><br><a href="https://kwhab.ca/services/employment/" target="_blank" rel="noopener">Website</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=99%20Ottawa%20Street%20South%20Kitchener%20ON%20N2G%203S8" target="_blank" rel="noopener">Map</a></td></tr>
-          <tr><td data-label="Organization">Starling Employment Services</td><td data-label="Use for">Employment Ontario supports, job search, skills assessment, job matching.</td><td data-label="Phone"><a href="tel:5197432460">519-743-2460</a></td><td data-label="Email / Website"><a href="mailto:employmentservices@starlingcs.ca">Email</a><br><a href="https://www.ontario.ca/locations/employment-training/92922495-kitchener-165-king-st-e" target="_blank" rel="noopener">Website</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=165%20King%20Street%20East%20Kitchener%20ON%20N2G%202K8" target="_blank" rel="noopener">Map</a></td></tr>
-          <tr><td data-label="Organization">Conestoga Accessible Learning</td><td data-label="Use for">Accommodation intake, documentation review, education re-entry supports.</td><td data-label="Phone"><a href="tel:5197485220,3232">519-748-5220 ext. 3232</a></td><td data-label="Email / Website"><a href="mailto:accessibility@conestogac.on.ca">Email</a><br><a href="https://studentsuccess.conestogac.on.ca/accessible-learning" target="_blank" rel="noopener">Website</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=Conestoga%20College%20Kitchener%20ON" target="_blank" rel="noopener">Map</a></td></tr>
-          <tr><td data-label="Organization">Human Rights Legal Support Centre</td><td data-label="Use for">Accommodation/discrimination legal support.</td><td data-label="Phone"><a href="tel:18666255179">1-866-625-5179</a></td><td data-label="Email / Website"><a href="https://hrlsc.on.ca/contact-hrlsc/" target="_blank" rel="noopener">Website</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=180%20Dundas%20Street%20West%208th%20Floor%20Toronto%20ON%20M7A%200A1" target="_blank" rel="noopener">Map</a></td></tr>
-          <tr><td data-label="Organization">211 Ontario</td><td data-label="Use for">Backup navigation when unsure who to call.</td><td data-label="Phone"><a href="tel:211">211</a></td><td data-label="Email / Website"><a href="https://211ontario.ca/" target="_blank" rel="noopener">Website</a></td><td data-label="Map">Ontario-wide</td></tr>
-        </tbody>
-      </table>
-
-      <div class="qr-panel">
-        <img src="assets/andrewd_support_qr.svg" alt="QR code for Andrew D Support Roadmap">
-        <div>
-          <h3>Share Page</h3>
-          <p><a href="https://ajpnkw.github.io/my_git_documents/web/sites/andrewd/">https://ajpnkw.github.io/my_git_documents/web/sites/andrewd/</a></p>
-        </div>
-      </div>
-    </section>
+    <section id="contacts" class="tab-panel"><div class="section-head"><h2>Contacts</h2><p>Phone links open the phone app on mobile. Map links open Google Maps.</p></div><table><thead><tr><th>Organization</th><th>Use for</th><th>Phone</th><th>Email / Website</th><th>Map</th></tr></thead><tbody><tr><td data-label="Organization">ODSP Kitchener</td><td data-label="Use for">ODSP worker, employment supports, income/work questions.</td><td data-label="Phone"><a href="tel:5198864700">519-886-4700</a><br><a href="tel:18004419820">1-800-441-9820</a></td><td data-label="Email / Website"><a href="mailto:ODSP.Kitchener@ontario.ca">Email</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=715%20Fischer%20Hallman%20Rd%20N%20Unit%20301%20Kitchener%20ON%20N2E%204E9" target="_blank" rel="noopener">Map</a></td></tr><tr><td data-label="Organization">DSO Central West</td><td data-label="Use for">Developmental-services eligibility, application, Passport path.</td><td data-label="Phone"><a href="tel:18889411121">1-888-941-1121</a></td><td data-label="Email / Website"><a href="mailto:dso@sunbeamcommunity.ca">Email</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=2749%20Kingsway%20Drive%20Kitchener%20ON" target="_blank" rel="noopener">Map</a></td></tr><tr><td data-label="Organization">KW Career Compass</td><td data-label="Use for">Job coaching and retention.</td><td data-label="Phone"><a href="tel:5197446307">519-744-6307</a></td><td data-label="Email / Website"><a href="mailto:info@kwhab.ca">Email</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=99%20Ottawa%20Street%20South%20Kitchener%20ON%20N2G%203S8" target="_blank" rel="noopener">Map</a></td></tr><tr><td data-label="Organization">Starling Employment Services</td><td data-label="Use for">Employment Ontario supports.</td><td data-label="Phone"><a href="tel:5197432460">519-743-2460</a></td><td data-label="Email / Website"><a href="mailto:employmentservices@starlingcs.ca">Email</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=165%20King%20Street%20East%20Kitchener%20ON%20N2G%202K8" target="_blank" rel="noopener">Map</a></td></tr><tr><td data-label="Organization">Conestoga Accessible Learning</td><td data-label="Use for">Accommodation intake.</td><td data-label="Phone"><a href="tel:5197485220,3232">519-748-5220 ext. 3232</a></td><td data-label="Email / Website"><a href="mailto:accessibility@conestogac.on.ca">Email</a></td><td data-label="Map"><a href="https://www.google.com/maps/search/?api=1&query=Conestoga%20College%20Kitchener%20ON" target="_blank" rel="noopener">Map</a></td></tr><tr><td data-label="Organization">211 Ontario</td><td data-label="Use for">Backup navigation.</td><td data-label="Phone"><a href="tel:211">211</a></td><td data-label="Email / Website"><a href="https://211ontario.ca/" target="_blank" rel="noopener">Website</a></td><td data-label="Map">Ontario-wide</td></tr></tbody></table><div class="qr-panel"><img src="assets/andrewd_support_qr.svg" alt="QR code for this support roadmap"><div><h3>Share Page</h3><p><a href="https://ajpnkw.github.io/my_git_documents/web/sites/andrewd/">https://ajpnkw.github.io/my_git_documents/web/sites/andrewd/</a></p></div></div></section>
   </main>
 </div>
-
 <script src="assets/site.js"></script>
 </body>
 </html>
