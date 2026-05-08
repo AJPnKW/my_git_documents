@@ -251,7 +251,7 @@ function addResourceBlock(sectionId, title, links){
 }
 function addContactsTools(){
   const contacts = byId("contacts"); if(!contacts || contacts.querySelector(".contact-tools")) return;
-  contacts.insertAdjacentHTML("afterbegin", `<div class="contact-tools"><h3>📇 Add support contacts</h3><p>Download a contact file and open it on your phone or computer to add these support organizations to your contacts.</p><a class="primary" href="assets/andrewd_support_contacts.vcf" download>Add contacts file</a></div>`);
+  contacts.insertAdjacentHTML("afterbegin", `<div class="contact-tools"><h3>📇 Add organization contacts</h3><p>Download a contact file for ODSP, DSO, employment, Conestoga, and other support organizations.</p><a class="primary" href="assets/andrewd_support_contacts.vcf" download>Add organization contacts</a></div>`);
 }
 function addAiNotice(){
   const main = byId("main"); if(!main || byId("aiNotice")) return;
@@ -261,7 +261,8 @@ function addAiNotice(){
 function addAndrewContactLink(){
   const nav = document.querySelector(".side-nav");
   if(nav && !nav.querySelector('a[href="contact_andrew.html"]')){
-    nav.insertAdjacentHTML("beforeend", '<a class="nav-link" href="contact_andrew.html"><span class="nav-icon">🙋</span><span class="nav-text">Contact Andrew</span></a>');
+    nav.insertAdjacentHTML("beforeend", '<a class="nav-link" href="contact_andrew.html"><span class="nav-icon">🙋</span><span class="nav-text">Contact Andrew P</span></a>');
   }
 }
+
 
