@@ -46,7 +46,22 @@ ORG:Conestoga College
 TEL;TYPE=WORK,VOICE:519-748-5220,3232
 EMAIL:accessibility@conestogac.on.ca
 URL:https://studentsuccess.conestogac.on.ca/accessible-learning
+URL:https://conestogac-accommodate.symplicity.com/public_accommodation/
 NOTE:Ask for accommodation intake, documentation review, re-entry planning, and education supports.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:Conestoga Academic Guidance
+ORG:Conestoga College
+URL:https://studentsuccess.conestogac.on.ca/academic-guidance
+NOTE:Use for course load, program fit, academic planning, and referrals.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:Conestoga Health and Wellness
+ORG:Conestoga College
+URL:https://studentsuccess.conestogac.on.ca/health-and-wellness
+NOTE:Use for counselling, wellness, and student health support links.
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
