@@ -1,0 +1,67 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:ODSP Kitchener
+ORG:Ontario Disability Support Program
+TEL;TYPE=WORK,VOICE:519-886-4700
+TEL;TYPE=WORK,VOICE:1-800-441-9820
+EMAIL:ODSP.Kitchener@ontario.ca
+ADR;TYPE=WORK:;;715 Fischer Hallman Rd N Unit 301;Kitchener;ON;N2E 4E9;Canada
+URL:https://211ontario.ca/service/73444788/ontario-ministry-of-community-and-social-services-ontario-disability-support-program/
+NOTE:Ask for ODSP Employment Supports, job-retention help, provider referral, and written next steps.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:DSO Central West
+ORG:Developmental Services Ontario Central West
+TEL;TYPE=WORK,VOICE:1-888-941-1121
+EMAIL:dso@sunbeamcommunity.ca
+ADR;TYPE=WORK:;;2749 Kingsway Drive;Kitchener;ON;;;Canada
+URL:https://www.dsocwr.ca/
+NOTE:Ask about eligibility, intake, Passport, support profile updates, and documented support needs.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:KW Career Compass
+ORG:KW Habilitation
+TEL;TYPE=WORK,VOICE:519-744-6307
+EMAIL:info@kwhab.ca
+ADR;TYPE=WORK:;;99 Ottawa Street South;Kitchener;ON;N2G 3S8;Canada
+URL:https://kwhab.ca/services/employment/
+NOTE:Ask about job coaching, job retention, DSO referral, Passport-funded support, and fee-for-service options.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:Starling Employment Services
+ORG:Starling Community Services
+TEL;TYPE=WORK,VOICE:519-743-2460
+EMAIL:employmentservices@starlingcs.ca
+ADR;TYPE=WORK:;;165 King Street East;Kitchener;ON;N2G 2K8;Canada
+URL:https://www.ontario.ca/locations/employment-training/92922495-kitchener-165-king-st-e
+NOTE:Ask for an employment advisor, skills assessment, job matching, training, and support after starting work.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:Conestoga Accessible Learning
+ORG:Conestoga College
+TEL;TYPE=WORK,VOICE:519-748-5220,3232
+EMAIL:accessibility@conestogac.on.ca
+URL:https://studentsuccess.conestogac.on.ca/accessible-learning
+NOTE:Ask for accommodation intake, documentation review, re-entry planning, and education supports.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:Human Rights Legal Support Centre
+ORG:Human Rights Legal Support Centre
+TEL;TYPE=WORK,VOICE:1-866-625-5179
+ADR;TYPE=WORK:;;180 Dundas Street West 8th Floor;Toronto;ON;M7A 0A1;Canada
+URL:https://hrlsc.on.ca/contact-hrlsc/
+NOTE:Ask about disability accommodation or discrimination concerns.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:211 Ontario
+ORG:211 Ontario
+TEL;TYPE=WORK,VOICE:211
+URL:https://211ontario.ca/
+NOTE:Use for backup navigation when unsure which service to call.
+END:VCARD

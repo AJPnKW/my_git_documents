@@ -10,60 +10,63 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="app-shell">
-  <aside class="side-nav" aria-label="Roadmap navigation">
-    <div class="brand"><div class="brand-mark">AD</div><div><h1>Support Tool</h1><p>Roadmap</p></div></div>
-    <button class="nav-tab active" data-tab="dashboard">1. Dashboard</button>
-    <button class="nav-tab" data-tab="workflow">2. Inquiry</button>
-    <button class="nav-tab" data-tab="roadmap">3. Roadmap</button>
-    <button class="nav-tab" data-tab="journey">4. Journey</button>
-    <button class="nav-tab" data-tab="odsp">5. ODSP</button>
-    <button class="nav-tab" data-tab="dso">6. DSO + Passport</button>
-    <button class="nav-tab" data-tab="employment">7. Employment</button>
-    <button class="nav-tab" data-tab="education">8. Education</button>
-    <button class="nav-tab" data-tab="rights">9. Rights</button>
-    <button class="nav-tab" data-tab="contacts">10. Contacts</button>
-    <a class="nav-link" href="references.html">References</a>
+  <aside class="side-nav" aria-label="Workflow navigation">
+    <div class="workflow-label">Follow the steps →</div>
+    <button class="nav-tab active" data-tab="dashboard"><span class="nav-icon">🏠</span><span class="nav-text">1 Dashboard</span></button>
+    <button class="nav-tab" data-tab="workflow"><span class="nav-icon">📝</span><span class="nav-text">2 Inquiry</span></button>
+    <button class="nav-tab" data-tab="roadmap"><span class="nav-icon">🗺️</span><span class="nav-text">3 Roadmap</span></button>
+    <button class="nav-tab" data-tab="journey"><span class="nav-icon">🧭</span><span class="nav-text">4 Journey</span></button>
+    <button class="nav-tab" data-tab="odsp"><span class="nav-icon">💼</span><span class="nav-text">5 ODSP</span></button>
+    <button class="nav-tab" data-tab="dso"><span class="nav-icon">🤝</span><span class="nav-text">6 DSO + Passport</span></button>
+    <button class="nav-tab" data-tab="employment"><span class="nav-icon">🛠️</span><span class="nav-text">7 Employment</span></button>
+    <button class="nav-tab" data-tab="education"><span class="nav-icon">🎓</span><span class="nav-text">8 Education</span></button>
+    <button class="nav-tab" data-tab="rights"><span class="nav-icon">🛡️</span><span class="nav-text">9 Rights</span></button>
+    <button class="nav-tab" data-tab="contacts"><span class="nav-icon">☎️</span><span class="nav-text">10 Contacts</span></button>
+    <a class="nav-link" href="references.html"><span class="nav-icon">🔗</span><span class="nav-text">References</span></a>
   </aside>
 
   <main id="main" class="main-content">
     <section class="hero">
       <div>
-        <p class="eyebrow">Waterloo Region / KW support navigation</p>
-        <h2>Start with the inquiry. Then use your roadmap.</h2>
-        <p>This tool helps you identify supports you already have, supports that may be missing, and which contacts to use first.</p>
+        <p class="eyebrow">Waterloo Region / KW support workflow</p>
+        <h2>Answer the inquiry. Generate your roadmap. Use the contact plan.</h2>
+        <p>This tool gives you a step-by-step path for ODSP, DSO, Passport, employment supports, education supports, documents, and accommodation rights.</p>
       </div>
-      <div class="hero-actions">
-        <button class="primary" data-go="workflow">Start Inquiry</button>
-        <button class="secondary" data-go="roadmap">View Roadmap</button>
-        <button class="secondary" onclick="window.print()">Print / Save PDF</button>
-      </div>
+      <div class="hero-actions"><button class="primary" data-go="workflow">Start Inquiry</button><button class="secondary" data-go="roadmap">View Roadmap</button><button class="secondary" onclick="window.print()">Print / Save PDF</button></div>
     </section>
 
     <section id="dashboard" class="tab-panel active">
-      <div class="section-head"><h2>Main Dashboard</h2><p>Complete the inquiry first. The page then builds a practical support path.</p></div>
+      <div class="section-head"><h2>Main Dashboard</h2><p>This is a workflow. Complete the inquiry first, then use the generated roadmap.</p></div>
+      <div class="workflow-intro">
+        <article><span>1</span><h3>Answer</h3><p>Use “I do not know” when you have not been told or are unsure.</p></article>
+        <article><span>2</span><h3>Learn</h3><p>Open the help boxes for plain-language definitions and source links.</p></article>
+        <article><span>3</span><h3>Generate</h3><p>Create a support-gap table, suggested pathway, and call script.</p></article>
+        <article><span>4</span><h3>Act</h3><p>Use phone, email, map, and intake links to contact the right service.</p></article>
+      </div>
       <div class="dashboard-grid">
         <article class="metric-card action-card"><span class="step-badge">Step 1</span><h3>Complete the Inquiry</h3><p>Capture ODSP, DSO, Passport, employment, education, accommodation, and document status.</p><button class="primary" data-go="workflow">Complete Inquiry</button></article>
         <article class="metric-card"><span class="step-badge">Status</span><h3>Current Snapshot</h3><div id="dashboardSnapshot" class="status-list"><p>No inquiry answers saved yet.</p></div></article>
         <article class="metric-card"><span class="step-badge">Output</span><h3>Roadmap Readiness</h3><p id="readinessText">Complete the inquiry to generate the suggested action path.</p><button class="secondary" data-go="roadmap">Open Roadmap</button></article>
       </div>
-
       <h3>What to look at first</h3>
       <table><thead><tr><th>Order</th><th>Area</th><th>Reason</th><th>Action</th></tr></thead><tbody>
         <tr><td data-label="Order">1</td><td data-label="Area">Inquiry</td><td data-label="Reason">The roadmap needs your current situation before it can guide next steps.</td><td data-label="Action"><button class="table-button" data-go="workflow">Start</button></td></tr>
-        <tr><td data-label="Order">2</td><td data-label="Area">ODSP worker / ODSP supports</td><td data-label="Reason">If you are on ODSP, this may be the fastest formal support path to check.</td><td data-label="Action"><button class="table-button" data-go="odsp">Review</button></td></tr>
+        <tr><td data-label="Order">2</td><td data-label="Area">ODSP</td><td data-label="Reason">If you are on ODSP, your worker may be the fastest formal support doorway.</td><td data-label="Action"><button class="table-button" data-go="odsp">Review</button></td></tr>
         <tr><td data-label="Order">3</td><td data-label="Area">DSO + Passport</td><td data-label="Reason">If eligible, this may connect you to longer-term supports and funding.</td><td data-label="Action"><button class="table-button" data-go="dso">Review</button></td></tr>
         <tr><td data-label="Order">4</td><td data-label="Area">Employment supports</td><td data-label="Reason">If jobs end quickly, job-retention support may matter more than resume help.</td><td data-label="Action"><button class="table-button" data-go="employment">Review</button></td></tr>
-        <tr><td data-label="Order">5</td><td data-label="Area">Education supports</td><td data-label="Reason">If you return to college/training, support planning should happen before re-enrolment.</td><td data-label="Action"><button class="table-button" data-go="education">Review</button></td></tr>
+        <tr><td data-label="Order">5</td><td data-label="Area">Education supports</td><td data-label="Reason">If you return to college or training, support planning should happen first.</td><td data-label="Action"><button class="table-button" data-go="education">Review</button></td></tr>
       </tbody></table>
       <div class="callout"><strong>Privacy note:</strong> answers stay in your browser. They are not sent to GitHub, ODSP, DSO, or any organization.</div>
     </section>
 
     <section id="workflow" class="tab-panel">
-      <div class="section-head"><h2>Inquiry</h2><p>Answer what you can. Use “not sure” when needed.</p></div>
+      <div class="section-head"><h2>Inquiry</h2><p>Answer what you can. These questions are meant to identify support gaps, not judge what you know.</p></div>
       <form id="intakeForm" class="form-grid">
-        <fieldset><legend>ODSP status</legend>
-          <label>ODSP status<select id="odspStatus"><option value="">Select one</option><option value="on_odsp">On ODSP</option><option value="thinks_on_odsp">Think I am on ODSP</option><option value="not_on_odsp">Not on ODSP</option><option value="unknown">Not sure</option></select></label>
-          <label>Do you know your ODSP caseworker?<select id="odspWorker"><option value="">Select one</option><option value="yes">Yes</option><option value="no">No</option><option value="unknown">Not sure</option></select></label>
+        <fieldset><legend>💼 ODSP status</legend>
+          <label>ODSP status<select id="odspStatus"><option value="">Select one</option><option value="on_odsp">I am on ODSP</option><option value="thinks_on_odsp">I think I am on ODSP</option><option value="not_on_odsp">I am not on ODSP</option><option value="unknown">I do not know if I am on ODSP</option></select></label>
+          <details class="help-box"><summary>What ODSP means</summary><p>ODSP is Ontario Disability Support Program. It can include income support, health benefits, and employment supports.</p><p><a href="https://www.ontario.ca/page/ontario-disability-support-program" target="_blank" rel="noopener">ODSP overview</a> · <a href="https://211ontario.ca/service/73444788/ontario-ministry-of-community-and-social-services-ontario-disability-support-program/" target="_blank" rel="noopener">ODSP Kitchener contact</a></p></details>
+          <label>Do you know your ODSP caseworker?<select id="odspWorker"><option value="">Select one</option><option value="yes">Yes</option><option value="no">No</option><option value="unknown">I have not been told / I do not know</option></select></label>
+          <details class="help-box"><summary>Why the ODSP worker matters</summary><p>The worker may help confirm benefits, explain working while on ODSP, and connect you to employment supports or referrals.</p></details>
           <div class="checkbox-group"><p>What support is currently coming from ODSP?</p>
             <label><input type="checkbox" name="odspSupports" value="income_only"> Income support only / no other support known</label>
             <label><input type="checkbox" name="odspSupports" value="employment_supports"> ODSP Employment Supports</label>
@@ -71,13 +74,16 @@
             <label><input type="checkbox" name="odspSupports" value="job_retention"> Job-retention help</label>
             <label><input type="checkbox" name="odspSupports" value="training_costs"> Training / work-related cost help</label>
             <label><input type="checkbox" name="odspSupports" value="written_plan"> Written support plan or next steps</label>
-            <label><input type="checkbox" name="odspSupports" value="unknown"> Not sure</label>
+            <label><input type="checkbox" name="odspSupports" value="unknown"> I do not know what ODSP supports I am receiving</label>
           </div>
+          <details class="help-box"><summary>What ODSP Employment Supports means</summary><p>Employment Supports can help with finding and keeping work. The important question is whether support continues after a job starts.</p><p><a href="https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-employment-supports/11-introduction" target="_blank" rel="noopener">ODSP Employment Supports source</a></p></details>
         </fieldset>
 
-        <fieldset><legend>DSO + Passport status</legend>
-          <label>DSO status<select id="dsoStatus"><option value="">Select one</option><option value="eligible_connected">Eligible / connected</option><option value="application_started">Application started</option><option value="not_started">Not started</option><option value="not_sure">Not sure</option><option value="not_eligible">Known not eligible</option></select></label>
-          <label>Passport funding status<select id="passportStatus"><option value="">Select one</option><option value="has_passport">Have Passport funding</option><option value="pending">Pending / waiting</option><option value="none">No Passport funding</option><option value="unknown">Not sure</option></select></label>
+        <fieldset><legend>🤝 DSO + Passport status</legend>
+          <label>DSO status<select id="dsoStatus"><option value="">Select one</option><option value="eligible_connected">I am eligible / connected</option><option value="application_started">An application was started</option><option value="not_started">Not started</option><option value="not_sure">I do not know what DSO is / I have not been told</option><option value="not_eligible">I was told I am not eligible</option></select></label>
+          <details class="help-box"><summary>What DSO means</summary><p>DSO means Developmental Services Ontario. It is the access point for adult developmental services in Ontario.</p><p><a href="https://www.dsontario.ca/how-to-access-services" target="_blank" rel="noopener">How to access DSO services</a> · <a href="https://www.dsocwr.ca/" target="_blank" rel="noopener">DSO Central West</a></p></details>
+          <label>Passport funding status<select id="passportStatus"><option value="">Select one</option><option value="has_passport">I have Passport funding</option><option value="pending">It may be pending / waiting</option><option value="none">I do not have Passport funding</option><option value="unknown">I do not know what Passport funding is / I have never been told</option></select></label>
+          <details class="help-box"><summary>What Passport funding means</summary><p>Passport is reimbursement funding for eligible adults with a developmental disability. It may help pay for community participation, planning, support workers, and some agency supports.</p><p><a href="https://www.ontario.ca/page/passport-program-guidelines" target="_blank" rel="noopener">Passport guidelines</a> · <a href="https://kwhab.ca/passport-funding-information/" target="_blank" rel="noopener">KW Habilitation Passport information</a></p></details>
           <div class="checkbox-group"><p>Support needs to mention if relevant</p>
             <label><input type="checkbox" name="supportNeeds" value="employment_retention"> Employment and job retention</label>
             <label><input type="checkbox" name="supportNeeds" value="daily_living"> Daily living / independent living</label>
@@ -86,17 +92,19 @@
             <label><input type="checkbox" name="supportNeeds" value="person_directed_planning"> Person-directed planning / life roadmap</label>
             <label><input type="checkbox" name="supportNeeds" value="transportation"> Transportation / getting to work or services</label>
           </div>
+          <details class="help-box"><summary>Why checking all relevant needs matters</summary><p>Support planning can miss needs that are not mentioned. If something is genuinely a barrier, include it.</p></details>
         </fieldset>
 
-        <fieldset><legend>Employment situation</legend>
-          <label>Current work pattern<select id="jobPattern"><option value="">Select one</option><option value="terminated_quickly">Jobs often end shortly after starting</option><option value="struggles_keep_job">I can get work but struggle to keep it</option><option value="not_working">Not currently working</option><option value="looking">Looking for work</option><option value="unknown">Not sure</option></select></label>
+        <fieldset><legend>🛠️ Employment situation</legend>
+          <label>Current work pattern<select id="jobPattern"><option value="">Select one</option><option value="terminated_quickly">Jobs often end shortly after starting</option><option value="struggles_keep_job">I can get work but struggle to keep it</option><option value="not_working">Not currently working</option><option value="looking">Looking for work</option><option value="unknown">I do not know what pattern best describes this</option></select></label>
+          <details class="help-box"><summary>Why this question matters</summary><p>If jobs end shortly after starting, the missing support may be job coaching, workplace fit, training pace, or accommodation planning.</p><p><a href="https://kwhab.ca/services/employment/" target="_blank" rel="noopener">KW Career Compass</a> · <a href="https://www.ontario.ca/locations/employment-training/92922495-kitchener-165-king-st-e" target="_blank" rel="noopener">Starling Employment Services</a></p></details>
           <div class="checkbox-group"><p>Employment supports already tried</p>
             <label><input type="checkbox" name="employmentSupports" value="kw_career_compass"> KW Career Compass</label>
             <label><input type="checkbox" name="employmentSupports" value="starling"> Starling / Employment Ontario</label>
             <label><input type="checkbox" name="employmentSupports" value="job_coach"> Job coach</label>
             <label><input type="checkbox" name="employmentSupports" value="resume_course"> Resume / interview course only</label>
-            <label><input type="checkbox" name="employmentSupports" value="none"> None</label>
-            <label><input type="checkbox" name="employmentSupports" value="unknown"> Not sure</label>
+            <label><input type="checkbox" name="employmentSupports" value="none"> I have not had employment support</label>
+            <label><input type="checkbox" name="employmentSupports" value="unknown"> I do not know what supports I have already had</label>
           </div>
           <div class="checkbox-group"><p>Workplace barriers that may apply</p>
             <label><input type="checkbox" name="workBarriers" value="training_pace"> Training pace too fast</label>
@@ -104,24 +112,27 @@
             <label><input type="checkbox" name="workBarriers" value="schedule"> Schedule / time / attendance issues</label>
             <label><input type="checkbox" name="workBarriers" value="social"> Social, anxiety, or communication issues</label>
             <label><input type="checkbox" name="workBarriers" value="performance_feedback"> Trouble understanding feedback or expectations</label>
-            <label><input type="checkbox" name="workBarriers" value="unknown"> Not sure</label>
+            <label><input type="checkbox" name="workBarriers" value="unknown"> I am not sure what the workplace barriers are</label>
           </div>
         </fieldset>
 
-        <fieldset><legend>Education + documents</legend>
-          <label>College / training status<select id="educationStatus"><option value="">Select one</option><option value="left_college">Left or had to stop college/training</option><option value="wants_return">Want to return</option><option value="currently_student">Currently a student</option><option value="not_current_goal">Not a current goal</option><option value="unknown">Not sure</option></select></label>
-          <div class="checkbox-group"><p>Documents available</p>
+        <fieldset><legend>🎓 Education + documents</legend>
+          <label>College / training status<select id="educationStatus"><option value="">Select one</option><option value="left_college">I left or had to stop college/training</option><option value="wants_return">I want to return</option><option value="currently_student">I am currently a student</option><option value="not_current_goal">This is not a current goal</option><option value="unknown">I am not sure what education path applies</option></select></label>
+          <details class="help-box"><summary>Why education support matters</summary><p>If training or college was difficult before, accessibility support should be arranged before restarting.</p><p><a href="https://studentsuccess.conestogac.on.ca/accessible-learning" target="_blank" rel="noopener">Conestoga Accessible Learning</a> · <a href="https://conestogac-accommodate.symplicity.com/public_accommodation/" target="_blank" rel="noopener">Accessible Learning intake form</a></p></details>
+          <div class="checkbox-group"><p>Documents that may help support your case</p>
             <label><input type="checkbox" name="documents" value="psych_assessment"> Psychological / developmental assessment</label>
             <label><input type="checkbox" name="documents" value="iep"> IEP / school accommodation records</label>
             <label><input type="checkbox" name="documents" value="college_records"> College records / transcript / withdrawal information</label>
             <label><input type="checkbox" name="documents" value="medical_docs"> Medical or disability documentation</label>
             <label><input type="checkbox" name="documents" value="resume"> Resume / work history</label>
             <label><input type="checkbox" name="documents" value="job_loss_list"> List of jobs lost and what happened</label>
-            <label><input type="checkbox" name="documents" value="none"> None ready</label>
+            <label><input type="checkbox" name="documents" value="not_gathered"> I may have documents, but I have not gathered them yet</label>
+            <label><input type="checkbox" name="documents" value="doc_unknown"> I do not know what documents I have or why they matter</label>
           </div>
+          <details class="help-box"><summary>Why documents matter</summary><p>Documents can help ODSP, DSO, employment providers, or education supports understand needs without forcing you to explain everything from memory.</p></details>
         </fieldset>
 
-        <fieldset class="wide"><legend>Plain-language notes</legend>
+        <fieldset class="wide"><legend>🧾 Plain-language notes</legend>
           <label>Main goal<textarea id="mainGoal" placeholder="Example: stable part-time work, finish training, get job coaching, understand DSO/Passport, get a written support plan."></textarea></label>
           <label>Extra context<textarea id="contextNotes" placeholder="Example: what jobs ended quickly, what supports were tried, what the ODSP worker has or has not done, what happened at college/training."></textarea></label>
         </fieldset>
@@ -131,7 +142,7 @@
 
     <section id="roadmap" class="tab-panel"><div class="section-head"><h2>Roadmap</h2><p>This is created from your inquiry answers.</p></div><div id="roadmapSummary" class="callout">Complete the Inquiry and select <strong>Generate Roadmap</strong>.</div><h3>Suggested Pathway</h3><table id="pathwayTable"><thead><tr><th>Order</th><th>Step</th><th>Why</th><th>Ask / Action</th><th>Contact</th></tr></thead><tbody><tr><td data-label="Order">—</td><td data-label="Step">No roadmap yet</td><td data-label="Why">Complete inquiry first.</td><td data-label="Ask / Action">Use the Inquiry tab.</td><td data-label="Contact">—</td></tr></tbody></table><h3>Support Gap Table</h3><table id="gapTable"><thead><tr><th>Area</th><th>Current status</th><th>Gap</th><th>Next action</th></tr></thead><tbody><tr><td data-label="Area">—</td><td data-label="Current status">No answers yet</td><td data-label="Gap">—</td><td data-label="Next action">Complete inquiry.</td></tr></tbody></table><h3>Call Script Built From Answers</h3><div id="generatedScript" class="script">Complete the inquiry first.</div><h3>Printable Plain-Text Plan</h3><div id="plainTextPlan" class="plain-plan">Complete the inquiry first.</div></section>
 
-    <section id="journey" class="tab-panel"><div class="section-head"><h2>Support Journey</h2><p>Use this order to move through the information.</p></div><table><thead><tr><th>Stage</th><th>Question</th><th>Why it matters</th><th>Where to go</th></tr></thead><tbody><tr><td data-label="Stage">1. Current situation</td><td data-label="Question">What support do you already have?</td><td data-label="Why">Avoids repeating short-term supports that did not work.</td><td data-label="Where"><button class="table-button" data-go="workflow">Inquiry</button></td></tr><tr><td data-label="Stage">2. ODSP worker</td><td data-label="Question">Is ODSP helping with employment supports?</td><td data-label="Why">ODSP may open faster referral paths.</td><td data-label="Where"><button class="table-button" data-go="odsp">ODSP</button></td></tr><tr><td data-label="Stage">3. DSO eligibility</td><td data-label="Question">Is DSO active, incomplete, or unknown?</td><td data-label="Why">DSO may unlock developmental-service supports and Passport funding.</td><td data-label="Where"><button class="table-button" data-go="dso">DSO + Passport</button></td></tr><tr><td data-label="Stage">4. Job-retention support</td><td data-label="Question">Do you need support after hiring?</td><td data-label="Why">Repeated short employment points to workplace support, training, coaching, and fit.</td><td data-label="Where"><button class="table-button" data-go="employment">Employment</button></td></tr><tr><td data-label="Stage">5. Education repair</td><td data-label="Question">Did college/training fail because supports were missing?</td><td data-label="Why">Accessible Learning should be involved before another attempt.</td><td data-label="Where"><button class="table-button" data-go="education">Education</button></td></tr></tbody></table></section>
+    <section id="journey" class="tab-panel"><div class="section-head"><h2>Support Journey</h2><p>Use this order to move through the information.</p></div><table><thead><tr><th>Stage</th><th>Question</th><th>Why it matters</th><th>Where to go</th></tr></thead><tbody><tr><td data-label="Stage">1. Current situation</td><td data-label="Question">What support do you already have?</td><td data-label="Why">Avoids repeating short-term supports that did not work.</td><td data-label="Where"><button class="table-button" data-go="workflow">Inquiry</button></td></tr><tr><td data-label="Stage">2. ODSP worker</td><td data-label="Question">Is ODSP helping with employment supports?</td><td data-label="Why">ODSP may open faster referral paths.</td><td data-label="Where"><button class="table-button" data-go="odsp">ODSP</button></td></tr><tr><td data-label="Stage">3. DSO eligibility</td><td data-label="Question">Is DSO active, incomplete, or unknown?</td><td data-label="Why">DSO may unlock developmental-service supports and Passport funding.</td><td data-label="Where"><button class="table-button" data-go="dso">DSO + Passport</button></td></tr><tr><td data-label="Stage">4. Job-retention support</td><td data-label="Question">Do you need support after hiring?</td><td data-label="Why">Repeated short employment points to workplace support, training, coaching, and fit.</td><td data-label="Where"><button class="table-button" data-go="employment">Employment</button></td></tr><tr><td data-label="Stage">5. Education support</td><td data-label="Question">Do you need support before returning to training?</td><td data-label="Why">Accessible Learning should be involved before another attempt.</td><td data-label="Where"><button class="table-button" data-go="education">Education</button></td></tr></tbody></table></section>
 
     <section id="odsp" class="tab-panel"><div class="section-head"><h2>ODSP</h2><p>Check whether ODSP is helping with employment supports, job retention, and next-step planning.</p></div><table><thead><tr><th>Area</th><th>Check</th><th>Ask for</th><th>Output</th></tr></thead><tbody><tr><td data-label="Area">Assigned worker</td><td data-label="Check">Do you know the worker name and contact path?</td><td data-label="Ask">Worker name, contact path, and next appointment.</td><td data-label="Output">Written reply or appointment note.</td></tr><tr><td data-label="Area">Employment supports</td><td data-label="Check">Have you been referred to ODSP Employment Supports?</td><td data-label="Ask">Referral focused on job retention.</td><td data-label="Output">Referral confirmation.</td></tr><tr><td data-label="Area">Work-related costs</td><td data-label="Check">Are transportation, training, tools, or clothing barriers?</td><td data-label="Ask">What ODSP can cover or refer for.</td><td data-label="Output">Decision in writing.</td></tr></tbody></table><div class="contact-strip"><a href="tel:5198864700">Call ODSP Kitchener</a><a href="mailto:ODSP.Kitchener@ontario.ca">Email ODSP</a><a href="https://www.google.com/maps/search/?api=1&query=715%20Fischer%20Hallman%20Rd%20N%20Unit%20301%20Kitchener%20ON%20N2E%204E9" target="_blank" rel="noopener">Map</a></div></section>
 
