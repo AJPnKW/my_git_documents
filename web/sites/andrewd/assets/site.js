@@ -228,3 +228,11 @@ function generateRoadmap(switchTab = true){
   localStorage.setItem(storageKey, JSON.stringify(a));
   if(switchTab) goTab("roadmap");
 }
+
+function addAndrewContactLink(){
+  const nav = document.querySelector(".side-nav");
+  if(nav && !nav.querySelector('a[href="contact_andrew.html"]')){
+    nav.insertAdjacentHTML("beforeend", '<a class="nav-link" href="contact_andrew.html"><span class="nav-icon">🙋</span><span class="nav-text">Contact Andrew</span></a>');
+  }
+}
+
