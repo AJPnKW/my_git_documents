@@ -170,7 +170,7 @@ function generateRoadmap(switchTab = true){
 }
 
 function enhancePageForAccessibility(){
-  refineHero(); updateNavigation(); simplifyDashboardIntro(); layoutDashboard(); layoutRoadmap(); addAdvocateTab(); addConestogaDepth(); addCommunityTips(); addResourceBlocks(); addContactsTools(); addAndrewContactLink(); addAiNotice(); addTodoLink();
+  refineHero(); updateNavigation(); simplifyDashboardIntro(); layoutDashboard(); layoutRoadmap(); addAdvocateTab(); addConestogaDepth(); addCommunityTips(); addResourceBlocks(); addAndrewContactLink(); addAiNotice(); addTodoLink();
 }
 
 function refineHero(){
@@ -248,10 +248,6 @@ function addResourceBlocks(){
 function addResourceBlock(sectionId, title, links){
   const section = byId(sectionId); if(!section || section.querySelector(".resource-links")) return;
   const block = document.createElement("div"); block.className = "resource-links"; block.innerHTML = `<h3>${title}</h3><p>Use these links to check phone numbers, intake steps, eligibility rules, and program details.</p><div>${links.map(([text,url]) => `<a href="${url}" target="_blank" rel="noopener">${text}</a>`).join("")}</div>`; section.appendChild(block);
-}
-function addContactsTools(){
-  const contacts = byId("contacts"); if(!contacts || contacts.querySelector(".contact-tools")) return;
-  contacts.insertAdjacentHTML("afterbegin", `<div class="contact-tools"><h3>📇 Add organization contacts</h3><p>Download a contact file for service contacts such as ODSP, DSO, employment services, Conestoga Accessible Learning, 211, and rights supports. This is separate from Andrew P's peer contact card.</p><a class="primary" href="assets/andrewd_support_contacts.vcf" download>Add organization contacts</a></div>`);
 }
 function addAiNotice(){
   const main = byId("main"); if(!main || byId("aiNotice")) return;
