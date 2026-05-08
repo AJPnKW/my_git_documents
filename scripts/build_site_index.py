@@ -185,6 +185,23 @@ def write_workspace_json(target_root: Path, workspaces: dict[str, dict]) -> None
         (data_root / f"{name}.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
+def preserve_web_only_sites(target_root: Path) -> None:
+    source_sites = WEB / "sites"
+    target_sites = target_root / "sites"
+    app_sites = APP / "sites"
+    if not source_sites.exists():
+        return
+
+    target_sites.mkdir(parents=True, exist_ok=True)
+    for source_site in sorted(path for path in source_sites.iterdir() if path.is_dir()):
+        if (app_sites / source_site.name).exists():
+            continue
+        target_site = target_sites / source_site.name
+        if target_site.exists():
+            shutil.rmtree(target_site, onerror=on_rm_error)
+        shutil.copytree(source_site, target_site)
+
+
 def on_rm_error(func, path, exc_info):
     target = Path(path)
     if target.is_dir():
@@ -202,11 +219,12 @@ def sync_web_from_app() -> None:
         temp_web,
         ignore=shutil.ignore_patterns("auth_config.local.json"),
     )
+    preserve_web_only_sites(temp_web)
     old_web = None
     if WEB.exists():
         old_web = ROOT / f"web__old__{next(tempfile._get_candidate_names())}"
-        WEB.replace(old_web)
-    temp_web.replace(WEB)
+        shutil.move(str(WEB), str(old_web))
+    shutil.move(str(temp_web), str(WEB))
     shutil.rmtree(temp_parent, onerror=on_rm_error)
     if old_web and old_web.exists():
         try:

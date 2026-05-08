@@ -170,7 +170,7 @@ function generateRoadmap(switchTab = true){
 }
 
 function enhancePageForAccessibility(){
-  refineHero(); updateNavigation(); simplifyDashboardIntro(); layoutDashboard(); layoutRoadmap(); addAdvocateTab(); addConestogaDepth(); addCommunityTips(); addResourceBlocks(); addContactsTools(); addAiNotice(); addTodoLink();
+  refineHero(); updateNavigation(); simplifyDashboardIntro(); layoutDashboard(); layoutRoadmap(); addAdvocateTab(); addConestogaDepth(); addCommunityTips(); addResourceBlocks(); addContactsTools(); addAndrewContactLink(); addAiNotice(); addTodoLink();
 }
 
 function refineHero(){
@@ -193,7 +193,7 @@ function updateNavigation(){
 
 function addTodoLink(){
   const nav = document.querySelector(".side-nav");
-  if(nav && !nav.querySelector('a[href="project_todo.html"]')) nav.insertAdjacentHTML("beforeend", '<a class="nav-link" href="project_todo.html"><span class="nav-icon">📋</span><span class="nav-text">TODO</span></a>');
+  if(nav && !nav.querySelector('a[href="project_todo.html"]')) nav.insertAdjacentHTML("beforeend", '<a class="nav-link" href="project_todo.html"><span class="nav-icon">📋</span><span class="nav-text">Status</span></a>');
 }
 
 function simplifyDashboardIntro(){
@@ -251,7 +251,7 @@ function addResourceBlock(sectionId, title, links){
 }
 function addContactsTools(){
   const contacts = byId("contacts"); if(!contacts || contacts.querySelector(".contact-tools")) return;
-  contacts.insertAdjacentHTML("afterbegin", `<div class="contact-tools"><h3>📇 Add organization contacts</h3><p>Download a contact file for ODSP, DSO, employment, Conestoga, and other support organizations.</p><a class="primary" href="assets/andrewd_support_contacts.vcf" download>Add organization contacts</a></div>`);
+  contacts.insertAdjacentHTML("afterbegin", `<div class="contact-tools"><h3>📇 Add organization contacts</h3><p>Download a contact file for service contacts such as ODSP, DSO, employment services, Conestoga Accessible Learning, 211, and rights supports. This is separate from Andrew P's peer contact card.</p><a class="primary" href="assets/andrewd_support_contacts.vcf" download>Add organization contacts</a></div>`);
 }
 function addAiNotice(){
   const main = byId("main"); if(!main || byId("aiNotice")) return;
@@ -261,7 +261,7 @@ function addAiNotice(){
 function addAndrewContactLink(){
   const nav = document.querySelector(".side-nav");
   if(nav && !nav.querySelector('a[href="contact_andrew.html"]')){
-    nav.insertAdjacentHTML("beforeend", '<a class="nav-link" href="contact_andrew.html"><span class="nav-icon">🙋</span><span class="nav-text">Contact Andrew P</span></a>');
+    nav.insertAdjacentHTML("beforeend", '<a class="nav-link" href="contact_andrew.html"><span class="nav-icon">🙋</span><span class="nav-text">Andrew P peer contact</span></a>');
   }
 }
 
